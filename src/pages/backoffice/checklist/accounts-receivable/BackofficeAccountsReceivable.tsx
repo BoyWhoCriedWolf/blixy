@@ -1,8 +1,8 @@
 import Invoices from "pages/dashboard/invoices";
 import React from "react";
 
-const BackofficeDebtors = () => {
+const BackofficeAccountsReceivable = () => {
   return <Invoices />;
 };
 
-export default BackofficeDebtors;
+export default BackofficeAccountsReceivable;

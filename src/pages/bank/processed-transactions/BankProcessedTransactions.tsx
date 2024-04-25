@@ -8,7 +8,7 @@ import { Box, Checkbox, Paper, Typography } from "@mui/material";
 import PrimaryTable from "components/table";
 import React from "react";
 
-const BackofficeProcessedTransactions = () => {
+const BankProcessedTransactions = () => {
   return (
     <Paper sx={{ p: 2, m: 2 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1, px: 2 }}>
@@ -196,4 +196,4 @@ const BackofficeProcessedTransactions = () => {
   );
 };
 
-export default BackofficeProcessedTransactions;
+export default BankProcessedTransactions;

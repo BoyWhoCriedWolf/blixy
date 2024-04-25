@@ -17,7 +17,7 @@ const BackofficeDocuments = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/backoffice/document/${"test"}`);
+    navigate(`/archive/document/${"test"}`);
   };
 
   return (

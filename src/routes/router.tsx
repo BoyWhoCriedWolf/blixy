@@ -10,10 +10,10 @@ import BackofficeExporting from "pages/backoffice/actions/exporting";
 import BackofficeImporting from "pages/backoffice/actions/importing";
 import BackofficeMemorial from "pages/backoffice/actions/memorial";
 import BackofficeTaxFilling from "pages/backoffice/actions/tax-filling";
+import BackofficeAccountsPayable from "pages/backoffice/checklist/accounts-payable";
+import BackofficeAccountsReceivable from "pages/backoffice/checklist/accounts-receivable";
 import BackofficeActions from "pages/backoffice/checklist/actions";
 import BackofficeBank from "pages/backoffice/checklist/bank";
-import BackofficeCreditors from "pages/backoffice/checklist/creditors";
-import BackofficeDebtors from "pages/backoffice/checklist/debtors";
 import BackofficeDocuments from "pages/backoffice/checklist/documents";
 import BackofficeDeletedDocuments from "pages/backoffice/checklist/documents/deleted-documents";
 import BackofficeDocumentDetail from "pages/backoffice/checklist/documents/document-detail";
@@ -25,17 +25,20 @@ import BackofficeScanForms from "pages/backoffice/checklist/scan-forms";
 import BackofficeSuspenseAccounts from "pages/backoffice/checklist/suspense-accounts";
 import BackofficeWorkflowRules from "pages/backoffice/checklist/workflow-rules";
 import BackofficeLayout from "pages/backoffice/layout";
-import BackofficeProcessedTransactions from "pages/backoffice/overview/processed-transactions";
 import BackofficeQualityMonitor from "pages/backoffice/overview/quality-monitor";
 import BackofficeWorkflow from "pages/backoffice/overview/workflow";
+import BankProcessedTransactions from "pages/bank/processed-transactions";
 
 import Dashboard from "pages/dashboard";
 
+import BackofficeProcessedWorkflow from "pages/backoffice/overview/processed-workflow";
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import ArchiveLayout from "pages/archive/layout";
+import BankLayout from "pages/bank/layout";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -58,8 +61,8 @@ export const router = createBrowserRouter(
           <Route index element={<BackofficeWorkflow />} />
           <Route path="workflow" element={<BackofficeWorkflow />} />
           <Route
-            path="processed-transactions"
-            element={<BackofficeProcessedTransactions />}
+            path="processed-workflow"
+            element={<BackofficeProcessedWorkflow />}
           />
           <Route
             path="quality-monitor"
@@ -75,8 +78,23 @@ export const router = createBrowserRouter(
             path="suspense-accounts"
             element={<BackofficeSuspenseAccounts />}
           />
-          <Route path="debtors" element={<BackofficeDebtors />} />
-          <Route path="creditors" element={<BackofficeCreditors />} />
+          <Route
+            path="accounts-receivable"
+            element={<BackofficeAccountsReceivable />}
+          />
+          <Route
+            path="accounts-payable"
+            element={<BackofficeAccountsPayable />}
+          />
+          <Route path="export" element={<BackofficeExport />} />
+          <Route path="actions" element={<BackofficeActions />} />
+          <Route path="ocr-recog-rules" element={<BackofficeOcrRecogRules />} />
+          <Route path="workflow-rules" element={<BackofficeWorkflowRules />} />
+          <Route path="scan-forms" element={<BackofficeScanForms />} />
+        </Route>
+
+        {/* archive */}
+        <Route path="/archive" element={<ArchiveLayout />}>
           <Route path="documents" element={<BackofficeDocuments />} />
           <Route path="document/:id" element={<BackofficeDocumentDetail />} />
           <Route
@@ -91,11 +109,14 @@ export const router = createBrowserRouter(
             path="deleted-documents"
             element={<BackofficeDeletedDocuments />}
           />
-          <Route path="export" element={<BackofficeExport />} />
-          <Route path="actions" element={<BackofficeActions />} />
-          <Route path="ocr-recog-rules" element={<BackofficeOcrRecogRules />} />
-          <Route path="workflow-rules" element={<BackofficeWorkflowRules />} />
-          <Route path="scan-forms" element={<BackofficeScanForms />} />
+        </Route>
+
+        {/* bank */}
+        <Route path="/bank" element={<BankLayout />}>
+          <Route
+            path="processed-transactions"
+            element={<BankProcessedTransactions />}
+          />
         </Route>
 
         {/* accounting */}

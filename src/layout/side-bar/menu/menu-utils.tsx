@@ -45,6 +45,8 @@ export const MENU_DATA = [
     path: "/home",
     label: "Home",
   },
+
+  // backoffice
   {
     icon: <Business />,
     label: "Backoffice",
@@ -54,16 +56,19 @@ export const MENU_DATA = [
         label: "Overview",
         isLabel: true,
       },
+      // workflow
       {
         icon: <Schema />,
         path: "/backoffice/workflow",
         label: "Backoffice workflow",
       },
+      // Processed workflow
       {
         icon: <ReceiptLong />,
-        path: "/backoffice/processed-transactions",
-        label: "Processed transactions",
+        path: "/backoffice/processed-workflow",
+        label: "Processed workflow",
       },
+      // Quality monitor
       {
         icon: <HighQuality />,
         path: "/backoffice/quality-monitor",
@@ -75,26 +80,31 @@ export const MENU_DATA = [
         label: "Actions",
         isLabel: true,
       },
+      // Tax filling
       {
         icon: <Stream />,
         path: "/backoffice/tax-filling",
         label: "Tax filling",
       },
+      // Memorial
       {
         icon: <Memory />,
         path: "/backoffice/memorial",
         label: "Memorial",
       },
+      // Exporting
       {
         icon: <IosShare />,
         path: "/backoffice/exporting",
         label: "Exporting",
       },
+      // Importing
       {
         icon: <ArrowDownward />,
         path: "/backoffice/importing",
         label: "Importing",
       },
+      // Chart of accounts
       {
         icon: <BarChart />,
         path: "/backoffice/accounts-chart",
@@ -106,70 +116,91 @@ export const MENU_DATA = [
         label: "Checklist",
         isLabel: true,
       },
+      // Bank
       {
         icon: <AccountBalance />,
         path: "/backoffice/bank",
         label: "Bank",
       },
+      // Suspense accounts
       {
         icon: <NoAccounts />,
         path: "/backoffice/suspense-accounts",
         label: "Suspense accounts",
       },
+      // Accounts receivable
       {
         icon: <AccountBox />,
-        path: "/backoffice/debtors",
-        label: "Debtors",
+        path: "/backoffice/accounts-receivable",
+        label: "Accounts receivable",
       },
+      // Accounts Payable
       {
         icon: <AccountCircle />,
-        path: "/backoffice/creditors",
-        label: "Creditors",
+        path: "/backoffice/accounts-payable",
+        label: "Accounts Payable",
       },
-      {
-        icon: <Article />,
-        path: "/backoffice/documents",
-        label: "Documents",
-      },
-      {
-        icon: <DocumentScanner />,
-        path: "/backoffice/stored-documents",
-        label: "Stored documents",
-      },
-      {
-        icon: <WorkHistory />,
-        path: "/backoffice/recently-viewed-documents",
-        label: "Recently viewed",
-      },
-      {
-        icon: <FolderDelete />,
-        path: "/backoffice/deleted-documents",
-        label: "Deleted documents",
-      },
+      // Export
       {
         icon: <IosShare />,
         path: "/backoffice/export",
         label: "Export",
       },
+      // Actions
       {
         icon: <SmartButton />,
         path: "/backoffice/actions",
         label: "Actions",
       },
+      // OCR-Recognizition rules
       {
         icon: <QrCodeScanner />,
         path: "/backoffice/ocr-recog-rules",
         label: "OCR-Recognizition rules",
       },
+      // Workflow rules
       {
         icon: <Schema />,
         path: "/backoffice/workflow-rules",
         label: "Workflow rules",
       },
+      // Scan forms
       {
         icon: <Flip />,
         path: "/backoffice/scan-forms",
         label: "Scan forms",
+      },
+    ],
+  },
+
+  // Archive
+  {
+    icon: <Business />,
+    label: "Archive",
+    children: [
+      // Documents
+      {
+        icon: <Article />,
+        path: "/archive/documents",
+        label: "Documents",
+      },
+      // Stored documents
+      {
+        icon: <DocumentScanner />,
+        path: "/archive/stored-documents",
+        label: "Stored documents",
+      },
+      // Recently viewed
+      {
+        icon: <WorkHistory />,
+        path: "/archive/recently-viewed-documents",
+        label: "Recently viewed",
+      },
+      // Deleted documents
+      {
+        icon: <FolderDelete />,
+        path: "/archive/deleted-documents",
+        label: "Deleted documents",
       },
     ],
   },
@@ -183,6 +214,12 @@ export const MENU_DATA = [
         icon: <ContactEmergency />,
         path: "#",
         label: "Bank accounts",
+      },
+      // Processed transactions
+      {
+        icon: <ReceiptLong />,
+        path: "/bank/processed-transactions",
+        label: "Processed transactions",
       },
       {
         icon: <LocalAtm />,
@@ -237,15 +274,17 @@ export const MENU_DATA = [
         path: "#",
         label: "Assets",
       },
+      // Accounts Receivable
       {
         icon: <AccountBox />,
         path: "#",
-        label: "Debtors",
+        label: "Accounts Receivable",
       },
+      // Accounts Payable
       {
         icon: <AccountCircle />,
         path: "#",
-        label: "Creditors",
+        label: "Accounts Payable",
       },
       {
         icon: <Memory />,
