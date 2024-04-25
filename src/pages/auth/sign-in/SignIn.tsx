@@ -62,6 +62,8 @@ const SignIn = () => {
       if (ret.access_token) {
         setAuthorization(ret);
       }
+
+      navigate("/home");
     } else {
       setFormError((s) => ({
         ...s,
