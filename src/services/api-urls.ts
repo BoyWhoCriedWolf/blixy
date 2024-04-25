@@ -6,9 +6,9 @@ export const API_BASE_URL =
 
 export const API_URLS = {
   // auth
-  LOGIN: "/login",
-  REGISTER: "/register",
-  LOGOUT: "/logout",
-  HEALTH_CHECK: "/healthcheck",
-  CHANGE_PASSWORD: "/change-password",
+  LOGIN: "/auth/login",
+  REGISTER: "/auth/register",
+  LOGOUT: "/auth/logout",
+  HEALTH_CHECK: "/auth/healthcheck",
+  CHANGE_PASSWORD: "/auth/change-password",
 };
