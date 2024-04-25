@@ -1,9 +1,9 @@
 import React from 'react'
 
-const BackofficeStoredDocuments = () => {
+const ArchiveStoredDocuments = () => {
   return (
     <div>BackofficeStoredDocuments</div>
   )
 }
 
-export default BackofficeStoredDocuments
+export default ArchiveStoredDocuments

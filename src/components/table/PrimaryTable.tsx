@@ -20,11 +20,15 @@ export type TableColumnType<T = any> = {
 function PrimaryTable<T = any>({
   columns = [] as Array<TableColumnType>,
   data = [] as Array<T>,
-  isAction = false as Boolean
+  isAction = false as Boolean,
+
+  onClickRow = () => null,
 }: {
   columns?: Array<TableColumnType<T>>;
   data?: Array<T>;
   isAction?: Boolean;
+
+  onClickRow?: (row?: T, rowIndex?: number, self?: Array<T>) => void;
 }) {
   return (
     <TableContainer component={Paper}>
@@ -45,10 +49,7 @@ function PrimaryTable<T = any>({
                 </TableCell>
               );
             })}
-            {
-              isAction ? ( <TableCell align="left">Actions</TableCell> ) : null
-            }
-            
+            {isAction ? <TableCell align="left">Actions</TableCell> : null}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -68,25 +69,25 @@ function PrimaryTable<T = any>({
                   row?.[column?.name ?? ""] ?? null;
 
                 return (
-                  <TableCell key={columnIndex} align="left">
+                  <TableCell
+                    key={columnIndex}
+                    align="left"
+                    onClick={() => onClickRow(row, rowIndex)}
+                  >
                     {renderContent}
                   </TableCell>
                 );
               })}
-              {
-                isAction ?
-                (
-                  <TableCell align="center" sx={{ p: 0 }}>
-                <IconButton size="small" sx={{ mr: 0.25 }}>
-                  <Edit />
-                </IconButton>
-                <IconButton size="small">
-                  <MoreVert />
-                </IconButton>
-              </TableCell>
-                ) : null
-              }
-              
+              {isAction ? (
+                <TableCell align="center" sx={{ p: 0 }}>
+                  <IconButton size="small" sx={{ mr: 0.25 }}>
+                    <Edit />
+                  </IconButton>
+                  <IconButton size="small">
+                    <MoreVert />
+                  </IconButton>
+                </TableCell>
+              ) : null}
             </TableRow>
           ))}
         </TableBody>

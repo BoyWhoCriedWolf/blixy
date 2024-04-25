@@ -21,7 +21,7 @@ import IconCard from "components/icon-card";
 import PrimaryTable from "components/table";
 import React from "react";
 
-const BackofficeRecentlyViewedDocuments = () => {
+const ArchiveRecentlyViewedDocuments = () => {
   return (
     <Box sx={{ p: 2 }}>
       <Grid container spacing={2}>
@@ -162,4 +162,4 @@ const BackofficeRecentlyViewedDocuments = () => {
   );
 };
 
-export default BackofficeRecentlyViewedDocuments;
+export default ArchiveRecentlyViewedDocuments;

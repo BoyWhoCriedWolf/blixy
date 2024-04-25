@@ -1,0 +1,3 @@
+import ArchiveRecentlyViewedDocuments from "./ArchiveRecentlyViewedDocuments";
+
+export default ArchiveRecentlyViewedDocuments

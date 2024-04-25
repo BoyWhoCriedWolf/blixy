@@ -14,11 +14,11 @@ import BackofficeAccountsPayable from "pages/backoffice/checklist/accounts-payab
 import BackofficeAccountsReceivable from "pages/backoffice/checklist/accounts-receivable";
 import BackofficeActions from "pages/backoffice/checklist/actions";
 import BackofficeBank from "pages/backoffice/checklist/bank";
-import BackofficeDocuments from "pages/backoffice/checklist/documents";
-import BackofficeDeletedDocuments from "pages/backoffice/checklist/documents/deleted-documents";
-import BackofficeDocumentDetail from "pages/backoffice/checklist/documents/document-detail";
-import BackofficeRecentlyViewedDocuments from "pages/backoffice/checklist/documents/recently-viewed-documents";
-import BackofficeStoredDocuments from "pages/backoffice/checklist/documents/stored-documents";
+import ArchiveDocuments from "pages/archive/documents";
+import ArchiveDeletedDocuments from "pages/archive/documents/deleted-documents";
+import ArchiveDocumentDetail from "pages/archive/documents/document-detail";
+import ArchiveRecentlyViewedDocuments from "pages/archive/documents/recently-viewed-documents";
+import ArchiveStoredDocuments from "pages/archive/documents/stored-documents";
 import BackofficeExport from "pages/backoffice/checklist/export";
 import BackofficeOcrRecogRules from "pages/backoffice/checklist/ocr-recog-rules";
 import BackofficeScanForms from "pages/backoffice/checklist/scan-forms";
@@ -39,6 +39,7 @@ import {
 } from "react-router-dom";
 import ArchiveLayout from "pages/archive/layout";
 import BankLayout from "pages/bank/layout";
+import ArchiveDocumentsList from "pages/archive/documents/documents-list";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -95,19 +96,17 @@ export const router = createBrowserRouter(
 
         {/* archive */}
         <Route path="/archive" element={<ArchiveLayout />}>
-          <Route path="documents" element={<BackofficeDocuments />} />
-          <Route path="document/:id" element={<BackofficeDocumentDetail />} />
-          <Route
-            path="stored-documents"
-            element={<BackofficeStoredDocuments />}
-          />
+          <Route path="documents" element={<ArchiveDocuments />} />
+          <Route path="documents-list" element={<ArchiveDocumentsList />} />
+          <Route path="document/:id" element={<ArchiveDocumentDetail />} />
+          <Route path="stored-documents" element={<ArchiveStoredDocuments />} />
           <Route
             path="recently-viewed-documents"
-            element={<BackofficeRecentlyViewedDocuments />}
+            element={<ArchiveRecentlyViewedDocuments />}
           />
           <Route
             path="deleted-documents"
-            element={<BackofficeDeletedDocuments />}
+            element={<ArchiveDeletedDocuments />}
           />
         </Route>
 

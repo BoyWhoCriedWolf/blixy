@@ -1,8 +1,15 @@
 import { Search } from "@mui/icons-material";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import DocumentsList from "sections/documents/documents-list";
 
-const BankProcessedTransactions = () => {
+const ArchiveDocumentsList = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/archive/document/${"test"}`);
+  };
+
   return (
     <Paper sx={{ p: 2, m: 2 }}>
       <Box
@@ -15,11 +22,14 @@ const BankProcessedTransactions = () => {
         >
           Documents to be processed
         </Typography>
-        <Search fontSize="large" />
+        <IconButton size="small">
+          <Search />
+        </IconButton>
       </Box>
-      <DocumentsList />
+
+      <DocumentsList onClick={handleClick} />
     </Paper>
   );
 };
 
-export default BankProcessedTransactions;
+export default ArchiveDocumentsList;
