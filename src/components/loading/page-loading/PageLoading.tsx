@@ -8,7 +8,10 @@ const PageLoading: FC<
 > = ({ open = false, onClose = () => null }) => {
   return (
     <Backdrop
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        color: (th) => th.palette.text.primary,
+      }}
       open={open}
       onClick={onClose}
     >
