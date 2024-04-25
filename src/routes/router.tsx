@@ -5,6 +5,11 @@ import AuthLayout from "pages/auth/auth-layout";
 import SignIn from "pages/auth/sign-in";
 import SignUp from "pages/auth/sign-up";
 
+import ArchiveDocuments from "pages/archive/documents";
+import ArchiveDeletedDocuments from "pages/archive/documents/deleted-documents";
+import ArchiveDocumentDetail from "pages/archive/documents/document-detail";
+import ArchiveRecentlyViewedDocuments from "pages/archive/documents/recently-viewed-documents";
+import ArchiveStoredDocuments from "pages/archive/documents/stored-documents";
 import BackofficeAccountsChart from "pages/backoffice/actions/accounts-chart";
 import BackofficeExporting from "pages/backoffice/actions/exporting";
 import BackofficeImporting from "pages/backoffice/actions/importing";
@@ -14,11 +19,6 @@ import BackofficeAccountsPayable from "pages/backoffice/checklist/accounts-payab
 import BackofficeAccountsReceivable from "pages/backoffice/checklist/accounts-receivable";
 import BackofficeActions from "pages/backoffice/checklist/actions";
 import BackofficeBank from "pages/backoffice/checklist/bank";
-import ArchiveDocuments from "pages/archive/documents";
-import ArchiveDeletedDocuments from "pages/archive/documents/deleted-documents";
-import ArchiveDocumentDetail from "pages/archive/documents/document-detail";
-import ArchiveRecentlyViewedDocuments from "pages/archive/documents/recently-viewed-documents";
-import ArchiveStoredDocuments from "pages/archive/documents/stored-documents";
 import BackofficeExport from "pages/backoffice/checklist/export";
 import BackofficeOcrRecogRules from "pages/backoffice/checklist/ocr-recog-rules";
 import BackofficeScanForms from "pages/backoffice/checklist/scan-forms";
@@ -31,15 +31,16 @@ import BankProcessedTransactions from "pages/bank/processed-transactions";
 
 import Dashboard from "pages/dashboard";
 
+import AccountingImport from "pages/accounting/import";
+import ArchiveDocumentsList from "pages/archive/documents/documents-list";
+import ArchiveLayout from "pages/archive/layout";
 import BackofficeProcessedWorkflow from "pages/backoffice/overview/processed-workflow";
+import BankLayout from "pages/bank/layout";
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import ArchiveLayout from "pages/archive/layout";
-import BankLayout from "pages/bank/layout";
-import ArchiveDocumentsList from "pages/archive/documents/documents-list";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -122,6 +123,7 @@ export const router = createBrowserRouter(
         <Route path="/accounting" element={<AccountingLayout />}>
           <Route index element={<AccountingExport />} />
           <Route path="export" element={<AccountingExport />} />
+          <Route path="import" element={<AccountingImport />} />
         </Route>
       </Route>
     </Route>
