@@ -15,6 +15,7 @@ import {
   FolderDelete,
   HighQuality,
   Home,
+  Inventory,
   IosShare,
   LocalAtm,
   Memory,
@@ -175,7 +176,7 @@ export const MENU_DATA = [
 
   // Archive
   {
-    icon: <Business />,
+    icon: <Inventory />,
     label: "Archive",
     children: [
       // Documents
