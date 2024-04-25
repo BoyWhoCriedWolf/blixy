@@ -23,7 +23,7 @@ class AuthService {
     } catch (error) {
       const axiosError = error as AxiosError;
 
-      if (axiosError.response?.status === 401) {
+      if (axiosError.status === 401) {
         return {
           success: false,
           code: 401,
@@ -33,8 +33,8 @@ class AuthService {
 
       return {
         success: false,
-        code: axiosError.response?.status ?? axiosError.code,
-        msg: axiosError.response?.statusText ?? axiosError.message,
+        code: axiosError.status ?? axiosError.code,
+        msg: axiosError.code ?? axiosError.message,
       } as APIResponseType;
     }
   }
