@@ -1,10 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AuthUser } from "services/types/user";
+
+// Define a type for the slice state
+interface AuthState {
+  user?: AuthUser;
+}
+
+// Define the initial state using that type
+const initialState: AuthState = {
+  user: undefined,
+};
 
 export const authSlice = createSlice({
-  name: "counter",
-  initialState: {
-    user: null,
-  },
+  name: "auth",
+  initialState: initialState,
   reducers: {
     setAuthUser: (state, action) => {
       state.user = action.payload;

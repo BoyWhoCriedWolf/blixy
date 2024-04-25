@@ -1,12 +1,19 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
-import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
+import { AuthUser } from "services/types/user";
+import { RootState } from "store/store";
 import Footer from "./footer";
 import Header from "./header";
 import SideBar from "./side-bar";
 
 const Layout: FC = () => {
-  return (
+  const authUser = useSelector<RootState, AuthUser>(
+    (state) => (state?.auth?.user ?? {}) as AuthUser
+  );
+
+  return authUser.access_token ? (
     <Box
       sx={{
         height: "100vh",
@@ -39,6 +46,8 @@ const Layout: FC = () => {
         <Footer />
       </Box>
     </Box>
+  ) : (
+    <Navigate to={{ pathname: "/" }} />
   );
 };
 

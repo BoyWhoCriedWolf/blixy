@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import { apiClient } from "utils/api-utils";
 import { API_URLS } from "./api-urls";
-import { UserInfo } from "./types/user";
+import { AuthUser } from "./types/user";
 import { APIResponseType } from "./types/response";
 
 export interface Credential {
@@ -16,10 +16,10 @@ export interface RegInfo {
 }
 
 class AuthService {
-  async login(credential: Credential): Promise<APIResponseType<UserInfo>> {
+  async login(credential: Credential): Promise<APIResponseType<AuthUser>> {
     try {
       const response: any = await apiClient.create(API_URLS.LOGIN, credential);
-      return response as APIResponseType<UserInfo>;
+      return response as APIResponseType<AuthUser>;
     } catch (error) {
       const axiosError = error as AxiosError;
 
@@ -41,10 +41,10 @@ class AuthService {
 
   async register(
     data: RegInfo
-  ): Promise<APIResponseType<UserInfo> | AxiosError> {
+  ): Promise<APIResponseType<AuthUser> | AxiosError> {
     try {
       const response: any = await apiClient.create(API_URLS.REGISTER, data);
-      return response as APIResponseType<UserInfo>;
+      return response as APIResponseType<AuthUser>;
     } catch (error) {
       return error as AxiosError;
     }

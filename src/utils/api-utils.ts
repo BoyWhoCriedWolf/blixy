@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_BASE_URL } from "../services/api-urls";
+import { AuthUser } from "services/types/user";
 // import { api } from "../config";
 
 axios.defaults.baseURL = API_BASE_URL;
@@ -8,7 +9,7 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 
 // content type
 const authUser: any = sessionStorage.getItem("authUser");
-const token = JSON.parse(authUser) ? JSON.parse(authUser).token : null;
+const token = JSON.parse(authUser) ? JSON.parse(authUser).access_token : null;
 if (token) axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
 // intercepting to capture errors
@@ -39,8 +40,10 @@ axios.interceptors.response.use(
  * Sets the default authorization
  * @param {*} token
  */
-const setAuthorization = (token: any) => {
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+const setAuthorization = (user: AuthUser) => {
+  sessionStorage.setItem("authUser", JSON.stringify(user));
+  axios.defaults.headers.common["Authorization"] =
+    "Bearer " + user.access_token;
 };
 
 class APIClient {
