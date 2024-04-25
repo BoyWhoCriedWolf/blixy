@@ -1,5 +1,5 @@
 export interface UserInfo {
-  email: string;
-  access?: string;
-  refresh?: string;
+  access_token?: string;
+  username?: string;
+  email?: string;
 }

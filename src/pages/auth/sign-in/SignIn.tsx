@@ -1,11 +1,16 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import PageLoading from "components/loading/page-loading";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authService from "services/auth-service";
+import { UserInfo } from "services/types/user";
+import { setAuthUser } from "store/slices/auth-slice";
+import { setAuthorization } from "utils/api-utils";
 import { isValidEmail } from "utils/string-utils";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -48,11 +53,15 @@ const SignIn = () => {
     if (isValidForm) {
       setIsLoading(true);
 
-      const ret = await authService.login(formData);
+      const ret = (await authService.login(formData)) as UserInfo;
       console.log(ret);
       setIsLoading(false);
 
-      navigate("/home");
+      dispatch(setAuthUser(ret));
+
+      if (ret.access_token) {
+        setAuthorization(ret.access_token);
+      }
     } else {
       setFormError((s) => ({
         ...s,
