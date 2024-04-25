@@ -1,5 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import PageLoading from "components/loading/page-loading";
+import { APP_NAME } from "constants/strings";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "services/auth-service";
@@ -13,6 +14,7 @@ const SignUp = () => {
     username: "",
     password: "",
     confirm_password: "",
+    source: "",
   });
   const [formError, setFormError] = useState({
     email: "",
@@ -101,7 +103,7 @@ const SignUp = () => {
   return (
     <Box>
       <Typography fontSize={36} fontWeight={500} align="center" mb={5}>
-        Create a new account
+        Tell us about yourself
       </Typography>
 
       <PageLoading open={isLoading} />
@@ -130,6 +132,16 @@ const SignUp = () => {
         type="username"
         error={formError?.username.length > 0}
         helperText={formError.username ?? ""}
+        sx={{ mb: 4.5 }}
+      />
+      <TextField
+        label={`Where did you hear about ${APP_NAME}`}
+        name="source"
+        value={formData?.source ?? ""}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        variant="outlined"
+        fullWidth
         sx={{ mb: 4.5 }}
       />
       <TextField
