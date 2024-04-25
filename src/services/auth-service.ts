@@ -1,8 +1,8 @@
 import { AxiosError } from "axios";
 import { apiClient } from "utils/api-utils";
 import { API_URLS } from "./api-urls";
-import { AuthUser } from "./types/user";
 import { APIResponseType } from "./types/response";
+import { AuthUser } from "./types/user";
 
 export interface Credential {
   email: string;
@@ -21,6 +21,7 @@ class AuthService {
       const response: any = await apiClient.create(API_URLS.LOGIN, credential);
       return response as APIResponseType<AuthUser>;
     } catch (error) {
+      console.log(JSON.stringify(error));
       const axiosError = error as AxiosError;
 
       if (axiosError.response?.status === 401) {
