@@ -2,6 +2,7 @@ import { AxiosError } from "axios";
 import { apiClient } from "utils/api-utils";
 import { API_URLS } from "./api-urls";
 import { UserInfo } from "./types/user";
+import { APIResponseType } from "./types/response";
 
 export interface Credential {
   email: string;
@@ -15,27 +16,35 @@ export interface RegInfo {
 }
 
 class AuthService {
-  async login(credential: Credential): Promise<UserInfo | AxiosError> {
+  async login(credential: Credential): Promise<APIResponseType<UserInfo>> {
     try {
       const response: any = await apiClient.create(API_URLS.LOGIN, credential);
-      return {
-        email: credential.email,
-        access: response?.access ?? "",
-        refresh: response?.refresh ?? "",
-      } as UserInfo;
+      return response as APIResponseType<UserInfo>;
     } catch (error) {
-      return error as AxiosError;
+      const axiosError = error as AxiosError;
+
+      if (axiosError.code === "401") {
+        return {
+          success: false,
+          code: 401,
+          msg: "Unauthorized",
+        } as APIResponseType;
+      }
+
+      return {
+        success: false,
+        code: axiosError.code,
+        msg: axiosError.message,
+      } as APIResponseType;
     }
   }
 
-  async register(data: RegInfo): Promise<UserInfo | AxiosError> {
+  async register(
+    data: RegInfo
+  ): Promise<APIResponseType<UserInfo> | AxiosError> {
     try {
       const response: any = await apiClient.create(API_URLS.REGISTER, data);
-      return {
-        email: data.email,
-        access: response?.access ?? "",
-        refresh: response?.refresh ?? "",
-      } as UserInfo;
+      return response as APIResponseType<UserInfo>;
     } catch (error) {
       return error as AxiosError;
     }
