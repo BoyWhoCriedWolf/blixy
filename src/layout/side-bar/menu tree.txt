@@ -1,0 +1,51 @@
+-- Backoffice --
+  Overview -- Text Non clickable
+-- Backoffice workflow
+-- Processed transactions
+--  Quality monitor
+
+   Actions -- Text Non clickable
+-- Tax filling
+-- Memorial
+-- Exporting
+-- Importing
+-- Chart of accounts
+
+Checklist -- Text non clickable
+-- Bank
+-- Suspense accounts
+-- Debtors
+-- Creditors
+-- Documents
+-- Stored documents
+-- Recently viewed 
+-- Deleted documents 
+-- Export  
+-- Actions 
+-- OCR-Recognizition rules 
+-- Workflowrules
+-- Scan forms
+
+-- Bank -- 
+Overview
+-- Bank accounts
+--Cash
+-- Payment list 
+-- Export transactions
+-- Recognition rules
+
+-- Accounting -- 
+ Overview -- Text Non clickable
+-- Financial key indicators
+-- Profit loss account
+-- Trial balance sheet
+-- Assets
+-- Debitors
+-- Creditors 
+-- Memorial 
+
+Actions -- Text Non clickable
+-- Export
+-- Chart of accounts
+-- Import
+-- Taxes

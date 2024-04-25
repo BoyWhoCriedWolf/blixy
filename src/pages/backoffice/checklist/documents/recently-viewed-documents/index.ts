@@ -1,0 +1,3 @@
+import BackofficeRecentlyViewedDocuments from "./BackofficeRecentlyViewedDocuments";
+
+export default BackofficeRecentlyViewedDocuments
