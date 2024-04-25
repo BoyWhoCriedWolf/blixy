@@ -7,19 +7,25 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
-  Tooltip
+  Tooltip,
 } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserProfileMenu = () => {
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => navigate("/");
 
   return (
     <React.Fragment>
@@ -92,7 +98,7 @@ const UserProfileMenu = () => {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
