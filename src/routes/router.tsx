@@ -3,6 +3,7 @@ import AccountingExport from "pages/accounting/export";
 import AccountingLayout from "pages/accounting/layout";
 import AuthLayout from "pages/auth/auth-layout";
 import SignIn from "pages/auth/sign-in";
+import SignUp from "pages/auth/sign-up";
 
 import BackofficeAccountsChart from "pages/backoffice/actions/accounts-chart";
 import BackofficeExporting from "pages/backoffice/actions/exporting";
@@ -43,6 +44,7 @@ export const router = createBrowserRouter(
       <Route path="/" element={<AuthLayout />}>
         <Route index element={<SignIn />} />
         <Route path="/" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Route>
 
       {/* Private Routes */}
