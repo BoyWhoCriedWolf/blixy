@@ -26,7 +26,7 @@ const PageLoading: FC<
         <Typography align="center">Loading ...</Typography>
 
         <Box sx={{ width: 200 }}>
-          <LinearProgress />
+          <LinearProgress color="inherit" />
         </Box>
       </Box>
     </Backdrop>
