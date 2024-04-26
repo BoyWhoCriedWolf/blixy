@@ -69,7 +69,7 @@ const SignIn = () => {
       setIsLoading(false);
 
       if (ret.success) {
-        dispatch(setAuthUser(ret));
+        dispatch(setAuthUser(ret.data));
 
         if (ret?.data?.access_token) {
           setAuthorization(ret?.data);
