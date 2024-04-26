@@ -91,6 +91,12 @@ const SignIn = () => {
     }
   };
 
+  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (e.code === "enter") {
+      handleLogin();
+    }
+  };
+
   const handleRegister = () => {
     navigate("/sign-up");
   };
@@ -129,6 +135,7 @@ const SignIn = () => {
         name="password"
         value={formData?.password ?? ""}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         onBlur={handleBlur}
         variant="outlined"
         fullWidth
