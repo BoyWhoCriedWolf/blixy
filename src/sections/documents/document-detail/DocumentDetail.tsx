@@ -34,21 +34,11 @@ const DocumentDetail = () => {
             fullWidth
             onChange={handleChangeType}
           >
-            <MenuItem disabled value="General">
-              General
-            </MenuItem>
-            <MenuItem disabled value="Standard">
-              Standard
-            </MenuItem>
-            <MenuItem disabled value="Purchase Invoice">
-              Purchase Invoice
-            </MenuItem>
-            <MenuItem disabled value="Sales Invoice">
-              Sales Invoice
-            </MenuItem>
-            <MenuItem disabled value="Bank Statement">
-              Bank Statement
-            </MenuItem>
+            <MenuItem value="General">General</MenuItem>
+            <MenuItem value="Standard">Standard</MenuItem>
+            <MenuItem value="Purchase Invoice">Purchase Invoice</MenuItem>
+            <MenuItem value="Sales Invoice">Sales Invoice</MenuItem>
+            <MenuItem value="Bank Statement">Bank Statement</MenuItem>
           </Select>
         </FormControl>
       </Box>
