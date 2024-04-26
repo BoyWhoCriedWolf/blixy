@@ -10,12 +10,15 @@ import store from "store";
 import { THEMES } from "themes";
 import "./App.css";
 import { router } from "./routes/router";
+import { SnackbarProvider } from "notistack";
 
 function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={THEMES.LIGHT}>
-        <RouterProvider router={router} />
+        <SnackbarProvider>
+          <RouterProvider router={router} />
+        </SnackbarProvider>
       </ThemeProvider>
     </Provider>
   );

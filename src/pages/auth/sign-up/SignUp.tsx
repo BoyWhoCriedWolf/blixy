@@ -1,13 +1,17 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import PageLoading from "components/loading/page-loading";
 import { APP_NAME } from "constants/strings";
+import { useSnackbar } from "notistack";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "services/auth-service";
+import { APIResponseType } from "services/types/response";
 import { isValidEmail } from "utils/string-utils";
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -23,6 +27,13 @@ const SignUp = () => {
     confirm_password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<{
+    code?: string | number;
+    message?: string;
+  }>({
+    code: "",
+    message: "",
+  });
 
   const isValidForm =
     Object.values(formError).join("").length === 0 &&
@@ -51,14 +62,17 @@ const SignUp = () => {
     if (name === "username") {
       setFormError((s) => ({
         ...s,
-        username: value.length > 8 ? "" : "Please input user name",
+        username: value.length ? "" : "Please input user name",
       }));
     }
 
     if (name === "password") {
       setFormError((s) => ({
         ...s,
-        password: value.length > 8 ? "" : "Please input a password",
+        password:
+          value.length > 8
+            ? ""
+            : "Please input a password more than 8 characters",
       }));
     }
 
@@ -79,19 +93,31 @@ const SignUp = () => {
     if (isValidForm) {
       setIsLoading(true);
 
-      const ret = await authService.register(formData);
-      console.log(ret);
+      const ret = (await authService.register(formData)) as APIResponseType;
       setIsLoading(false);
 
-      navigate("/");
+      if (ret.success) {
+        enqueueSnackbar("Registered successfully", { variant: "success" });
+        navigate("/");
+      } else {
+        setError({ code: ret?.code, message: ret?.msg ?? "Unknown" });
+      }
     } else {
       setFormError((s) => ({
         ...s,
         email: isValidEmail(formData?.email)
           ? ""
           : "Please input a valid email address",
+        username: formData.username.length ? "" : "Please input user name",
+
         password:
           formData?.password.length > 8 ? "" : "Please input a password",
+        confirm_password:
+          formData.confirm_password.length > 8
+            ? formData.confirm_password === formData?.password
+              ? ""
+              : "Confirm password is not match"
+            : "Please input a password",
       }));
     }
   };
@@ -107,6 +133,14 @@ const SignUp = () => {
       </Typography>
 
       <PageLoading open={isLoading} />
+
+      {error.message ? (
+        <Box sx={{ mb: 2 }}>
+          <Alert variant="outlined" color="error" title="Sign In failed">
+            <b>{error.code}</b> {error.message}
+          </Alert>
+        </Box>
+      ) : null}
 
       <TextField
         label="Email"
@@ -165,7 +199,7 @@ const SignUp = () => {
         onBlur={handleBlur}
         variant="outlined"
         fullWidth
-        type="confirm_password"
+        type="password"
         error={formError?.confirm_password.length > 0}
         helperText={formError.confirm_password ?? ""}
         sx={{ mb: 4.5 }}
