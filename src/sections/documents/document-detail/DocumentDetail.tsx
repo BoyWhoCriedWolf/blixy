@@ -24,7 +24,7 @@ const DocumentDetail = () => {
 
   return (
     <Box>
-      <Paper sx={{ px: 1, mb: 1 }}>
+      <Paper sx={{ p: 1, mb: 1 }}>
         <Typography>Document Type</Typography>
         <FormControl sx={{ mt: 1 }} fullWidth>
           <Select
