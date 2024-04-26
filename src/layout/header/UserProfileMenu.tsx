@@ -10,10 +10,13 @@ import {
   Tooltip,
 } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setAuthUser } from "store/slices/auth-slice";
 
 const UserProfileMenu = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -25,7 +28,10 @@ const UserProfileMenu = () => {
     setAnchorEl(null);
   };
 
-  const handleLogout = () => navigate("/");
+  const handleLogout = () => {
+    dispatch(setAuthUser(null));
+    navigate("/");
+  };
 
   return (
     <React.Fragment>
