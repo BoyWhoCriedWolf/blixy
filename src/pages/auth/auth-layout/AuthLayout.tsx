@@ -11,6 +11,8 @@ const AuthLayout = () => {
     (state) => (state?.auth?.user ?? {}) as AuthUser
   );
 
+  console.log(authUser);
+
   return authUser.access_token ? (
     <Navigate to={{ pathname: "/home" }} />
   ) : (
