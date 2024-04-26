@@ -25,7 +25,7 @@ const DocumentDetailGeneral = () => {
     <Box>
       {/* ======= extracted item ========= */}
       <Box sx={{ mb: 2, pt: 3 }}>
-        <Accordion>
+        <Accordion defaultExpanded>
           <AccordionSummary aria-controls="panel1d-content">
             <Typography fontSize={20} fontWeight={600}>
               Extracted Items
@@ -48,99 +48,103 @@ const DocumentDetailGeneral = () => {
                 Found user in narration - This is dummy text. This text can be
                 two line long giving a lot of space for reasoning.
               </Typography>
+              {/* ======== select ============== */}
+              <Box>
+                <Grid container spacing={2}>
+                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                    <Box>
+                      <Typography>Contact</Typography>
+                      <FormControl sx={{ width: "100%", mt: 1 }}>
+                        <Select
+                          displayEmpty
+                          value=""
+                          inputProps={{ "aria-label": "Without label" }}
+                          size="small"
+                          fullWidth
+                        >
+                          <MenuItem disabled value="">
+                            <Box sx={{ display: "flex" }}>
+                              <Typography>
+                                <PaidOutlined
+                                  sx={{ fontSize: 16, mt: 0.5, mr: 1 }}
+                                />
+                              </Typography>
+                              <em>Snapchat</em>
+                            </Box>
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Box>
+                    <Box>
+                      <Typography sx={{ mt: 1 }}>Total</Typography>
+                      <TextField
+                        placeholder="€1576.20"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                      />
+                      <Typography sx={{ mt: 1 }}>TDS</Typography>
+                      <TextField
+                        placeholder="€1576.20"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                      />
+                      <Typography sx={{ mt: 1 }}>Linked Statement</Typography>
+                      <TextField
+                        placeholder="VIN/SNAP INC/...0923455"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item lg={6} md={6} sm={12} xs={12}>
+                    <Box>
+                      <Typography>General Ledger Account</Typography>
+                      <FormControl sx={{ width: "100%", mt: 1 }}>
+                        <Select
+                          displayEmpty
+                          value=""
+                          inputProps={{ "aria-label": "Without label" }}
+                          size="small"
+                          fullWidth
+                        >
+                          <MenuItem disabled value="">
+                            <Box sx={{ display: "flex" }}>
+                              <Typography>
+                                <MicOutlined
+                                  sx={{ fontSize: 16, mt: 0.5, mr: 1 }}
+                                />
+                              </Typography>
+                              <em>Ad Expense</em>
+                            </Box>
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Box>
+                    <Box>
+                      <Typography sx={{ mt: 1 }}>VAT AMOUNT</Typography>
+                      <TextField
+                        placeholder="€234.90"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                      />
+                      <Typography sx={{ mt: 1 }}>Item Count</Typography>
+                      <TextField
+                        placeholder="1"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                      />
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Box>
             </Box>
           </AccordionDetails>
         </Accordion>
-      </Box>
-      {/* ======== select ============== */}
-      <Box>
-        <Grid container spacing={2}>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
-            <Box>
-              <Typography>Contact</Typography>
-              <FormControl sx={{ width: "100%", mt: 1 }}>
-                <Select
-                  displayEmpty
-                  value=""
-                  inputProps={{ "aria-label": "Without label" }}
-                  size="small"
-                  fullWidth
-                >
-                  <MenuItem disabled value="">
-                    <Box sx={{ display: "flex" }}>
-                      <Typography>
-                        <PaidOutlined sx={{ fontSize: 16, mt: 0.5, mr: 1 }} />
-                      </Typography>
-                      <em>Snapchat</em>
-                    </Box>
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            <Box>
-              <Typography sx={{ mt: 1 }}>Total</Typography>
-              <TextField
-                placeholder="€1576.20"
-                variant="outlined"
-                size="small"
-                fullWidth
-              />
-              <Typography sx={{ mt: 1 }}>TDS</Typography>
-              <TextField
-                placeholder="€1576.20"
-                variant="outlined"
-                size="small"
-                fullWidth
-              />
-              <Typography sx={{ mt: 1 }}>Linked Statement</Typography>
-              <TextField
-                placeholder="VIN/SNAP INC/...0923455"
-                variant="outlined"
-                size="small"
-                fullWidth
-              />
-            </Box>
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
-            <Box>
-              <Typography>General Ledger Account</Typography>
-              <FormControl sx={{ width: "100%", mt: 1 }}>
-                <Select
-                  displayEmpty
-                  value=""
-                  inputProps={{ "aria-label": "Without label" }}
-                  size="small"
-                  fullWidth
-                >
-                  <MenuItem disabled value="">
-                    <Box sx={{ display: "flex" }}>
-                      <Typography>
-                        <MicOutlined sx={{ fontSize: 16, mt: 0.5, mr: 1 }} />
-                      </Typography>
-                      <em>Ad Expense</em>
-                    </Box>
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            <Box>
-              <Typography sx={{ mt: 1 }}>VAT AMOUNT</Typography>
-              <TextField
-                placeholder="€234.90"
-                variant="outlined"
-                size="small"
-                fullWidth
-              />
-              <Typography sx={{ mt: 1 }}>Item Count</Typography>
-              <TextField
-                placeholder="1"
-                variant="outlined"
-                size="small"
-                fullWidth
-              />
-            </Box>
-          </Grid>
-        </Grid>
       </Box>
       {/* =========Contact detail start======== */}
       <Box sx={{ mt: 2 }}>
