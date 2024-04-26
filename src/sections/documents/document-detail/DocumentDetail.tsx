@@ -15,7 +15,7 @@ import DocumentDetailSalesInvoice from "./DocumentDetailSaleInvoice";
 import DocumentDetailStandard from "./DocumentDetailStandard";
 
 const DocumentDetail = () => {
-  const [documentType, setDocumentType] = useState("general");
+  const [documentType, setDocumentType] = useState("General");
 
   const handleChangeType = (e: SelectChangeEvent<string>) => {
     setDocumentType(e?.target?.value ?? "");
