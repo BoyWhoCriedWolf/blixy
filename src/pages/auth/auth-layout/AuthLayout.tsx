@@ -11,7 +11,7 @@ const AuthLayout = () => {
     (state) => (state?.auth?.user ?? {}) as AuthUser
   );
 
-  return authUser.access_token && false ? (
+  return authUser.access_token ? (
     <Navigate to={{ pathname: "/home" }} />
   ) : (
     <ThemeProvider theme={THEMES.DARK}>

@@ -1,9 +1,10 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import PageLoading from "components/loading/page-loading";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authService from "services/auth-service";
+import { APIResponseType } from "services/types/response";
 import { AuthUser } from "services/types/user";
 import { setAuthUser } from "store/slices/auth-slice";
 import { setAuthorization } from "utils/api-utils";
@@ -16,6 +17,13 @@ const SignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [formError, setFormError] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<{
+    code?: string | number;
+    message?: string;
+  }>({
+    code: "",
+    message: "",
+  });
 
   const isValidForm =
     Object.values(formError).join("").length === 0 &&
@@ -51,19 +59,24 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     if (isValidForm) {
+      setError({ code: "", message: "" });
       setIsLoading(true);
 
-      const ret = (await authService.login(formData)) as AuthUser;
+      const ret = (await authService.login(
+        formData
+      )) as APIResponseType<AuthUser>;
       console.log(ret);
       setIsLoading(false);
 
-      dispatch(setAuthUser(ret));
+      if (ret.success) {
+        dispatch(setAuthUser(ret));
 
-      if (ret.access_token) {
-        setAuthorization(ret);
+        if (ret?.data?.access_token) {
+          setAuthorization(ret?.data);
+        }
+      } else {
+        setError({ code: ret.code ?? "", message: ret.msg ?? "Unknown" });
       }
-
-      navigate("/home");
     } else {
       setFormError((s) => ({
         ...s,
@@ -73,6 +86,8 @@ const SignIn = () => {
         password:
           formData?.password.length > 8 ? "" : "Please input a password",
       }));
+
+      setError({ code: "", message: "Input your credentials correctly" });
     }
   };
 
@@ -87,6 +102,14 @@ const SignIn = () => {
       </Typography>
 
       <PageLoading open={isLoading} />
+
+      {error.message ? (
+        <Box sx={{ mb: 2 }}>
+          <Alert variant="outlined" color="error" title="Sign In failed">
+            <b>{error.code}</b> {error.message}
+          </Alert>
+        </Box>
+      ) : null}
 
       <TextField
         label="Email"

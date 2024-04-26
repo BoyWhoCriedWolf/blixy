@@ -13,7 +13,7 @@ const Layout: FC = () => {
     (state) => (state?.auth?.user ?? {}) as AuthUser
   );
 
-  return authUser.access_token || true ? (
+  return authUser.access_token ? (
     <Box
       sx={{
         height: "100vh",
