@@ -3,6 +3,7 @@ import {
   Collapse,
   FormControl,
   MenuItem,
+  Paper,
   Select,
   SelectChangeEvent,
   Typography,
@@ -23,7 +24,7 @@ const DocumentDetail = () => {
 
   return (
     <Box>
-      <Box sx={{ mb: 1 }}>
+      <Paper sx={{ px: 1, mb: 1 }}>
         <Typography>Document Type</Typography>
         <FormControl sx={{ mt: 1 }} fullWidth>
           <Select
@@ -41,7 +42,7 @@ const DocumentDetail = () => {
             <MenuItem value="Bank Statement">Bank Statement</MenuItem>
           </Select>
         </FormControl>
-      </Box>
+      </Paper>
 
       <Box>
         <Collapse in={documentType === "General"}>
