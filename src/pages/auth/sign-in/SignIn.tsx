@@ -92,7 +92,7 @@ const SignIn = () => {
   };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    if (e.code === "enter") {
+    if (e.key === "Enter") {
       handleLogin();
     }
   };
