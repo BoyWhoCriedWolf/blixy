@@ -20,21 +20,6 @@ const UploadFileWidget = () => {
       const formData = new FormData();
       formData.append("file", file);
 
-      // axios
-      //   .post('/upload', formData, {
-      //     onUploadProgress: (progressEvent) => {
-      //       const { loaded, total } = progressEvent;
-      //       const percentCompleted = Math.round((loaded * 100) / total);
-      //       setProgress(percentCompleted);
-      //     },
-      //   })
-      //   .then((response: AxiosResponse) => {
-      //     // Handle successful upload
-      //   })
-      //   .catch((error) => {
-      //     // Handle upload error
-      //   });
-
       setProgress(0);
 
       const ret: APIResponseType = await apiClient.post(
@@ -47,6 +32,10 @@ const UploadFileWidget = () => {
               ? Math.round((loaded * 100) / total)
               : 0;
             setProgress(percentCompleted);
+          },
+
+          headers: {
+            "Content-Type": "multipart/form-data",
           },
         }
       );
