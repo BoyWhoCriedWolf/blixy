@@ -11,4 +11,7 @@ export const API_URLS = {
   LOGOUT: "/auth/logout",
   HEALTH_CHECK: "/auth/healthcheck",
   CHANGE_PASSWORD: "/auth/change-password",
+
+  // documents
+  DOCUMENT_UPLOAD: "/document/upload",
 };

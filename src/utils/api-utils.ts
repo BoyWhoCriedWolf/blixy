@@ -1,6 +1,6 @@
-import axios from "axios";
-import { API_BASE_URL } from "../services/api-urls";
+import axios, { AxiosRequestConfig } from "axios";
 import { AuthUser } from "services/types/user";
+import { API_BASE_URL } from "../services/api-urls";
 // import { api } from "../config";
 
 axios.defaults.baseURL = API_BASE_URL;
@@ -16,7 +16,7 @@ if (token) axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 axios.interceptors.response.use(
   function (response: any) {
     return response.data ? response.data : response;
-  },
+  }
   // function (error: any) {
   //   // Any status codes that falls outside the range of 2xx cause this function to trigger
   //   let message;
@@ -77,8 +77,8 @@ class APIClient {
   /**
    * post given data to url
    */
-  create = (url: any, data: any) => {
-    return axios.post(url, data);
+  post = (url: string, data: any, config?: AxiosRequestConfig<any>) => {
+    return axios.post(url, data, config);
   };
   /**
    * Updates data

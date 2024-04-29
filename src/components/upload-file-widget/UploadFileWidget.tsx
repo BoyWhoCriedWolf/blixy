@@ -3,16 +3,22 @@ import ModalContainer from "components/containers/modal-container";
 import { useState } from "react";
 import UploadFileDropzone from "./UploadFileDropzone";
 import UploadProgressCard from "./UploadProgressCard";
+import { apiClient } from "utils/api-utils";
+import { API_URLS } from "services/api-urls";
+import { APIResponseType } from "services/types/response";
+import { useSnackbar } from "notistack";
 
 const UploadFileWidget = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  const doUpload = (file = selectedFile) => {
+  const doUpload = async (file = selectedFile) => {
     if (file) {
-      // const formData = new FormData();
-      // formData.append('file', file);
+      const formData = new FormData();
+      formData.append("file", file);
 
       // axios
       //   .post('/upload', formData, {
@@ -29,18 +35,29 @@ const UploadFileWidget = () => {
       //     // Handle upload error
       //   });
 
-      const mockupProgress = () => {
-        setProgress((s = 0) => {
-          if (s < 100) {
-            setTimeout(mockupProgress, 100);
-            return Math.min(100, s + 3);
-          }
-          return 100;
-        });
-      };
-
       setProgress(0);
-      mockupProgress();
+
+      const ret: APIResponseType = await apiClient.post(
+        API_URLS.DOCUMENT_UPLOAD,
+        formData,
+        {
+          onUploadProgress: (progressEvent) => {
+            const { loaded, total = 0 } = progressEvent;
+            const percentCompleted = total
+              ? Math.round((loaded * 100) / total)
+              : 0;
+            setProgress(percentCompleted);
+          },
+        }
+      );
+
+      console.log(ret);
+
+      if (ret?.success) {
+        enqueueSnackbar("Successfully Uploaded", { variant: "success" });
+      } else {
+        enqueueSnackbar("Successfully Uploaded", { variant: "success" });
+      }
     }
   };
 

@@ -18,7 +18,7 @@ export interface RegInfo {
 class AuthService {
   async login(credential: Credential): Promise<APIResponseType<AuthUser>> {
     try {
-      const response: any = await apiClient.create(API_URLS.LOGIN, credential);
+      const response: any = await apiClient.post(API_URLS.LOGIN, credential);
       return response as APIResponseType<AuthUser>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
@@ -43,7 +43,7 @@ class AuthService {
     data: RegInfo
   ): Promise<APIResponseType<AuthUser> | AxiosError> {
     try {
-      const response: any = await apiClient.create(API_URLS.REGISTER, data);
+      const response: any = await apiClient.post(API_URLS.REGISTER, data);
       return response as APIResponseType<AuthUser>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
