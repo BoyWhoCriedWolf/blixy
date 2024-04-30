@@ -8,8 +8,7 @@ import { APIResponseType } from "./types/response.types";
 class DocumentService extends APIService<Document> {
   async gets(): Promise<APIResponseType<Document[]>> {
     try {
-      const { data } = await apiClient.get(API_URLS.DOCUMENT_GETS);
-      console.log(data);
+      const data = await apiClient.get(API_URLS.DOCUMENT_GETS);
       return data as APIResponseType<Document[]>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
@@ -24,7 +23,7 @@ class DocumentService extends APIService<Document> {
 
   async get({ id = "" }: { id: string }): Promise<APIResponseType<Document>> {
     try {
-      const { data } = await apiClient.get(API_URLS.DOCUMENT_GET, { id: id });
+      const data = await apiClient.get(API_URLS.DOCUMENT_GET, { id: id });
       return data as APIResponseType<Document>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;

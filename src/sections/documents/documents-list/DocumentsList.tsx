@@ -17,7 +17,6 @@ const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
   const loadData = async () => {
     setIsLoading(true);
     const ret = await documentService.gets();
-    console.log(ret);
     setIsLoading(false);
     if (ret.success) {
       setData(ret.data ?? []);
