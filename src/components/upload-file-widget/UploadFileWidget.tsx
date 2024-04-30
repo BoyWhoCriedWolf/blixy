@@ -1,30 +1,35 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import ModalContainer from "components/containers/modal-container";
-import { useState } from "react";
-import UploadFileDropzone from "./UploadFileDropzone";
-import UploadProgressCard from "./UploadProgressCard";
-import { apiClient } from "utils/api-utils";
+import EditForm from "components/edit-form";
+import { useSnackbar } from "notistack";
+import { FC, PropsWithChildren, useState } from "react";
 import { API_URLS } from "services/api-urls";
 import { APIResponseType } from "services/types/response";
-import { useSnackbar } from "notistack";
+import { apiClient } from "utils/api-utils";
+import UploadFileDropzone from "./UploadFileDropzone";
+import UploadProgressCard from "./UploadProgressCard";
 
-const UploadFileWidget = () => {
+const UploadFileWidget: FC<
+  PropsWithChildren<{ onUploaded?: (v?: any) => void }>
+> = ({ onUploaded = () => null }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [formData, setFormData] = useState({ description: "" });
 
   const doUpload = async (file = selectedFile) => {
     if (file) {
-      const formData = new FormData();
-      formData.append("file", file);
+      const submitData = new FormData();
+      submitData.append("file", file);
+      submitData.append("description", formData.description);
 
       setProgress(0);
 
       const ret: APIResponseType = await apiClient.post(
         API_URLS.DOCUMENT_UPLOAD,
-        formData,
+        submitData,
         {
           onUploadProgress: (progressEvent) => {
             const { loaded, total = 0 } = progressEvent;
@@ -40,12 +45,12 @@ const UploadFileWidget = () => {
         }
       );
 
-      console.log(ret);
-
       if (ret?.success) {
         enqueueSnackbar("Successfully Uploaded", { variant: "success" });
+        onUploaded(ret?.data);
+        setIsOpen(false);
       } else {
-        enqueueSnackbar("Successfully Uploaded", { variant: "success" });
+        enqueueSnackbar(ret?.msg || "Unknown", { variant: "warning" });
       }
     }
   };
@@ -68,16 +73,11 @@ const UploadFileWidget = () => {
       >
         <Box>
           <UploadProgressCard progress={progress}>
-            <Grid container spacing={1} alignItems={"center"}>
-              <Grid item lg={5} md={5} sm={5} xs={5}>
-                <Typography fontWeight={"bold"} align="right">
-                  Description
-                </Typography>
-              </Grid>
-              <Grid item lg={7} md={7} sm={7} xs={7}>
-                <TextField size="small" fullWidth />
-              </Grid>
-            </Grid>
+            <EditForm<{ description: string }>
+              data={formData}
+              onChange={setFormData}
+              fields={[{ displayName: "Description" }]}
+            />
           </UploadProgressCard>
         </Box>
       </ModalContainer>
