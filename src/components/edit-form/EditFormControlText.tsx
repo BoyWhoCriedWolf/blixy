@@ -18,7 +18,7 @@ import {
 import { checkValidField } from "./edit-form-utils";
 import {
   DispatchFunction,
-  FieldFormat,
+  FieldType,
   FieldRequiredType,
   StaticField,
 } from "types/ui-types";
@@ -72,7 +72,7 @@ const EditFormControlText: FC<
 
   const isNumber = useMemo(
     () =>
-      field.type === FieldFormat.Integer || field.type === FieldFormat.Decimal,
+      field.type === FieldType.Integer || field.type === FieldType.Decimal,
     [field.type]
   );
 
@@ -126,9 +126,9 @@ const EditFormControlText: FC<
         onChange={handleChange}
         fullWidth
         size="small"
-        multiline={field.type === FieldFormat.MultiLineText}
+        multiline={field.type === FieldType.MultiLineText}
         rows={
-          field.type === FieldFormat.MultiLineText
+          field.type === FieldType.MultiLineText
             ? DEFAULT_MULTI__LINE_ROWS
             : 1
         }

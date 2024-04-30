@@ -21,7 +21,7 @@ export interface GeneralOption {
   value?: number | string;
 }
 
-export enum FieldFormat {
+export enum FieldType {
   // TwoChoices
   TwoChoices = "Two Choices",
   DropDown = "Drop Down",
@@ -83,7 +83,7 @@ export interface StaticField {
   name: string;
   displayName: string;
 
-  type?: FieldFormat;
+  type?: FieldType;
 
   required: FieldRequiredType;
 

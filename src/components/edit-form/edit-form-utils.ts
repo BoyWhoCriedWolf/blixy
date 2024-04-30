@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { toNumber } from "lodash";
 import moment from "moment";
-import { FieldFormat, FieldRequiredType, StaticField } from "types/ui-types";
+import { FieldType, FieldRequiredType, StaticField } from "types/ui-types";
 
 export function validatePassword(str: string): boolean {
   const pattern = /^[a-zA-Z0-9!@#$%^&*()_+~`|}{[\]:;?<>,./-=]{12,}$/;
@@ -26,63 +26,63 @@ export const checkValidField = ({
     const value = propsValue ?? data?.[field?.name ?? ""];
 
     // text
-    if (field.type === FieldFormat.Text) {
+    if (field.type === FieldType.Text) {
       const formattedValue = ((value ?? "") as string).trim();
       return formattedValue.length > 0;
     }
-    if (field.type === FieldFormat.Decimal) {
+    if (field.type === FieldType.Decimal) {
       const formattedValue = ((value ?? "") as string).trim();
       return formattedValue.length > 0;
     }
-    if (field.type === FieldFormat.Integer) {
+    if (field.type === FieldType.Integer) {
       const formattedValue = ((value ?? "") as string).trim();
       return formattedValue.length > 0;
     }
-    if (field.type === FieldFormat.MultiLineText) {
+    if (field.type === FieldType.MultiLineText) {
       const formattedValue = ((value ?? "") as string).trim();
       return formattedValue.length > 0;
     }
-    if (field.type === FieldFormat.Phone) {
+    if (field.type === FieldType.Phone) {
       const formattedValue = ((value ?? "") as string).trim();
       return validatePhoneNumber(formattedValue);
     }
-    if (field.type === FieldFormat.Password) {
+    if (field.type === FieldType.Password) {
       const formattedValue = ((value ?? "") as string).trim();
       return validatePassword(formattedValue);
     }
-    if (field.type === FieldFormat.Money) {
+    if (field.type === FieldType.Money) {
       const formattedValue = ((value ?? "") as string).trim();
       return !!toNumber(formattedValue);
     }
 
     // date time
-    if (field.type === FieldFormat.DateTime) {
+    if (field.type === FieldType.DateTime) {
       const formattedValue = ((value ?? "") as string).trim();
       return moment(formattedValue, "YYYY-MM-DDTHH:mm:ss", true).isValid();
     }
 
     // choice
-    if (field.type === FieldFormat.Choice) {
+    if (field.type === FieldType.Choice) {
       return !!value;
     }
-    if (field.type === FieldFormat.MultiSelectChoice) {
+    if (field.type === FieldType.MultiSelectChoice) {
       return Array.isArray(value);
     }
 
     // radio
-    if (field.type === FieldFormat.Radio) {
+    if (field.type === FieldType.Radio) {
       return !!value;
     }
 
     // two choices
-    if (field.type === FieldFormat.TwoChoices) {
+    if (field.type === FieldType.TwoChoices) {
       return !!value;
     }
-    if (field.type === FieldFormat.DropDown) {
+    if (field.type === FieldType.DropDown) {
       return !!value;
-    } else if (field.type === FieldFormat.Checkbox) {
+    } else if (field.type === FieldType.Checkbox) {
       return !!value;
-    } else if (field.type === FieldFormat.Toggle) {
+    } else if (field.type === FieldType.Toggle) {
       return !!value;
     } else {
       return !!value;

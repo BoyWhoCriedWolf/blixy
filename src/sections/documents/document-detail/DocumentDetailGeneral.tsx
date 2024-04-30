@@ -1,330 +1,58 @@
-import { AutoAwesome, MicOutlined, PaidOutlined } from "@mui/icons-material";
+import { ExpandMore } from "@mui/icons-material";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Box,
   Button,
-  FormControl,
-  Grid,
-  MenuItem,
   Paper,
-  Select,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableRow,
   TextField,
-  Typography,
 } from "@mui/material";
 import PrimaryTable from "components/table";
+import DocumentDetailContactDetailsForm from "./DocumentDetailContactDetailsForm";
+import DocumentDetailExtractedItemsForm from "./DocumentDetailExtractedItemsForm";
+import DocumentDetailPaymentInfoForm from "./DocumentDetailPaymentInfoForm";
 
 const DocumentDetailGeneral = () => {
   return (
     <Box>
-      {/* ======= extracted item ========= */}
+      {/* Extracted Items */}
       <Box sx={{ mb: 2, pt: 3 }}>
         <Accordion defaultExpanded>
-          <AccordionSummary aria-controls="panel1d-content">
-            <Typography fontSize={20} fontWeight={600}>
-              Extracted Items
-            </Typography>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            Extracted Items
           </AccordionSummary>
           <AccordionDetails>
             <Box>
-              <Box sx={{ display: "flex", p: 2 }}>
-                <Typography
-                  color={(theme) => theme.palette.warning.main}
-                  sx={{ mr: 1 }}
-                >
-                  <AutoAwesome />
-                </Typography>
-                <Typography color={(theme) => theme.palette.warning.main}>
-                  72% Confidence
-                </Typography>
-              </Box>
-              <Typography sx={{ px: 3 }}>
-                Found user in narration - This is dummy text. This text can be
-                two line long giving a lot of space for reasoning.
-              </Typography>
-              {/* ======== select ============== */}
-              <Box>
-                <Grid container spacing={2}>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <Box>
-                      <Typography>Contact</Typography>
-                      <FormControl sx={{ width: "100%", mt: 1 }}>
-                        <Select
-                          displayEmpty
-                          value=""
-                          inputProps={{ "aria-label": "Without label" }}
-                          size="small"
-                          fullWidth
-                        >
-                          <MenuItem disabled value="">
-                            <Box sx={{ display: "flex" }}>
-                              <Typography>
-                                <PaidOutlined
-                                  sx={{ fontSize: 16, mt: 0.5, mr: 1 }}
-                                />
-                              </Typography>
-                              <em>Snapchat</em>
-                            </Box>
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
-                    <Box>
-                      <Typography sx={{ mt: 1 }}>Total</Typography>
-                      <TextField
-                        placeholder="€1576.20"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>TDS</Typography>
-                      <TextField
-                        placeholder="€1576.20"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>Linked Statement</Typography>
-                      <TextField
-                        placeholder="VIN/SNAP INC/...0923455"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <Box>
-                      <Typography>General Ledger Account</Typography>
-                      <FormControl sx={{ width: "100%", mt: 1 }}>
-                        <Select
-                          displayEmpty
-                          value=""
-                          inputProps={{ "aria-label": "Without label" }}
-                          size="small"
-                          fullWidth
-                        >
-                          <MenuItem disabled value="">
-                            <Box sx={{ display: "flex" }}>
-                              <Typography>
-                                <MicOutlined
-                                  sx={{ fontSize: 16, mt: 0.5, mr: 1 }}
-                                />
-                              </Typography>
-                              <em>Ad Expense</em>
-                            </Box>
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
-                    <Box>
-                      <Typography sx={{ mt: 1 }}>VAT AMOUNT</Typography>
-                      <TextField
-                        placeholder="€234.90"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>Item Count</Typography>
-                      <TextField
-                        placeholder="1"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Box>
+              <DocumentDetailExtractedItemsForm />
             </Box>
           </AccordionDetails>
         </Accordion>
       </Box>
-      {/* =========Contact detail start======== */}
+
+      {/* Contact details */}
       <Box sx={{ mt: 2 }}>
         <Accordion>
-          <AccordionSummary aria-controls="panel1d-content">
-            <Typography fontSize={20} fontWeight={600}>
-              Contact details
-            </Typography>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            Contact details
           </AccordionSummary>
           <AccordionDetails>
             <Box>
-              <Box>
-                <Grid container spacing={2}>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <Box>
-                      <Box>
-                        <Typography>Contact Type</Typography>
-                        <FormControl sx={{ width: "100%", mt: 1 }}>
-                          <Select
-                            displayEmpty
-                            value=""
-                            inputProps={{ "aria-label": "Without label" }}
-                            size="small"
-                            fullWidth
-                          >
-                            <MenuItem disabled value="">
-                              <em>Lorem</em>
-                            </MenuItem>
-                          </Select>
-                        </FormControl>
-                      </Box>
-                    </Box>
-                    <Box>
-                      <Typography sx={{ mt: 1 }}>Address</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>State Code</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>Phone Number</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <Box>
-                      <Typography>Name</Typography>
-                      <FormControl sx={{ width: "100%", mt: 1 }}>
-                        <Select
-                          displayEmpty
-                          value=""
-                          inputProps={{ "aria-label": "Without label" }}
-                          size="small"
-                          fullWidth
-                        >
-                          <MenuItem disabled value="">
-                            <em>Lorem</em>
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
-                    <Box>
-                      <Typography sx={{ mt: 1 }}>VAT AMOUNT</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>Email</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                    <Box>
-                      <Typography sx={{ mt: 1 }}>Billing Name</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>Billing VAT AMOUNT</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                    <Box>
-                      <Typography sx={{ mt: 1 }}>Billing Address</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>Billing State Code</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                    <Box>
-                      <Typography sx={{ mt: 1 }}>Shipping Name</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>
-                        shipping VAT AMOUNT
-                      </Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                    <Box>
-                      <Typography sx={{ mt: 1 }}>shipping Address</Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                      <Typography sx={{ mt: 1 }}>
-                        shipping State Code
-                      </Typography>
-                      <TextField
-                        placeholder="Lorem"
-                        variant="outlined"
-                        size="small"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Box>
+              <DocumentDetailContactDetailsForm />
             </Box>
           </AccordionDetails>
         </Accordion>
       </Box>
-      {/* ==========Items start========== */}
+
+      {/* Items */}
       <Box sx={{ mt: 2 }}>
         <Accordion>
-          <AccordionSummary aria-controls="panel1d-content">
-            <Typography fontSize={20} fontWeight={600}>
-              Items
-            </Typography>
-          </AccordionSummary>
+          <AccordionSummary expandIcon={<ExpandMore />}>Items</AccordionSummary>
           <AccordionDetails>
             <Box>
               <PrimaryTable
@@ -348,13 +76,12 @@ const DocumentDetailGeneral = () => {
           </AccordionDetails>
         </Accordion>
       </Box>
-      {/* ================Total summary============== */}
+
+      {/* Total Summary */}
       <Box sx={{ mt: 2 }}>
         <Accordion>
-          <AccordionSummary aria-controls="panel1d-content">
-            <Typography fontSize={20} fontWeight={600}>
-              Total Summary
-            </Typography>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            Total Summary
           </AccordionSummary>
           <AccordionDetails>
             <Box>
@@ -391,13 +118,12 @@ const DocumentDetailGeneral = () => {
           </AccordionDetails>
         </Accordion>
       </Box>
-      {/* ============= Ledger Entries =========== */}
+
+      {/* Ledger Entries */}
       <Box sx={{ mt: 2 }}>
         <Accordion>
-          <AccordionSummary aria-controls="panel1d-content">
-            <Typography fontSize={20} fontWeight={600}>
-              Ledger Entries
-            </Typography>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            Ledger Entries
           </AccordionSummary>
           <AccordionDetails>
             <Box>
@@ -418,52 +144,30 @@ const DocumentDetailGeneral = () => {
           </AccordionDetails>
         </Accordion>
       </Box>
-      {/* ===========Payment Info =============== */}
-      <Box sx={{ mt: 2, mb: 8 }}>
+
+      {/* Payment Info */}
+      <Box sx={{ mt: 2 }}>
         <Accordion>
-          <AccordionSummary aria-controls="panel1d-content">
-            <Typography fontSize={20} fontWeight={600}>
-              Payment Info
-            </Typography>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            Payment Info
           </AccordionSummary>
           <AccordionDetails>
-            <Grid container spacing={2}>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
-                <Typography sx={{ mt: 1 }}>Transaction ID</Typography>
-                <TextField
-                  placeholder="Lorem"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                />
-                <Typography sx={{ mt: 1 }}>Bank Name</Typography>
-                <TextField
-                  placeholder="Lorem"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
-                <Typography sx={{ mt: 1 }}>Account Number</Typography>
-                <TextField
-                  placeholder="Lorem"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                />
-              </Grid>
-            </Grid>
+            <Box>
+              <DocumentDetailPaymentInfoForm />
+            </Box>
           </AccordionDetails>
         </Accordion>
       </Box>
-      <TextField
-        InputProps={{
-          endAdornment: <Button variant="contained">Approve</Button>,
-        }}
-        placeholder="Approve invoice"
-        fullWidth
-      />
+
+      <Paper sx={{ mt: 8, p: 2 }}>
+        <TextField
+          InputProps={{
+            endAdornment: <Button variant="contained">Approve</Button>,
+          }}
+          placeholder="Approve invoice"
+          fullWidth
+        />
+      </Paper>
     </Box>
   );
 };

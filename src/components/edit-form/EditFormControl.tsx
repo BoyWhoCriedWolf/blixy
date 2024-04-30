@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, InputLabel } from "@mui/material";
 import { FC, PropsWithChildren } from "react";
-import { DispatchFunction, FieldFormat, StaticField } from "types/ui-types";
+import { DispatchFunction, FieldType, StaticField } from "types/ui-types";
 import EditFormControlCheckbox from "./EditFormControlCheckbox";
 import EditFormControlChoice from "./EditFormControlChoice";
 import EditFormControlDate from "./EditFormControlDate";
@@ -41,10 +41,10 @@ const EditFormControl: FC<
   isLabel = true,
   isValid = true,
 }) => {
-  return field.type === FieldFormat.Text ||
-    field.type === FieldFormat.Decimal ||
-    field.type === FieldFormat.Integer ||
-    field.type === FieldFormat.MultiLineText ? (
+  return field.type === FieldType.Text ||
+    field.type === FieldType.Decimal ||
+    field.type === FieldType.Integer ||
+    field.type === FieldType.MultiLineText ? (
     <EditFormControlText
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -55,7 +55,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.Phone ? (
+  ) : field.type === FieldType.Phone ? (
     <EditFormControlPhone
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -66,7 +66,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.Password ? (
+  ) : field.type === FieldType.Password ? (
     <EditFormControlPassword
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -77,7 +77,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.Money ? (
+  ) : field.type === FieldType.Money ? (
     <EditFormControlMoney
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -88,7 +88,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.DateOnly ? (
+  ) : field.type === FieldType.DateOnly ? (
     <EditFormControlDate
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -99,7 +99,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.DateTime ? (
+  ) : field.type === FieldType.DateTime ? (
     <EditFormControlDateTime
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -110,7 +110,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.TimeOnly ? (
+  ) : field.type === FieldType.TimeOnly ? (
     <EditFormControlTime
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -121,7 +121,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.Choice ? (
+  ) : field.type === FieldType.Choice ? (
     <EditFormControlChoice
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -133,7 +133,7 @@ const EditFormControl: FC<
       isValid={isValid}
       defaultOptionLabel={data?.[field?.optionLabelField ?? ""] ?? ""}
     />
-  ) : field.type === FieldFormat.MultiSelectChoice ? (
+  ) : field.type === FieldType.MultiSelectChoice ? (
     <EditFormControlMultiChoice
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -144,7 +144,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.Radio ? (
+  ) : field.type === FieldType.Radio ? (
     <EditFormControlRadio
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -155,7 +155,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.TwoChoices ? (
+  ) : field.type === FieldType.TwoChoices ? (
     <EditFormControlSwitch
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -166,7 +166,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.DropDown ? (
+  ) : field.type === FieldType.DropDown ? (
     <EditFormControlDropdownYesNo
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -177,7 +177,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.Checkbox ? (
+  ) : field.type === FieldType.Checkbox ? (
     <EditFormControlCheckbox
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -188,7 +188,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.Toggle ? (
+  ) : field.type === FieldType.Toggle ? (
     <EditFormControlSwitch
       field={field}
       readOnly={readOnly || field.readOnly}
@@ -199,7 +199,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldFormat.Custom ? (
+  ) : field.type === FieldType.Custom ? (
     <div className="w-full" onClick={() => onClick(field)}>
       {field?.isLabel ?? isLabel ? (
         <InputLabel>{field.displayName}</InputLabel>
