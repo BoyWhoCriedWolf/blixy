@@ -4,8 +4,8 @@ import { APP_NAME } from "constants/strings";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import authService from "services/auth-service";
-import { APIResponseType } from "services/types/response";
+import authService from "services/auth.service";
+import { APIResponseType } from "services/types/response.types";
 import { isValidEmail } from "utils/string-utils";
 
 const SignUp = () => {

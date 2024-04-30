@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { AuthUser } from "services/types/user";
+import { AuthUser } from "services/types/user.types";
 import { API_BASE_URL } from "../services/api-urls";
 // import { api } from "../config";
 
@@ -54,7 +54,7 @@ class APIClient {
   //  get = (url, params) => {
   //   return axios.get(url, params);
   // };
-  get = (url: any, params: any) => {
+  get = (url: any, params?: any) => {
     let response;
 
     let paramKeys: any = [];

@@ -1,8 +1,8 @@
 import { AxiosError } from "axios";
 import { apiClient } from "utils/api-utils";
 import { API_URLS } from "./api-urls";
-import { APIResponseType } from "./types/response";
-import { AuthUser } from "./types/user";
+import { APIResponseType } from "./types/response.types";
+import { AuthUser } from "./types/user.types";
 
 export interface Credential {
   email: string;

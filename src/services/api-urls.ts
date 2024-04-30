@@ -14,4 +14,6 @@ export const API_URLS = {
 
   // documents
   DOCUMENT_UPLOAD: "/document/upload",
+  DOCUMENT_GETS: "/document/list",
+  DOCUMENT_GET: "/document/list",
 };

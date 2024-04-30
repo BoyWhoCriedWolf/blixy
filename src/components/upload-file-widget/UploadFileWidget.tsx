@@ -4,7 +4,7 @@ import EditForm from "components/edit-form";
 import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useState } from "react";
 import { API_URLS } from "services/api-urls";
-import { APIResponseType } from "services/types/response";
+import { APIResponseType } from "services/types/response.types";
 import { apiClient } from "utils/api-utils";
 import UploadFileDropzone from "./UploadFileDropzone";
 import UploadProgressCard from "./UploadProgressCard";

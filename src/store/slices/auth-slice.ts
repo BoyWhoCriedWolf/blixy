@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AuthUser } from "services/types/user";
+import { AuthUser } from "services/types/user.types";
 
 // Define a type for the slice state
 interface AuthState {
