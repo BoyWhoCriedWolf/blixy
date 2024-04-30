@@ -65,7 +65,6 @@ const SignIn = () => {
       const ret = (await authService.login(
         formData
       )) as APIResponseType<AuthUser>;
-      console.log(ret);
       setIsLoading(false);
 
       if (ret.success) {
