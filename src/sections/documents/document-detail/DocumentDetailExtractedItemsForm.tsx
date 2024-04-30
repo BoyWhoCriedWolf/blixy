@@ -6,12 +6,7 @@ import { FieldType } from "types/ui-types";
 const DocumentDetailExtractedItemsForm = () => {
   return (
     <Box>
-      <Alert
-        color="warning"
-        icon={<AutoAwesome />}
-        title="72% Confidence"
-        sx={{ m: 2 }}
-      >
+      <Alert color="warning" icon={<AutoAwesome />} title="72% Confidence">
         Found user in narration - This is dummy text. This text can be two line
         long giving a lot of space for reasoning.
       </Alert>

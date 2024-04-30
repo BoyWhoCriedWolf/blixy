@@ -159,7 +159,7 @@ const DocumentDetailGeneral = () => {
         </Accordion>
       </Box>
 
-      <Paper sx={{ mt: 8, p: 2 }}>
+      <Paper sx={{ mt: 8, p: 1 }}>
         <TextField
           InputProps={{
             endAdornment: <Button variant="contained">Approve</Button>,
