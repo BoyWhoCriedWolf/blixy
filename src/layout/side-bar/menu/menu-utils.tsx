@@ -328,24 +328,6 @@ export const MENU_DATA = [
   {
     icon: <ShoppingBasket />,
     label: "Purchase",
-    children: [
-      // Overview
-      {
-        label: "Overview",
-        isLabel: true,
-      },
-      {
-        icon: <Payment />,
-        path: "#",
-        label: "Financial key indicators",
-      },
-    ],
-  },
-
-  // Purchase
-  {
-    icon: <ShoppingBasket />,
-    label: "Purchase",
     path: "#",
   },
 
