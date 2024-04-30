@@ -17,6 +17,7 @@ const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
   const loadData = async () => {
     setIsLoading(true);
     const ret = await documentService.gets();
+    console.log(ret);
     setIsLoading(false);
     if (ret.success) {
       setData(ret.data ?? []);
@@ -31,7 +32,7 @@ const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
   }, []);
 
   return (
-    <LoaderContainer open={isLoading}>
+    <LoaderContainer open={isLoading} style={{ height: "100%" }}>
       <PrimaryTable
         onClickRow={() => onClick()}
         columns={[

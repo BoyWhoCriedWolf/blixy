@@ -77,7 +77,7 @@ const UploadFileWidget: FC<
             <EditForm<{ description: string }>
               data={formData}
               onChange={setFormData}
-              fields={[{ displayName: "Description" }]}
+              fields={[{ displayName: "Description", name: "description" }]}
             />
           </UploadProgressCard>
         </Box>

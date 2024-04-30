@@ -9,6 +9,7 @@ class DocumentService extends APIService<Document> {
   async gets(): Promise<APIResponseType<Document[]>> {
     try {
       const { data } = await apiClient.get(API_URLS.DOCUMENT_GETS);
+      console.log(data);
       return data as APIResponseType<Document[]>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;

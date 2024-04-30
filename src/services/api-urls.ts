@@ -1,3 +1,5 @@
+// https://blixy-c5f054bd203d.herokuapp.com/static/page.html
+
 export const API_BASE_URL =
   process.env.NODE_ENV === "development"
     ? // ? "http://localhost:8000/api"

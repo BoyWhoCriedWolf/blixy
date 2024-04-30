@@ -11,7 +11,7 @@ const ArchiveDocumentsList = () => {
   };
 
   return (
-    <Paper sx={{ p: 2, m: 2 }}>
+    <Paper sx={{ p: 2, m: 2, flexGrow: 1 }}>
       <Box
         sx={{ display: "flex", justifyContent: "space-between", mb: 1, px: 2 }}
       >
