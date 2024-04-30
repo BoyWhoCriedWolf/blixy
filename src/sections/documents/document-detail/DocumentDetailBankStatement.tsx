@@ -14,7 +14,7 @@ import PrimaryTable from "components/table";
 const DocumentDetailBankStatement = () => {
   return (
     <Box>
-      <Box
+      <Paper
         sx={{
           p: 2,
           mb: 1,
@@ -25,7 +25,7 @@ const DocumentDetailBankStatement = () => {
           Copy: 1
         </Typography>
         <Typography fontWeight={500}>Organizer: Tax</Typography>
-      </Box>
+      </Paper>
       <Paper sx={{ p: 2, mb: 1 }}>
         <PrimaryTable
           columns={[

@@ -1,5 +1,12 @@
 import { Add, Functions } from "@mui/icons-material";
-import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import SearchBar from "components/search-bar";
 import PrimaryTable from "components/table";
 import DocumentDetailAddressForm from "./DocumentDetailAddressForm";
@@ -13,16 +20,11 @@ const DocumentDetailPurchaseInvoice = () => {
         <Typography fontWeight={600} mb={1}>
           ADDRESS
         </Typography>
-        <Box sx={{ display: "flex", mb: 1 }}>
-          <Typography mr={1} fontWeight={500}>
-            Important:
-          </Typography>
-          <Typography>
-            For the automatic recognition and processing of invoices, it is
-            important that the VAT, Chamber of Commerce number and website, if
-            stated on the invoice, are included below.
-          </Typography>
-        </Box>
+        <Alert title="Important" sx={{ mb: 1 }} color="warning">
+          For the automatic recognition and processing of invoices, it is
+          important that the VAT, Chamber of Commerce number and website, if
+          stated on the invoice, are included below.
+        </Alert>
         <DocumentDetailAddressForm />
       </Paper>
       <Paper sx={{ p: 2, mb: 1 }}>
