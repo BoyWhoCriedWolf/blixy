@@ -49,6 +49,7 @@ const UploadFileWidget: FC<
         enqueueSnackbar("Successfully Uploaded", { variant: "success" });
         onUploaded(ret?.data);
         setIsOpen(false);
+        setProgress(0);
       } else {
         enqueueSnackbar(ret?.msg || "Unknown", { variant: "warning" });
       }
@@ -69,7 +70,7 @@ const UploadFileWidget: FC<
         onClose={() => setIsOpen(false)}
         title="File Uploading"
         okButtonLabel="Submit"
-        onOk={() => doUpload()}
+        onOk={progress ? undefined : () => doUpload()}
       >
         <Box>
           <UploadProgressCard progress={progress}>
