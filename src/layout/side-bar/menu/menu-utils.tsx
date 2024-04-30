@@ -21,10 +21,13 @@ import {
   Memory,
   NoAccounts,
   Payment,
+  PermContactCalendar,
+  PointOfSale,
   PriceChange,
   QrCodeScanner,
   ReceiptLong,
   Schema,
+  ShoppingBasket,
   SmartButton,
   Stream,
   SupervisorAccount,
@@ -319,5 +322,44 @@ export const MENU_DATA = [
         label: "Taxes",
       },
     ],
+  },
+
+  // Purchase
+  {
+    icon: <ShoppingBasket />,
+    label: "Purchase",
+    children: [
+      // Overview
+      {
+        label: "Overview",
+        isLabel: true,
+      },
+      {
+        icon: <Payment />,
+        path: "#",
+        label: "Financial key indicators",
+      },
+    ],
+  },
+
+  // Purchase
+  {
+    icon: <ShoppingBasket />,
+    label: "Purchase",
+    path: "#",
+  },
+
+  // Sale
+  {
+    icon: <PointOfSale />,
+    label: "Sale",
+    path: "#",
+  },
+
+  // Contacts
+  {
+    icon: <PermContactCalendar />,
+    label: "Contacts",
+    path: "#",
   },
 ] as Array<MenuDataType>;
