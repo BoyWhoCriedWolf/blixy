@@ -24,7 +24,7 @@ export interface GeneralOption {
 export enum FieldType {
   // TwoChoices
   TwoChoices = "Two Choices",
-  DropDown = "Drop Down",
+  DropDownYesNo = "Drop Down",
   Checkbox = "Checkbox",
   Toggle = "Toggle",
 

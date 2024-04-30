@@ -100,7 +100,12 @@ const EditFormControlDropdownYesNo: FC<
   ) : (
     <div className="w-full" onClick={() => onClick(field)}>
       {isLabel ? <InputLabel>{label}</InputLabel> : null}
-      <Select value={renderValue} label={label} onChange={handleChange}>
+      <Select
+        value={renderValue}
+        label={label}
+        onChange={handleChange}
+        fullWidth
+      >
         <MenuItem value="Yes">Yes</MenuItem>
         <MenuItem value="No">No</MenuItem>
       </Select>

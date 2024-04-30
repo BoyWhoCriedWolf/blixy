@@ -26,7 +26,7 @@ const DocumentDetailExtractedItemsForm = () => {
           {
             displayName: "Contact",
             name: "contact",
-            type: FieldType.DropDown,
+            type: FieldType.Choice,
             isLabel: true,
             options: [
               "Contact 1",
@@ -40,7 +40,7 @@ const DocumentDetailExtractedItemsForm = () => {
           {
             displayName: "General Ledger Account",
             name: "account",
-            type: FieldType.DropDown,
+            type: FieldType.Choice,
             isLabel: true,
             options: [
               "Account 1",

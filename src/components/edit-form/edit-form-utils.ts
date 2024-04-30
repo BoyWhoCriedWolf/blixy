@@ -78,7 +78,7 @@ export const checkValidField = ({
     if (field.type === FieldType.TwoChoices) {
       return !!value;
     }
-    if (field.type === FieldType.DropDown) {
+    if (field.type === FieldType.DropDownYesNo) {
       return !!value;
     } else if (field.type === FieldType.Checkbox) {
       return !!value;

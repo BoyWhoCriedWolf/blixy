@@ -166,7 +166,7 @@ const EditFormControl: FC<
       isLabel={isLabel}
       isValid={isValid}
     />
-  ) : field.type === FieldType.DropDown ? (
+  ) : field.type === FieldType.DropDownYesNo ? (
     <EditFormControlDropdownYesNo
       field={field}
       readOnly={readOnly || field.readOnly}

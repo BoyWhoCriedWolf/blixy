@@ -16,7 +16,7 @@ const DocumentDetailContactDetailsForm = () => {
             {
               displayName: "Contact Type",
               name: "contact_type",
-              type: FieldType.DropDown,
+              type: FieldType.Choice,
               isLabel: true,
               options: [
                 "Contact Type 1",
