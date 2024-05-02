@@ -15,7 +15,6 @@ const ModalContainer: FC<
     onClose?: () => void;
     title?: string;
     maxWidth?: Breakpoint;
-
     okButtonLabel?: string;
     onOk?: () => void;
   }>

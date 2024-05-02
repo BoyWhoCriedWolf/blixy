@@ -10,8 +10,9 @@ const AuthLayout = () => {
   const authUser = useSelector<RootState, AuthUser>(
     (state) => (state?.auth?.user ?? {}) as AuthUser
   );
+  console.log("token", authUser.access_token)
 
-  return authUser.access_token ? (
+  return !authUser.access_token ? (
     <Navigate to={{ pathname: "/home" }} />
   ) : (
     <ThemeProvider theme={THEMES.DARK}>

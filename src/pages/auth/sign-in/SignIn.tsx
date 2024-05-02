@@ -65,15 +65,18 @@ const SignIn = () => {
       const ret = (await authService.login(
         formData
       )) as APIResponseType<AuthUser>;
+      console.log(ret);
       setIsLoading(false);
 
       if (ret.success) {
         dispatch(setAuthUser(ret.data));
+        console.log("data", ret.data);
 
         if (ret?.data?.access_token) {
           setAuthorization(ret?.data);
         }
-      } else {
+      }
+      else {
         setError({ code: ret.code ?? "", message: ret.msg ?? "Unknown" });
       }
     } else {

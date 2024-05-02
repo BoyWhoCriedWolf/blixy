@@ -5,11 +5,14 @@ import AuthLayout from "pages/auth/auth-layout";
 import SignIn from "pages/auth/sign-in";
 import SignUp from "pages/auth/sign-up";
 
+import AccountingImport from "pages/accounting/import";
 import ArchiveDocuments from "pages/archive/documents";
 import ArchiveDeletedDocuments from "pages/archive/documents/deleted-documents";
 import ArchiveDocumentDetail from "pages/archive/documents/document-detail";
+import ArchiveDocumentsList from "pages/archive/documents/documents-list";
 import ArchiveRecentlyViewedDocuments from "pages/archive/documents/recently-viewed-documents";
 import ArchiveStoredDocuments from "pages/archive/documents/stored-documents";
+import ArchiveLayout from "pages/archive/layout";
 import BackofficeAccountsChart from "pages/backoffice/actions/accounts-chart";
 import BackofficeExporting from "pages/backoffice/actions/exporting";
 import BackofficeImporting from "pages/backoffice/actions/importing";
@@ -25,17 +28,14 @@ import BackofficeScanForms from "pages/backoffice/checklist/scan-forms";
 import BackofficeSuspenseAccounts from "pages/backoffice/checklist/suspense-accounts";
 import BackofficeWorkflowRules from "pages/backoffice/checklist/workflow-rules";
 import BackofficeLayout from "pages/backoffice/layout";
+import BackofficeProcessedWorkflow from "pages/backoffice/overview/processed-workflow";
 import BackofficeQualityMonitor from "pages/backoffice/overview/quality-monitor";
 import BackofficeWorkflow from "pages/backoffice/overview/workflow";
+import BankAccounts from "pages/bank/accounts";
+import BankLayout from "pages/bank/layout";
 import BankProcessedTransactions from "pages/bank/processed-transactions";
 
 import Dashboard from "pages/dashboard";
-
-import AccountingImport from "pages/accounting/import";
-import ArchiveDocumentsList from "pages/archive/documents/documents-list";
-import ArchiveLayout from "pages/archive/layout";
-import BackofficeProcessedWorkflow from "pages/backoffice/overview/processed-workflow";
-import BankLayout from "pages/bank/layout";
 import {
   Route,
   createBrowserRouter,
@@ -113,6 +113,7 @@ export const router = createBrowserRouter(
 
         {/* bank */}
         <Route path="/bank" element={<BankLayout />}>
+          <Route path="accounts" element={<BankAccounts />} />
           <Route
             path="processed-transactions"
             element={<BankProcessedTransactions />}

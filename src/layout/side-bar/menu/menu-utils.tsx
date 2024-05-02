@@ -216,7 +216,7 @@ export const MENU_DATA = [
     children: [
       {
         icon: <ContactEmergency />,
-        path: "#",
+        path: "/bank/accounts",
         label: "Bank accounts",
       },
       // Processed transactions

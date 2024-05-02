@@ -1,0 +1,144 @@
+import { Box, Typography } from "@mui/material";
+import React, { useState } from "react";
+import BankAccountsCard from "./BankAccountsCard";
+import imgAccount from "assets/img/banks/account.png";
+import ModalContainer from "components/containers/modal-container";
+import PrimaryTable from "components/table";
+import {
+  BookOnlineOutlined,
+  KeyboardArrowRightOutlined,
+} from "@mui/icons-material";
+
+const BankAccounts = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  console.log("open", isOpen);
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      {[
+        {
+          heading: "PAYMENT ACCOUNTS",
+          imgPath: imgAccount,
+          title: "KNAB Holding current account 171",
+          caption: "NL21KNAB0257132171",
+          value: "1.024.117,56",
+          date: "29-04-2024",
+        },
+        {
+          heading: "SAVINGS ACCOUNTS",
+          imgPath: imgAccount,
+          title: "Savings account Holding 084",
+          caption: "NL21KNAB0053450084",
+          value: "255.951,44",
+          date: "28-03-2024",
+        },
+        { heading: "INTERNAL TRANSFERS ON THE WAY", value: "0,00" },
+      ].map((item, itemIndex) => {
+        return (
+          <Box
+            key={itemIndex}
+            onClick={() => setIsOpen(true)}
+            sx={{ cursor: "pointer" }}
+          >
+            <BankAccountsCard
+              heading={item?.heading ?? ""}
+              title={item?.title ?? ""}
+              imgPath={item?.imgPath ?? ""}
+              caption={item?.caption ?? ""}
+              value={item?.value ?? ""}
+              date={item?.date ?? ""}
+            />
+            <ModalContainer
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              maxWidth="lg"
+            >
+              <Box>
+                <Box sx={{ p: 2 }}>
+                  <Typography fontSize={24} fontWeight={600} color="primary">
+                    Processed transactions
+                  </Typography>
+                </Box>
+                <PrimaryTable
+                  columns={[
+                    { label: "", name: "no" },
+                    { label: "ALTERED", name: "altered" },
+                    { label: "", name: "new" },
+                    { label: "ADMINISTRATION", name: "administration" },
+                    { label: "TYPE", name: "type" },
+                    { label: "SUBJECT", name: "subject" },
+                    { label: "DATE ENTRY", name: "date" },
+                    { label: "DEBIT", name: "debit" },
+                  ]}
+                  data={[
+                    {
+                      no: <KeyboardArrowRightOutlined fontSize="small" />,
+                      altered: "03-04-2024 09:55",
+                      new: "New",
+                      administration: "JV Services & Consulting B.V.",
+                      type: <BookOnlineOutlined fontSize="small" />,
+                      subject: "FTB2XL9MFBMFQ6321D",
+                      date: "02-04-2024",
+                      debit: "1.028,50",
+                    },
+                    {
+                      no: <KeyboardArrowRightOutlined fontSize="small" />,
+                      altered: "03-04-2024 09:55",
+                      new: "New",
+                      administration: "JV Services & Consulting B.V.",
+                      type: <BookOnlineOutlined fontSize="small" />,
+                      subject: "FTB2XL9MFBMFQ6321D",
+                      date: "02-04-2024",
+                      debit: "1.028,50",
+                    },
+                    {
+                      no: <KeyboardArrowRightOutlined fontSize="small" />,
+                      altered: "03-04-2024 09:55",
+                      new: "New",
+                      administration: "JV Services & Consulting B.V.",
+                      type: <BookOnlineOutlined fontSize="small" />,
+                      subject: "FTB2XL9MFBMFQ6321D",
+                      date: "02-04-2024",
+                      debit: "1.028,50",
+                    },
+                    {
+                      no: <KeyboardArrowRightOutlined fontSize="small" />,
+                      altered: "03-04-2024 09:55",
+                      new: "New",
+                      administration: "JV Services & Consulting B.V.",
+                      type: <BookOnlineOutlined fontSize="small" />,
+                      subject: "FTB2XL9MFBMFQ6321D",
+                      date: "02-04-2024",
+                      debit: "1.028,50",
+                    },
+                    {
+                      no: <KeyboardArrowRightOutlined fontSize="small" />,
+                      altered: "03-04-2024 09:55",
+                      new: "New",
+                      administration: "JV Services & Consulting B.V.",
+                      type: <BookOnlineOutlined fontSize="small" />,
+                      subject: "FTB2XL9MFBMFQ6321D",
+                      date: "02-04-2024",
+                      debit: "1.028,50",
+                    },
+                    {
+                      no: <KeyboardArrowRightOutlined fontSize="small" />,
+                      altered: "03-04-2024 09:55",
+                      new: "New",
+                      administration: "JV Services & Consulting B.V.",
+                      type: <BookOnlineOutlined fontSize="small" />,
+                      subject: "FTB2XL9MFBMFQ6321D",
+                      date: "02-04-2024",
+                      debit: "1.028,50",
+                    },
+                  ]}
+                />
+              </Box>
+            </ModalContainer>
+          </Box>
+        );
+      })}
+    </Box>
+  );
+};
+
+export default BankAccounts;
