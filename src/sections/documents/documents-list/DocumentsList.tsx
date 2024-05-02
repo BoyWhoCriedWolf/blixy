@@ -1,4 +1,3 @@
-import { Checkbox } from "@mui/material";
 import LoaderContainer from "components/loading/loader-container";
 import PrimaryTable from "components/table";
 import { useSnackbar } from "notistack";
@@ -35,8 +34,6 @@ const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
       <PrimaryTable
         onClickRow={() => onClick()}
         columns={[
-          { headerName: "", field: "no" },
-          { headerName: "", field: "square" },
           { headerName: "Delivered", field: "delivered" },
           { headerName: "Employee", field: "employee" },
           { headerName: "TYPE", field: "doc_type" },
