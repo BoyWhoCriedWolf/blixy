@@ -3,7 +3,7 @@ import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import StateNumberCard from "components/state-number-card";
 import PrimaryTable from "components/table";
 
-const BackofficeWorkflow = () => {
+const BackofficeWorkflowPage = () => {
   return (
     <Paper sx={{ minHeight: "100%" }}>
       <Stack sx={{ p: 4 }}>
@@ -86,4 +86,4 @@ const BackofficeWorkflow = () => {
   );
 };
 
-export default BackofficeWorkflow;
+export default BackofficeWorkflowPage;

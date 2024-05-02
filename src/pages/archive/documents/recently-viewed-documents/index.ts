@@ -1,3 +1,3 @@
-import ArchiveRecentlyViewedDocuments from "./ArchiveRecentlyViewedDocuments";
+import ArchiveRecentlyViewedDocumentsPage from "./ArchiveRecentlyViewedDocumentsPage";
 
-export default ArchiveRecentlyViewedDocuments
+export default ArchiveRecentlyViewedDocumentsPage

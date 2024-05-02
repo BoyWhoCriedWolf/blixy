@@ -1,3 +1,3 @@
-import BackofficeWorkflowRules from "./BackofficeWorkflowRules";
+import BackofficeWorkflowRulesPage from "./BackofficeWorkflowRulesPage";
 
-export default BackofficeWorkflowRules
+export default BackofficeWorkflowRulesPage

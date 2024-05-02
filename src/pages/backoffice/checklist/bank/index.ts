@@ -1,3 +1,3 @@
-import BackofficeBank from "./BackofficeBank";
+import BackofficeBankPage from "./BackofficeBankPage";
 
-export default BackofficeBank;
+export default BackofficeBankPage;

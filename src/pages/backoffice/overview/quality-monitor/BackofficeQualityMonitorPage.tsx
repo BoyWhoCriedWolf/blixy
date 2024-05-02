@@ -4,7 +4,7 @@ import React from "react";
 import MonitorRevenueChart from "./MonitorRevenueChart";
 import MonitorOperatingChart from "./MonitorOperatingChart";
 
-const BackofficeQualityMonitor = () => {
+const BackofficeQualityMonitorPage = () => {
   return (
     <Container>
       <Paper sx={{ p: 2 }}>
@@ -109,4 +109,4 @@ const BackofficeQualityMonitor = () => {
   );
 };
 
-export default BackofficeQualityMonitor;
+export default BackofficeQualityMonitorPage;

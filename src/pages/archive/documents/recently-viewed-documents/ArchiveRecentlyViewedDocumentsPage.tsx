@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import documentService from "services/document.service";
 import { Document } from "services/types/document.types";
 
-const ArchiveRecentlyViewedDocuments = () => {
+const ArchiveRecentlyViewedDocumentsPage = () => {
   const snb = useSnackbar();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -67,4 +67,4 @@ const ArchiveRecentlyViewedDocuments = () => {
   );
 };
 
-export default ArchiveRecentlyViewedDocuments;
+export default ArchiveRecentlyViewedDocumentsPage;

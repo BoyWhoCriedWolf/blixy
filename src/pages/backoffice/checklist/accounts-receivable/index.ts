@@ -1,3 +1,3 @@
-import BackofficeAccountsReceivable from "./BackofficeAccountsReceivable";
+import BackofficeAccountsReceivablePage from "./BackofficeAccountsReceivablePage";
 
-export default BackofficeAccountsReceivable;
+export default BackofficeAccountsReceivablePage;

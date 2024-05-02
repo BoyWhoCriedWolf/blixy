@@ -1,3 +1,3 @@
-import BackofficeWorkflow from "./BackofficeWorkflow";
+import BackofficeWorkflowPage from "./BackofficeWorkflowPage";
 
-export default BackofficeWorkflow;
+export default BackofficeWorkflowPage;

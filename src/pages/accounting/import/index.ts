@@ -1,3 +1,3 @@
-import AccountingImport from "./AccountingImport";
+import AccountingImportPage from "./AccountingImportPage";
 
-export default AccountingImport;
+export default AccountingImportPage;

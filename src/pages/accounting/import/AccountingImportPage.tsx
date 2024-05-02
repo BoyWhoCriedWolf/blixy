@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import UploadFileWidget from "components/upload-file-widget";
 
-const AccountingImport = () => {
+const AccountingImportPage = () => {
   return (
     <Box sx={{ minHeight: "100%" }}>
       <UploadFileWidget />
@@ -9,4 +9,4 @@ const AccountingImport = () => {
   );
 };
 
-export default AccountingImport;
+export default AccountingImportPage;

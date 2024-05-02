@@ -1,3 +1,3 @@
-import BackofficeProcessedWorkflow from "./BackofficeProcessedWorkflow";
+import BackofficeProcessedWorkflowPage from "./BackofficeProcessedWorkflowPage";
 
-export default BackofficeProcessedWorkflow;
+export default BackofficeProcessedWorkflowPage;

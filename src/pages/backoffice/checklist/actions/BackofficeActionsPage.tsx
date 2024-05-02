@@ -1,9 +1,9 @@
 import React from 'react'
 
-const BackofficeActions = () => {
+const BackofficeActionsPage = () => {
   return (
     <div>BackofficeActions</div>
   )
 }
 
-export default BackofficeActions
+export default BackofficeActionsPage

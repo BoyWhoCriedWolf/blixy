@@ -1,3 +1,3 @@
-import ArchiveDeletedDocuments from "./ArchiveDeletedDocuments";
+import ArchiveDeletedDocumentsPage from "./ArchiveDeletedDocumentsPage";
 
-export default ArchiveDeletedDocuments
+export default ArchiveDeletedDocumentsPage

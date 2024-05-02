@@ -1,3 +1,3 @@
-import BackofficeQualityMonitor from "./BackofficeQualityMonitor";
+import BackofficeQualityMonitorPage from "./BackofficeQualityMonitorPage";
 
-export default BackofficeQualityMonitor;
+export default BackofficeQualityMonitorPage;

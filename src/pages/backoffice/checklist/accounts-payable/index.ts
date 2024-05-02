@@ -1,3 +1,3 @@
-import BackofficeAccountsPayable from "./BackofficeAccountsPayable";
+import BackofficeAccountsPayablePage from "./BackofficeAccountsPayablePage";
 
-export default BackofficeAccountsPayable
+export default BackofficeAccountsPayablePage

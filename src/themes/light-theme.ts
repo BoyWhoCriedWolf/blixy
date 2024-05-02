@@ -40,6 +40,6 @@ export const LIGHT_THEME = createTheme({
   },
   typography: {
     allVariants: { color: "#1E293B" },
-    h3: { fontSize: "2.5rem", fontWeight: 500 },
+    // h3: { fontSize: "2.5rem", fontWeight: 500 },
   },
 });

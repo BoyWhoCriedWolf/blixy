@@ -1,9 +1,9 @@
 import React from 'react'
 
-const BackofficeScanForms = () => {
+const BackofficeScanFormsPage = () => {
   return (
     <div>BackofficeScanForms</div>
   )
 }
 
-export default BackofficeScanForms
+export default BackofficeScanFormsPage

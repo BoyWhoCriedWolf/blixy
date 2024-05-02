@@ -8,7 +8,7 @@ import DocumentDetail from "sections/documents/document-detail/DocumentDetail";
 import documentService from "services/document.service";
 import { Document } from "services/types/document.types";
 
-const ArchiveDocumentDetail = () => {
+const ArchiveDocumentDetailPage = () => {
   const { id = "" } = useParams();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -49,4 +49,4 @@ const ArchiveDocumentDetail = () => {
   );
 };
 
-export default ArchiveDocumentDetail;
+export default ArchiveDocumentDetailPage;

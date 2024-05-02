@@ -1,3 +1,3 @@
-import BackofficeActions from "./BackofficeActions";
+import BackofficeActionsPage from "./BackofficeActionsPage";
 
-export default BackofficeActions
+export default BackofficeActionsPage

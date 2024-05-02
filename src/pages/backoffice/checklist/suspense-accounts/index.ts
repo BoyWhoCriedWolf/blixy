@@ -1,3 +1,3 @@
-import BackofficeSuspenseAccounts from "./BackofficeSuspenseAccounts";
+import BackofficeSuspenseAccountsPage from "./BackofficeSuspenseAccountsPage";
 
-export default BackofficeSuspenseAccounts
+export default BackofficeSuspenseAccountsPage

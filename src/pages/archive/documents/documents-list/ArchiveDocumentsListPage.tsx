@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DocumentsList from "sections/documents/documents-list";
 import { Document } from "services/types/document.types";
 
-const ArchiveDocumentsList = () => {
+const ArchiveDocumentsListPage = () => {
   const navigate = useNavigate();
 
   const handleClick = (row: Document) => {
@@ -33,4 +33,4 @@ const ArchiveDocumentsList = () => {
   );
 };
 
-export default ArchiveDocumentsList;
+export default ArchiveDocumentsListPage;

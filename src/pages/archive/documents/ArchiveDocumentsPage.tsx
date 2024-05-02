@@ -2,7 +2,7 @@ import { Box, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import DocumentsGrid from "sections/documents/documents-grid";
 
-const ArchiveDocuments = () => {
+const ArchiveDocumentsPage = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -18,4 +18,4 @@ const ArchiveDocuments = () => {
   );
 };
 
-export default ArchiveDocuments;
+export default ArchiveDocumentsPage;

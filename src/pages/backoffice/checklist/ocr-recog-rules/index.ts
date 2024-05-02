@@ -1,3 +1,3 @@
-import BackofficeOcrRecogRules from "./BackofficeOcrRecogRules";
+import BackofficeOcrRecogRulesPage from "./BackofficeOcrRecogRulesPage";
 
-export default BackofficeOcrRecogRules;
+export default BackofficeOcrRecogRulesPage;

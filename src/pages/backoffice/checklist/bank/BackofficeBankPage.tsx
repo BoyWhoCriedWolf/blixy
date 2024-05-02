@@ -1,9 +1,9 @@
 import React from 'react'
 
-const BackofficeBank = () => {
+const BackofficeBankPage = () => {
   return (
     <div>BackofficeBank</div>
   )
 }
 
-export default BackofficeBank
+export default BackofficeBankPage

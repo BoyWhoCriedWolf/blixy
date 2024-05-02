@@ -1,3 +1,3 @@
-import ArchiveDocumentDetail from "./ArchiveDocumentDetail";
+import ArchiveDocumentDetailPage from "./ArchiveDocumentDetailPage";
 
-export default ArchiveDocumentDetail
+export default ArchiveDocumentDetailPage

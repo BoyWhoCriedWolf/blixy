@@ -1,3 +1,3 @@
-import BackofficeScanForms from "./BackofficeScanForms";
+import BackofficeScanFormsPage from "./BackofficeScanFormsPage";
 
-export default BackofficeScanForms;
+export default BackofficeScanFormsPage;

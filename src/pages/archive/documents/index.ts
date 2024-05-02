@@ -1,3 +1,3 @@
-import ArchiveDocuments from "./ArchiveDocuments";
+import ArchiveDocumentsPage from "./ArchiveDocumentsPage";
 
-export default ArchiveDocuments
+export default ArchiveDocumentsPage

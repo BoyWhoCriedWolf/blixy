@@ -1,3 +1,3 @@
-import ArchiveStoredDocuments from "./ArchiveStoredDocuments";
+import ArchiveStoredDocumentsPage from "./ArchiveStoredDocumentsPage";
 
-export default ArchiveStoredDocuments
+export default ArchiveStoredDocumentsPage
