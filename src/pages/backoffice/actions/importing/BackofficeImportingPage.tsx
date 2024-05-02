@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import UploadFileWidget from "components/upload-file-widget";
 import React from "react";
 
-const BackofficeImporting = () => {
+const BackofficeImportingPage = () => {
   return (
     <Box sx={{ minHeight: "100%" }}>
       <UploadFileWidget />
@@ -10,4 +10,4 @@ const BackofficeImporting = () => {
   );
 };
 
-export default BackofficeImporting;
+export default BackofficeImportingPage;

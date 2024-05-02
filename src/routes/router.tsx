@@ -13,11 +13,11 @@ import ArchiveDocumentsList from "pages/archive/documents/documents-list";
 import ArchiveRecentlyViewedDocuments from "pages/archive/documents/recently-viewed-documents";
 import ArchiveStoredDocuments from "pages/archive/documents/stored-documents";
 import ArchiveLayout from "pages/archive/layout";
-import BackofficeAccountsChart from "pages/backoffice/actions/accounts-chart";
-import BackofficeExporting from "pages/backoffice/actions/exporting";
-import BackofficeImporting from "pages/backoffice/actions/importing";
-import BackofficeMemorial from "pages/backoffice/actions/memorial";
-import BackofficeTaxFilling from "pages/backoffice/actions/tax-filling";
+import BackofficeAccountsChartPage from "pages/backoffice/actions/accounts-chart";
+import BackofficeExportingPage from "pages/backoffice/actions/exporting";
+import BackofficeImportingPage from "pages/backoffice/actions/importing";
+import BackofficeMemorialPage from "pages/backoffice/actions/memorial";
+import BackofficeTaxFillingPage from "pages/backoffice/actions/tax-filling";
 import BackofficeAccountsPayable from "pages/backoffice/checklist/accounts-payable";
 import BackofficeAccountsReceivable from "pages/backoffice/checklist/accounts-receivable";
 import BackofficeActions from "pages/backoffice/checklist/actions";
@@ -31,17 +31,18 @@ import BackofficeLayout from "pages/backoffice/layout";
 import BackofficeProcessedWorkflow from "pages/backoffice/overview/processed-workflow";
 import BackofficeQualityMonitor from "pages/backoffice/overview/quality-monitor";
 import BackofficeWorkflow from "pages/backoffice/overview/workflow";
-import BankAccounts from "pages/bank/accounts";
+import BankAccountsPage from "pages/bank/accounts";
 import BankLayout from "pages/bank/layout";
-import BankProcessedTransactions from "pages/bank/processed-transactions";
+import BankProcessedTransactionsPage from "pages/bank/processed-transactions";
 
-import BankExportTransactions from "pages/bank/export-transactions";
+import BankExportTransactionsPage from "pages/bank/export-transactions";
 import Dashboard from "pages/dashboard";
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { Contacts } from "@mui/icons-material";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -71,11 +72,14 @@ export const router = createBrowserRouter(
             path="quality-monitor"
             element={<BackofficeQualityMonitor />}
           />
-          <Route path="tax-filling" element={<BackofficeTaxFilling />} />
-          <Route path="memorial" element={<BackofficeMemorial />} />
-          <Route path="exporting" element={<BackofficeExporting />} />
-          <Route path="importing" element={<BackofficeImporting />} />
-          <Route path="accounts-chart" element={<BackofficeAccountsChart />} />
+          <Route path="tax-filling" element={<BackofficeTaxFillingPage />} />
+          <Route path="memorial" element={<BackofficeMemorialPage />} />
+          <Route path="exporting" element={<BackofficeExportingPage />} />
+          <Route path="importing" element={<BackofficeImportingPage />} />
+          <Route
+            path="accounts-chart"
+            element={<BackofficeAccountsChartPage />}
+          />
           <Route path="bank" element={<BackofficeBank />} />
           <Route
             path="suspense-accounts"
@@ -114,14 +118,14 @@ export const router = createBrowserRouter(
 
         {/* bank */}
         <Route path="/bank" element={<BankLayout />}>
-          <Route path="accounts" element={<BankAccounts />} />
+          <Route path="accounts" element={<BankAccountsPage />} />
           <Route
             path="processed-transactions"
-            element={<BankProcessedTransactions />}
+            element={<BankProcessedTransactionsPage />}
           />
           <Route
             path="export-transactions"
-            element={<BankExportTransactions />}
+            element={<BankExportTransactionsPage />}
           />
         </Route>
 
@@ -131,6 +135,9 @@ export const router = createBrowserRouter(
           <Route path="export" element={<AccountingExport />} />
           <Route path="import" element={<AccountingImport />} />
         </Route>
+
+        {/* accounting */}
+        <Route path="/contacts" element={<Contacts />}></Route>
       </Route>
     </Route>
   )

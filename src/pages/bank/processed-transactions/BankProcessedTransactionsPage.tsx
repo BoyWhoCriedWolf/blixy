@@ -2,7 +2,7 @@ import { Search } from "@mui/icons-material";
 import { Box, Paper, Typography } from "@mui/material";
 import DocumentsList from "sections/documents/documents-list";
 
-const BankProcessedTransactions = () => {
+const BankProcessedTransactionsPage = () => {
   return (
     <Paper sx={{ p: 2, m: 2 }}>
       <Box
@@ -22,4 +22,4 @@ const BankProcessedTransactions = () => {
   );
 };
 
-export default BankProcessedTransactions;
+export default BankProcessedTransactionsPage;

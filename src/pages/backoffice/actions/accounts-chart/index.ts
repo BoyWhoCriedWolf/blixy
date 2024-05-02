@@ -1,3 +1,3 @@
-import BackofficeAccountsChart from "./BackofficeAccountsChart";
+import BackofficeAccountsChartPage from "./BackofficeAccountsChartPage";
 
-export default BackofficeAccountsChart;
+export default BackofficeAccountsChartPage;

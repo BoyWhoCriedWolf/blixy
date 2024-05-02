@@ -1,3 +1,3 @@
-import BackofficeImporting from "./BackofficeImporting";
+import BackofficeImportingPage from "./BackofficeImportingPage";
 
-export default BackofficeImporting;
+export default BackofficeImportingPage;

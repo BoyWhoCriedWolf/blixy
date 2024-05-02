@@ -1,3 +1,3 @@
-import BankAccounts from "./BankAccounts";
+import BankAccountsPage from "./BankAccountsPage";
 
-export default BankAccounts
+export default BankAccountsPage

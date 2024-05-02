@@ -1,9 +1,9 @@
 import React from 'react'
 
-const BackofficeExporting = () => {
+const BackofficeExportingPage = () => {
   return (
     <div>BackofficeExporting</div>
   )
 }
 
-export default BackofficeExporting
+export default BackofficeExportingPage

@@ -1,3 +1,3 @@
-import BackofficeTaxFilling from "./BackofficeTaxFilling";
+import BackofficeTaxFillingPage from "./BackofficeTaxFillingPage";
 
-export default BackofficeTaxFilling;
+export default BackofficeTaxFillingPage;

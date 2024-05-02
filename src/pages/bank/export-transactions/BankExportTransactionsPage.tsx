@@ -9,7 +9,7 @@ import {
 import EditForm from "components/edit-form";
 import { FieldType } from "types/ui-types";
 
-const BankExportTransactions = () => {
+const BankExportTransactionsPage = () => {
   return (
     <Box sx={{ py: 10, flexGrow: 1 }}>
       <Container maxWidth="md">
@@ -79,4 +79,4 @@ const BankExportTransactions = () => {
   );
 };
 
-export default BankExportTransactions;
+export default BankExportTransactionsPage;

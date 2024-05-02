@@ -1,3 +1,3 @@
-import BankProcessedTransactions from "./BankProcessedTransactions";
+import BankProcessedTransactionsPage from "./BankProcessedTransactionsPage";
 
-export default BankProcessedTransactions;
+export default BankProcessedTransactionsPage;

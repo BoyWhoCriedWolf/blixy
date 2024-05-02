@@ -1,3 +1,3 @@
-import BackofficeMemorial from "./BackofficeMemorial";
+import BackofficeMemorialPage from "./BackofficeMemorialPage";
 
-export default BackofficeMemorial;
+export default BackofficeMemorialPage;

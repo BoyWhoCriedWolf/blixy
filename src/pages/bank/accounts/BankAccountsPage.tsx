@@ -9,7 +9,7 @@ import {
   KeyboardArrowRightOutlined,
 } from "@mui/icons-material";
 
-const BankAccounts = () => {
+const BankAccountsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -142,4 +142,4 @@ const BankAccounts = () => {
   );
 };
 
-export default BankAccounts;
+export default BankAccountsPage;
