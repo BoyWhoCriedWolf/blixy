@@ -1,5 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import PageLoading from "components/loading/page-loading";
+import PdfViewer from "components/pdf-viewer";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -40,15 +41,7 @@ const ArchiveDocumentDetail = () => {
         </Box>
       </Grid>
       <Grid item lg={6} md={6} sm={6} xs={12}>
-        {data?.file_path ? (
-          <iframe
-            src={data?.file_path ?? ""}
-            title="Document detail"
-            width={"100%"}
-            height={"100%"}
-            style={{ border: "none", borderCollapse: "collapse" }}
-          />
-        ) : null}
+        {data?.file_path ? <PdfViewer src={data?.file_path ?? ""} /> : null}
       </Grid>
     </Grid>
   );
