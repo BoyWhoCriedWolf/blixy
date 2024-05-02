@@ -35,6 +35,7 @@ import BankAccounts from "pages/bank/accounts";
 import BankLayout from "pages/bank/layout";
 import BankProcessedTransactions from "pages/bank/processed-transactions";
 
+import BankExportTransactions from "pages/bank/export-transactions";
 import Dashboard from "pages/dashboard";
 import {
   Route,
@@ -117,6 +118,10 @@ export const router = createBrowserRouter(
           <Route
             path="processed-transactions"
             element={<BankProcessedTransactions />}
+          />
+          <Route
+            path="export-transactions"
+            element={<BankExportTransactions />}
           />
         </Route>
 

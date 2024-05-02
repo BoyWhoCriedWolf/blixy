@@ -237,7 +237,7 @@ export const MENU_DATA = [
       },
       {
         icon: <IosShare />,
-        path: "#",
+        path: "/bank/export-transactions",
         label: "Export transactions",
       },
       {
