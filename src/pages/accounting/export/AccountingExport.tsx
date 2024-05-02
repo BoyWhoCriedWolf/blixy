@@ -1,4 +1,11 @@
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Container,
+  Paper,
+  Typography,
+} from "@mui/material";
 import EditForm from "components/edit-form";
 import React from "react";
 import { FieldType } from "types/ui-types";
@@ -8,19 +15,17 @@ const AccountingExport = () => {
     <Box sx={{ py: 10, flexGrow: 1 }}>
       <Container maxWidth="md">
         <Paper>
-          <Box
-            sx={{ p: 2 }}
-          >
+          <Box sx={{ p: 2 }}>
             <Typography fontSize={24} fontWeight={600} color="primary">
               Export transactions
             </Typography>
           </Box>
           <Box sx={{ p: 4 }}>
-            <Typography mb={4}>
+            <Alert color="info" sx={{ mb: 4 }}>
               You can export financial transactions in different formats. Select
               the desired format, administration and fiscal year. Click the
               'Export' button to start the process.
-            </Typography>
+            </Alert>
             <EditForm
               lg={12}
               md={12}
@@ -65,7 +70,7 @@ const AccountingExport = () => {
                 },
               ]}
             />
-            <Box sx={{ display: "flex", justifyContent: "end" }}>
+            <Box sx={{ display: "flex", justifyContent: "end", mt: 2 }}>
               <Button variant="contained">Export</Button>
             </Box>
           </Box>

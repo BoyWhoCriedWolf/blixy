@@ -11,7 +11,7 @@ import {
 
 const BankAccounts = () => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log("open", isOpen);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       {[
@@ -47,96 +47,97 @@ const BankAccounts = () => {
               value={item?.value ?? ""}
               date={item?.date ?? ""}
             />
-            <ModalContainer
-              isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
-              maxWidth="lg"
-            >
-              <Box>
-                <Box sx={{ p: 2 }}>
-                  <Typography fontSize={24} fontWeight={600} color="primary">
-                    Processed transactions
-                  </Typography>
-                </Box>
-                <PrimaryTable
-                  columns={[
-                    { label: "", name: "no" },
-                    { label: "ALTERED", name: "altered" },
-                    { label: "", name: "new" },
-                    { label: "ADMINISTRATION", name: "administration" },
-                    { label: "TYPE", name: "type" },
-                    { label: "SUBJECT", name: "subject" },
-                    { label: "DATE ENTRY", name: "date" },
-                    { label: "DEBIT", name: "debit" },
-                  ]}
-                  data={[
-                    {
-                      no: <KeyboardArrowRightOutlined fontSize="small" />,
-                      altered: "03-04-2024 09:55",
-                      new: "New",
-                      administration: "JV Services & Consulting B.V.",
-                      type: <BookOnlineOutlined fontSize="small" />,
-                      subject: "FTB2XL9MFBMFQ6321D",
-                      date: "02-04-2024",
-                      debit: "1.028,50",
-                    },
-                    {
-                      no: <KeyboardArrowRightOutlined fontSize="small" />,
-                      altered: "03-04-2024 09:55",
-                      new: "New",
-                      administration: "JV Services & Consulting B.V.",
-                      type: <BookOnlineOutlined fontSize="small" />,
-                      subject: "FTB2XL9MFBMFQ6321D",
-                      date: "02-04-2024",
-                      debit: "1.028,50",
-                    },
-                    {
-                      no: <KeyboardArrowRightOutlined fontSize="small" />,
-                      altered: "03-04-2024 09:55",
-                      new: "New",
-                      administration: "JV Services & Consulting B.V.",
-                      type: <BookOnlineOutlined fontSize="small" />,
-                      subject: "FTB2XL9MFBMFQ6321D",
-                      date: "02-04-2024",
-                      debit: "1.028,50",
-                    },
-                    {
-                      no: <KeyboardArrowRightOutlined fontSize="small" />,
-                      altered: "03-04-2024 09:55",
-                      new: "New",
-                      administration: "JV Services & Consulting B.V.",
-                      type: <BookOnlineOutlined fontSize="small" />,
-                      subject: "FTB2XL9MFBMFQ6321D",
-                      date: "02-04-2024",
-                      debit: "1.028,50",
-                    },
-                    {
-                      no: <KeyboardArrowRightOutlined fontSize="small" />,
-                      altered: "03-04-2024 09:55",
-                      new: "New",
-                      administration: "JV Services & Consulting B.V.",
-                      type: <BookOnlineOutlined fontSize="small" />,
-                      subject: "FTB2XL9MFBMFQ6321D",
-                      date: "02-04-2024",
-                      debit: "1.028,50",
-                    },
-                    {
-                      no: <KeyboardArrowRightOutlined fontSize="small" />,
-                      altered: "03-04-2024 09:55",
-                      new: "New",
-                      administration: "JV Services & Consulting B.V.",
-                      type: <BookOnlineOutlined fontSize="small" />,
-                      subject: "FTB2XL9MFBMFQ6321D",
-                      date: "02-04-2024",
-                      debit: "1.028,50",
-                    },
-                  ]}
-                />
-              </Box>
-            </ModalContainer>
           </Box>
         );
       })}
+
+      <ModalContainer
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        maxWidth="lg"
+      >
+        <Box>
+          <Box sx={{ p: 2 }}>
+            <Typography fontSize={24} fontWeight={600} color="primary">
+              Processed transactions
+            </Typography>
+          </Box>
+          <PrimaryTable
+            columns={[
+              { label: "", name: "no" },
+              { label: "ALTERED", name: "altered" },
+              { label: "", name: "new" },
+              { label: "ADMINISTRATION", name: "administration" },
+              { label: "TYPE", name: "type" },
+              { label: "SUBJECT", name: "subject" },
+              { label: "DATE ENTRY", name: "date" },
+              { label: "DEBIT", name: "debit" },
+            ]}
+            data={[
+              {
+                no: <KeyboardArrowRightOutlined fontSize="small" />,
+                altered: "03-04-2024 09:55",
+                new: "New",
+                administration: "JV Services & Consulting B.V.",
+                type: <BookOnlineOutlined fontSize="small" />,
+                subject: "FTB2XL9MFBMFQ6321D",
+                date: "02-04-2024",
+                debit: "1.028,50",
+              },
+              {
+                no: <KeyboardArrowRightOutlined fontSize="small" />,
+                altered: "03-04-2024 09:55",
+                new: "New",
+                administration: "JV Services & Consulting B.V.",
+                type: <BookOnlineOutlined fontSize="small" />,
+                subject: "FTB2XL9MFBMFQ6321D",
+                date: "02-04-2024",
+                debit: "1.028,50",
+              },
+              {
+                no: <KeyboardArrowRightOutlined fontSize="small" />,
+                altered: "03-04-2024 09:55",
+                new: "New",
+                administration: "JV Services & Consulting B.V.",
+                type: <BookOnlineOutlined fontSize="small" />,
+                subject: "FTB2XL9MFBMFQ6321D",
+                date: "02-04-2024",
+                debit: "1.028,50",
+              },
+              {
+                no: <KeyboardArrowRightOutlined fontSize="small" />,
+                altered: "03-04-2024 09:55",
+                new: "New",
+                administration: "JV Services & Consulting B.V.",
+                type: <BookOnlineOutlined fontSize="small" />,
+                subject: "FTB2XL9MFBMFQ6321D",
+                date: "02-04-2024",
+                debit: "1.028,50",
+              },
+              {
+                no: <KeyboardArrowRightOutlined fontSize="small" />,
+                altered: "03-04-2024 09:55",
+                new: "New",
+                administration: "JV Services & Consulting B.V.",
+                type: <BookOnlineOutlined fontSize="small" />,
+                subject: "FTB2XL9MFBMFQ6321D",
+                date: "02-04-2024",
+                debit: "1.028,50",
+              },
+              {
+                no: <KeyboardArrowRightOutlined fontSize="small" />,
+                altered: "03-04-2024 09:55",
+                new: "New",
+                administration: "JV Services & Consulting B.V.",
+                type: <BookOnlineOutlined fontSize="small" />,
+                subject: "FTB2XL9MFBMFQ6321D",
+                date: "02-04-2024",
+                debit: "1.028,50",
+              },
+            ]}
+          />
+        </Box>
+      </ModalContainer>
     </Box>
   );
 };
