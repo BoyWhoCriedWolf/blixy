@@ -41,7 +41,9 @@ const ArchiveDocumentDetail = () => {
         </Box>
       </Grid>
       <Grid item lg={6} md={6} sm={6} xs={12}>
-        {data?.file_path ? <PdfViewer src={data?.file_path ?? ""} /> : null}
+        {data?.file_path ? (
+          <PdfViewer src={data?.file_path ?? ""} title={data.description} />
+        ) : null}
       </Grid>
     </Grid>
   );
