@@ -13,24 +13,20 @@ export type TableColumnType<T = any> = {
   name?: string;
 };
 
-function PrimaryTable({
-  columns = [] as Array<GridColDef<GridValidRowModel>>,
-  data = [] as Array<GridValidRowModel>,
+function PrimaryTable<T = GridValidRowModel>({
+  columns = [] as Array<GridColDef>,
+  data = [] as Array<T>,
   isAction = false as Boolean,
 
   onClickRow = () => null,
 
   checkboxSelection = false,
 }: {
-  columns?: Array<GridColDef<GridValidRowModel>>;
-  data?: Array<GridValidRowModel>;
+  columns?: Array<GridColDef>;
+  data?: Array<T>;
   isAction?: Boolean;
 
-  onClickRow?: (
-    row?: GridValidRowModel,
-    rowIndex?: number,
-    self?: Array<GridValidRowModel>
-  ) => void;
+  onClickRow?: (row: T, rowIndex?: number, self?: Array<T>) => void;
 
   checkboxSelection?: boolean;
 }) {
@@ -39,13 +35,12 @@ function PrimaryTable({
     event,
     details
   ) => {
-    onClickRow(params.row);
+    onClickRow(params.row as T);
   };
 
   const formattedData = data.map((item, itemIndex) => {
-    item.id = item?.id ?? itemIndex;
-
-    return item;
+    // @ts-ignore
+    return { ...(item ?? {}), id: item?.id ?? itemIndex } as GridValidRowModel;
   });
 
   return (

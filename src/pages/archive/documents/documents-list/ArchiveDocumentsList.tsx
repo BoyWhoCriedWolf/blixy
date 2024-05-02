@@ -2,12 +2,13 @@ import { Search } from "@mui/icons-material";
 import { Box, IconButton, Paper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import DocumentsList from "sections/documents/documents-list";
+import { Document } from "services/types/document.types";
 
 const ArchiveDocumentsList = () => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`/archive/document/${"test"}`);
+  const handleClick = (row: Document) => {
+    navigate(`/archive/document/${row?.id}`);
   };
 
   return (

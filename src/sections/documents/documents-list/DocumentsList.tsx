@@ -5,9 +5,9 @@ import { FC, PropsWithChildren, useEffect, useState } from "react";
 import documentService from "services/document.service";
 import { Document } from "services/types/document.types";
 
-const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
-  onClick = () => null,
-}) => {
+const DocumentsList: FC<
+  PropsWithChildren<{ onClick?: (v: Document) => void }>
+> = ({ onClick = () => null }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [data, setData] = useState<Array<Document>>([]);
@@ -31,8 +31,8 @@ const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
 
   return (
     <LoaderContainer open={isLoading} style={{ height: "100%" }}>
-      <PrimaryTable
-        onClickRow={() => onClick()}
+      <PrimaryTable<Document>
+        onClickRow={(row) => onClick(row)}
         columns={[
           { headerName: "Delivered", field: "delivered" },
           { headerName: "Employee", field: "employee" },

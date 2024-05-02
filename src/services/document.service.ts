@@ -23,8 +23,13 @@ class DocumentService extends APIService<Document> {
 
   async get({ id = "" }: { id: string }): Promise<APIResponseType<Document>> {
     try {
-      const data = await apiClient.get(API_URLS.DOCUMENT_GET, { id: id });
-      return data as APIResponseType<Document>;
+      // const data = await apiClient.get(API_URLS.DOCUMENT_GET, { id: id });
+      const ret = await this.gets();
+
+      return {
+        ...ret,
+        data: ret.data?.find((item) => item?.id === id),
+      } as APIResponseType<Document>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
       return {
