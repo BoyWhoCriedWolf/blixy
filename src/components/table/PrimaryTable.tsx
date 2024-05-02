@@ -1,5 +1,10 @@
 import { Box } from "@mui/material";
-import { DataGrid, GridColDef, GridValidRowModel } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridEventListener,
+  GridValidRowModel,
+} from "@mui/x-data-grid";
 import { ReactNode } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,6 +19,8 @@ function PrimaryTable({
   isAction = false as Boolean,
 
   onClickRow = () => null,
+
+  checkboxSelection = false,
 }: {
   columns?: Array<GridColDef<GridValidRowModel>>;
   data?: Array<GridValidRowModel>;
@@ -24,10 +31,19 @@ function PrimaryTable({
     rowIndex?: number,
     self?: Array<GridValidRowModel>
   ) => void;
+
+  checkboxSelection?: boolean;
 }) {
+  const handleRowClick: GridEventListener<"rowClick"> = () => {};
+
   return (
     <Box sx={{ height: "100%", width: "100%" }}>
-      <DataGrid rows={data} columns={columns} />
+      <DataGrid
+        rows={data}
+        columns={columns}
+        checkboxSelection={checkboxSelection}
+        onRowClick={handleRowClick}
+      />
     </Box>
   );
 }

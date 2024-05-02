@@ -66,6 +66,7 @@ const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
           //   },
           // ]
         }
+        checkboxSelection={true}
       />
     </LoaderContainer>
   );
