@@ -7,7 +7,7 @@ const PageHeading: FC<
   return (
     <Grid container justifyContent={"space-between"} justifyItems={"center"}>
       <Grid item>
-        <Typography variant="h3">{title ?? children}</Typography>
+        <Typography variant="h3">{children ?? title}</Typography>
       </Grid>
       <Grid item>{actions}</Grid>
     </Grid>
