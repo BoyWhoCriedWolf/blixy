@@ -57,10 +57,10 @@ const DocumentDetailGeneral = () => {
             <Box>
               <PrimaryTable
                 columns={[
-                  { label: "Item ID", name: "id" },
-                  { label: "Description", name: "description" },
-                  { label: "HSN/SAC Code", name: "code" },
-                  { label: "Quantity", name: "quantity" },
+                  { headerName: "Item ID", field: "id" },
+                  { headerName: "Description", field: "description" },
+                  { headerName: "HSN/SAC Code", field: "code" },
+                  { headerName: "Quantity", field: "quantity" },
                 ]}
                 data={[
                   {
@@ -129,9 +129,9 @@ const DocumentDetailGeneral = () => {
             <Box>
               <PrimaryTable
                 columns={[
-                  { label: "Entry", name: "entry" },
-                  { label: "Debit", name: "debit" },
-                  { label: "Credit", name: "credit" },
+                  { headerName: "Entry", field: "entry" },
+                  { headerName: "Debit", field: "debit" },
+                  { headerName: "Credit", field: "credit" },
                 ]}
                 data={[
                   { entry: "", debit: "", credit: "" },

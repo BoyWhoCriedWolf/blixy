@@ -57,14 +57,14 @@ const BackofficeWorkflow = () => {
 
           <PrimaryTable
             columns={[
-              { label: "ADMINISTRATE", name: "admin" },
-              { label: "FE", name: "fe" },
-              { label: "STATUS", name: "status" },
-              { label: "START DATE", name: "start" },
-              { label: "CHECKED", name: "check" },
-              { label: "EMPLOYEE", name: "employee" },
-              { label: "GRADE", name: "grade" },
-              { label: "NOTES", name: "notes" },
+              { headerName: "ADMINISTRATE", field: "admin" },
+              { headerName: "FE", field: "fe" },
+              { headerName: "STATUS", field: "status" },
+              { headerName: "START DATE", field: "start" },
+              { headerName: "CHECKED", field: "check" },
+              { headerName: "EMPLOYEE", field: "employee" },
+              { headerName: "GRADE", field: "grade" },
+              { headerName: "NOTES", field: "notes" },
             ]}
             data={[
               {

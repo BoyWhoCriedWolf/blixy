@@ -40,14 +40,14 @@ const Invoices = () => {
       <Box sx={{ p: 1 }}>
         <PrimaryTable
           columns={[
-            { label: "Invoice Number", name: "invoice_number" },
-            { label: "Date", name: "date" },
-            { label: "Contact", name: "contact" },
-            { label: "Contact Type", name: "contact_type" },
-            { label: "Amount", name: "amount" },
-            { label: "Status", name: "status" },
-            { label: "Transaction", name: "transaction" },
-            { label: "Source", name: "source" },
+            { headerName: "Invoice Number", field: "invoice_number" },
+            { headerName: "Date", field: "date" },
+            { headerName: "Contact", field: "contact" },
+            { headerName: "Contact Type", field: "contact_type" },
+            { headerName: "Amount", field: "amount" },
+            { headerName: "Status", field: "status" },
+            { headerName: "Transaction", field: "transaction" },
+            { headerName: "Source", field: "source" },
           ]}
           data={[
             {

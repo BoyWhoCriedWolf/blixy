@@ -64,14 +64,14 @@ const BankAccounts = () => {
           </Box>
           <PrimaryTable
             columns={[
-              { label: "", name: "no" },
-              { label: "ALTERED", name: "altered" },
-              { label: "", name: "new" },
-              { label: "ADMINISTRATION", name: "administration" },
-              { label: "TYPE", name: "type" },
-              { label: "SUBJECT", name: "subject" },
-              { label: "DATE ENTRY", name: "date" },
-              { label: "DEBIT", name: "debit" },
+              { headerName: "", field: "no" },
+              { headerName: "ALTERED", field: "altered" },
+              { headerName: "", field: "new" },
+              { headerName: "ADMINISTRATION", field: "administration" },
+              { headerName: "TYPE", field: "type" },
+              { headerName: "SUBJECT", field: "subject" },
+              { headerName: "DATE ENTRY", field: "date" },
+              { headerName: "DEBIT", field: "debit" },
             ]}
             data={[
               {

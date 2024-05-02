@@ -35,20 +35,20 @@ const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
       <PrimaryTable
         onClickRow={() => onClick()}
         columns={[
-          { label: "", name: "no" },
-          { label: <Checkbox size="small" />, name: "square" },
-          { label: "Delivered", name: "delivered" },
-          { label: "Employee", name: "employee" },
-          { label: "TYPE", name: "doc_type" },
-          { label: "Topic", name: "topic" },
-          { label: "File Name", name: "file_name" },
-          { label: "KB", name: "kb" },
-          { label: "Vendor", name: "vendor" },
-          { label: "Status", name: "status" },
-          { label: "BLOCKED BY", name: "blocked_by" },
-          { label: "IDR status", name: "idr_status" },
-          { label: "Rcg", name: "rcg" },
-          { label: "Information", name: "information" },
+          { headerName: "", field: "no" },
+          { headerName: <Checkbox size="small" />, field: "square" },
+          { headerName: "Delivered", field: "delivered" },
+          { headerName: "Employee", field: "employee" },
+          { headerName: "TYPE", field: "doc_type" },
+          { headerName: "Topic", field: "topic" },
+          { headerName: "File Name", field: "file_name" },
+          { headerName: "KB", field: "kb" },
+          { headerName: "Vendor", field: "vendor" },
+          { headerName: "Status", field: "status" },
+          { headerName: "BLOCKED BY", field: "blocked_by" },
+          { headerName: "IDR status", field: "idr_status" },
+          { headerName: "Rcg", field: "rcg" },
+          { headerName: "Information", field: "information" },
         ]}
         data={
           data

@@ -19,7 +19,6 @@ import {
 } from "@mui/material";
 import IconCard from "components/icon-card";
 import PrimaryTable from "components/table";
-import React from "react";
 
 const ArchiveRecentlyViewedDocuments = () => {
   return (
@@ -115,8 +114,8 @@ const ArchiveRecentlyViewedDocuments = () => {
             </Box>
             <PrimaryTable
               columns={[
-                { label: "NAME", name: "name" },
-                { label: "WATCHED ON", name: "watch" },
+                { headerName: "NAME", field: "name" },
+                { headerName: "WATCHED ON", field: "watch" },
               ]}
               data={[
                 { name: "EasyZZP B.V.", watch: "22-04-2024 12:04" },
@@ -150,8 +149,8 @@ const ArchiveRecentlyViewedDocuments = () => {
             </Typography>
             <PrimaryTable
               columns={[
-                { label: "NAME", name: "name" },
-                { label: "TELEPHONE", name: "phone" },
+                { headerName: "NAME", field: "name" },
+                { headerName: "TELEPHONE", field: "phone" },
               ]}
               data={[{ name: "No data found." }]}
             />

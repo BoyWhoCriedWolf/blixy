@@ -1,14 +1,5 @@
-import { Edit, MoreVert } from "@mui/icons-material";
-import {
-  IconButton,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Box } from "@mui/material";
+import { DataGrid, GridColDef, GridValidRowModel } from "@mui/x-data-grid";
 import { ReactNode } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -17,82 +8,27 @@ export type TableColumnType<T = any> = {
   name?: string;
 };
 
-function PrimaryTable<T = any>({
-  columns = [] as Array<TableColumnType>,
-  data = [] as Array<T>,
+function PrimaryTable({
+  columns = [] as Array<GridColDef<GridValidRowModel>>,
+  data = [] as Array<GridValidRowModel>,
   isAction = false as Boolean,
 
   onClickRow = () => null,
 }: {
-  columns?: Array<TableColumnType<T>>;
-  data?: Array<T>;
+  columns?: Array<GridColDef<GridValidRowModel>>;
+  data?: Array<GridValidRowModel>;
   isAction?: Boolean;
 
-  onClickRow?: (row?: T, rowIndex?: number, self?: Array<T>) => void;
+  onClickRow?: (
+    row?: GridValidRowModel,
+    rowIndex?: number,
+    self?: Array<GridValidRowModel>
+  ) => void;
 }) {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow
-            sx={{
-              "&:last-child td, &:last-child th": {
-                border: 1,
-                borderColor: (theme) => theme.palette.divider,
-              },
-            }}
-          >
-            {columns.map((column, columnIndex) => {
-              return (
-                <TableCell key={columnIndex} align="left">
-                  {column?.label ?? ""}
-                </TableCell>
-              );
-            })}
-            {isAction ? <TableCell align="left">Actions</TableCell> : null}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((row, rowIndex) => (
-            <TableRow
-              key={rowIndex}
-              sx={{
-                "&:last-child td, &:last-child th": {
-                  border: 1,
-                  borderColor: (theme) => theme.palette.divider,
-                },
-              }}
-            >
-              {columns.map((column, columnIndex) => {
-                const renderContent: ReactNode =
-                  // @ts-ignore
-                  row?.[column?.name ?? ""] ?? null;
-
-                return (
-                  <TableCell
-                    key={columnIndex}
-                    align="left"
-                    onClick={() => onClickRow(row, rowIndex)}
-                  >
-                    {renderContent}
-                  </TableCell>
-                );
-              })}
-              {isAction ? (
-                <TableCell align="center" sx={{ p: 0 }}>
-                  <IconButton size="small" sx={{ mr: 0.25 }}>
-                    <Edit />
-                  </IconButton>
-                  <IconButton size="small">
-                    <MoreVert />
-                  </IconButton>
-                </TableCell>
-              ) : null}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Box sx={{ height: "100%", width: "100%" }}>
+      <DataGrid rows={data} columns={columns} />
+    </Box>
   );
 }
 

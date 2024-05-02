@@ -329,10 +329,10 @@ const Dashboard = () => {
             </Box>
             <PrimaryTable
               columns={[
-                { label: "TIMESTAMP", name: "timestamp" },
-                { label: "SUMMARY", name: "summary" },
-                { label: "GENERAL LEDGER ACCOUNT", name: "account" },
-                { label: "BY", name: "by" },
+                { headerName: "TIMESTAMP", field: "timestamp" },
+                { headerName: "SUMMARY", field: "summary" },
+                { headerName: "GENERAL LEDGER ACCOUNT", field: "account" },
+                { headerName: "BY", field: "by" },
               ]}
               data={[
                 {

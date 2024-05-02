@@ -29,11 +29,11 @@ const DocumentDetailBankStatement = () => {
       <Paper sx={{ p: 2, mb: 1 }}>
         <PrimaryTable
           columns={[
-            { label: "Bank account", name: "account" },
-            { label: "Copy", name: "copy" },
-            { label: "Date", name: "date" },
-            { label: "Previous balance", name: "previous" },
-            { label: "New balance", name: "new" },
+            { headerName: "Bank account", field: "account" },
+            { headerName: "Copy", field: "copy" },
+            { headerName: "Date", field: "date" },
+            { headerName: "Previous balance", field: "previous" },
+            { headerName: "New balance", field: "new" },
           ]}
           data={[
             {
@@ -49,12 +49,12 @@ const DocumentDetailBankStatement = () => {
       <Paper sx={{ p: 2, mb: 1 }}>
         <PrimaryTable
           columns={[
-            { label: "Type", name: "type" },
-            { label: "Trans.date", name: "date" },
-            { label: "Contra account", name: "account" },
-            { label: "Contra account name", name: "name" },
-            { label: "Bee", name: "Bee" },
-            { label: "Af", name: "Af" },
+            { headerName: "Type", field: "type" },
+            { headerName: "Trans.date", field: "date" },
+            { headerName: "Contra account", field: "account" },
+            { headerName: "Contra account name", field: "name" },
+            { headerName: "Bee", field: "Bee" },
+            { headerName: "Af", field: "Af" },
           ]}
           data={[
             {
