@@ -34,7 +34,13 @@ function PrimaryTable({
 
   checkboxSelection?: boolean;
 }) {
-  const handleRowClick: GridEventListener<"rowClick"> = () => {};
+  const handleRowClick: GridEventListener<"rowClick"> = (
+    params,
+    event,
+    details
+  ) => {
+    onClickRow(params.row);
+  };
 
   const formattedData = data.map((item, itemIndex) => {
     item.id = item?.id ?? itemIndex;
