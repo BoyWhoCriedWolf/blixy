@@ -39,10 +39,10 @@ const ArchiveRecentlyViewedDocuments = () => {
   return (
     <Stack flexGrow={1}>
       <PageLoading open={isLoading} />
-      <PageHeading>Recently Viewed Documents</PageHeading>
       <Grid container spacing={1} alignItems={"stretch"} flexGrow={1}>
         <Grid item lg={7} md={8} sm={12} xs={12}>
           <Paper sx={{ p: 2 }}>
+            <PageHeading>Recently Viewed Documents</PageHeading>
             <PrimaryTable<Document>
               data={data}
               columns={[
