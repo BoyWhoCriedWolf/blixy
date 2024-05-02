@@ -36,6 +36,12 @@ function PrimaryTable({
 }) {
   const handleRowClick: GridEventListener<"rowClick"> = () => {};
 
+  const formattedData = data.map((item, itemIndex) => {
+    item.id = item?.id ?? itemIndex;
+
+    return item;
+  });
+
   return (
     <Box sx={{ height: "100%", width: "100%" }}>
       <DataGrid
