@@ -36,7 +36,7 @@ const DocumentsList: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
         onClickRow={() => onClick()}
         columns={[
           { headerName: "", field: "no" },
-          { headerName: <Checkbox size="small" />, field: "square" },
+          { headerName: "", field: "square" },
           { headerName: "Delivered", field: "delivered" },
           { headerName: "Employee", field: "employee" },
           { headerName: "TYPE", field: "doc_type" },
