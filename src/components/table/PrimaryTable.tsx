@@ -43,9 +43,9 @@ function PrimaryTable({
   });
 
   return (
-    <Box sx={{ height: "100%", width: "100%" }}>
+    <Box sx={{ width: "100%" }}>
       <DataGrid
-        rows={data}
+        rows={formattedData}
         columns={columns}
         checkboxSelection={checkboxSelection}
         onRowClick={handleRowClick}
