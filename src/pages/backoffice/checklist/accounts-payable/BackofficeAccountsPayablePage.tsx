@@ -1,11 +1,10 @@
 import {
   CircleOutlined,
-  KeyboardArrowRightOutlined,
   Note,
   NoteAltOutlined,
   Search,
 } from "@mui/icons-material";
-import { IconButton, Paper } from "@mui/material";
+import { Grid, IconButton, Paper } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import PrimaryTable from "components/table";
 import PageHeading from "components/typography/page-heading";
@@ -24,52 +23,63 @@ const BackofficeAccountsPayablePage = () => {
       </PageHeading>
       <PrimaryTable
         columns={[
-          {
-            headerName: "",
-            field: "no",
-            renderCell: (params: GridRenderCellParams) => {
-              return <KeyboardArrowRightOutlined fontSize="small" />;
-            },
-          },
           { headerName: "date", field: "date" },
-          { headerName: "DESCRIPTION", field: "description" },
           {
-            headerName: "",
-            field: "note",
+            headerName: "DESCRIPTION",
+            field: "description",
             renderCell: (params: GridRenderCellParams) => {
-              return <Note fontSize="small" />;
+              return (
+                <Grid
+                  container
+                  alignItems={"center"}
+                  justifyContent={"space-between"}
+                >
+                  <Grid item>{params.row?.description ?? ""}</Grid>
+                  <Grid item>
+                    <Note fontSize="small" />
+                  </Grid>
+                </Grid>
+              );
             },
+            width: 250,
           },
           { headerName: "INVOICE NUMBER", field: "number" },
           { headerName: "OPEN", field: "open" },
           { headerName: "ORIGINAL", field: "original" },
-          { headerName: "EXPIRATION DATE", field: "expiration" },
           {
-            headerName: "",
-            field: "circle",
+            headerName: "EXPIRATION DATE",
+            field: "expiration",
             renderCell: (params: GridRenderCellParams) => {
-              return <CircleOutlined fontSize="small" />;
-            },
-          },
-          {
-            headerName: "",
-            field: "sign",
-            renderCell: (params: GridRenderCellParams) => {
-              return <NoteAltOutlined fontSize="small" />;
+              return (
+                <Grid
+                  container
+                  alignItems={"center"}
+                  justifyContent={"space-between"}
+                >
+                  <Grid item>{params?.row?.expiration ?? ""}</Grid>
+                  <Grid item>
+                    <Grid container alignItems={"center"}>
+                      <Grid item>
+                        <CircleOutlined fontSize="small" />
+                      </Grid>
+                      <Grid item>
+                        <NoteAltOutlined fontSize="small" />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              );
             },
           },
         ]}
         data={[
           {
-            no: <KeyboardArrowRightOutlined fontSize="small" />,
             date: "01-01-2024",
-            description: "Notary Van Benthem Cologne",
+            description: "test accounts payable 0",
           },
           {
-            no: <KeyboardArrowRightOutlined fontSize="small" />,
             date: "16-02-2024",
-            description:
-              "Layers Amstelveen, building number 6. file number 404512",
+            description: "test accounts payable 1",
             open: "-17.616,06",
           },
           {

@@ -1,60 +1,74 @@
 import {
   CircleOutlined,
   HandshakeOutlined,
-  KeyboardArrowRightOutlined,
   NoteAltOutlined,
   Search,
 } from "@mui/icons-material";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Grid, IconButton, Paper } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import PrimaryTable from "components/table";
-import React from "react";
+import PageHeading from "components/typography/page-heading";
 
 const BackofficeAccountsReceivablePage = () => {
   return (
     <Paper sx={{ m: 2, p: 2, flexGrow: 1 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", p: 2 }}>
-        <Typography color="primary" fontSize={24} fontWeight={600}>
-          Debtors: Outstanding items
-        </Typography>
-        <IconButton size="small">
-          <Search />
-        </IconButton>
-      </Box>
+      <PageHeading
+        actions={
+          <IconButton size="small">
+            <Search />
+          </IconButton>
+        }
+      >
+        Accounts Receivable: Outstanding items
+      </PageHeading>
       <PrimaryTable
         columns={[
-          {
-            headerName: "",
-            field: "no",
-            renderCell: (params: GridRenderCellParams) => {
-              return <KeyboardArrowRightOutlined fontSize="small" />;
-            },
-          },
           { headerName: "date", field: "date" },
-          { headerName: "DESCRIPTION", field: "description" },
           {
-            headerName: "",
-            field: "hand",
+            headerName: "DESCRIPTION",
+            field: "description",
             renderCell: (params: GridRenderCellParams) => {
-              return <HandshakeOutlined fontSize="small" />;
+              return (
+                <Grid
+                  container
+                  alignItems={"center"}
+                  justifyContent={"space-between"}
+                >
+                  <Grid item>{params.row?.description ?? ""}</Grid>
+                  <Grid item>
+                    <HandshakeOutlined fontSize="small" />
+                  </Grid>
+                </Grid>
+              );
             },
+            width: 250,
           },
           { headerName: "INVOICE NUMBER", field: "number" },
           { headerName: "OPEN", field: "open" },
           { headerName: "ORIGINAL", field: "original" },
-          { headerName: "EXPIRATION DATE", field: "expiration" },
           {
-            headerName: "",
-            field: "circle",
+            headerName: "EXPIRATION DATE",
+            field: "expiration",
             renderCell: (params: GridRenderCellParams) => {
-              return <CircleOutlined fontSize="small" />;
-            },
-          },
-          {
-            headerName: "",
-            field: "sign",
-            renderCell: (params: GridRenderCellParams) => {
-              return <NoteAltOutlined fontSize="small" />;
+              return (
+                <Grid
+                  container
+                  alignItems={"center"}
+                  justifyContent={"space-between"}
+                >
+                  <Grid item>{params?.row?.expiration ?? ""}</Grid>
+                  <Grid item>
+                    <Grid container alignItems={"center"}>
+                      <Grid item>
+                        <CircleOutlined fontSize="small" />
+                      </Grid>
+                      <Grid item>
+                        <NoteAltOutlined fontSize="small" />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              );
             },
           },
         ]}
