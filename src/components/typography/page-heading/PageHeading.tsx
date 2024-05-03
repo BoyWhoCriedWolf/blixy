@@ -17,7 +17,7 @@ const PageHeading: FC<
       sx={{ mb: 2 }}
     >
       <Grid item>
-        <Typography variant="h3" color={color} fontSize={32} fontWeight={600}>
+        <Typography variant="h3" color={color} fontSize={24} fontWeight={600}>
           {children ?? title}
         </Typography>
       </Grid>

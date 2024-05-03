@@ -5,22 +5,23 @@ import {
   NoteAltOutlined,
   Search,
 } from "@mui/icons-material";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { IconButton, Paper } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import PrimaryTable from "components/table";
-import React from "react";
+import PageHeading from "components/typography/page-heading";
 
 const BackofficeAccountsPayablePage = () => {
   return (
     <Paper sx={{ m: 2, p: 2, flexGrow: 1 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", p: 2 }}>
-        <Typography color="primary" fontSize={24} fontWeight={600}>
-          Creditors: Outstanding items
-        </Typography>
-        <IconButton size="small">
-          <Search />
-        </IconButton>
-      </Box>
+      <PageHeading
+        actions={
+          <IconButton size="small">
+            <Search />
+          </IconButton>
+        }
+      >
+        Accounts Payable: Outstanding items
+      </PageHeading>
       <PrimaryTable
         columns={[
           {
