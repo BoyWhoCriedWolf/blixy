@@ -308,7 +308,7 @@ export const MENU_DATA = [
       },
       {
         icon: <BarChart />,
-        path: "#",
+        path: "/accounting/chart",
         label: "Chart of accounts",
       },
       {
