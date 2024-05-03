@@ -41,7 +41,7 @@ const BackofficeAccountsReceivablePage = () => {
                 </Grid>
               );
             },
-            width: 250,
+            width: 300,
           },
           { headerName: "INVOICE NUMBER", field: "number" },
           { headerName: "OPEN", field: "open" },
@@ -70,6 +70,7 @@ const BackofficeAccountsReceivablePage = () => {
                 </Grid>
               );
             },
+            width: 300,
           },
         ]}
         data={[
