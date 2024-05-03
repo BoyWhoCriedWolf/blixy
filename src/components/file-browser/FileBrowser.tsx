@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { FileArray, FullFileBrowser } from "chonky";
 
 const FileBrowser = () => {
@@ -11,8 +12,12 @@ const FileBrowser = () => {
     },
   ];
   const folderChain = [{ id: "xcv", name: "Demo", isDir: true }];
-  //   @ts-ignore
-  return <FullFileBrowser files={files} folderChain={folderChain} />;
+  return (
+    <Box sx={{ height: "100%", all: "initial" }}>
+      {/* @ts-ignore */}
+      <FullFileBrowser files={files} folderChain={folderChain} />;
+    </Box>
+  );
 };
 
 export default FileBrowser;
