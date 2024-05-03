@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import {
   ChonkyIconName,
   FileArray,
@@ -24,10 +23,10 @@ const FileBrowser = () => {
   ];
   const folderChain = [{ id: "xcv", name: "Demo", isDir: true }];
   return (
-    <Box sx={{ height: "100%", all: "initial" }}>
+    <iframe title="file browser">
       {/* @ts-ignore */}
       <FullFileBrowser files={files} folderChain={folderChain} />
-    </Box>
+    </iframe>
   );
 };
 
