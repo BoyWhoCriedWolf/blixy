@@ -1,5 +1,15 @@
 import { Box } from "@mui/material";
-import { ChonkyIconName, FileArray, FullFileBrowser } from "chonky";
+import {
+  ChonkyIconName,
+  FileArray,
+  FullFileBrowser,
+  setChonkyDefaults,
+} from "chonky";
+import { ChonkyIconFA } from "chonky-icon-fontawesome";
+
+// Somewhere in your `index.ts`:
+// @ts-ignore
+setChonkyDefaults({ iconComponent: ChonkyIconFA });
 
 const FileBrowser = () => {
   const files: FileArray = [
