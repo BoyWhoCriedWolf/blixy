@@ -61,6 +61,9 @@ const SidebarMenuItem: FC<
         </Typography>
       ) : isRoot ? (
         <Tooltip title={data?.label ?? ""} arrow placement="right">
+          {/* <MenuItem onClick={handleClick} sx={{ py: 1.5 }} divider>
+            {data?.icon ?? null}
+          </MenuItem> */}
           <MenuItem onClick={handleClick} sx={{ py: 1.5 }} divider>
             {data?.icon ? (
               <ListItemIcon color="inherit">{data?.icon}</ListItemIcon>

@@ -25,7 +25,10 @@ const SideBar = () => {
         <SidebarMenu data={MENU_DATA} isRoot />
       </Box>
       <Box>
-        <SidebarMenuItem data={{ icon: <HelpOutline /> }} isRoot />
+        <SidebarMenuItem
+          data={{ icon: <HelpOutline />, label: "Help center" }}
+          isRoot
+        />
       </Box>
     </Stack>
   );
