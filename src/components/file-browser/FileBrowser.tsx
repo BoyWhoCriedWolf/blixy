@@ -1,3 +1,5 @@
+export const FILE_BROWSER_BASE_URL = "https://blixy-file-manager.onrender.com";
+
 const FileBrowser = () => {
   return (
     <iframe
@@ -8,7 +10,7 @@ const FileBrowser = () => {
         border: "none",
         borderCollapse: "collapse",
       }}
-      src="https://blixy-file-manager.onrender.com/"
+      src={`${FILE_BROWSER_BASE_URL}/`}
     />
   );
 };
