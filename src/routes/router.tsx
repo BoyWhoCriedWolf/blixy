@@ -6,7 +6,6 @@ import SignIn from "pages/auth/sign-in";
 import SignUp from "pages/auth/sign-up";
 
 import AccountingImportPage from "pages/accounting/import";
-import ArchiveDocumentsPage from "pages/archive/documents";
 import ArchiveDeletedDocumentsPage from "pages/archive/documents/deleted-documents";
 import ArchiveDocumentDetailPage from "pages/archive/documents/document-detail";
 import ArchiveDocumentsListPage from "pages/archive/documents/documents-list";
@@ -35,6 +34,8 @@ import BankAccountsPage from "pages/bank/accounts";
 import BankLayout from "pages/bank/layout";
 import BankProcessedTransactionsPage from "pages/bank/processed-transactions";
 
+import AccountingChartPage from "pages/accounting/chart-of-accounts";
+import AccountingChartNewPage from "pages/accounting/chart-of-accounts/AccountingChartNewPage";
 import BankExportTransactionsPage from "pages/bank/export-transactions";
 import ContactsPage from "pages/contacts";
 import Dashboard from "pages/dashboard";
@@ -43,8 +44,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import AccountingChartPage from "pages/accounting/chart-of-accounts";
-import AccountingChartNewPage from "pages/accounting/chart-of-accounts/AccountingChartNewPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -110,7 +109,7 @@ export const router = createBrowserRouter(
 
         {/* archive */}
         <Route path="/archive" element={<ArchiveLayout />}>
-          <Route path="documents" element={<ArchiveDocumentsPage />} />
+          {/* <Route path="documents" element={<ArchiveDocumentsPage />} /> */}
           <Route path="documents-list" element={<ArchiveDocumentsListPage />} />
           <Route path="document/:id" element={<ArchiveDocumentDetailPage />} />
           <Route

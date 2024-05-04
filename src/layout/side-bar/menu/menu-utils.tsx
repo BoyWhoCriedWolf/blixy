@@ -3,7 +3,6 @@ import {
   AccountBox,
   AccountCircle,
   ArrowDownward,
-  Article,
   AttachMoney,
   BarChart,
   Business,
@@ -183,11 +182,11 @@ export const MENU_DATA = [
     label: "Archive",
     children: [
       // Documents
-      {
-        icon: <Article />,
-        path: "/archive/documents",
-        label: "Documents",
-      },
+      // {
+      //   icon: <Article />,
+      //   path: "/archive/documents",
+      //   label: "Documents",
+      // },
       // Stored documents
       {
         icon: <DocumentScanner />,
