@@ -6,12 +6,12 @@ import { MenuDataType } from "./menu-utils";
 const SidebarMenu: FC<
   PropsWithChildren<{
     data?: Array<MenuDataType>;
-    iconOnly?: boolean;
+    isRoot?: boolean;
     onClick?: (v: MenuDataType, vIndex: number) => void;
   }>
 > = ({
   data = [] as Array<MenuDataType>,
-  iconOnly = false,
+  isRoot = false,
   onClick = () => null,
 }) => {
   const location = useLocation();
@@ -25,7 +25,7 @@ const SidebarMenu: FC<
             key={itemIndex}
             isActive={item.path === pathname}
             data={item}
-            iconOnly={iconOnly}
+            isRoot={isRoot}
             onClick={() => onClick(item, itemIndex)}
           />
         );

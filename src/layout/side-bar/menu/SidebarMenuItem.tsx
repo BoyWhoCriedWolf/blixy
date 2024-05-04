@@ -16,13 +16,13 @@ const SidebarMenuItem: FC<
   PropsWithChildren<{
     isActive?: boolean;
     data?: MenuDataType;
-    iconOnly?: boolean;
+    isRoot?: boolean;
     onClick?: () => void;
   }>
 > = ({
   data = { icon: <Add />, path: "", label: "" } as MenuDataType,
   isActive = false,
-  iconOnly = false,
+  isRoot = false,
   onClick = () => null,
 }) => {
   const navigate = useNavigate();
@@ -59,10 +59,13 @@ const SidebarMenuItem: FC<
         >
           {data?.label ?? ""}
         </Typography>
-      ) : iconOnly ? (
+      ) : isRoot ? (
         <Tooltip title={data?.label ?? ""} arrow placement="right">
           <MenuItem onClick={handleClick} sx={{ py: 1.5 }} divider>
-            {data?.icon ?? null}
+            {data?.icon ? (
+              <ListItemIcon color="inherit">{data?.icon}</ListItemIcon>
+            ) : null}
+            <ListItemText color="inherit">{data?.label ?? ""}</ListItemText>
           </MenuItem>
         </Tooltip>
       ) : (

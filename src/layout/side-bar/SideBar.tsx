@@ -22,10 +22,10 @@ const SideBar = () => {
         <Logo />
       </Box>
       <Box flexGrow={1}>
-        <SidebarMenu data={MENU_DATA} iconOnly />
+        <SidebarMenu data={MENU_DATA} isRoot />
       </Box>
       <Box>
-        <SidebarMenuItem data={{ icon: <HelpOutline /> }} iconOnly />
+        <SidebarMenuItem data={{ icon: <HelpOutline /> }} isRoot />
       </Box>
     </Stack>
   );
