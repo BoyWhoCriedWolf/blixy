@@ -1,5 +1,5 @@
 import { GridSize } from "@mui/material";
-import { TableColumnType } from "components/table/PrimaryTable";
+import { GridColDef } from "@mui/x-data-grid";
 import { ReactNode } from "react";
 
 export type ColorVariant =
@@ -99,7 +99,7 @@ export interface StaticField {
   setOptionValue?: (option: any) => any;
 
   // for table fields
-  columns?: Array<TableColumnType>;
+  columns?: Array<GridColDef>;
   rowSelection?: "single" | "multiple";
   fields?: Array<Partial<StaticField>>;
 
