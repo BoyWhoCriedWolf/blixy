@@ -30,7 +30,7 @@ const SidebarMenuItem: FC<
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const hasChildren = (data?.children?.length ?? 0) > 0;
+  const hasChildren = !!data?.children?.length;
 
   const handleClick: React.MouseEventHandler<HTMLLIElement> = (e) => {
     if (data?.path) {
