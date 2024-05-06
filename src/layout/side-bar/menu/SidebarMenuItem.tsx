@@ -69,7 +69,7 @@ const SidebarMenuItem: FC<
         </Tooltip>
       ) : (
         <MenuItem onClick={handleClick}>
-          {data?.icon ? <ListItemIcon>{data?.icon}</ListItemIcon> : null}
+        {data?.icon ? <ListItemIcon>{data?.icon}</ListItemIcon> : null}
           <ListItemText>{data?.label ?? ""}</ListItemText>
           {hasChildren ? (
             <span>{isOpen ? <ArrowUpward /> : <ArrowDownward />}</span>

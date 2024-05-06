@@ -8,6 +8,7 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import { ReactNode, useMemo } from "react";
+import ConfirmButtonContainer from "components/containers/confirm-button-container";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type TableColumnType<T = any> = {
@@ -96,25 +97,35 @@ function PrimaryTable<T = GridValidRowModel>({
                     <Grid container>
                       {hasOnView ? (
                         <Grid item>
-                          <IconButton size="small" color="primary">
-                            <Visibility
-                              onClick={() => handleView(params.row)}
-                            />
+                          <IconButton
+                            size="small"
+                            color="primary"
+                            onClick={() => handleView(params.row)}
+                          >
+                            <Visibility />
                           </IconButton>
                         </Grid>
                       ) : null}
                       {hasOnEdit ? (
                         <Grid item>
-                          <IconButton size="small">
-                            <Edit onClick={() => handleEdit(params.row)} />
+                          <IconButton
+                            size="small"
+                            color="primary"
+                            onClick={() => handleEdit(params.row)}
+                          >
+                            <Edit />
                           </IconButton>
                         </Grid>
                       ) : null}
                       {hasOnDelete ? (
                         <Grid item>
-                          <IconButton size="small" color="error">
-                            <Delete onClick={() => handleDelete(params.row)} />
-                          </IconButton>
+                          <ConfirmButtonContainer
+                            onClick={() => handleDelete(params.row)}
+                          >
+                            <IconButton size="small" color="error">
+                              <Delete />
+                            </IconButton>
+                          </ConfirmButtonContainer>
                         </Grid>
                       ) : null}
                     </Grid>
