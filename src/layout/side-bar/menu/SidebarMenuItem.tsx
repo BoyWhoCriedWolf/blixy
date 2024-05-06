@@ -1,13 +1,14 @@
 import { Add } from "@mui/icons-material";
 import {
+  Collapse,
   ListItemIcon,
   ListItemText,
-  Menu,
   MenuItem,
+  MenuList,
   Tooltip,
   Typography,
 } from "@mui/material";
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SidebarMenu from "./SidebarMenu";
 import { MenuDataType } from "./menu-utils";
@@ -27,21 +28,14 @@ const SidebarMenuItem: FC<
 }) => {
   const navigate = useNavigate();
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClick: React.MouseEventHandler<HTMLLIElement> = (e) => {
     if (data?.path) {
       navigate(data?.path);
       onClick();
     } else {
-      handleOpen(e as unknown as React.MouseEvent<HTMLButtonElement>);
+      setIsOpen((s) => !s);
     }
   };
 
@@ -79,24 +73,11 @@ const SidebarMenuItem: FC<
       )}
 
       {data?.children ? (
-        <Menu
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-        >
-          <SidebarMenu data={data?.children} onClick={handleClose} />
-        </Menu>
+        <Collapse in={isOpen}>
+          <MenuList sx={{ pl: 1 }}>
+            <SidebarMenu data={data?.children} />
+          </MenuList>
+        </Collapse>
       ) : null}
     </React.Fragment>
   );
