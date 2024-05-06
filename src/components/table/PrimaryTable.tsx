@@ -87,7 +87,7 @@ function PrimaryTable<T = GridValidRowModel>({
   const formattedColumns: Array<GridColDef> = useMemo(
     () =>
       [
-        ...columns,
+        ...columns.map((item) => ({ ...item, flex: item?.flex ?? 1 })),
         ...((hasActions
           ? [
               {

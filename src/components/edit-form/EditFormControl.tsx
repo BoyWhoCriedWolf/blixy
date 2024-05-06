@@ -204,13 +204,15 @@ const EditFormControl: FC<
       {field?.isLabel ?? isLabel ? (
         <InputLabel>{field.displayName}</InputLabel>
       ) : null}
-      <Box className="p-2">
-        {field?.renderF
-          ? field?.renderF(data, onChangeData)
-          : field?.render
-          ? field?.render
-          : null}
-      </Box>
+      {field?.renderF || field?.render ? (
+        <Box className="p-2">
+          {field?.renderF
+            ? field?.renderF(data, onChangeData)
+            : field?.render
+            ? field?.render
+            : null}
+        </Box>
+      ) : null}
     </div>
   ) : (
     <EditFormControlText
