@@ -1,12 +1,14 @@
 import { Typography } from "@mui/material";
 import TableManagement from "components/table-management";
 import { FC, PropsWithChildren } from "react";
-import { DOCUMENT_TYPES, Document } from "services/types/document.types";
+import { DOCUMENT_TYPES } from "services/types/document.types";
+import { StandardValue } from "services/types/standard.value.types";
 import { FieldType, GeneralOption } from "types/ui-types";
 
 const StandardValuesList: FC<PropsWithChildren> = () => {
   return (
-    <TableManagement<Document>
+    <TableManagement<StandardValue>
+      title="Standard Value"
       columns={[
         // input
         { headerName: "Document Type", field: "document_type" },
@@ -103,7 +105,12 @@ const StandardValuesList: FC<PropsWithChildren> = () => {
         //   name: "linked_ubl_rules",
         //   type: FieldType.Text,
         // },
-        { displayName: "Processing", name: "processing", type: FieldType.Text },
+        {
+          displayName: "Processing",
+          name: "processing",
+          type: FieldType.Choice,
+          options: ["In case history is reliable", "When 100% recognized"],
+        },
       ]}
     />
   );

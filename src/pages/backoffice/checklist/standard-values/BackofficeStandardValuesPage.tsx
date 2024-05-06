@@ -4,7 +4,7 @@ import StandardValuesList from "sections/standard-values/list";
 
 const BackofficeStandardValuesPage = () => {
   return (
-    <Paper sx={{ m: 2, p: 2 }}>
+    <Paper sx={{ m: 2, p: 2, flexGrow: 1 }}>
       <PageHeading>Standard Values</PageHeading>
       <StandardValuesList />
     </Paper>
