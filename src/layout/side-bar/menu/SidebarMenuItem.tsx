@@ -70,8 +70,10 @@ const SidebarMenuItem: FC<
       ) : (
         <MenuItem onClick={handleClick}>
           {data?.icon ? <ListItemIcon>{data?.icon}</ListItemIcon> : null}
-          <ListItemText>{data?.label ?? ""}</ListItemText>
-          {isOpen ? <ArrowUpward /> : <ArrowDownward />}
+          <ListItemText>
+            {data?.label ?? ""}
+            {isOpen ? <ArrowUpward /> : <ArrowDownward />}
+          </ListItemText>
         </MenuItem>
       )}
 
