@@ -65,6 +65,11 @@ const SidebarMenuItem: FC<
               <ListItemIcon color="inherit">{data?.icon}</ListItemIcon>
             ) : null}
             <ListItemText color="inherit">{data?.label ?? ""}</ListItemText>
+            {hasChildren ? (
+              <Typography variant="body2" color="text.secondary">
+                {isOpen ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+              </Typography>
+            ) : null}
           </MenuItem>
         </Tooltip>
       ) : (
