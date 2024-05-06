@@ -1,9 +1,4 @@
-import {
-  Add,
-  ArrowDownward,
-  ArrowRight,
-  ArrowUpward,
-} from "@mui/icons-material";
+import { Add, KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import {
   Collapse,
   ListItemIcon,
@@ -78,13 +73,9 @@ const SidebarMenuItem: FC<
           <ListItemText>{data?.label ?? ""}</ListItemText>
           {hasChildren ? (
             <Typography variant="body2" color="text.secondary">
-              {isOpen ? <ArrowUpward /> : <ArrowDownward />}
+              {isOpen ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
             </Typography>
-          ) : (
-            <Typography variant="body2" color="text.secondary">
-              <ArrowRight />
-            </Typography>
-          )}
+          ) : null}
         </MenuItem>
       )}
 
