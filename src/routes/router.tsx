@@ -35,7 +35,6 @@ import BankLayout from "pages/bank/layout";
 import BankProcessedTransactionsPage from "pages/bank/processed-transactions";
 
 import AccountingChartPage from "pages/accounting/chart-of-accounts";
-import AccountingChartNewPage from "pages/accounting/chart-of-accounts/AccountingChartNewPage";
 import BankExportTransactionsPage from "pages/bank/export-transactions";
 import ContactsPage from "pages/contacts";
 import Dashboard from "pages/dashboard";
@@ -145,7 +144,7 @@ export const router = createBrowserRouter(
           <Route path="export" element={<AccountingExportPage />} />
           <Route path="import" element={<AccountingImportPage />} />
           <Route path="chart" element={<AccountingChartPage />} />
-          <Route path="chart/new" element={<AccountingChartNewPage />} />
+          {/* <Route path="chart/new" element={<AccountingChartNewPage />} /> */}
         </Route>
 
         {/* accounting */}

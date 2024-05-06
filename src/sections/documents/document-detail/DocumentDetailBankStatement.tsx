@@ -1,15 +1,8 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  MenuItem,
-  Paper,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import EditForm from "components/edit-form";
 import SearchBar from "components/search-bar";
 import PrimaryTable from "components/table";
+import { FieldType } from "types/ui-types";
 
 const DocumentDetailBankStatement = () => {
   return (
@@ -29,19 +22,61 @@ const DocumentDetailBankStatement = () => {
       <Paper sx={{ p: 2, mb: 1 }}>
         <PrimaryTable
           columns={[
-            { headerName: "Bank account", field: "account" },
-            { headerName: "Copy", field: "copy" },
-            { headerName: "Date", field: "date" },
-            { headerName: "Previous balance", field: "previous" },
-            { headerName: "New balance", field: "new" },
+            {
+              headerName: "Bank account",
+              field: "account",
+              flex: 1,
+              renderCell: () => {
+                return <SearchBar iconPosition="right" />;
+              },
+            },
+            { headerName: "Copy", field: "copy", flex: 1 },
+            { headerName: "Date", field: "date", flex: 1 },
+            {
+              headerName: "Previous balance",
+              field: "previous",
+              flex: 1,
+              renderCell: () => {
+                return (
+                  <EditForm
+                    fields={[
+                      {
+                        type: FieldType.Text,
+                        name: "perviousBal",
+                        placeholder: "Previous Balance",
+                      },
+                    ]}
+                  />
+                );
+              },
+            },
+            {
+              headerName: "New balance",
+              field: "new",
+              flex: 1,
+              renderCell: () => {
+                return (
+                  <EditForm
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    fields={[
+                      {
+                        type: FieldType.Text,
+                        name: "newBal",
+                        placeholder: "New Balance",
+                      },
+                    ]}
+                  />
+                );
+              },
+            },
           ]}
           data={[
             {
-              account: <SearchBar iconPosition="right" />,
               copy: 1,
               date: "",
-              previous: <TextField variant="outlined" size="small" fullWidth />,
-              new: <TextField variant="outlined" size="small" fullWidth />,
             },
           ]}
         />
@@ -49,36 +84,91 @@ const DocumentDetailBankStatement = () => {
       <Paper sx={{ p: 2, mb: 1 }}>
         <PrimaryTable
           columns={[
-            { headerName: "Type", field: "type" },
-            { headerName: "Trans.date", field: "date" },
-            { headerName: "Contra account", field: "account" },
-            { headerName: "Contra account name", field: "name" },
-            { headerName: "Bee", field: "Bee" },
-            { headerName: "Af", field: "Af" },
-          ]}
-          data={[
             {
-              type: (
-                <FormControl sx={{ width: "100%" }}>
-                  <Select
-                    displayEmpty
-                    value=""
-                    inputProps={{ "aria-label": "Without label" }}
-                    size="small"
-                  >
-                    <MenuItem disabled value="">
-                      Standard
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              ),
-              date: "",
-              account: <TextField variant="outlined" size="small" fullWidth />,
-              name: <TextField variant="outlined" size="small" fullWidth />,
-              Bee: <TextField variant="outlined" size="small" fullWidth />,
-              Af: <TextField variant="outlined" size="small" fullWidth />,
+              headerName: "Type",
+              field: "type",
+              flex: 1,
+              renderCell: () => {
+                return (
+                  <EditForm
+                    fields={[
+                      {
+                        type: FieldType.Choice,
+                        options: ["standard"],
+                        name: "type",
+                      },
+                    ]}
+                  />
+                );
+              },
+            },
+            { headerName: "Trans.date", field: "date" },
+            {
+              headerName: "Contra account",
+              flex: 1,
+              field: "account",
+              renderCell: () => {
+                return (
+                  <EditForm
+                    fields={[
+                      {
+                        type: FieldType.Text,
+                        name: "account",
+                        placeholder: "Account",
+                      },
+                    ]}
+                  />
+                );
+              },
+            },
+            {
+              headerName: "Contra account name",
+              flex: 1,
+              field: "name",
+              renderCell: () => {
+                return (
+                  <EditForm
+                    fields={[
+                      {
+                        type: FieldType.Text,
+                        name: "name",
+                        placeholder: "Account Name",
+                      },
+                    ]}
+                  />
+                );
+              },
+            },
+            {
+              headerName: "Bee",
+              flex: 1,
+              field: "Bee",
+              renderCell: () => {
+                return (
+                  <EditForm
+                    fields={[
+                      { type: FieldType.Text, name: "bee", placeholder: "Bee" },
+                    ]}
+                  />
+                );
+              },
+            },
+            {
+              headerName: "Af",
+              flex: 1,
+              field: "Af",
+              renderCell: () => {
+                return (
+                  <EditForm
+                    fields={[
+                      { type: FieldType.Text, name: "af", placeholder: "Af" },
+                    ]}
+                  />
+                );
+              },
             },
           ]}
+          data={[{}]}
         />
         <Typography fontWeight={500} my={1}>
           Description

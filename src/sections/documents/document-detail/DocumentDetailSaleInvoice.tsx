@@ -110,11 +110,11 @@ const DocumentDetailSalesInvoice = () => {
         </Button>
         <PrimaryTable
           columns={[
-            { headerName: "Description", field: "Description" },
-            { headerName: "General ledger account", field: "account" },
-            { headerName: "Tax code", field: "code" },
-            { headerName: "Amount", field: "amount" },
-            { headerName: "Inc. VAT", field: "Inc" },
+            { headerName: "Description", field: "Description", flex: 1 },
+            { headerName: "General ledger account", field: "account", flex: 1 },
+            { headerName: "Tax code", field: "code", flex: 1 },
+            { headerName: "Amount", field: "amount", flex: 1 },
+            { headerName: "Inc. VAT", field: "Inc", flex: 1 },
           ]}
           data={[
             {

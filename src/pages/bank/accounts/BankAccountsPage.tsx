@@ -4,10 +4,7 @@ import BankAccountsCard from "./BankAccountsCard";
 import imgAccount from "assets/img/banks/account.png";
 import ModalContainer from "components/containers/modal-container";
 import PrimaryTable from "components/table";
-import {
-  BookOnlineOutlined,
-  KeyboardArrowRightOutlined,
-} from "@mui/icons-material";
+import { BookOnlineOutlined } from "@mui/icons-material";
 
 const BankAccountsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,77 +61,77 @@ const BankAccountsPage = () => {
           </Box>
           <PrimaryTable
             columns={[
-              { headerName: "", field: "no" },
-              { headerName: "ALTERED", field: "altered" },
-              { headerName: "", field: "new" },
-              { headerName: "ADMINISTRATION", field: "administration" },
-              { headerName: "TYPE", field: "type" },
-              { headerName: "SUBJECT", field: "subject" },
-              { headerName: "DATE ENTRY", field: "date" },
-              { headerName: "DEBIT", field: "debit" },
+              { headerName: "ALTERED", field: "altered", flex: 1 },
+              { headerName: "", field: "new", flex: 1 },
+              {
+                headerName: "ADMINISTRATION",
+                field: "administration",
+                flex: 1,
+              },
+              {
+                headerName: "TYPE",
+                field: "type",
+                flex: 1,
+                align: "center",
+                renderCell: () => {
+                  return <BookOnlineOutlined fontSize="small" />;
+                },
+              },
+              { headerName: "SUBJECT", field: "subject", flex: 1 },
+              { headerName: "DATE ENTRY", field: "date", flex: 1 },
+              { headerName: "DEBIT", field: "debit", flex: 1 },
             ]}
             data={[
               {
-                no: <KeyboardArrowRightOutlined fontSize="small" />,
                 altered: "03-04-2024 09:55",
                 new: "New",
                 administration: "JV Services & Consulting B.V.",
-                type: <BookOnlineOutlined fontSize="small" />,
                 subject: "FTB2XL9MFBMFQ6321D",
                 date: "02-04-2024",
                 debit: "1.028,50",
               },
               {
-                no: <KeyboardArrowRightOutlined fontSize="small" />,
                 altered: "03-04-2024 09:55",
                 new: "New",
                 administration: "JV Services & Consulting B.V.",
-                type: <BookOnlineOutlined fontSize="small" />,
                 subject: "FTB2XL9MFBMFQ6321D",
                 date: "02-04-2024",
                 debit: "1.028,50",
               },
               {
-                no: <KeyboardArrowRightOutlined fontSize="small" />,
                 altered: "03-04-2024 09:55",
                 new: "New",
                 administration: "JV Services & Consulting B.V.",
-                type: <BookOnlineOutlined fontSize="small" />,
                 subject: "FTB2XL9MFBMFQ6321D",
                 date: "02-04-2024",
                 debit: "1.028,50",
               },
               {
-                no: <KeyboardArrowRightOutlined fontSize="small" />,
                 altered: "03-04-2024 09:55",
                 new: "New",
                 administration: "JV Services & Consulting B.V.",
-                type: <BookOnlineOutlined fontSize="small" />,
                 subject: "FTB2XL9MFBMFQ6321D",
                 date: "02-04-2024",
                 debit: "1.028,50",
               },
               {
-                no: <KeyboardArrowRightOutlined fontSize="small" />,
                 altered: "03-04-2024 09:55",
                 new: "New",
                 administration: "JV Services & Consulting B.V.",
-                type: <BookOnlineOutlined fontSize="small" />,
                 subject: "FTB2XL9MFBMFQ6321D",
                 date: "02-04-2024",
                 debit: "1.028,50",
               },
               {
-                no: <KeyboardArrowRightOutlined fontSize="small" />,
                 altered: "03-04-2024 09:55",
                 new: "New",
                 administration: "JV Services & Consulting B.V.",
-                type: <BookOnlineOutlined fontSize="small" />,
                 subject: "FTB2XL9MFBMFQ6321D",
                 date: "02-04-2024",
                 debit: "1.028,50",
               },
             ]}
+            checkboxSelection={true}
           />
         </Box>
       </ModalContainer>

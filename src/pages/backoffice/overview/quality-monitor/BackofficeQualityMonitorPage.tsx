@@ -3,14 +3,13 @@ import SplitWords from "components/split-words";
 import React from "react";
 import MonitorRevenueChart from "./MonitorRevenueChart";
 import MonitorOperatingChart from "./MonitorOperatingChart";
+import PageHeading from "components/typography/page-heading";
 
 const BackofficeQualityMonitorPage = () => {
   return (
     <Container>
       <Paper sx={{ p: 2 }}>
-        <Typography fontSize={20} fontWeight={600} marginBottom={3}>
-          Revenue
-        </Typography>
+        <PageHeading>Revenue</PageHeading>
         <Grid container>
           <Grid
             item
@@ -56,9 +55,7 @@ const BackofficeQualityMonitorPage = () => {
         </Grid>
       </Paper>
       <Paper sx={{ p: 2, mt: 4 }}>
-        <Typography fontSize={20} fontWeight={600} marginBottom={3}>
-          Operating Expenses
-        </Typography>
+        <PageHeading>Operating Expenses</PageHeading>
         <Grid container>
           <Grid
             item

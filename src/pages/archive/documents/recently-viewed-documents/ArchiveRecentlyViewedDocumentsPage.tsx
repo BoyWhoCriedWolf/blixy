@@ -46,10 +46,10 @@ const ArchiveRecentlyViewedDocumentsPage = () => {
             <PrimaryTable<Document>
               data={data}
               columns={[
-                { headerName: "Type", field: "doc_type" },
-                { headerName: "Date", field: "created_at" },
-                { headerName: "Description", field: "description" },
-                { headerName: "Relation", field: "relation" },
+                { headerName: "Type", field: "doc_type", flex: 1 },
+                { headerName: "Date", field: "created_at", flex: 1 },
+                { headerName: "Description", field: "description", flex: 1 },
+                { headerName: "Relation", field: "relation", flex: 1 },
               ]}
               onClickRow={handleClickRow}
             />

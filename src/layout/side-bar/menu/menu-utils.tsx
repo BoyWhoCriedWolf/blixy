@@ -341,6 +341,6 @@ export const MENU_DATA = [
   {
     icon: <PermContactCalendar />,
     label: "Contacts",
-    path: "#",
+    path: "/contacts",
   },
 ] as Array<MenuDataType>;

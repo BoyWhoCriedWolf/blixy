@@ -1,5 +1,6 @@
 import { Circle, KeyboardArrowRightOutlined } from "@mui/icons-material";
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
+import { GridRenderCellParams } from "@mui/x-data-grid";
 import StateNumberCard from "components/state-number-card";
 import PrimaryTable from "components/table";
 
@@ -57,25 +58,34 @@ const BackofficeWorkflowPage = () => {
 
           <PrimaryTable
             columns={[
-              { headerName: "ADMINISTRATE", field: "admin" },
-              { headerName: "FE", field: "fe" },
-              { headerName: "STATUS", field: "status" },
-              { headerName: "START DATE", field: "start" },
-              { headerName: "CHECKED", field: "check" },
-              { headerName: "EMPLOYEE", field: "employee" },
-              { headerName: "GRADE", field: "grade" },
-              { headerName: "NOTES", field: "notes" },
+              {
+                headerName: "ADMINISTRATE",
+                field: "admin",
+                align: "center",
+                flex: 1,
+                renderCell: (params: GridRenderCellParams) => (
+                  <KeyboardArrowRightOutlined sx={{ mr: 1, fontSize: 18 }} />
+                ),
+              },
+              { headerName: "FE", field: "fe", flex: 1 },
+              {
+                headerName: "STATUS",
+                field: "status",
+                flex: 1,
+                align: "center",
+                renderCell: () => {
+                  return <Circle fontSize="small" color="success" />;
+                },
+              },
+              { headerName: "START DATE", field: "start", flex: 1 },
+              { headerName: "CHECKED", field: "check", flex: 1 },
+              { headerName: "EMPLOYEE", field: "employee", flex: 1 },
+              { headerName: "GRADE", field: "grade", flex: 1 },
+              { headerName: "NOTES", field: "notes", flex: 1 },
             ]}
             data={[
               {
-                admin: (
-                  <Box sx={{ display: "flex" }}>
-                    <KeyboardArrowRightOutlined sx={{ mr: 1, fontSize: 18 }} />
-                    <div>STEADI Training</div>
-                  </Box>
-                ),
                 fe: "EZ",
-                status: <Circle fontSize="small" color="success" />,
                 start: "01-01-2024",
               },
             ]}

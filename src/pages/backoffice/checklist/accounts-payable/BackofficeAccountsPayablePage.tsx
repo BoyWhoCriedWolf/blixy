@@ -23,7 +23,7 @@ const BackofficeAccountsPayablePage = () => {
       </PageHeading>
       <PrimaryTable
         columns={[
-          { headerName: "date", field: "date" },
+          { headerName: "date", field: "date", flex: 1 },
           {
             headerName: "DESCRIPTION",
             field: "description",
@@ -41,11 +41,12 @@ const BackofficeAccountsPayablePage = () => {
                 </Grid>
               );
             },
-            width: 300,
+            flex: 1,
           },
-          { headerName: "INVOICE NUMBER", field: "number" },
-          { headerName: "OPEN", field: "open" },
-          { headerName: "ORIGINAL", field: "original" },
+
+          { headerName: "INVOICE NUMBER", field: "number", flex: 1 },
+          { headerName: "OPEN", field: "open", flex: 1 },
+          { headerName: "ORIGINAL", field: "original", flex: 1 },
           {
             headerName: "EXPIRATION DATE",
             field: "expiration",
@@ -70,7 +71,7 @@ const BackofficeAccountsPayablePage = () => {
                 </Grid>
               );
             },
-            width: 300,
+            flex: 1,
           },
         ]}
         data={[

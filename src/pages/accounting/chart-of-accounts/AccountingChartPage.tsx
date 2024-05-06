@@ -1,79 +1,54 @@
-import { Add, KeyboardArrowDown } from "@mui/icons-material";
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { GridRenderCellParams } from "@mui/x-data-grid";
+import { Add } from "@mui/icons-material";
+import { Box, Button, ButtonGroup, Paper, Typography } from "@mui/material";
+import ModalContainer from "components/containers/modal-container";
+import EditForm from "components/edit-form";
 import SearchBar from "components/search-bar";
 import PrimaryTable from "components/table";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import PageHeading from "components/typography/page-heading";
+import React, { useState } from "react";
+import { FieldType } from "types/ui-types";
 
 const AccountingChartPage = () => {
-
-  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const handleSave = () => {};
 
   return (
     <Box sx={{ p: 2, flexGrow: 1 }}>
-      <Box sx={{ display: "flex" }}>
-        <Typography fontSize={28} fontWeight={600} mb={4} mr={4}>
-          General ledger accounts
-        </Typography>
-        <Stack sx={{ display: "flex", flexDirection: "row", cursor: "pointer" }} onClick={() => navigate('/accounting/chart/new')}>
-          <Box
-            sx={{
-              width: 20,
-              height: 20,
-              border: "1px solid",
-              borderColor: (theme) => theme.palette.error.main,
-              borderRadius: "50%",
-              mr: 1,
-              mt: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <Add color="error" sx={{ fontSize: 16 }} />
-          </Box>
-          <Typography color={"error"} mt={1}>New general ledger account</Typography>
-        </Stack>
-      </Box>
       <Paper sx={{ p: 2 }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            mb: 2,
-            px: 2,
-          }}
-        >
-          <SearchBar iconPosition="left" />
-          <ButtonGroup
-            disableElevation
-            variant="outlined"
-            aria-label="Disabled button group"
+        <Box sx={{ mb: 4 }}>
+          <PageHeading
+            actions={
+              <Box sx={{ display: "flex", mb: 1 }}>
+                <Button
+                  startIcon={<Add />}
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => setIsOpen(true)}
+                  sx={{ mb: 1, mr: 2 }}
+                >
+                  New
+                </Button>
+                <SearchBar iconPosition="left" />
+                <ButtonGroup
+                  size="small"
+                  aria-label="Small button group"
+                  sx={{ ml: 2 }}
+                >
+                  <Button>Active</Button>
+                  <Button>Inactive</Button>
+                </ButtonGroup>
+              </Box>
+            }
           >
-            <Button>Active</Button>
-            <Button>Inactive</Button>
-          </ButtonGroup>
+            New general ledger account
+          </PageHeading>
         </Box>
+
         <PrimaryTable
           columns={[
-            {
-              headerName: "",
-              field: "down",
-              renderCell: (params: GridRenderCellParams) => (
-                <KeyboardArrowDown fontSize="small" />
-              ),
-            },
-            { headerName: "Code", field: "code" },
-            { headerName: "Description", field: "description" },
-            { headerName: "Function", field: "function" },
+            { headerName: "Code", field: "code", align: "center" },
+            { headerName: "Description", field: "description", flex: 1 },
+            { headerName: "Function", field: "function", flex: 1 },
           ]}
           data={[
             {
@@ -126,14 +101,51 @@ const AccountingChartPage = () => {
               description: "Goodwill acquisition price",
               function: "Miscellaneous (0)",
             },
-            {
-              code: 11,
-              description: "Goodwill acquisition price",
-              function: "Miscellaneous (0)",
-            },
           ]}
         />
       </Paper>
+      <ModalContainer
+        isOpen={isOpen}
+        title="New general ledger account"
+        onOk={() => handleSave()}
+        onClose={() => setIsOpen(false)}
+        okButtonLabel="Save"
+        maxWidth="sm"
+      >
+        <Typography fontSize={20}>Facts</Typography>
+        <EditForm
+          fields={[
+            // Number
+            {
+              displayName: "Number",
+              name: "number",
+              type: FieldType.Text,
+              placeholder: "Number",
+            },
+            // description
+            {
+              displayName: "Description",
+              name: "description",
+              type: FieldType.Text,
+              isLabel: true,
+              placeholder: "Description",
+            },
+            // General ledger account
+            {
+              displayName: "General ledger account",
+              name: "general_ledger_account",
+              type: FieldType.Choice,
+              options: [
+                "Account 1",
+                "Account 2",
+                "Account 3",
+                "Account 4",
+                "Account 5",
+              ],
+            },
+          ]}
+        />
+      </ModalContainer>
     </Box>
   );
 };

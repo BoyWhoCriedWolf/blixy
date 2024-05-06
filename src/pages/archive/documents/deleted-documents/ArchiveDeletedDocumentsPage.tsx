@@ -1,6 +1,5 @@
-import { KeyboardArrowRightOutlined, Search } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 import { Box, IconButton, Paper, Typography } from "@mui/material";
-import { GridRenderCellParams } from "@mui/x-data-grid";
 import PrimaryTable from "components/table";
 import React from "react";
 const ArchiveDeletedDocumentsPage = () => {
@@ -16,21 +15,14 @@ const ArchiveDeletedDocumentsPage = () => {
       </Box>
       <PrimaryTable
         columns={[
-          {
-            headerName: "",
-            field: "no",
-            renderCell: (params: GridRenderCellParams) => {
-              return <KeyboardArrowRightOutlined fontSize="small" />;
-            },
-          },
-          { headerName: "Date Removed", field: "date" },
-          { headerName: "By", field: "by" },
-          { headerName: "Personal that removed", field: "personal" },
-          { headerName: "Type", field: "type" },
-          { headerName: "Description", field: "description" },
-          { headerName: "File name", field: "file" },
-          { headerName: "Status", field: "status" },
-          { headerName: "Reason", field: "reason" },
+          { headerName: "Date Removed", field: "date", flex: 1 },
+          { headerName: "By", field: "by", flex: 1 },
+          { headerName: "Personal that removed", field: "personal", flex: 1 },
+          { headerName: "Type", field: "type", flex: 1 },
+          { headerName: "Description", field: "description", flex: 1 },
+          { headerName: "File name", field: "file", flex: 1 },
+          { headerName: "Status", field: "status", flex: 1 },
+          { headerName: "Reason", field: "reason", flex: 1 },
         ]}
         data={[
           {
@@ -72,6 +64,7 @@ const ArchiveDeletedDocumentsPage = () => {
             reason: "Duplicate",
           },
         ]}
+        checkboxSelection={true}
       />
     </Paper>
   );

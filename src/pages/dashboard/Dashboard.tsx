@@ -329,90 +329,59 @@ const Dashboard = () => {
             </Box>
             <PrimaryTable
               columns={[
-                { headerName: "TIMESTAMP", field: "timestamp" },
-                { headerName: "SUMMARY", field: "summary" },
-                { headerName: "GENERAL LEDGER ACCOUNT", field: "account" },
-                { headerName: "BY", field: "by" },
+                { headerName: "TIMESTAMP", field: "timestamp", flex: 1 },
+                { headerName: "SUMMARY", field: "summary", flex: 1 },
+                {
+                  headerName: "GENERAL LEDGER ACCOUNT",
+                  field: "account",
+                  flex: 1,
+                  renderCell: () => {
+                    return (
+                      <Chip
+                        size="small"
+                        icon={<PaidOutlined />}
+                        label="Accounting"
+                        color="info"
+                      />
+                    );
+                  },
+                },
+                {
+                  headerName: "BY",
+                  field: "by",
+                  flex: 1,
+                  renderCell: () => {
+                    return (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-around",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Button variant="contained" color="primary">
+                          Auto
+                        </Button>
+                        <KeyboardArrowRightOutlined sx={{ ml: 8 }} />
+                      </Box>
+                    );
+                  },
+                },
               ]}
               data={[
                 {
                   timestamp: "24/11/2023",
                   summary: "Bank stream sync received 10 new transactions",
-                  account: (
-                    <Chip
-                      size="small"
-                      icon={<PaidOutlined />}
-                      label="Accounting"
-                      color="info"
-                    />
-                  ),
-                  by: (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Button variant="contained" color="primary">
-                        Auto
-                      </Button>
-                      <KeyboardArrowRightOutlined sx={{ ml: 8 }} />
-                    </Box>
-                  ),
                 },
                 {
                   timestamp: "24/11/2023",
                   summary: "3 Items manually reconciled",
-                  account: (
-                    <Chip
-                      size="small"
-                      icon={<PaidOutlined />}
-                      label="Accounting"
-                      color="info"
-                    />
-                  ),
-                  by: (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Button variant="outlined">Adnan</Button>
-                      <KeyboardArrowRightOutlined sx={{ ml: 8 }} />
-                    </Box>
-                  ),
                 },
                 {
                   timestamp: "24/11/2023",
                   summary: "TDS filed for Nov 2023",
-                  account: (
-                    <Chip
-                      size="small"
-                      icon={<BarChartOutlined />}
-                      label="TDS"
-                      color="error"
-                    />
-                  ),
-                  by: (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Button variant="contained" color="primary">
-                        Auto
-                      </Button>
-                      <KeyboardArrowRightOutlined sx={{ ml: 8 }} />
-                    </Box>
-                  ),
                 },
               ]}
-              isAction={false}
             />
           </Paper>
         </Grid>

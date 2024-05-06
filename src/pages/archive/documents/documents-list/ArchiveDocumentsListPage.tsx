@@ -1,5 +1,6 @@
 import { Search } from "@mui/icons-material";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { IconButton, Paper } from "@mui/material";
+import PageHeading from "components/typography/page-heading";
 import { useNavigate } from "react-router-dom";
 import DocumentsList from "sections/documents/documents-list";
 import { Document } from "services/types/document.types";
@@ -13,20 +14,15 @@ const ArchiveDocumentsListPage = () => {
 
   return (
     <Paper sx={{ p: 2, m: 2, flexGrow: 1 }}>
-      <Box
-        sx={{ display: "flex", justifyContent: "space-between", mb: 1, px: 2 }}
+      <PageHeading
+        actions={
+          <IconButton size="small">
+            <Search />
+          </IconButton>
+        }
       >
-        <Typography
-          fontSize={30}
-          fontWeight={600}
-          color={(theme) => theme.palette.warning.main}
-        >
-          Documents to be processed
-        </Typography>
-        <IconButton size="small">
-          <Search />
-        </IconButton>
-      </Box>
+        Documents to be processed
+      </PageHeading>
 
       <DocumentsList onClick={handleClick} />
     </Paper>
