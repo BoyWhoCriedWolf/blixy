@@ -196,6 +196,7 @@ const ContactsList = () => {
           ),
         },
       ]}
+      formWidth="lg"
       enableMockup
       hideFooterPagination
     />

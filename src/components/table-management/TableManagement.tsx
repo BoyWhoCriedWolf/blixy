@@ -1,5 +1,5 @@
 import { Add } from "@mui/icons-material";
-import { Button, Grid } from "@mui/material";
+import { Breakpoint, Button, Grid } from "@mui/material";
 import { GridColDef, GridValidRowModel } from "@mui/x-data-grid";
 import ModalContainer from "components/containers/modal-container";
 import EditForm from "components/edit-form";
@@ -15,6 +15,7 @@ function TableManagement<T = GridValidRowModel>({
   pageTitle = "",
   title = "",
   columns = [] as Array<GridColDef>,
+  formWidth = "sm",
   fields = [],
   viewFields = fields,
 
@@ -31,6 +32,7 @@ function TableManagement<T = GridValidRowModel>({
   pageTitle?: string;
   title?: string;
   columns?: Array<GridColDef>;
+  formWidth?: Breakpoint;
   fields?: Array<Partial<StaticField>>;
   viewFields?: Array<Partial<StaticField>>;
 
@@ -176,6 +178,7 @@ function TableManagement<T = GridValidRowModel>({
         onEdit={hasEdit ? handleEdit : undefined}
         onView={hasView ? handleView : undefined}
         onDelete={hasDelete ? handleDelete : undefined}
+        hideFooterPagination={hideFooterPagination}
       />
 
       {/* Edit form */}
@@ -185,6 +188,7 @@ function TableManagement<T = GridValidRowModel>({
         onClose={handleClose}
         okButtonLabel="Save"
         onOk={handleSave}
+        maxWidth={formWidth}
       >
         <EditForm<T> data={formData} onChange={setFormData} fields={fields} />
       </ModalContainer>
@@ -194,11 +198,12 @@ function TableManagement<T = GridValidRowModel>({
         isOpen={isOpenView}
         title={title}
         onClose={handleCloseView}
+        maxWidth={formWidth}
       >
         <EditForm<T>
           data={formData}
           onChange={setFormData}
-          fields={fields}
+          fields={viewFields}
           readOnly={true}
         />
       </ModalContainer>
