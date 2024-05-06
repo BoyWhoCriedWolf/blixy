@@ -14,6 +14,8 @@ const SideBar = () => {
         justifyContent: "space-between",
         borderRight: "1px solid",
         borderRightColor: (theme) => theme.palette.divider,
+        minWidth: "fit-content",
+        overflowY: "auto",
       }}
       component={Paper}
       elevation={0}
