@@ -1,11 +1,13 @@
-import { Box } from "@mui/material";
+import { Delete, Edit, Visibility } from "@mui/icons-material";
+import { Box, Grid, IconButton } from "@mui/material";
 import {
   DataGrid,
   GridColDef,
   GridEventListener,
+  GridRenderCellParams,
   GridValidRowModel,
 } from "@mui/x-data-grid";
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type TableColumnType<T = any> = {
@@ -21,6 +23,10 @@ function PrimaryTable<T = GridValidRowModel>({
   onClickRow = () => null,
 
   checkboxSelection = false,
+
+  onEdit,
+  onDelete,
+  onView,
 }: {
   columns?: Array<GridColDef>;
   data?: Array<T>;
@@ -29,7 +35,28 @@ function PrimaryTable<T = GridValidRowModel>({
   onClickRow?: (row: T, rowIndex?: number, self?: Array<T>) => void;
 
   checkboxSelection?: boolean;
+
+  onEdit?: (row: T, rowIndex?: number, self?: Array<T>) => void;
+  onDelete?: (row: T, rowIndex?: number, self?: Array<T>) => void;
+  onView?: (row: T, rowIndex?: number, self?: Array<T>) => void;
 }) {
+  const formattedData = useMemo(
+    () =>
+      data.map((item, itemIndex) => {
+        return {
+          ...(item ?? {}),
+          // @ts-ignore
+          id: item?.id ?? itemIndex,
+        } as GridValidRowModel;
+      }),
+    [data]
+  );
+
+  const hasOnEdit = typeof onEdit === "function";
+  const hasOnDelete = typeof onDelete === "function";
+  const hasOnView = typeof onView === "function";
+  const hasActions = hasOnEdit || hasOnDelete || hasOnView;
+
   const handleRowClick: GridEventListener<"rowClick"> = (
     params,
     event,
@@ -38,16 +65,75 @@ function PrimaryTable<T = GridValidRowModel>({
     onClickRow(params.row as T);
   };
 
-  const formattedData = data.map((item, itemIndex) => {
-    // @ts-ignore
-    return { ...(item ?? {}), id: item?.id ?? itemIndex } as GridValidRowModel;
-  });
+  const handleEdit = (value: T) => {
+    if (onEdit) {
+      onEdit(value);
+    }
+  };
+
+  const handleDelete = (value: T) => {
+    if (onDelete) {
+      onDelete(value);
+    }
+  };
+
+  const handleView = (value: T) => {
+    if (onView) {
+      onView(value);
+    }
+  };
+
+  const formattedColumns: Array<GridColDef> = useMemo(
+    () =>
+      [
+        ...columns,
+        ...((hasActions
+          ? [
+              {
+                headerName: "Actions",
+                renderCell: (params: GridRenderCellParams) => {
+                  return (
+                    <Grid container>
+                      {hasOnView ? (
+                        <Grid item>
+                          <IconButton size="small" color="primary">
+                            <Visibility
+                              onClick={() => handleView(params.row)}
+                            />
+                          </IconButton>
+                        </Grid>
+                      ) : null}
+                      {hasOnEdit ? (
+                        <Grid item>
+                          <IconButton size="small">
+                            <Edit onClick={() => handleEdit(params.row)} />
+                          </IconButton>
+                        </Grid>
+                      ) : null}
+                      {hasOnDelete ? (
+                        <Grid item>
+                          <IconButton size="small" color="error">
+                            <Delete onClick={() => handleDelete(params.row)} />
+                          </IconButton>
+                        </Grid>
+                      ) : null}
+                    </Grid>
+                  );
+                },
+              },
+            ]
+          : []) as Array<GridColDef>),
+      ] as Array<GridColDef>,
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [columns, hasActions]
+  );
 
   return (
     <Box sx={{ width: "100%" }}>
       <DataGrid
         rows={formattedData}
-        columns={columns}
+        columns={formattedColumns}
         checkboxSelection={checkboxSelection}
         onRowClick={handleRowClick}
       />
