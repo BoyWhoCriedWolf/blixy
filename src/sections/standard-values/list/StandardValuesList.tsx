@@ -116,6 +116,7 @@ const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
         },
       ]}
       enableMockupRow
+      hideFooterPagination
     />
   );
 };
