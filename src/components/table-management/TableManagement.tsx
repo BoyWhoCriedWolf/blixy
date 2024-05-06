@@ -18,7 +18,7 @@ function TableManagement<T = GridValidRowModel>({
   fields = [],
   viewFields = fields,
 
-  availableActions = [],
+  availableActions = ["Edit", "Delete"],
   hideFooterPagination = false,
 
   apiService: service = apiService,
