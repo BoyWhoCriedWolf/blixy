@@ -70,14 +70,10 @@ const SidebarMenuItem: FC<
       ) : (
         <MenuItem onClick={handleClick}>
           {data?.icon ? <ListItemIcon>{data?.icon}</ListItemIcon> : null}
-          <ListItemText>
-            {data?.label ?? ""}
-            {hasChildren ? (
-              <span style={{ textAlign: "right" }}>
-                {isOpen ? <ArrowUpward /> : <ArrowDownward />}
-              </span>
-            ) : null}
-          </ListItemText>
+          <ListItemText>{data?.label ?? ""}</ListItemText>
+          {hasChildren ? (
+            <span>{isOpen ? <ArrowUpward /> : <ArrowDownward />}</span>
+          ) : null}
         </MenuItem>
       )}
 
