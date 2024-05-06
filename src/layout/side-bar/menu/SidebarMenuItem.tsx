@@ -1,4 +1,4 @@
-import { Add } from "@mui/icons-material";
+import { Add, ArrowDownward, ArrowUpward } from "@mui/icons-material";
 import {
   Collapse,
   ListItemIcon,
@@ -29,6 +29,8 @@ const SidebarMenuItem: FC<
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const hasChildren = (data?.children?.length ?? 0) > 0;
 
   const handleClick: React.MouseEventHandler<HTMLLIElement> = (e) => {
     if (data?.path) {
@@ -69,10 +71,11 @@ const SidebarMenuItem: FC<
         <MenuItem onClick={handleClick}>
           {data?.icon ? <ListItemIcon>{data?.icon}</ListItemIcon> : null}
           <ListItemText>{data?.label ?? ""}</ListItemText>
+          {hasChildren ? isOpen ? <ArrowUpward /> : <ArrowDownward /> : null}
         </MenuItem>
       )}
 
-      {data?.children ? (
+      {hasChildren ? (
         <Collapse in={isOpen}>
           <MenuList sx={{ pl: 1 }}>
             <SidebarMenu data={data?.children} />
