@@ -8,6 +8,7 @@ import { FieldType } from "types/ui-types";
 const ContactsList = () => {
   return (
     <TableManagement<Contact>
+      pageTitle="Contacts"
       columns={[
         { headerName: "Company Name", field: "company_name" },
         { headerName: "Type", field: "type" },
@@ -190,11 +191,12 @@ const ContactsList = () => {
           render: (
             <Box>
               <Typography fontWeight={"bold"}>Standard values</Typography>
-              <StandardValuesList />
+              <StandardValuesList noHeading />
             </Box>
           ),
         },
       ]}
+      enableMockupRow
     />
   );
 };

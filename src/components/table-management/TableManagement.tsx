@@ -1,14 +1,18 @@
+import { Add } from "@mui/icons-material";
+import { Button, Grid } from "@mui/material";
 import { GridColDef, GridValidRowModel } from "@mui/x-data-grid";
 import ModalContainer from "components/containers/modal-container";
 import EditForm from "components/edit-form";
 import LoaderContainer from "components/loading/loader-container";
 import PrimaryTable from "components/table/PrimaryTable";
+import PageHeading from "components/typography/page-heading";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import apiService, { APIService } from "services/api.service";
 import { StaticField } from "types/ui-types";
 
 function TableManagement<T = GridValidRowModel>({
+  pageTitle = "",
   title = "",
   columns = [] as Array<GridColDef>,
   fields = [],
@@ -19,9 +23,12 @@ function TableManagement<T = GridValidRowModel>({
 
   apiService: service = apiService,
 
+  enableMockupRow = false,
+
   // @ts-ignore
   extractId = (v: T) => v?.id ?? "",
 }: {
+  pageTitle?: string;
   title?: string;
   columns?: Array<GridColDef>;
   fields?: Array<Partial<StaticField>>;
@@ -31,6 +38,8 @@ function TableManagement<T = GridValidRowModel>({
   hideFooterPagination?: boolean;
 
   apiService?: APIService;
+
+  enableMockupRow?: boolean;
 
   extractId?: (value: T) => string;
 }) {
@@ -48,6 +57,11 @@ function TableManagement<T = GridValidRowModel>({
 
   const handleClose = () => setIsOpen(false);
   const handleCloseView = () => setIsOpenView(false);
+
+  const handleAdd = () => {
+    setFormData({} as T);
+    setIsOpen(true);
+  };
 
   const handleEdit = (value: T) => {
     setFormData(value);
@@ -87,6 +101,8 @@ function TableManagement<T = GridValidRowModel>({
     setIsLoading(false);
     if (ret.success) {
       setData(ret.data ?? []);
+    } else if (enableMockupRow) {
+      setData([{ id: "mockup" } as T]);
     }
   };
 
@@ -113,6 +129,26 @@ function TableManagement<T = GridValidRowModel>({
 
   return (
     <LoaderContainer open={isLoading} style={{ height: "100%" }}>
+      <Grid
+        container
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        sx={{ mb: 2 }}
+      >
+        <Grid item>
+          {pageTitle ? <PageHeading>{pageTitle}</PageHeading> : null}
+        </Grid>
+        <Grid item>
+          <Button
+            onClick={handleAdd}
+            variant="outlined"
+            size="small"
+            startIcon={<Add />}
+          >
+            Add
+          </Button>
+        </Grid>
+      </Grid>
       <PrimaryTable<T>
         data={data}
         columns={columns}

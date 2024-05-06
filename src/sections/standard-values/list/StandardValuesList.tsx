@@ -5,9 +5,12 @@ import { DOCUMENT_TYPES } from "services/types/document.types";
 import { StandardValue } from "services/types/standard.value.types";
 import { FieldType, GeneralOption } from "types/ui-types";
 
-const StandardValuesList: FC<PropsWithChildren> = () => {
+const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
+  noHeading = false,
+}) => {
   return (
     <TableManagement<StandardValue>
+      pageTitle={noHeading ? "" : "Standard Values"}
       title="Standard Value"
       columns={[
         // input
@@ -112,6 +115,7 @@ const StandardValuesList: FC<PropsWithChildren> = () => {
           options: ["In case history is reliable", "When 100% recognized"],
         },
       ]}
+      enableMockupRow
     />
   );
 };
