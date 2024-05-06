@@ -1,5 +1,5 @@
 import { Add } from "@mui/icons-material";
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Button, Paper, Typography } from "@mui/material";
 import ModalContainer from "components/containers/modal-container";
 import EditForm from "components/edit-form";
 import SearchBar from "components/search-bar";
@@ -89,22 +89,183 @@ const ContactsPage = () => {
         title="Contact"
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
+        maxWidth="lg"
       >
         <EditForm
           data={formData}
           onChange={setFormData}
           fields={[
+            // Code
             { displayName: "Code", name: "code", type: FieldType.Text },
+            // Name
             { displayName: "Name", name: "name", type: FieldType.Text },
-            { displayName: "E-mail", name: "email", type: FieldType.Email },
+            // Telephone
             {
               displayName: "Telephone",
               name: "telephone",
               type: FieldType.Phone,
             },
-            { displayName: "Place", name: "place", type: FieldType.Text },
+            // Fax
+            {
+              displayName: "Fax",
+              name: "fax",
+              type: FieldType.Text,
+            },
+            // Email
+            {
+              displayName: "E-mail",
+              name: "email",
+              type: FieldType.Email,
+            },
+            // Website
+            {
+              displayName: "Website",
+              name: "website",
+              type: FieldType.Text,
+            },
+            // Company Name
+            {
+              displayName: "Company Name",
+              name: "company_name",
+              type: FieldType.Text,
+            },
+            // Description
+            {
+              displayName: "Description",
+              name: "description",
+              type: FieldType.Text,
+            },
+            // Address (street + number)
+            {
+              displayName: "Address (street + number)",
+              name: "address",
+              type: FieldType.Custom,
+            },
+            {
+              placeholder: "Street",
+              name: "address_street",
+              lg: 6,
+              md: 6,
+              sm: 12,
+              xs: 12,
+              type: FieldType.Text,
+            },
+            {
+              placeholder: "Number",
+              name: "address_number",
+              lg: 6,
+              md: 6,
+              sm: 12,
+              xs: 12,
+              type: FieldType.Text,
+            },
+            // Country
+            {
+              displayName: "Country",
+              name: "country",
+              type: FieldType.Text,
+            },
           ]}
         />
+
+        <Typography fontWeight={"bold"}>Post address</Typography>
+        <EditForm
+          data={formData}
+          onChange={setFormData}
+          fields={[
+            // Post Address(street + number)
+            {
+              displayName: "Post Address(street + number)",
+              name: "post_address",
+              type: FieldType.Custom,
+            },
+            {
+              placeholder: "Street",
+              name: "post_address_street",
+              lg: 6,
+              md: 6,
+              sm: 12,
+              xs: 12,
+              type: FieldType.Text,
+            },
+            {
+              placeholder: "Number",
+              name: "post_address_number",
+              lg: 6,
+              md: 6,
+              sm: 12,
+              xs: 12,
+              type: FieldType.Text,
+            },
+            // Zipcode
+            {
+              placeholder: "Zipcode",
+              name: "post_zip_code",
+              lg: 6,
+              md: 6,
+              sm: 12,
+              xs: 12,
+              type: FieldType.Text,
+            },
+            // City
+            {
+              placeholder: "City",
+              name: "post_city",
+              lg: 6,
+              md: 6,
+              sm: 12,
+              xs: 12,
+              type: FieldType.Text,
+            },
+            // KVK number
+            {
+              displayName: "KVK number",
+              name: "post_kvk_number",
+              type: FieldType.Text,
+            },
+            // BTW number
+            {
+              displayName: "BTW number",
+              name: "post_btw_number",
+              type: FieldType.Text,
+            },
+          ]}
+        />
+
+        {/* Note */}
+        <Typography fontWeight={"bold"}>Note</Typography>
+        <EditForm
+          data={formData}
+          onChange={setFormData}
+          fields={[
+            // Note
+            {
+              displayName: "Note",
+              name: "note",
+              type: FieldType.MultiLineText,
+            },
+          ]}
+        />
+
+        {/* Purchase invoices */}
+        <Typography fontWeight={"bold"}>Purchase invoices</Typography>
+        <PrimaryTable
+          columns={[
+            { headerName: "Invoice description", field: "description" },
+            { headerName: "Type of invoice", field: "type" },
+            { headerName: "Invoice Number", field: "number" },
+            {
+              headerName: "Amount excluding VAT",
+              field: "amount_ex_vat",
+            },
+            { headerName: "Amount including VAT", field: "amount_inc_vat" },
+            { headerName: "Status", field: "status" },
+          ]}
+        />
+
+        {/* Standard values */}
+        <Typography fontWeight={"bold"}>Standard values</Typography>
+        <PrimaryTable columns={[]} />
       </ModalContainer>
     </Paper>
   );
