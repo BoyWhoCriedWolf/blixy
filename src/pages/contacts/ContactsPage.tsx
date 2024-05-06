@@ -89,7 +89,7 @@ const ContactsPage = () => {
         title="Contact"
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        maxWidth="lg"
+        maxWidth="md"
       >
         <EditForm
           data={formData}
