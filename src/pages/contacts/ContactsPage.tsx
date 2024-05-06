@@ -6,6 +6,7 @@ import SearchBar from "components/search-bar";
 import PrimaryTable from "components/table";
 import PageHeading from "components/typography/page-heading";
 import { useState } from "react";
+import StandardValuesList from "sections/standard-values/list";
 import { FieldType } from "types/ui-types";
 
 const ContactsPage = () => {
@@ -95,8 +96,6 @@ const ContactsPage = () => {
           data={formData}
           onChange={setFormData}
           fields={[
-            // Code
-            { displayName: "Code", name: "code", type: FieldType.Text },
             // Name
             { displayName: "Name", name: "name", type: FieldType.Text },
             // Telephone
@@ -265,7 +264,7 @@ const ContactsPage = () => {
 
         {/* Standard values */}
         <Typography fontWeight={"bold"}>Standard values</Typography>
-        <PrimaryTable columns={[]} />
+        <StandardValuesList />
       </ModalContainer>
     </Paper>
   );

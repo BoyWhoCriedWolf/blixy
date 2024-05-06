@@ -1,0 +1,3 @@
+import BackofficeStandardValuesPage from "./BackofficeStandardValuesPage";
+
+export default BackofficeStandardValuesPage

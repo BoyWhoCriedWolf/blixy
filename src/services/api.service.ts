@@ -1,21 +1,27 @@
 import { APIResponseType } from "./types/response.types";
 
+const MOCKUP_DELAY = 1000;
+
 export class APIService<T = any> {
   async gets(p?: any): Promise<APIResponseType<T[]>> {
     return new Promise((resolve, reject) => {
-      resolve({
-        success: false,
-        msg: "Not Defined (development)",
-      });
+      setTimeout(() => {
+        resolve({
+          success: false,
+          msg: "Backend is in development",
+        });
+      }, MOCKUP_DELAY);
     });
   }
 
   async get({ id = "" }: { id?: string }): Promise<APIResponseType<T>> {
     return new Promise((resolve, reject) => {
-      resolve({
-        success: false,
-        msg: "Not Defined (development)",
-      });
+      setTimeout(() => {
+        resolve({
+          success: false,
+          msg: "Backend is in development",
+        });
+      }, MOCKUP_DELAY);
     });
   }
 
@@ -25,10 +31,12 @@ export class APIService<T = any> {
     data?: T;
   }): Promise<APIResponseType<string | boolean>> {
     return new Promise((resolve, reject) => {
-      resolve({
-        success: false,
-        msg: "Not Defined (development)",
-      });
+      setTimeout(() => {
+        resolve({
+          success: false,
+          msg: "Backend is in development",
+        });
+      }, MOCKUP_DELAY);
     });
   }
 
@@ -38,19 +46,23 @@ export class APIService<T = any> {
     data?: Array<T>;
   }): Promise<APIResponseType<Array<string | boolean>>> {
     return new Promise((resolve, reject) => {
-      resolve({
-        success: false,
-        msg: "Not Defined (development)",
-      });
+      setTimeout(() => {
+        resolve({
+          success: false,
+          msg: "Backend is in development",
+        });
+      }, MOCKUP_DELAY);
     });
   }
 
   async delete({ id = "" }: { id?: string }): Promise<APIResponseType<null>> {
     return new Promise((resolve, reject) => {
-      resolve({
-        success: false,
-        msg: "Not Defined (development)",
-      });
+      setTimeout(() => {
+        resolve({
+          success: false,
+          msg: "Backend is in development",
+        });
+      }, MOCKUP_DELAY);
     });
   }
 
@@ -60,10 +72,12 @@ export class APIService<T = any> {
     ids?: Array<string>;
   }): Promise<APIResponseType<null>> {
     return new Promise((resolve, reject) => {
-      resolve({
-        success: false,
-        msg: "Not Defined (development)",
-      });
+      setTimeout(() => {
+        resolve({
+          success: false,
+          msg: "Backend is in development",
+        });
+      }, MOCKUP_DELAY);
     });
   }
 }

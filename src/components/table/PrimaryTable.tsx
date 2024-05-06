@@ -7,14 +7,8 @@ import {
   GridRenderCellParams,
   GridValidRowModel,
 } from "@mui/x-data-grid";
-import { ReactNode, useMemo } from "react";
 import ConfirmButtonContainer from "components/containers/confirm-button-container";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type TableColumnType<T = any> = {
-  label?: string | ReactNode;
-  name?: string;
-};
+import { useMemo } from "react";
 
 function PrimaryTable<T = GridValidRowModel>({
   columns = [] as Array<GridColDef>,
@@ -28,6 +22,8 @@ function PrimaryTable<T = GridValidRowModel>({
   onEdit,
   onDelete,
   onView,
+
+  hideFooterPagination = false,
 }: {
   columns?: Array<GridColDef>;
   data?: Array<T>;
@@ -40,6 +36,8 @@ function PrimaryTable<T = GridValidRowModel>({
   onEdit?: (row: T, rowIndex?: number, self?: Array<T>) => void;
   onDelete?: (row: T, rowIndex?: number, self?: Array<T>) => void;
   onView?: (row: T, rowIndex?: number, self?: Array<T>) => void;
+
+  hideFooterPagination?: boolean;
 }) {
   const formattedData = useMemo(
     () =>
@@ -147,6 +145,7 @@ function PrimaryTable<T = GridValidRowModel>({
         columns={formattedColumns}
         checkboxSelection={checkboxSelection}
         onRowClick={handleRowClick}
+        hideFooterPagination={hideFooterPagination}
       />
     </Box>
   );

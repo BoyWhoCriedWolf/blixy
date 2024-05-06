@@ -25,7 +25,7 @@ import BackofficeExportPage from "pages/backoffice/checklist/export";
 import BackofficeOcrRecogRulesPage from "pages/backoffice/checklist/ocr-recog-rules";
 import BackofficeScanFormsPage from "pages/backoffice/checklist/scan-forms";
 import BackofficeSuspenseAccountsPage from "pages/backoffice/checklist/suspense-accounts";
-import BackofficeWorkflowRulesPage from "pages/backoffice/checklist/workflow-rules";
+import BackofficeStandardValuesPage from "pages/backoffice/checklist/standard-values";
 import BackofficeLayout from "pages/backoffice/layout";
 import BackofficeProcessedWorkflowPage from "pages/backoffice/overview/processed-workflow";
 import BackofficeQualityMonitorPage from "pages/backoffice/overview/quality-monitor";
@@ -100,8 +100,8 @@ export const router = createBrowserRouter(
             element={<BackofficeOcrRecogRulesPage />}
           />
           <Route
-            path="workflow-rules"
-            element={<BackofficeWorkflowRulesPage />}
+            path="standard-values"
+            element={<BackofficeStandardValuesPage />}
           />
           <Route path="scan-forms" element={<BackofficeScanFormsPage />} />
         </Route>

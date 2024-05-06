@@ -161,11 +161,11 @@ export const MENU_DATA = [
         path: "/backoffice/ocr-recog-rules",
         label: "OCR-Recognizition rules",
       },
-      // Workflow rules
+      // Standard Values
       {
         icon: <Schema />,
-        path: "/backoffice/workflow-rules",
-        label: "Workflow rules",
+        path: "/backoffice/standard-values",
+        label: "Standard Values",
       },
       // Scan forms
       {
