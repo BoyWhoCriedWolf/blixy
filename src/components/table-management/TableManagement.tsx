@@ -23,7 +23,7 @@ function TableManagement<T = GridValidRowModel>({
 
   apiService: service = apiService,
 
-  enableMockupRow = false,
+  enableMockup = false,
 
   // @ts-ignore
   extractId = (v: T) => v?.id ?? "",
@@ -39,7 +39,7 @@ function TableManagement<T = GridValidRowModel>({
 
   apiService?: APIService;
 
-  enableMockupRow?: boolean;
+  enableMockup?: boolean;
 
   extractId?: (value: T) => string;
 }) {
@@ -78,8 +78,9 @@ function TableManagement<T = GridValidRowModel>({
     if (id) {
       setIsLoading(true);
       const ret = await service.delete({ id: id });
+      console.log(ret);
       setIsLoading(false);
-      if (ret.success) {
+      if (ret.success || enableMockup) {
         snb.enqueueSnackbar(ret.msg ?? "Deleted successfully", {
           variant: "success",
         });
@@ -98,10 +99,11 @@ function TableManagement<T = GridValidRowModel>({
   const loadData = async () => {
     setIsLoading(true);
     const ret = await service.gets();
+    console.log(ret);
     setIsLoading(false);
     if (ret.success) {
       setData(ret.data ?? []);
-    } else if (enableMockupRow) {
+    } else if (enableMockup) {
       setData([{ id: "mockup" } as T]);
     }
   };
@@ -110,10 +112,29 @@ function TableManagement<T = GridValidRowModel>({
     setIsOpen(false);
     setIsLoading(true);
     const ret = await service.save({ data: formData });
+    console.log(ret);
     setIsLoading(false);
 
     if (ret.success) {
       loadData();
+    } else if (enableMockup) {
+      if (extractId(formData)) {
+        setData((s = []) => {
+          const matchIndex = s.findIndex(
+            (item) => extractId(item) === extractId(formData)
+          );
+          return [
+            ...s.slice(0, matchIndex),
+            formData,
+            ...s.slice(matchIndex + 1),
+          ] as Array<T>;
+        });
+      } else {
+        setData(
+          (s = []) =>
+            [...s, { ...formData, id: Math.random().toString() }] as Array<T>
+        );
+      }
     } else {
       setIsOpen(true);
       snb.enqueueSnackbar(ret.msg ?? "Failed to save (Unknown Error)", {

@@ -115,7 +115,7 @@ const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
           options: ["In case history is reliable", "When 100% recognized"],
         },
       ]}
-      enableMockupRow
+      enableMockup
       hideFooterPagination
     />
   );

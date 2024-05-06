@@ -196,7 +196,7 @@ const ContactsList = () => {
           ),
         },
       ]}
-      enableMockupRow
+      enableMockup
       hideFooterPagination
     />
   );
