@@ -72,7 +72,11 @@ const SidebarMenuItem: FC<
           {data?.icon ? <ListItemIcon>{data?.icon}</ListItemIcon> : null}
           <ListItemText>
             {data?.label ?? ""}
-            {isOpen ? <ArrowUpward /> : <ArrowDownward />}
+            {hasChildren ? (
+              <span style={{ textAlign: "right" }}>
+                {isOpen ? <ArrowUpward /> : <ArrowDownward />}
+              </span>
+            ) : null}
           </ListItemText>
         </MenuItem>
       )}
