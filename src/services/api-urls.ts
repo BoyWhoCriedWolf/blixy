@@ -1,10 +1,10 @@
-// https://blixy-c5f054bd203d.herokuapp.com/static/page.html
+// https://blixy-api-4f5a90c98117.herokuapp.com/static/page.html
 
 export const API_BASE_URL =
   process.env.NODE_ENV === "development"
     ? // ? "http://localhost:8000/api"
-      "https://blixy-c5f054bd203d.herokuapp.com"
-    : "https://blixy-c5f054bd203d.herokuapp.com";
+      "https://blixy-api-4f5a90c98117.herokuapp.com"
+    : "https://blixy-api-4f5a90c98117.herokuapp.com";
 
 export const API_URLS = {
   // auth
