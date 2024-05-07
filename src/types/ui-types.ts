@@ -127,3 +127,10 @@ export interface StaticField {
   // show label
   isLabel?: boolean;
 }
+
+export enum Currency {
+  EUR = "EUR",
+  USD = "USD",
+  GBP = "GBP",
+}
+export const CURRENCIES = ["EUR", "USD", "GBP"];

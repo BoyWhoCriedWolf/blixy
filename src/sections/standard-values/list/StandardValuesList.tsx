@@ -3,7 +3,7 @@ import TableManagement from "components/table-management";
 import { FC, PropsWithChildren } from "react";
 import { DOCUMENT_TYPES } from "services/types/document.types";
 import { StandardValue } from "services/types/standard.value.types";
-import { FieldType, GeneralOption } from "types/ui-types";
+import { CURRENCIES, FieldType, GeneralOption } from "types/ui-types";
 
 const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
   noHeading = false,
@@ -33,7 +33,7 @@ const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
         // input
         {
           type: FieldType.Custom,
-          render: <Typography fontWeight={"bold"}>Output</Typography>,
+          render: <Typography fontWeight={"bold"}>Input</Typography>,
         },
         {
           displayName: "Document Type",
@@ -74,6 +74,12 @@ const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
           xs: 6,
         },
         { displayName: "Amount", name: "amount", type: FieldType.Money },
+        {
+          displayName: "Valuta",
+          name: "valuta",
+          type: FieldType.Choice,
+          options: CURRENCIES,
+        },
         { displayName: "OCR", name: "OCR", type: FieldType.Text },
 
         // out put

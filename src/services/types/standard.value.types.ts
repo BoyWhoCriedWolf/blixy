@@ -1,3 +1,4 @@
+import { Currency } from "types/ui-types";
 import { DocumentType } from "./document.types";
 
 export interface StandardValue {
@@ -7,6 +8,7 @@ export interface StandardValue {
   relation?: string;
   OCR?: string;
   amount?: string | number;
+  valuta?: Currency;
 
   //   output
   general_ledger_account?: string;
