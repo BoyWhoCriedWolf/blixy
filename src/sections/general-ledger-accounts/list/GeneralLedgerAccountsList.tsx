@@ -29,8 +29,8 @@ const GeneralLedgerAccountsList = () => {
           name: "type",
           type: FieldType.Choice,
           options: GENERAL_LEDGER_ACCOUNT_TYPES,
-          getOptionLabel: (option: GeneralOption) => option.name ?? "",
-          getOptionValue: (option: GeneralOption) => option.value ?? "",
+          getOptionLabel: (option: GeneralOption) => option?.name ?? "",
+          getOptionValue: (option: GeneralOption) => option?.value ?? "",
         },
       ]}
       hideFooterPagination
