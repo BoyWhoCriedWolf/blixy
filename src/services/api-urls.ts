@@ -26,4 +26,11 @@ export const API_URLS = {
   CONTACT_DELETE: "/contact/delete",
   CONTACT_GETS: "/contact/list",
   CONTACT_GET: "/contact/get",
+
+  // general ledger account
+  GENERAL_LEDGER_ACCOUNT_CREATE: "/general-ledger-account/create",
+  GENERAL_LEDGER_ACCOUNT_UPDATE: "/general-ledger-account/update",
+  GENERAL_LEDGER_ACCOUNT_DELETE: "/general-ledger-account/delete",
+  GENERAL_LEDGER_ACCOUNT_GETS: "/general-ledger-account/list",
+  GENERAL_LEDGER_ACCOUNT_GET: "/general-ledger-account/get",
 };
