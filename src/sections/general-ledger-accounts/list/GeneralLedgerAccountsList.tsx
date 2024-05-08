@@ -13,11 +13,17 @@ const GeneralLedgerAccountsList = () => {
       pageTitle="General Ledger Accounts"
       title="General Ledger Account"
       columns={[
-        { headerName: "Code", field: "id" },
+        { headerName: "Code", field: "code" },
         { headerName: "Description", field: "description" },
         { headerName: "Type", field: "type" },
       ]}
       fields={[
+        // Code
+        {
+          displayName: "Code",
+          name: "code",
+          type: FieldType.Text,
+        },
         // Description
         {
           displayName: "Description",

@@ -3,16 +3,24 @@ import { GeneralOption } from "types/ui-types";
 export interface GeneralLedgerAccount {
   id?: string;
   user_id?: string;
+  code?: string;
   description?: string;
   type?: GeneralLedgerAccountType;
 }
 
 export enum GeneralLedgerAccountType {
-  Active = "Active",
-  InActive = "InActive",
+  Revenue = "Revenue",
+  Cost = "Cost",
+  Taxes = "Taxes",
+  FinancialIncomeExpenses = "Financial income and expenses",
 }
 
 export const GENERAL_LEDGER_ACCOUNT_TYPES: Array<GeneralOption> = [
-  { name: "Active", value: GeneralLedgerAccountType.Active },
-  { name: "InActive", value: GeneralLedgerAccountType.InActive },
+  { name: "Revenue", value: GeneralLedgerAccountType.Revenue },
+  { name: "Cost", value: GeneralLedgerAccountType.Cost },
+  {
+    name: "Financial income and expenses",
+    value: GeneralLedgerAccountType.FinancialIncomeExpenses,
+  },
+  { name: "Taxes", value: GeneralLedgerAccountType.Taxes },
 ];
