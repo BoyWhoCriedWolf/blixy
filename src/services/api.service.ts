@@ -29,7 +29,7 @@ export class APIService<T = any> {
     data,
   }: {
     data?: T;
-  }): Promise<APIResponseType<string | boolean>> {
+  }): Promise<APIResponseType<T>> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({
@@ -55,7 +55,7 @@ export class APIService<T = any> {
     });
   }
 
-  async delete({ id = "" }: { id?: string }): Promise<APIResponseType<null>> {
+  async delete({ id = "" }: { id?: string }): Promise<APIResponseType<boolean>> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({

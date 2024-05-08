@@ -19,4 +19,11 @@ export const API_URLS = {
   DOCUMENT_GETS: "/document/list",
   DOCUMENT_GET_COUNTS: "/document/counts",
   DOCUMENT_GET: "/document/list",
+
+  // contacts
+  CONTACT_CREATE: "/contact/create",
+  CONTACT_UPDATE: "/contact/update",
+  CONTACT_DELETE: "/contact/delete",
+  CONTACT_GETS: "/contact/list",
+  CONTACT_GET: "/contact/get",
 };

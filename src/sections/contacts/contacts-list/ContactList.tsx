@@ -2,12 +2,14 @@ import { Box, Typography } from "@mui/material";
 import PrimaryTable from "components/table";
 import TableManagement from "components/table-management";
 import StandardValuesList from "sections/standard-values/list";
+import contactService from "services/contact.service";
 import { Contact } from "services/types/contact.types";
 import { FieldType } from "types/ui-types";
 
 const ContactsList = () => {
   return (
     <TableManagement<Contact>
+      apiService={contactService}
       pageTitle="Contacts"
       columns={[
         { headerName: "Company Name", field: "company_name" },
@@ -137,13 +139,13 @@ const ContactsList = () => {
         // KVK number
         {
           displayName: "KVK number",
-          name: "post_kvk_number",
+          name: "kvk_number",
           type: FieldType.Text,
         },
         // BTW number
         {
           displayName: "BTW number",
-          name: "post_btw_number",
+          name: "btw_number",
           type: FieldType.Text,
         },
 

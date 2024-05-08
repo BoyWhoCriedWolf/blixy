@@ -93,8 +93,8 @@ class APIClient {
   /**
    * Delete
    */
-  delete = (url: any, config: any) => {
-    return axios.delete(url, { ...config });
+  delete = (url: any, config?: any) => {
+    return axios.delete(url, { ...(config ?? {}) });
   };
 }
 const getLoggedinUser = () => {
