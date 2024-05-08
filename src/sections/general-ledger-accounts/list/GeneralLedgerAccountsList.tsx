@@ -1,10 +1,7 @@
 import TableManagement from "components/table-management";
 import generalLedgerAccountService from "services/general.ledger.account.service";
-import {
-  GENERAL_LEDGER_ACCOUNT_TYPES,
-  GeneralLedgerAccount,
-} from "services/types/general.ledger.account.types";
-import { FieldType, GeneralOption } from "types/ui-types";
+import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
+import { FieldType } from "types/ui-types";
 
 const GeneralLedgerAccountsList = () => {
   return (
@@ -30,15 +27,15 @@ const GeneralLedgerAccountsList = () => {
           name: "description",
           type: FieldType.Text,
         },
-        // Type
-        {
-          displayName: "Type",
-          name: "type",
-          type: FieldType.Choice,
-          options: GENERAL_LEDGER_ACCOUNT_TYPES,
-          getOptionLabel: (option: GeneralOption) => option?.name ?? "",
-          getOptionValue: (option: GeneralOption) => option?.value ?? "",
-        },
+        // // Type
+        // {
+        //   displayName: "Type",
+        //   name: "type",
+        //   type: FieldType.Choice,
+        //   options: GENERAL_LEDGER_ACCOUNT_TYPES,
+        //   getOptionLabel: (option: GeneralOption) => option?.name ?? "",
+        //   getOptionValue: (option: GeneralOption) => option?.value ?? "",
+        // },
       ]}
       hideFooterPagination
     />

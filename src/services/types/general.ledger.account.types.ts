@@ -10,14 +10,14 @@ export interface GeneralLedgerAccount {
 
 export enum GeneralLedgerAccountType {
   Revenue = "Revenue",
-  Cost = "Cost",
+  Costs = "Costs",
   Taxes = "Taxes",
   FinancialIncomeExpenses = "Financial income and expenses",
 }
 
 export const GENERAL_LEDGER_ACCOUNT_TYPES: Array<GeneralOption> = [
   { name: "Revenue", value: GeneralLedgerAccountType.Revenue },
-  { name: "Cost", value: GeneralLedgerAccountType.Cost },
+  { name: "Costs", value: GeneralLedgerAccountType.Costs },
   {
     name: "Financial income and expenses",
     value: GeneralLedgerAccountType.FinancialIncomeExpenses,
