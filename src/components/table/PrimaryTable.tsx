@@ -145,15 +145,9 @@ function PrimaryTable<T = GridValidRowModel>({
         columns={formattedColumns}
         checkboxSelection={checkboxSelection}
         onRowClick={handleRowClick}
-        hideFooterPagination={hideFooterPagination}
-        paginationModel={{
-          page: 0,
-          pageSize: hideFooterPagination
-            ? formattedData.length > 100
-              ? formattedData.length
-              : 100
-            : 100,
-        }}
+        hideFooterPagination={
+          formattedData.length > 100 ? false : hideFooterPagination
+        }
       />
     </Box>
   );
