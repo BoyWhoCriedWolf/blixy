@@ -37,12 +37,10 @@ class ContactService extends APIService<Contact> {
 
   async save({ data }: { data?: Contact }): Promise<APIResponseType<Contact>> {
     try {
-      const ret = await apiClient.post(
+      const ret =
         data?.id === "new" || !data?.id
-          ? API_URLS.CONTACT_CREATE
-          : `${API_URLS.CONTACT_UPDATE}/${data?.id}`,
-        data
-      );
+          ? await apiClient.post(API_URLS.CONTACT_CREATE, data)
+          : await apiClient.put(`${API_URLS.CONTACT_UPDATE}/${data?.id}`, data);
       return ret as APIResponseType<Contact>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
