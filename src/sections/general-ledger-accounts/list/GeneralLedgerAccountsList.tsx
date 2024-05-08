@@ -10,7 +10,8 @@ const GeneralLedgerAccountsList = () => {
   return (
     <TableManagement<GeneralLedgerAccount>
       apiService={contactService}
-      pageTitle="Contacts"
+      pageTitle="General Ledger Accounts"
+      title="General Ledger Account"
       columns={[
         { headerName: "Code", field: "id" },
         { headerName: "Description", field: "description" },

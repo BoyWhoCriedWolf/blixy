@@ -11,6 +11,7 @@ const ContactsList = () => {
     <TableManagement<Contact>
       apiService={contactService}
       pageTitle="Contacts"
+      title="Contact"
       columns={[
         { headerName: "Company Name", field: "company_name" },
         { headerName: "Type", field: "type" },
