@@ -1,5 +1,5 @@
 import TableManagement from "components/table-management";
-import contactService from "services/contact.service";
+import generalLedgerAccountService from "services/general.ledger.account.service";
 import {
   GENERAL_LEDGER_ACCOUNT_TYPES,
   GeneralLedgerAccount,
@@ -9,7 +9,7 @@ import { FieldType, GeneralOption } from "types/ui-types";
 const GeneralLedgerAccountsList = () => {
   return (
     <TableManagement<GeneralLedgerAccount>
-      apiService={contactService}
+      apiService={generalLedgerAccountService}
       pageTitle="General Ledger Accounts"
       title="General Ledger Account"
       columns={[
