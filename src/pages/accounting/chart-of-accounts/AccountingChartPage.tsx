@@ -8,9 +8,7 @@ import {
   GeneralLedgerAccountType,
 } from "services/types/general.ledger.account.types";
 
-console.log("updated");
-
-const AccountingChartPage = async () => {
+const AccountingChartPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
