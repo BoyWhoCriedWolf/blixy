@@ -4,12 +4,28 @@ import { API_URLS } from "./api-urls";
 import { APIService } from "./api.service";
 import { Document } from "./types/document.types";
 import { APIResponseType } from "./types/response.types";
+import { Counts } from "types/ui-types";
 
 class DocumentService extends APIService<Document> {
   async gets(): Promise<APIResponseType<Document[]>> {
     try {
       const data = await apiClient.get(API_URLS.DOCUMENT_GETS);
       return data as APIResponseType<Document[]>;
+    } catch (error) {
+      const axiosError = error as AxiosError<APIResponseType>;
+      return {
+        success: false,
+        code: axiosError.response?.status,
+        msg: axiosError.response?.data?.msg ?? "Network Connection Problem",
+        data: [],
+      } as APIResponseType;
+    }
+  }
+
+  async getCounts(): Promise<APIResponseType<Counts>> {
+    try {
+      const data = await apiClient.get(API_URLS.DOCUMENT_GET_COUNTS);
+      return data as APIResponseType<Counts>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
       return {

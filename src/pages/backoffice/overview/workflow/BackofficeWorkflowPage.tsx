@@ -1,55 +1,15 @@
 import { Circle, KeyboardArrowRightOutlined } from "@mui/icons-material";
-import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Paper, Stack, Typography } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
-import StateNumberCard from "components/state-number-card";
 import PrimaryTable from "components/table";
+import BackofficeWorkflowCount from "./BackofficeWorkflowCount";
 
 const BackofficeWorkflowPage = () => {
   return (
-    <Paper sx={{ minHeight: "100%" }}>
-      <Stack sx={{ p: 4 }}>
+    <Paper sx={{ p: 2, m: 2, flexGrow: 1 }}>
+      <Stack>
         <Box sx={{ mb: 3 }}>
-          <Typography variant="h5" sx={{ mb: 1 }}>
-            Backoffice workflow
-          </Typography>
-          <Grid container spacing={1}>
-            {[
-              { label: "Document", value: 37, caption: "4 days" },
-              { label: "Bank", value: 2, caption: "2 days" },
-            ].map((item, itemIndex) => {
-              return (
-                <Grid key={itemIndex} item lg={2} md={2} sm={3} xs={3}>
-                  <StateNumberCard
-                    caption={item?.caption ?? ""}
-                    value={item?.value ?? ""}
-                    label={item?.label ?? ""}
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Box>
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="h5" sx={{ mb: 1 }}>
-            Need attention
-          </Typography>
-          <Grid container spacing={1}>
-            {[
-              { label: "Bank", value: 1, caption: "Incidents" },
-              { label: "Purchase", value: 79, caption: "Missing documents" },
-              { label: "Sale", value: 8, caption: "Missing documents" },
-            ].map((item, itemIndex) => {
-              return (
-                <Grid key={itemIndex} item lg={2} md={2} sm={3} xs={3}>
-                  <StateNumberCard
-                    caption={item?.caption ?? ""}
-                    value={item?.value ?? ""}
-                    label={item?.label ?? ""}
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
+          <BackofficeWorkflowCount />
         </Box>
         <Box sx={{ my: 3 }}>
           <Typography variant="h5" sx={{ mb: 1 }}>

@@ -134,3 +134,5 @@ export enum Currency {
   GBP = "GBP",
 }
 export const CURRENCIES = ["EUR", "USD", "GBP"];
+
+export type Counts = { [key: string]: number };
