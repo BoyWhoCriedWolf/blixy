@@ -1,8 +1,5 @@
-import {
-  NotificationsNoneOutlined,
-  StickyNote2Outlined,
-} from "@mui/icons-material";
-import { Badge, Box, IconButton, Paper, Typography } from "@mui/material";
+import { NotificationsNoneOutlined } from "@mui/icons-material";
+import { Badge, Box, IconButton, Paper } from "@mui/material";
 import SearchBar from "components/search-bar";
 import UploadHeaderAction from "./UploadHeaderAction";
 import UserProfileMenu from "./UserProfileMenu";
@@ -21,8 +18,8 @@ const Header = () => {
       elevation={0}
     >
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <StickyNote2Outlined sx={{ fontSize: 16, mr: 0.5 }} />
-        <Typography variant="body2">Invoices</Typography>
+        {/* <StickyNote2Outlined sx={{ fontSize: 16, mr: 0.5 }} />
+        <Typography variant="body2">Invoices</Typography> */}
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center" }}>
