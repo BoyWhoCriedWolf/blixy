@@ -15,6 +15,8 @@ function TableManagement<T = GridValidRowModel>({
   pageTitle = "",
   title = "",
 
+  reload = 1,
+
   columns = [] as Array<GridColDef>,
 
   formWidth = "sm",
@@ -41,6 +43,8 @@ function TableManagement<T = GridValidRowModel>({
 }: {
   pageTitle?: string;
   title?: string;
+
+  reload?: number;
 
   columns?: Array<GridColDef>;
 
@@ -77,6 +81,8 @@ function TableManagement<T = GridValidRowModel>({
   const hasEdit = availableActions.find((item) => item === "Edit");
   const hasView = availableActions.find((item) => item === "View");
   const hasDelete = availableActions.find((item) => item === "Delete");
+
+  console.log(hasDelete, availableActions);
 
   const handleClose = () => setIsOpen(false);
   const handleCloseView = () => setIsOpenView(false);
@@ -185,9 +191,11 @@ function TableManagement<T = GridValidRowModel>({
   };
 
   useEffect(() => {
-    loadData();
+    if (reload) {
+      loadData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [reload]);
 
   return (
     <LoaderContainer open={isLoading} style={{ height: "100%" }}>

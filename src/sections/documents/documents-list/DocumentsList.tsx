@@ -17,6 +17,7 @@ const DocumentsList: FC<
   const [isOpen, setIsOpen] = useState(false);
   const [isView, setIsView] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [reload, setReload] = useState(0);
 
   const handleEdit = (value: Document) => {
     setFormData(value);
@@ -31,13 +32,16 @@ const DocumentsList: FC<
   };
 
   const handleSave = async () => {
+    setIsOpen(false);
     setIsLoading(true);
     const ret = await documentService.save({ data: formData });
     setIsLoading(false);
     if (ret.success) {
-      setIsOpen(false);
+      snb.enqueueSnackbar("Successfully saved!", { variant: "warning" });
+      setReload((s = s + 1));
     } else {
       snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
+      setIsOpen(true);
     }
   };
 
@@ -46,6 +50,7 @@ const DocumentsList: FC<
       <PageLoading open={isLoading} />
 
       <TableManagement<Document>
+        reload={reload}
         apiService={documentService}
         columns={[
           { headerName: "Delivered", field: "delivered", flex: 1 },
