@@ -17,7 +17,7 @@ const DocumentsList: FC<
   const [isOpen, setIsOpen] = useState(false);
   const [isView, setIsView] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [reload, setReload] = useState(0);
+  const [reload, setReload] = useState(1);
 
   const handleEdit = (value: Document) => {
     setFormData(value);
