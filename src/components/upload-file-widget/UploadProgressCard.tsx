@@ -7,6 +7,8 @@ import { FC, PropsWithChildren } from "react";
 const UploadProgressCard: FC<
   PropsWithChildren<{ file?: File; progress?: number; onDelete?: () => void }>
 > = ({ file = null, progress = 0, children, onDelete = () => null }) => {
+  const fileSize = Math.floor(file?.size ?? 0 / 1000);
+
   return file ? (
     <Box
       sx={{
@@ -33,13 +35,15 @@ const UploadProgressCard: FC<
                 <Typography>
                   {progress > 0 ? (
                     <>
-                      {Math.floor((file.size * progress) / 100000)} KB /{" "}
-                      {Math.floor(file.size / 1000)} KB <i>Uploading</i>
+                      {Math.floor((fileSize * progress) / 100)} KB / {fileSize}{" "}
+                      KB <i>Uploading</i>
                     </>
-                  ) : progress === 100 ? (
-                    <b>Uploaded</b>
+                  ) : progress >= 100 ? (
+                    <>
+                      {fileSize} KB <b>Uploaded</b>
+                    </>
                   ) : (
-                    `${Math.floor(file.size / 1000)} KB`
+                    `${fileSize} KB`
                   )}
                 </Typography>
               </Box>
