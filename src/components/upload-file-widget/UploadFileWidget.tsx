@@ -84,7 +84,7 @@ const UploadFileWidget: FC<
       <UploadFileDropzone onSelectFiles={handleSelectFiles} />
 
       <ModalContainer
-        isOpen={isOpen || isLoading}
+        isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         title="File Uploading"
         okButtonLabel={"Submit"}
