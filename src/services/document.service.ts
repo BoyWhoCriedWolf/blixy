@@ -1,15 +1,24 @@
 import { AxiosError } from "axios";
+import { Counts } from "types/ui-types";
 import { apiClient } from "utils/api-utils";
 import { API_URLS } from "./api-urls";
 import { APIService } from "./api.service";
-import { Document } from "./types/document.types";
+import { Document, DocumentType } from "./types/document.types";
 import { APIResponseType } from "./types/response.types";
-import { Counts } from "types/ui-types";
 
 class DocumentService extends APIService<Document> {
-  async gets(): Promise<APIResponseType<Document[]>> {
+  async gets({
+    deleted = false,
+    doc_type,
+  }: {
+    deleted?: boolean;
+    doc_type?: DocumentType;
+  } = {}): Promise<APIResponseType<Document[]>> {
     try {
-      const data = await apiClient.get(API_URLS.DOCUMENT_GETS);
+      const data = await apiClient.get(API_URLS.DOCUMENT_GETS, {
+        ...(deleted ? { deleted } : {}),
+        ...(doc_type ? { doc_type } : {}),
+      });
       return data as APIResponseType<Document[]>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
