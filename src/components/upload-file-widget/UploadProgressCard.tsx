@@ -28,10 +28,19 @@ const UploadProgressCard: FC<
           </Box>
           <Box flexGrow={1}>
             <Box mb={2} display={"flex"} justifyContent={"space-between"}>
-              <Box>
+              <Box mb={-1}>
                 <Typography fontWeight={"bold"}>{file?.name}</Typography>
                 <Typography>
-                  200KB <i>Uploading</i>
+                  {progress > 0 ? (
+                    <>
+                      {Math.floor((file.size * progress) / 100000)} KB /{" "}
+                      {Math.floor(file.size / 1000)} KB <i>Uploading</i>
+                    </>
+                  ) : progress === 100 ? (
+                    <b>Uploaded</b>
+                  ) : (
+                    `${Math.floor(file.size / 1000)} KB`
+                  )}
                 </Typography>
               </Box>
               <ConfirmButtonContainer onClick={onDelete}>
@@ -41,17 +50,7 @@ const UploadProgressCard: FC<
               </ConfirmButtonContainer>
             </Box>
             <LinearProgressWithLabel value={progress} />
-            {children ? (
-              <Box
-                sx={{
-                  p: 2,
-                  borderTop: 1,
-                  borderColor: (th) => th?.palette?.divider,
-                }}
-              >
-                {children}
-              </Box>
-            ) : null}
+            {children}
           </Box>
         </Box>
       </Box>
