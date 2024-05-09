@@ -10,7 +10,7 @@ import {
   Document,
   DocumentType,
 } from "services/types/document.types";
-import { FieldType, GeneralOption } from "types/ui-types";
+import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
 import DocumentDetailBankStatement from "./DocumentDetailBankStatement";
 import DocumentDetailPurchaseInvoice from "./DocumentDetailPurchaseInvoice";
 import DocumentDetailSalesInvoice from "./DocumentDetailSaleInvoice";
@@ -20,15 +20,26 @@ const DocumentDetail: FC<
   PropsWithChildren<{
     id?: string;
     data?: Document;
+    onChange?: DispatchFunction<Document>;
     readOnly?: boolean;
     paperContainer?: boolean;
   }>
-> = ({ id = "", data: propsData, readOnly = false, paperContainer = true }) => {
+> = ({
+  id = "",
+  data: propsData,
+  onChange,
+  readOnly = false,
+  paperContainer = true,
+}) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [data, setData] = useState<Document>();
   const [isLoading, setIsLoading] = useState(false);
   const documentType = data?.doc_type;
+
+  const handleChangeData: DispatchFunction<Document> = (v) => {
+    setData(v);
+  };
 
   const loadData = async () => {
     setIsLoading(true);
@@ -36,7 +47,7 @@ const DocumentDetail: FC<
     setIsLoading(false);
 
     if (ret.success) {
-      setData(ret.data);
+      handleChangeData(ret.data ?? ({} as Document));
     } else {
       enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
     }
@@ -46,7 +57,7 @@ const DocumentDetail: FC<
     if (id) {
       loadData();
     } else if (propsData) {
-      setData(propsData);
+      handleChangeData(propsData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, propsData]);
@@ -54,7 +65,7 @@ const DocumentDetail: FC<
   const selectTypeContent = (
     <EditForm<Document>
       data={data}
-      onChange={setData}
+      onChange={handleChangeData}
       fields={[
         {
           displayName: "Document Type",
@@ -89,7 +100,7 @@ const DocumentDetail: FC<
               <DocumentDetailStandard
                 paperContainer={paperContainer}
                 data={data}
-                onChange={setData}
+                onChange={handleChangeData}
               />
             </Box>
           </Collapse>
@@ -98,7 +109,7 @@ const DocumentDetail: FC<
               <DocumentDetailPurchaseInvoice
                 paperContainer={paperContainer}
                 data={data}
-                onChange={setData}
+                onChange={handleChangeData}
               />
             </Box>
           </Collapse>
@@ -107,7 +118,7 @@ const DocumentDetail: FC<
               <DocumentDetailSalesInvoice
                 paperContainer={paperContainer}
                 data={data}
-                onChange={setData}
+                onChange={handleChangeData}
               />
             </Box>
           </Collapse>
@@ -116,7 +127,7 @@ const DocumentDetail: FC<
               <DocumentDetailBankStatement
                 paperContainer={paperContainer}
                 data={data}
-                onChange={setData}
+                onChange={handleChangeData}
               />
             </Box>
           </Collapse>

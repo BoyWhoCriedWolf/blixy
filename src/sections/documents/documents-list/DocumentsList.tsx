@@ -38,7 +38,7 @@ const DocumentsList: FC<
     setIsLoading(false);
     if (ret.success) {
       snb.enqueueSnackbar("Successfully saved!", { variant: "warning" });
-      setReload((s = s + 1));
+      setReload((s) => s + 1);
     } else {
       snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
       setIsOpen(true);
@@ -80,7 +80,11 @@ const DocumentsList: FC<
         maxWidth="lg"
       >
         <Box minHeight={"50vh"}>
-          <DocumentDetail data={formData} readOnly={isView} />
+          <DocumentDetail
+            data={formData}
+            onChange={setFormData}
+            readOnly={isView}
+          />
         </Box>
       </ModalContainer>
     </Box>
