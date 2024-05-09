@@ -93,23 +93,22 @@ const UploadFileWidget: FC<
               file={item}
               progress={progresses[itemIndex]}
               onDelete={() => handleDelete(item, itemIndex)}
-            >
-              <EditForm<Document>
-                data={formData}
-                onChange={setFormData}
-                fields={[
-                  {
-                    displayName: "Document Type",
-                    name: "doc_type",
-                    type: FieldType.Choice,
-                    options: DOCUMENT_TYPES,
-                    getOptionLabel: (opt?: GeneralOption) => opt?.name ?? "",
-                    getOptionValue: (opt?: GeneralOption) => opt?.value ?? "",
-                  },
-                ]}
-              />
-            </UploadProgressCard>
+            />
           ))}
+          <EditForm<Document>
+            data={formData}
+            onChange={setFormData}
+            fields={[
+              {
+                displayName: "Document Type",
+                name: "doc_type",
+                type: FieldType.Choice,
+                options: DOCUMENT_TYPES,
+                getOptionLabel: (opt?: GeneralOption) => opt?.name ?? "",
+                getOptionValue: (opt?: GeneralOption) => opt?.value ?? "",
+              },
+            ]}
+          />
         </Stack>
       </ModalContainer>
     </Box>

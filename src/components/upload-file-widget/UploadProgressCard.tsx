@@ -15,6 +15,7 @@ const UploadProgressCard: FC<
         border: 1,
         borderColor: (th) => th?.palette?.divider,
         borderRadius: 1,
+        mb: 1,
       }}
     >
       <Box
