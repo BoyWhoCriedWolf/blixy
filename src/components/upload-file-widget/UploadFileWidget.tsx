@@ -71,6 +71,11 @@ const UploadFileWidget: FC<
       const element = selectedFiles[index];
       await doUpload(element, index);
     }
+    setIsLoading(false);
+    setIsOpen(false);
+    enqueueSnackbar("Successfully uploaded all documents", {
+      variant: "success",
+    });
   };
 
   const handleDelete = (value: File, valueIndex: number) =>
