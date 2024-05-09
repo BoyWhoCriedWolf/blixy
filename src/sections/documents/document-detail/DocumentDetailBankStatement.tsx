@@ -1,13 +1,29 @@
-import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import { Box, Paper, PaperTypeMap, Typography } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import EditForm from "components/edit-form";
 import SearchBar from "components/search-bar";
 import PrimaryTable from "components/table";
-import { FieldType } from "types/ui-types";
+import { FC, PropsWithChildren } from "react";
+import { Document } from "services/types/document.types";
+import { DispatchFunction, FieldType } from "types/ui-types";
 
-const DocumentDetailBankStatement = () => {
+const DocumentDetailBankStatement: FC<
+  PropsWithChildren<{
+    data?: Document;
+    onChange?: DispatchFunction<Document>;
+    paperContainer?: boolean;
+  }>
+> = ({
+  data = {} as Document,
+  onChange = () => null,
+  paperContainer = true,
+}) => {
+  const FormContainer: OverridableComponent<PaperTypeMap<{}, "div">> =
+    paperContainer ? Paper : Box;
+
   return (
     <Box>
-      <Paper
+      <FormContainer
         sx={{
           p: 2,
           mb: 1,
@@ -18,8 +34,8 @@ const DocumentDetailBankStatement = () => {
           Copy: 1
         </Typography>
         <Typography fontWeight={500}>Organizer: Tax</Typography>
-      </Paper>
-      <Paper sx={{ p: 2, mb: 1 }}>
+      </FormContainer>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <PrimaryTable
           columns={[
             {
@@ -80,8 +96,8 @@ const DocumentDetailBankStatement = () => {
             },
           ]}
         />
-      </Paper>
-      <Paper sx={{ p: 2, mb: 1 }}>
+      </FormContainer>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <PrimaryTable
           columns={[
             {
@@ -170,16 +186,19 @@ const DocumentDetailBankStatement = () => {
           ]}
           data={[{}]}
         />
-        <Typography fontWeight={500} my={1}>
-          Description
-        </Typography>
-        <Box sx={{ display: "flex" }}>
-          <TextField variant="outlined" size="small" fullWidth />
-          <Button variant="contained" color="primary" sx={{ ml: 1 }}>
-            Save
-          </Button>
-        </Box>
-      </Paper>
+
+        <EditForm<Document>
+          data={data}
+          onChange={onChange}
+          fields={[
+            {
+              displayName: "Description",
+              name: "description",
+              type: FieldType.Text,
+            },
+          ]}
+        />
+      </FormContainer>
     </Box>
   );
 };

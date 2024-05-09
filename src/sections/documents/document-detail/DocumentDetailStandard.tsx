@@ -1,19 +1,35 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, PaperTypeMap, Typography } from "@mui/material";
 import EditForm from "components/edit-form";
 import WorkFlowCard from "components/workflow-card";
-import { FieldType } from "types/ui-types";
+import { FC, PropsWithChildren } from "react";
+import { Document } from "services/types/document.types";
+import { DispatchFunction, FieldType } from "types/ui-types";
 import DocumentDetailAddressForm from "./DocumentDetailAddressForm";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 
-const DocumentDetailStandard = () => {
+const DocumentDetailStandard: FC<
+  PropsWithChildren<{
+    data?: Document;
+    onChange?: DispatchFunction<Document>;
+    paperContainer?: boolean;
+  }>
+> = ({
+  data = {} as Document,
+  onChange = () => null,
+  paperContainer = true,
+}) => {
+  const FormContainer: OverridableComponent<PaperTypeMap<{}, "div">> =
+    paperContainer ? Paper : Box;
+
   return (
     <Box>
-      <Paper sx={{ p: 2, mb: 1 }}>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           ADDRESS
         </Typography>
         <DocumentDetailAddressForm />
-      </Paper>
-      <Paper sx={{ p: 2, mb: 1 }}>
+      </FormContainer>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           DOCUMENT
         </Typography>
@@ -23,6 +39,8 @@ const DocumentDetailStandard = () => {
           md={12}
           sm={12}
           xs={12}
+          data={data}
+          onChange={onChange}
           fields={[
             // Date
             {
@@ -38,8 +56,8 @@ const DocumentDetailStandard = () => {
             },
           ]}
         />
-      </Paper>
-      <Paper sx={{ p: 2, mb: 1 }}>
+      </FormContainer>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           OTHER
         </Typography>
@@ -48,6 +66,8 @@ const DocumentDetailStandard = () => {
           md={12}
           sm={12}
           xs={12}
+          data={data}
+          onChange={onChange}
           fields={[
             // Voucher number
             {
@@ -75,8 +95,8 @@ const DocumentDetailStandard = () => {
             },
           ]}
         />
-      </Paper>
-      <Paper sx={{ p: 2 }}>
+      </FormContainer>
+      <FormContainer sx={{ p: 2 }}>
         <Typography fontWeight={600} mb={1}>
           WORKFLOW
         </Typography>
@@ -111,7 +131,7 @@ const DocumentDetailStandard = () => {
             );
           })}
         </Grid>
-      </Paper>
+      </FormContainer>
     </Box>
   );
 };

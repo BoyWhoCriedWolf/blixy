@@ -1,13 +1,19 @@
 import EditForm from "components/edit-form";
-import { FieldType } from "types/ui-types";
+import { FC, PropsWithChildren } from "react";
+import { Document } from "services/types/document.types";
+import { DispatchFunction, FieldType } from "types/ui-types";
 
-const DocumentDetailAddressForm = () => {
+const DocumentDetailAddressForm: FC<
+  PropsWithChildren<{ data?: Document; onChange?: DispatchFunction<Document> }>
+> = ({ data = {} as Document, onChange = () => null }) => {
   return (
     <EditForm
       lg={6}
       md={6}
       sm={12}
       xs={12}
+      data={data}
+      onChange={onChange}
       fields={[
         // Contact
         {

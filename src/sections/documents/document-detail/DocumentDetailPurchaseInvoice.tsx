@@ -4,19 +4,37 @@ import {
   Box,
   Button,
   Paper,
+  PaperTypeMap,
   TextField,
   Typography,
 } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import SearchBar from "components/search-bar";
 import PrimaryTable from "components/table";
+import { FC, PropsWithChildren } from "react";
+import { Document } from "services/types/document.types";
+import { DispatchFunction } from "types/ui-types";
 import DocumentDetailAddressForm from "./DocumentDetailAddressForm";
 import DocumentDetailInvoiceForm from "./DocumentDetailInvoiceForm";
 import DocumentDetailPaymentForm from "./DocumentDetailPaymentForm";
 
-const DocumentDetailPurchaseInvoice = () => {
+const DocumentDetailPurchaseInvoice: FC<
+  PropsWithChildren<{
+    data?: Document;
+    onChange?: DispatchFunction<Document>;
+    paperContainer?: boolean;
+  }>
+> = ({
+  data = {} as Document,
+  onChange = () => null,
+  paperContainer = true,
+}) => {
+  const FormContainer: OverridableComponent<PaperTypeMap<{}, "div">> =
+    paperContainer ? Paper : Box;
+
   return (
     <Box>
-      <Paper sx={{ p: 2, mb: 1 }}>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           ADDRESS
         </Typography>
@@ -26,15 +44,15 @@ const DocumentDetailPurchaseInvoice = () => {
           stated on the invoice, are included below.
         </Alert>
         <DocumentDetailAddressForm />
-      </Paper>
-      <Paper sx={{ p: 2, mb: 1 }}>
+      </FormContainer>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           INVOICE
         </Typography>
 
-        <DocumentDetailInvoiceForm />
-      </Paper>
-      <Paper sx={{ p: 2, mb: 1 }}>
+        <DocumentDetailInvoiceForm data={data} onChange={onChange} />
+      </FormContainer>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           BILLING RULES
         </Typography>
@@ -67,15 +85,15 @@ const DocumentDetailPurchaseInvoice = () => {
             { account: "Invoice amount", amount: "0,000" },
           ]}
         />
-      </Paper>
+      </FormContainer>
 
       {/* Payment */}
-      <Paper sx={{ p: 2 }}>
+      <FormContainer sx={{ p: 2 }}>
         <Typography fontWeight={600} mb={1}>
           PAYMENT
         </Typography>
-        <DocumentDetailPaymentForm />
-      </Paper>
+        <DocumentDetailPaymentForm data={data} onChange={onChange} />
+      </FormContainer>
     </Box>
   );
 };

@@ -7,21 +7,38 @@ import {
   FormControl,
   MenuItem,
   Paper,
+  PaperTypeMap,
   Select,
   TextField,
   Typography,
 } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import EditForm from "components/edit-form";
 import SearchBar from "components/search-bar";
 import PrimaryTable from "components/table";
-import { FieldType } from "types/ui-types";
+import { FC, PropsWithChildren } from "react";
+import { Document } from "services/types/document.types";
+import { DispatchFunction, FieldType } from "types/ui-types";
 import DocumentDetailAddressForm from "./DocumentDetailAddressForm";
 import DocumentDetailPaymentForm from "./DocumentDetailPaymentForm";
 
-const DocumentDetailSalesInvoice = () => {
+const DocumentDetailSalesInvoice: FC<
+  PropsWithChildren<{
+    data?: Document;
+    onChange?: DispatchFunction<Document>;
+    paperContainer?: boolean;
+  }>
+> = ({
+  data = {} as Document,
+  onChange = () => null,
+  paperContainer = true,
+}) => {
+  const FormContainer: OverridableComponent<PaperTypeMap<{}, "div">> =
+    paperContainer ? Paper : Box;
+
   return (
     <Box>
-      <Paper
+      <FormContainer
         sx={{
           p: 2,
           mb: 1,
@@ -32,16 +49,16 @@ const DocumentDetailSalesInvoice = () => {
           Invoice to
         </Typography>
         <Typography fontWeight={500}>Organizer: Tax</Typography>
-      </Paper>
-      <Paper sx={{ p: 2, mb: 1 }}>
+      </FormContainer>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           ADDRESS
         </Typography>
-        <DocumentDetailAddressForm />
-      </Paper>
+        <DocumentDetailAddressForm data={data} onChange={onChange} />
+      </FormContainer>
 
       {/* Invoice */}
-      <Paper sx={{ p: 2, mb: 1 }}>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           INVOICE
         </Typography>
@@ -51,6 +68,8 @@ const DocumentDetailSalesInvoice = () => {
           md={6}
           sm={12}
           xs={12}
+          data={data}
+          onChange={onChange}
           fields={[
             // Invoice Number
             {
@@ -97,10 +116,10 @@ const DocumentDetailSalesInvoice = () => {
             },
           ]}
         />
-      </Paper>
+      </FormContainer>
 
       {/* Billing Rules */}
-      <Paper sx={{ p: 2, mb: 1 }}>
+      <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           BILLING RULES
         </Typography>
@@ -158,15 +177,15 @@ const DocumentDetailSalesInvoice = () => {
             { code: "Invoice amount:", amount: "0,000" },
           ]}
         />
-      </Paper>
+      </FormContainer>
 
       {/* Payment */}
-      <Paper sx={{ p: 2 }}>
+      <FormContainer sx={{ p: 2 }}>
         <Typography fontWeight={600} mb={1}>
           PAYMENT
         </Typography>
-        <DocumentDetailPaymentForm />
-      </Paper>
+        <DocumentDetailPaymentForm data={data} onChange={onChange} />
+      </FormContainer>
     </Box>
   );
 };
