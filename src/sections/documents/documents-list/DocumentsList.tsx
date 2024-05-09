@@ -74,7 +74,9 @@ const DocumentsList: FC<
         onOk={isView ? undefined : handleSave}
         maxWidth="lg"
       >
-        <DocumentDetail data={formData} readOnly={isView} />
+        <Box minHeight={"50vh"}>
+          <DocumentDetail data={formData} readOnly={isView} />
+        </Box>
       </ModalContainer>
     </Box>
   );
