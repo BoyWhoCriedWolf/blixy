@@ -40,7 +40,7 @@ const BackofficeWorkflowCount = () => {
           </Typography>
           <Grid container spacing={1}>
             <Grid item lg={2} md={2} sm={3} xs={3}>
-              <Link to="/archive/documents">
+              <Link to="/archive/documents-list">
                 <StateNumberCard
                   label={"Document"}
                   caption={"4 days"}
