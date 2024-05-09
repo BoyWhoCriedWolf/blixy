@@ -62,6 +62,10 @@ const UploadFileWidget: FC<
   };
 
   const handleUpload = async () => {
+    if (!formData.doc_type) {
+      enqueueSnackbar("Please select document type", { variant: "warning" });
+      return;
+    }
     setIsLoading(true);
     for (let index = 0; index < selectedFiles.length; index++) {
       const element = selectedFiles[index];
