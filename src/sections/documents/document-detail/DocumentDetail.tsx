@@ -38,7 +38,11 @@ const DocumentDetail: FC<
   const documentType = data?.doc_type;
 
   const handleChangeData: DispatchFunction<Document> = (v) => {
-    setData(v);
+    if (onChange) {
+      onChange(v);
+    } else {
+      setData(v);
+    }
   };
 
   const loadData = async () => {
