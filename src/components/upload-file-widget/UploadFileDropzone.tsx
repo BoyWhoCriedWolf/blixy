@@ -1,54 +1,31 @@
 import { CloudUploadOutlined } from "@mui/icons-material";
 import { Box, Link, Typography } from "@mui/material";
 import { useSnackbar } from "notistack";
-import React, { FC, PropsWithChildren, useRef, useState } from "react";
+import React, { FC, PropsWithChildren, useRef } from "react";
 
 const UploadFileDropzone: FC<
-  PropsWithChildren<{ onSelectFile?: (v: File) => void }>
-> = ({ onSelectFile = () => null }) => {
+  PropsWithChildren<{ onSelectFiles?: (v: File[]) => void }>
+> = ({ onSelectFiles = () => null }) => {
   const snb = useSnackbar();
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const refInputFile = useRef<HTMLInputElement>(null);
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
 
-    if (event.dataTransfer.items) {
-      // Use DataTransferItemList interface to access the file(s)
-      for (let i = 0; i < event.dataTransfer.items.length; i++) {
-        if (event.dataTransfer.items[i].kind === "file") {
-          const file = event.dataTransfer.items[i].getAsFile();
-          if (file) {
-            if (file.type === "application/pdf") {
-              setSelectedFile(file);
-              onSelectFile(file);
-              break; // Only handle the first file
-            } else {
-              snb.enqueueSnackbar("Please upload only PDF document", {
-                variant: "warning",
-              });
-            }
-          }
-        }
-      }
+    const files = event.dataTransfer.files;
+
+    const validFiles = Array.from(files).filter((file) => {
+      return file.type === "application/pdf";
+    });
+
+    if (validFiles.length > 0) {
+      onSelectFiles(validFiles);
     } else {
-      // Use DataTransfer interface to access the file(s)
-      for (let i = 0; i < event.dataTransfer.files.length; i++) {
-        const file = event.dataTransfer.files[i];
-        if (file) {
-          if (file.type === "application/pdf") {
-            setSelectedFile(file);
-            onSelectFile(file);
-            break; // Only handle the first file
-          } else {
-            snb.enqueueSnackbar("Please upload only PDF document", {
-              variant: "warning",
-            });
-          }
-        }
-      }
+      snb.enqueueSnackbar("Please upload only PDF documents", {
+        variant: "warning",
+      });
     }
   };
 
@@ -58,10 +35,14 @@ const UploadFileDropzone: FC<
   };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event?.target?.files?.[0];
-    if (file) {
-      setSelectedFile(file);
-      onSelectFile(file);
+    const files = event?.target?.files ?? [];
+
+    const validFiles = Array.from(files).filter((file) => {
+      return file.type === "application/pdf";
+    });
+
+    if (validFiles.length > 0) {
+      onSelectFiles(validFiles);
     }
   };
 
@@ -87,7 +68,6 @@ const UploadFileDropzone: FC<
         cursor: "pointer",
       }}
     >
-      <Typography>{selectedFile ? selectedFile?.name : null}</Typography>
       <CloudUploadOutlined fontSize="large" />
       <Link>Click to upload</Link>
       <Typography>or drag and drop files here.</Typography>
@@ -96,6 +76,7 @@ const UploadFileDropzone: FC<
         type="file"
         accept=".pdf"
         onChange={handleFileSelect}
+        multiple
         style={{ display: "none" }}
       />
     </Box>

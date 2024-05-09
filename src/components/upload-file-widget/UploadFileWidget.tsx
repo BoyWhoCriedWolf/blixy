@@ -1,11 +1,12 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import ModalContainer from "components/containers/modal-container";
 import EditForm from "components/edit-form";
 import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useState } from "react";
-import { API_URLS } from "services/api-urls";
+import documentService from "services/document.service";
+import { DOCUMENT_TYPES, Document } from "services/types/document.types";
 import { APIResponseType } from "services/types/response.types";
-import { apiClient } from "utils/api-utils";
+import { FieldType, GeneralOption } from "types/ui-types";
 import UploadFileDropzone from "./UploadFileDropzone";
 import UploadProgressCard from "./UploadProgressCard";
 
@@ -14,73 +15,102 @@ const UploadFileWidget: FC<
 > = ({ onUploaded = () => null }) => {
   const { enqueueSnackbar } = useSnackbar();
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedFiles, setSelectedFiles] = useState<Array<File>>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [formData, setFormData] = useState({ description: "" });
+  const [progresses, setProgresses] = useState<Array<number>>([]);
+  const [formData, setFormData] = useState<Document>({} as Document);
 
-  const doUpload = async (file = selectedFile) => {
+  const doUpload = async (file: File, fileIndex: number) => {
     if (file) {
+      const setProgress = (v: number) =>
+        setProgresses((s) => [
+          ...s.slice(0, fileIndex),
+          v,
+          ...s.slice(fileIndex + 1),
+        ]);
+
       const submitData = new FormData();
       submitData.append("file", file);
-      submitData.append("description", formData.description);
+      submitData.append("doc_type", formData.doc_type as string);
 
       setProgress(0);
 
-      const ret: APIResponseType = await apiClient.post(
-        API_URLS.DOCUMENT_UPLOAD,
-        submitData,
-        {
-          onUploadProgress: (progressEvent) => {
-            const { loaded, total = 0 } = progressEvent;
-            const percentCompleted = total
-              ? Math.round((loaded * 100) / total)
-              : 0;
-            setProgress(percentCompleted);
-          },
-
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const ret: APIResponseType = await documentService.upload({
+        data: submitData,
+        onProgress: setProgress,
+      });
 
       if (ret?.success) {
-        enqueueSnackbar("Successfully Uploaded", { variant: "success" });
-        onUploaded(ret?.data);
-        setIsOpen(false);
-        setProgress(0);
+        enqueueSnackbar(
+          `Successfully Uploaded ${file.name ?? ""} (${fileIndex + 1})`,
+          { variant: "success" }
+        );
+        // onUploaded(ret?.data);
+        // setIsOpen(false);
+        // setProgress(0);
       } else {
         enqueueSnackbar(ret?.msg || "Unknown", { variant: "warning" });
       }
     }
   };
 
-  const handleSelectFile = (v: File) => {
-    setSelectedFile(v);
+  const handleSelectFiles = (v: File[]) => {
+    setSelectedFiles(v);
+    setProgresses(Array.from({ length: v.length }).map(() => 0));
     setIsOpen(true);
   };
 
+  const handleUpload = async () => {
+    setIsLoading(true);
+    for (let index = 0; index < selectedFiles.length; index++) {
+      const element = selectedFiles[index];
+      await doUpload(element, index);
+    }
+  };
+
+  const handleDelete = (value: File, valueIndex: number) =>
+    setSelectedFiles((s) => [
+      ...s.slice(0, valueIndex),
+      ...s.slice(valueIndex + 1),
+    ]);
+
   return (
     <Box sx={{ height: "100%" }}>
-      <UploadFileDropzone onSelectFile={handleSelectFile} />
+      <UploadFileDropzone onSelectFiles={handleSelectFiles} />
 
       <ModalContainer
-        isOpen={isOpen}
+        isOpen={isOpen || isLoading}
         onClose={() => setIsOpen(false)}
         title="File Uploading"
-        okButtonLabel="Submit"
-        onOk={progress ? undefined : () => doUpload()}
+        okButtonLabel={"Submit"}
+        onOk={isLoading ? undefined : handleUpload}
       >
-        <Box>
-          <UploadProgressCard progress={progress}>
-            <EditForm<{ description: string }>
-              data={formData}
-              onChange={setFormData}
-              fields={[{ displayName: "Description", name: "description" }]}
-            />
-          </UploadProgressCard>
-        </Box>
+        <Stack>
+          {selectedFiles.map((item, itemIndex) => (
+            <UploadProgressCard
+              key={itemIndex}
+              file={item}
+              progress={progresses[itemIndex]}
+              onDelete={() => handleDelete(item, itemIndex)}
+            >
+              <EditForm<Document>
+                data={formData}
+                onChange={setFormData}
+                fields={[
+                  {
+                    displayName: "Document Type",
+                    name: "doc_type",
+                    type: FieldType.Choice,
+                    options: DOCUMENT_TYPES,
+                    getOptionLabel: (opt?: GeneralOption) => opt?.name ?? "",
+                    getOptionValue: (opt?: GeneralOption) => opt?.value ?? "",
+                  },
+                ]}
+              />
+            </UploadProgressCard>
+          ))}
+        </Stack>
       </ModalContainer>
     </Box>
   );

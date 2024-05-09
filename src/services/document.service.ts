@@ -37,6 +37,39 @@ class DocumentService extends APIService<Document> {
     }
   }
 
+  async upload({
+    data,
+    onProgress,
+  }: {
+    data: FormData;
+    onProgress: (v: number) => void;
+  }): Promise<APIResponseType> {
+    try {
+      const ret = await apiClient.post(API_URLS.DOCUMENT_UPLOAD, data, {
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total = 0 } = progressEvent;
+          const percentCompleted = total
+            ? Math.round((loaded * 100) / total)
+            : 0;
+          onProgress(percentCompleted);
+        },
+
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return ret as APIResponseType;
+    } catch (error) {
+      const axiosError = error as AxiosError<APIResponseType>;
+      return {
+        success: false,
+        code: axiosError.response?.status,
+        msg: axiosError.response?.data?.msg ?? "Network Connection Problem",
+        data: [],
+      } as APIResponseType;
+    }
+  }
+
   async get({ id = "" }: { id: string }): Promise<APIResponseType<Document>> {
     try {
       const data = await apiClient.get(`${API_URLS.DOCUMENT_GET}/${id}`);

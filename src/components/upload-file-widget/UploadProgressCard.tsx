@@ -1,13 +1,13 @@
 import { Delete, PictureAsPdf } from "@mui/icons-material";
-import { Box, Grid, IconButton, Typography } from "@mui/material";
+import { Alert, Box, IconButton, Typography } from "@mui/material";
+import ConfirmButtonContainer from "components/containers/confirm-button-container";
 import LinearProgressWithLabel from "components/linear-progress-with-label";
 import { FC, PropsWithChildren } from "react";
 
-const UploadProgressCard: FC<PropsWithChildren<{ progress?: number }>> = ({
-  progress = 0,
-  children,
-}) => {
-  return (
+const UploadProgressCard: FC<
+  PropsWithChildren<{ file?: File; progress?: number; onDelete?: () => void }>
+> = ({ file = null, progress = 0, children, onDelete = () => null }) => {
+  return file ? (
     <Box
       sx={{
         border: 1,
@@ -29,43 +29,35 @@ const UploadProgressCard: FC<PropsWithChildren<{ progress?: number }>> = ({
           <Box flexGrow={1}>
             <Box mb={2} display={"flex"} justifyContent={"space-between"}>
               <Box>
-                <Typography fontWeight={"bold"}>Bank Statement</Typography>
+                <Typography fontWeight={"bold"}>{file?.name}</Typography>
                 <Typography>
                   200KB <i>Uploading</i>
                 </Typography>
               </Box>
-              <IconButton size="small">
-                <Delete />
-              </IconButton>
+              <ConfirmButtonContainer onClick={onDelete}>
+                <IconButton color="error" size="small">
+                  <Delete />
+                </IconButton>
+              </ConfirmButtonContainer>
             </Box>
             <LinearProgressWithLabel value={progress} />
+            {children ? (
+              <Box
+                sx={{
+                  p: 2,
+                  borderTop: 1,
+                  borderColor: (th) => th?.palette?.divider,
+                }}
+              >
+                {children}
+              </Box>
+            ) : null}
           </Box>
         </Box>
       </Box>
-      <Box sx={{ p: 2 }}>
-        <Grid container spacing={1} alignItems={"center"}>
-          <Grid item lg={5} md={5} sm={5} xs={5}>
-            <Typography fontWeight={"bold"} align="right">
-              File type:
-            </Typography>
-          </Grid>
-          <Grid item lg={7} md={7} sm={7} xs={7}>
-            <Typography>PDF document</Typography>
-          </Grid>
-        </Grid>
-      </Box>
-      {children ? (
-        <Box
-          sx={{
-            p: 2,
-            borderTop: 1,
-            borderColor: (th) => th?.palette?.divider,
-          }}
-        >
-          {children}
-        </Box>
-      ) : null}
     </Box>
+  ) : (
+    <Alert color="warning">No file</Alert>
   );
 };
 
