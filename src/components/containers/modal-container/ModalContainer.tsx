@@ -17,6 +17,8 @@ const ModalContainer: FC<
     maxWidth?: Breakpoint;
     okButtonLabel?: string;
     onOk?: () => void;
+    noHeader?: boolean;
+    noFooter?: boolean;
   }>
 > = ({
   isOpen = false,
@@ -27,36 +29,40 @@ const ModalContainer: FC<
 
   okButtonLabel = "Ok",
   onOk,
+  noHeader = false,
+  noFooter = false,
 }) => {
   return (
     <Dialog open={isOpen} fullWidth maxWidth={maxWidth} onClose={onClose}>
-      <DialogTitle>{title}</DialogTitle>
+      {noHeader ? null : <DialogTitle>{title}</DialogTitle>}
       <DialogContent>
         <div>{children}</div>
       </DialogContent>
-      <DialogActions>
-        {typeof onOk === "function" ? (
+      {noFooter ? null : (
+        <DialogActions>
+          {typeof onOk === "function" ? (
+            <Button
+              onClick={onOk}
+              startIcon={<Done />}
+              size="small"
+              color="primary"
+              sx={{ mr: 1 }}
+              variant="outlined"
+            >
+              {okButtonLabel}
+            </Button>
+          ) : null}
           <Button
-            onClick={onOk}
-            startIcon={<Done />}
+            color="inherit"
+            onClick={onClose}
+            startIcon={<Close />}
             size="small"
-            color="primary"
-            sx={{ mr: 1 }}
             variant="outlined"
           >
-            {okButtonLabel}
+            Close
           </Button>
-        ) : null}
-        <Button
-          color="inherit"
-          onClick={onClose}
-          startIcon={<Close />}
-          size="small"
-          variant="outlined"
-        >
-          Close
-        </Button>
-      </DialogActions>
+        </DialogActions>
+      )}
     </Dialog>
   );
 };

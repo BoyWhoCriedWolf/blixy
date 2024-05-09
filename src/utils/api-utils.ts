@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { AuthUser } from "services/types/user.types";
+import { setAuthIsExpired } from "store/slices/auth-slice";
 import { API_BASE_URL } from "../services/api-urls";
 // import { api } from "../config";
 
@@ -16,26 +17,22 @@ if (token) axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 axios.interceptors.response.use(
   function (response: any) {
     return response.data ? response.data : response;
+  },
+  function (error: any) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    switch (error.status) {
+      // case 500:
+      //   break;
+      case 401:
+        setAuthIsExpired(true);
+        break;
+      // case 404:
+      //   break;
+    }
+    return Promise.reject(error);
   }
-  // function (error: any) {
-  //   // Any status codes that falls outside the range of 2xx cause this function to trigger
-  //   let message;
-  //   switch (error.status) {
-  //     case 500:
-  //       message = "Internal Server Error";
-  //       break;
-  //     case 401:
-  //       message = "Invalid credentials";
-  //       break;
-  //     case 404:
-  //       message = "Sorry! the data you are looking for could not be found";
-  //       break;
-  //     default:
-  //       message = error.message || error;
-  //   }
-  //   return Promise.reject(message);
-  // }
 );
+
 /**
  * Sets the default authorization
  * @param {*} token

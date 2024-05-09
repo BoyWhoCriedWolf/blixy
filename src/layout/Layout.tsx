@@ -1,4 +1,7 @@
-import { Box } from "@mui/material";
+import { Alert, Box } from "@mui/material";
+import ModalContainer from "components/containers/modal-container";
+import PageHeading from "components/typography/page-heading";
+import SignInPanel from "pages/auth/sign-in/SignInPanel";
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
@@ -12,6 +15,9 @@ const Layout: FC = () => {
   const authUser = useSelector<RootState, AuthUser>(
     (state) => (state?.auth?.user ?? {}) as AuthUser
   );
+  const isExpiredToken = useSelector<RootState, boolean>(
+    (state) => (state?.auth?.isExpired ?? {}) as boolean
+  );
 
   return authUser.access_token ? (
     <Box
@@ -22,6 +28,11 @@ const Layout: FC = () => {
         alignItems: "stretch",
       }}
     >
+      <ModalContainer isOpen={isExpiredToken} noHeader noFooter>
+        <PageHeading>Your login has been expired.</PageHeading>
+        <Alert>Please re-login to verify it is you</Alert>
+        <SignInPanel isReLogin email={authUser.email ?? ""} />
+      </ModalContainer>
       <SideBar />
       <Box
         flexGrow={1}
