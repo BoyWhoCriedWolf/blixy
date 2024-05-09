@@ -84,7 +84,7 @@ const DocumentDetail: FC<
   );
 
   return (
-    <Grid container flexGrow={1} spacing={1}>
+    <Grid container flexGrow={1} spacing={1} sx={{ h: "100%" }}>
       <Grid item lg={6} md={6} sm={6} xs={12}>
         <PageLoading open={isLoading} />
         {paperContainer ? (
