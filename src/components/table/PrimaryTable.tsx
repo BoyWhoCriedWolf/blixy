@@ -56,6 +56,8 @@ function PrimaryTable<T = GridValidRowModel>({
   const hasOnView = typeof onView === "function";
   const hasActions = hasOnEdit || hasOnDelete || hasOnView;
 
+  console.log(hasOnDelete, onDelete);
+
   const handleRowClick: GridEventListener<"rowClick"> = (
     params,
     event,

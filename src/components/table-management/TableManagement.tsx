@@ -83,8 +83,6 @@ function TableManagement<T = GridValidRowModel>({
   const hasDelete =
     availableActions.findIndex((item) => item === "Delete") >= 0;
 
-  console.log(hasDelete, availableActions);
-
   const handleClose = () => setIsOpen(false);
   const handleCloseView = () => setIsOpenView(false);
 

@@ -37,7 +37,7 @@ const DocumentsList: FC<
     const ret = await documentService.save({ data: formData });
     setIsLoading(false);
     if (ret.success) {
-      snb.enqueueSnackbar("Successfully saved!", { variant: "warning" });
+      snb.enqueueSnackbar("Successfully saved!", { variant: "success" });
       setReload((s) => s + 1);
     } else {
       snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
