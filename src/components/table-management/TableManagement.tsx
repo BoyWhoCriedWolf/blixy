@@ -36,6 +36,8 @@ function TableManagement<T = GridValidRowModel>({
 
   apiService: service = apiService,
 
+  filter,
+
   enableMockup = false,
 
   // @ts-ignore
@@ -65,6 +67,8 @@ function TableManagement<T = GridValidRowModel>({
   hideFooterPagination?: boolean;
 
   apiService?: APIService;
+
+  filter?: Object;
 
   enableMockup?: boolean;
 
@@ -145,7 +149,7 @@ function TableManagement<T = GridValidRowModel>({
 
   const loadData = async () => {
     setIsLoading(true);
-    const ret = await service.gets();
+    const ret = await service.gets(filter);
     console.log(ret);
     setIsLoading(false);
     if (ret.success) {

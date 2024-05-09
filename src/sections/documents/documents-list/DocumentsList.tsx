@@ -9,8 +9,8 @@ import PageLoading from "components/loading/page-loading";
 import { useSnackbar } from "notistack";
 
 const DocumentsList: FC<
-  PropsWithChildren<{ onClick?: (v: Document) => void }>
-> = ({ onClick = () => null }) => {
+  PropsWithChildren<{ onClick?: (v: Document) => void; deleted?: boolean }>
+> = ({ onClick = () => null, deleted = false }) => {
   const snb = useSnackbar();
 
   const [formData, setFormData] = useState<Document>({} as Document);
@@ -52,6 +52,7 @@ const DocumentsList: FC<
       <TableManagement<Document>
         reload={reload}
         apiService={documentService}
+        filter={{ ...(deleted ? { deleted } : {}) }}
         columns={[
           { headerName: "Delivered", field: "delivered", flex: 1 },
           { headerName: "Type", field: "doc_type", flex: 1 },
@@ -64,7 +65,7 @@ const DocumentsList: FC<
           { headerName: "Rcg", field: "rcg", flex: 1 },
           { headerName: "Information", field: "information", flex: 1 },
         ]}
-        availableActions={["View", "Edit", "Delete"]}
+        availableActions={["Edit", "Delete"]}
         onEdit={handleEdit}
         onView={handleView}
         hideFooterPagination
