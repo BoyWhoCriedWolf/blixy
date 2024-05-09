@@ -34,8 +34,7 @@ const UploadProgressCard: FC<
               <Box mb={-1}>
                 <Typography fontWeight={"bold"}>{file?.name}</Typography>
                 <Typography>
-                  {progress}
-                  {progress > 0 ? (
+                  {progress > 0 && progress < 100 ? (
                     <>
                       {Math.floor((fileSize * progress) / 100)} KB / {fileSize}{" "}
                       KB <i>Uploading</i>
