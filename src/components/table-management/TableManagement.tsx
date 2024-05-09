@@ -26,7 +26,7 @@ function TableManagement<T = GridValidRowModel>({
   md = 12,
   sm = 12,
   xs = 12,
-  availableActions = ["Edit", "Delete"],
+  availableActions = ["Add", "Edit", "Delete"],
   onAdd,
   onEdit,
   onView,
@@ -55,7 +55,7 @@ function TableManagement<T = GridValidRowModel>({
   md?: boolean | GridSize;
   sm?: boolean | GridSize;
   xs?: boolean | GridSize;
-  availableActions?: Array<"Edit" | "View" | "Delete">;
+  availableActions?: Array<"Add" | "Edit" | "View" | "Delete">;
 
   onAdd?: (v: T) => void;
   onEdit?: (v: T) => void;
@@ -78,6 +78,7 @@ function TableManagement<T = GridValidRowModel>({
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenView, setIsOpenView] = useState(false);
 
+  const hasAdd = availableActions.findIndex((item) => item === "Add") >= 0;
   const hasEdit = availableActions.findIndex((item) => item === "Edit") >= 0;
   const hasView = availableActions.findIndex((item) => item === "View") >= 0;
   const hasDelete =
@@ -208,14 +209,16 @@ function TableManagement<T = GridValidRowModel>({
           {pageTitle ? <PageHeading>{pageTitle}</PageHeading> : null}
         </Grid>
         <Grid item>
-          <Button
-            onClick={handleAdd}
-            variant="outlined"
-            size="small"
-            startIcon={<Add />}
-          >
-            Add
-          </Button>
+          {hasAdd ? (
+            <Button
+              onClick={handleAdd}
+              variant="outlined"
+              size="small"
+              startIcon={<Add />}
+            >
+              Add
+            </Button>
+          ) : null}
         </Grid>
       </Grid>
       <PrimaryTable<T>
