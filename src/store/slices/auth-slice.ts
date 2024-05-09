@@ -19,7 +19,7 @@ export const authSlice = createSlice({
   reducers: {
     setAuthUser: (state, action) => {
       state.user = action.payload;
-      state.isExpired = true;
+      state.isExpired = false;
     },
     setAuthIsExpired: (state, action) => {
       state.isExpired = action.payload;

@@ -30,7 +30,9 @@ const Layout: FC = () => {
     >
       <ModalContainer isOpen={isExpiredToken} noHeader noFooter>
         <PageHeading>Your login has been expired.</PageHeading>
-        <Alert>Please re-login to verify it is you</Alert>
+        <Alert color="info" sx={{ mb: 1 }}>
+          Please re-login to verify it is you
+        </Alert>
         <SignInPanel isReLogin email={authUser.email ?? ""} />
       </ModalContainer>
       <SideBar />

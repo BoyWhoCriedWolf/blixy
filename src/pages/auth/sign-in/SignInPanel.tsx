@@ -157,7 +157,7 @@ const SignInPanel: FC<
         fullWidth
         sx={{ mb: 2 }}
       >
-        {isReLogin ? "ReLogin" : "Login"}
+        {isReLogin ? "re-login" : "Login"}
       </Button>
       {isReLogin ? null : (
         <Button onClick={handleRegister} color="primary" fullWidth>
