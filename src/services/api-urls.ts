@@ -18,7 +18,9 @@ export const API_URLS = {
   DOCUMENT_UPLOAD: "/document/upload",
   DOCUMENT_GETS: "/document/list",
   DOCUMENT_GET_COUNTS: "/document/counts",
-  DOCUMENT_GET: "/document/list",
+  DOCUMENT_GET: "/document/get",
+  DOCUMENT_UPDATE: "/document/update",
+  DOCUMENT_DELETE: "/document/delete",
 
   // contacts
   CONTACT_CREATE: "/contact/create",

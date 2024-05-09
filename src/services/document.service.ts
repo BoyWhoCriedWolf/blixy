@@ -39,13 +39,8 @@ class DocumentService extends APIService<Document> {
 
   async get({ id = "" }: { id: string }): Promise<APIResponseType<Document>> {
     try {
-      // const data = await apiClient.get(API_URLS.DOCUMENT_GET, { id: id });
-      const ret = await this.gets();
-
-      return {
-        ...ret,
-        data: ret.data?.find((item) => item?.id === id),
-      } as APIResponseType<Document>;
+      const data = await apiClient.get(`${API_URLS.DOCUMENT_GET}/${id}`);
+      return data as APIResponseType<Document>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
       return {
@@ -56,47 +51,44 @@ class DocumentService extends APIService<Document> {
     }
   }
 
-  //   async save({
-  //     data,
-  //   }: {
-  //     data?: Document;
-  //   }): Promise<APIResponseType<string | boolean>> {
-  //     try {
-  //       const { data: res } = await apiClient.post(
-  //         data?.id === "new" || !data?.id
-  //           ? apiPath.CREATE_AUTHOR
-  //           : apiPath.UPDATE_AUTHOR,
-  //         {
-  //           authors: [data],
-  //         }
-  //       );
-  //       return {
-  //         Code: res.Code || APIResponseCode.SUCCESS,
-  //         Data: res?.data?.[0] || res?.[0],
-  //         Message: res?.message || "Success",
-  //       } as APIResponseType<string | boolean>;
-  //     } catch (error) {
-  //       return {
-  //         Code: APIResponseCode.FAILED,
-  //         Data: "",
-  //         Message: "Network Connection Problem",
-  //       };
-  //     }
-  //   }
+  async save({
+    data,
+  }: {
+    data?: Document;
+  }): Promise<APIResponseType<Document>> {
+    try {
+      const ret =
+        // data?.id === "new" || !data?.id
+        //   ? await apiClient.post(API_URLS.DOCUMENT_CREATE, data) :
+        await apiClient.put(`${API_URLS.DOCUMENT_UPDATE}/${data?.id}`, data);
+      return ret as APIResponseType<Document>;
+    } catch (error) {
+      const axiosError = error as AxiosError<APIResponseType>;
+      return {
+        success: false,
+        code: axiosError.response?.status,
+        msg: axiosError.response?.data?.msg ?? "Network Connection Problem",
+      } as APIResponseType;
+    }
+  }
 
-  //   async delete({ id = "" }: { id?: string }): Promise<APIResponseType<null>> {
-  //     try {
-  //       const { data: res } = await axios.delete(apiPath.DELETE_AUTHOR, {
-  //         params: { id: id },
-  //       });
-  //       return res as APIResponseType<null>;
-  //     } catch (error) {
-  //       return {
-  //         Code: APIResponseCode.FAILED,
-  //         Message: "Network Connection Problem",
-  //       };
-  //     }
-  //   }
+  async delete({
+    id = "",
+  }: {
+    id?: string;
+  }): Promise<APIResponseType<boolean>> {
+    try {
+      const ret = await apiClient.delete(`${API_URLS.DOCUMENT_DELETE}/${id}`);
+      return ret as APIResponseType<boolean>;
+    } catch (error) {
+      const axiosError = error as AxiosError<APIResponseType>;
+      return {
+        success: false,
+        code: axiosError.response?.status,
+        msg: axiosError.response?.data?.msg ?? "Network Connection Problem",
+      } as APIResponseType;
+    }
+  }
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
