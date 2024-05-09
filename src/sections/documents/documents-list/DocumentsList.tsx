@@ -54,7 +54,7 @@ const DocumentsList: FC<
         apiService={documentService}
         columns={[
           { headerName: "Delivered", field: "delivered", flex: 1 },
-          { headerName: "TYPE", field: "doc_type", flex: 1 },
+          { headerName: "Type", field: "doc_type", flex: 1 },
           { headerName: "Description", field: "description", flex: 1 },
           { headerName: "File Name", field: "file_name", flex: 1 },
           { headerName: "KB", field: "kb", flex: 1 },
@@ -67,6 +67,7 @@ const DocumentsList: FC<
         availableActions={["View", "Edit", "Delete"]}
         onEdit={handleEdit}
         onView={handleView}
+        hideFooterPagination
       />
 
       <ModalContainer
