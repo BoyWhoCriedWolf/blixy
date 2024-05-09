@@ -7,7 +7,7 @@ import { FC, PropsWithChildren } from "react";
 const UploadProgressCard: FC<
   PropsWithChildren<{ file?: File; progress?: number; onDelete?: () => void }>
 > = ({ file = null, progress = 0, children, onDelete = () => null }) => {
-  const fileSize = Math.floor(file?.size ?? 0 / 1000);
+  const fileSize = Math.floor((file?.size ?? 0) / 1000);
 
   return file ? (
     <Box
