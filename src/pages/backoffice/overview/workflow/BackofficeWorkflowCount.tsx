@@ -43,7 +43,7 @@ const BackofficeWorkflowCount = () => {
               <Link to="/archive/documents-list">
                 <StateNumberCard
                   label={"Document"}
-                  caption={"4 days"}
+                  // caption={"4 days"}
                   value={data?.all ?? 0}
                 />
               </Link>
@@ -51,7 +51,7 @@ const BackofficeWorkflowCount = () => {
             <Grid item lg={2} md={2} sm={3} xs={3}>
               <StateNumberCard
                 label={"Bank"}
-                caption={"2 days"}
+                // caption={"2 days"}
                 value={data?.[DocumentType.BankStatement] ?? 0}
               />
             </Grid>
