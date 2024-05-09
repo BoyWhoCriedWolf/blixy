@@ -78,9 +78,10 @@ function TableManagement<T = GridValidRowModel>({
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenView, setIsOpenView] = useState(false);
 
-  const hasEdit = availableActions.find((item) => item === "Edit");
-  const hasView = availableActions.find((item) => item === "View");
-  const hasDelete = availableActions.find((item) => item === "Delete");
+  const hasEdit = availableActions.findIndex((item) => item === "Edit") >= 0;
+  const hasView = availableActions.findIndex((item) => item === "View") >= 0;
+  const hasDelete =
+    availableActions.findIndex((item) => item === "Delete") >= 0;
 
   console.log(hasDelete, availableActions);
 

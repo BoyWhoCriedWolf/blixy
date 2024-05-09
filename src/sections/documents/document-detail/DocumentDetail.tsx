@@ -51,7 +51,7 @@ const DocumentDetail: FC<
     setIsLoading(false);
 
     if (ret.success) {
-      handleChangeData(ret.data ?? ({} as Document));
+      setData(ret.data ?? ({} as Document));
     } else {
       enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
     }
@@ -61,7 +61,7 @@ const DocumentDetail: FC<
     if (id) {
       loadData();
     } else if (propsData) {
-      handleChangeData(propsData);
+      setData(propsData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, propsData]);
