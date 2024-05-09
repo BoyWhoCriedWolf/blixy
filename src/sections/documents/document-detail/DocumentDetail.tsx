@@ -40,11 +40,11 @@ const DocumentDetail: FC<
   useEffect(() => {
     if (id) {
       loadData();
-    } else if (data) {
-      setData(data);
+    } else if (propsData) {
+      setData(propsData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, data]);
+  }, [id, propsData]);
 
   return (
     <Grid container flexGrow={1}>
