@@ -1,5 +1,5 @@
 import { Add } from "@mui/icons-material";
-import { Breakpoint, Button, Grid } from "@mui/material";
+import { Breakpoint, Button, Grid, GridSize } from "@mui/material";
 import { GridColDef, GridValidRowModel } from "@mui/x-data-grid";
 import ModalContainer from "components/containers/modal-container";
 import EditForm from "components/edit-form";
@@ -14,12 +14,22 @@ import { StaticField } from "types/ui-types";
 function TableManagement<T = GridValidRowModel>({
   pageTitle = "",
   title = "",
+
   columns = [] as Array<GridColDef>,
+
   formWidth = "sm",
   fields = [],
   viewFields = fields,
-
+  lg = 12,
+  md = 12,
+  sm = 12,
+  xs = 12,
   availableActions = ["Edit", "Delete"],
+  onAdd,
+  onEdit,
+  onView,
+  onDelete,
+
   hideFooterPagination = false,
 
   apiService: service = apiService,
@@ -31,12 +41,23 @@ function TableManagement<T = GridValidRowModel>({
 }: {
   pageTitle?: string;
   title?: string;
+
   columns?: Array<GridColDef>;
+
   formWidth?: Breakpoint;
   fields?: Array<Partial<StaticField>>;
   viewFields?: Array<Partial<StaticField>>;
-
+  lg?: boolean | GridSize;
+  md?: boolean | GridSize;
+  sm?: boolean | GridSize;
+  xs?: boolean | GridSize;
   availableActions?: Array<"Edit" | "View" | "Delete">;
+
+  onAdd?: (v: T) => void;
+  onEdit?: (v: T) => void;
+  onView?: (v: T) => void;
+  onDelete?: (v: T) => void;
+
   hideFooterPagination?: boolean;
 
   apiService?: APIService;
@@ -61,40 +82,58 @@ function TableManagement<T = GridValidRowModel>({
   const handleCloseView = () => setIsOpenView(false);
 
   const handleAdd = () => {
-    setFormData({} as T);
-    setIsOpen(true);
+    if (onAdd) {
+      onAdd({} as T);
+    } else {
+      setFormData({} as T);
+      setIsOpen(true);
+    }
   };
 
   const handleEdit = (value: T) => {
-    setFormData(value);
-    setIsOpen(true);
+    if (onEdit) {
+      onEdit(value);
+    } else {
+      setFormData(value);
+      setIsOpen(true);
+    }
   };
 
   const handleView = (value: T) => {
-    setFormData(value);
-    setIsOpenView(true);
+    if (onView) {
+      onView(value);
+    } else {
+      setFormData(value);
+      setIsOpenView(true);
+    }
   };
 
   const handleDelete = async (value: T) => {
-    const id = extractId(value);
-    if (id) {
-      setIsLoading(true);
-      const ret = await service.delete({ id: id });
-      console.log(ret);
-      setIsLoading(false);
-      if (ret.success || enableMockup) {
-        snb.enqueueSnackbar(ret.msg ?? "Deleted successfully", {
-          variant: "success",
-        });
+    if (onDelete) {
+      onDelete(value);
+    } else {
+      const id = extractId(value);
+      if (id) {
+        setIsLoading(true);
+        const ret = await service.delete({ id: id });
+        console.log(ret);
+        setIsLoading(false);
+        if (ret.success || enableMockup) {
+          snb.enqueueSnackbar(ret.msg ?? "Deleted successfully", {
+            variant: "success",
+          });
 
-        setData((s = []) => s.filter((item) => !(extractId(item) === id)));
+          setData((s = []) => s.filter((item) => !(extractId(item) === id)));
+        } else {
+          snb.enqueueSnackbar(ret.msg ?? "Delete failed(Unknown error)", {
+            variant: "warning",
+          });
+        }
       } else {
-        snb.enqueueSnackbar(ret.msg ?? "Delete failed(Unknown error)", {
+        snb.enqueueSnackbar("Please select a valid row", {
           variant: "warning",
         });
       }
-    } else {
-      snb.enqueueSnackbar("Please select a valid row", { variant: "warning" });
     }
   };
 
@@ -190,7 +229,15 @@ function TableManagement<T = GridValidRowModel>({
         onOk={handleSave}
         maxWidth={formWidth}
       >
-        <EditForm<T> data={formData} onChange={setFormData} fields={fields} />
+        <EditForm<T>
+          data={formData}
+          onChange={setFormData}
+          fields={fields}
+          lg={lg}
+          md={md}
+          sm={sm}
+          xs={xs}
+        />
       </ModalContainer>
 
       {/* Edit form */}
@@ -205,6 +252,10 @@ function TableManagement<T = GridValidRowModel>({
           onChange={setFormData}
           fields={viewFields}
           readOnly={true}
+          lg={lg}
+          md={md}
+          sm={sm}
+          xs={xs}
         />
       </ModalContainer>
     </LoaderContainer>

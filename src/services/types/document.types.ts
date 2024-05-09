@@ -21,17 +21,17 @@ export interface Document {
 }
 
 export enum DocumentType {
-  PURCHASE_INVOICE = "PURCHASE_INVOICE",
-  SALES_INVOICE = "SALES_INVOICE",
-  BANK_STATEMENT = "BANK_STATEMENT",
-  STANDARD = "STANDARD",
+  PurchaseInvoice = "Purchase Invoice",
+  SalesInvoice = "Sales Invoice",
+  BankStatement = "Bank Statement",
+  Standard = "Standard",
 }
 
 export const DOCUMENT_TYPES: Array<GeneralOption> = [
-  { name: "Purchase Invoice", value: DocumentType.PURCHASE_INVOICE },
-  { name: "Sales Invoice", value: DocumentType.SALES_INVOICE },
-  { name: "Bank Statement", value: DocumentType.BANK_STATEMENT },
-  { name: "Standard", value: DocumentType.STANDARD },
+  { name: "Purchase Invoice", value: DocumentType.PurchaseInvoice },
+  { name: "Sales Invoice", value: DocumentType.SalesInvoice },
+  { name: "Bank Statement", value: DocumentType.BankStatement },
+  { name: "Standard", value: DocumentType.Standard },
 ];
 
 export enum DocumentStatus {

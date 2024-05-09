@@ -69,7 +69,7 @@ const BackofficeWorkflowCount = () => {
               <StateNumberCard
                 label={"Bank"}
                 caption={"2 days"}
-                value={data?.[DocumentType.BANK_STATEMENT] ?? 0}
+                value={data?.[DocumentType.BankStatement] ?? 0}
               />
             </Grid>
           </Grid>
@@ -82,17 +82,17 @@ const BackofficeWorkflowCount = () => {
             {[
               {
                 label: "Bank",
-                value: data?.[DocumentType.BANK_STATEMENT] ?? 0,
+                value: data?.[DocumentType.BankStatement] ?? 0,
                 caption: "Incidents",
               },
               {
                 label: "Purchase",
-                value: data?.[DocumentType.PURCHASE_INVOICE] ?? 0,
+                value: data?.[DocumentType.PurchaseInvoice] ?? 0,
                 caption: "Missing documents",
               },
               {
                 label: "Sale",
-                value: data?.[DocumentType.SALES_INVOICE] ?? 0,
+                value: data?.[DocumentType.SalesInvoice] ?? 0,
                 caption: "Missing documents",
               },
             ].map((item, itemIndex) => {
