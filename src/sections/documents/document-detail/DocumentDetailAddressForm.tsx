@@ -4,6 +4,8 @@ import {
   CountryNameCode,
 } from "components/edit-form/edit-form-utils";
 import { FC, PropsWithChildren } from "react";
+import contactService from "services/contact.service";
+import { Contact } from "services/types/contact.types";
 import { Document } from "services/types/document.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
 
@@ -24,13 +26,12 @@ const DocumentDetailAddressForm: FC<
           displayName: "Contact",
           name: "contact",
           type: FieldType.Choice,
-          options: [
-            "Contact 1",
-            "Contact 2",
-            "Contact 3",
-            "Contact 4",
-            "Contact 5",
-          ],
+          getOptions: async () => {
+            const ret = await contactService.gets();
+            return ret.data ?? [];
+          },
+          getOptionLabel: (option?: Contact) => option?.company_name ?? "",
+          getOptionValue: (option?: Contact) => option?.id ?? "",
         },
         // Address
         {

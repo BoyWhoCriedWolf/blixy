@@ -1,7 +1,9 @@
 import { AutoAwesome } from "@mui/icons-material";
 import { Alert, Box } from "@mui/material";
 import EditForm from "components/edit-form";
+import contactService from "services/contact.service";
 import generalLedgerAccountService from "services/general.ledger.account.service";
+import { Contact } from "services/types/contact.types";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { FieldType } from "types/ui-types";
 
@@ -25,13 +27,12 @@ const DocumentDetailExtractedItemsForm = () => {
             name: "contact",
             type: FieldType.Choice,
             isLabel: true,
-            options: [
-              "Contact 1",
-              "Contact 2",
-              "Contact 3",
-              "Contact 4",
-              "Contact 5",
-            ],
+            getOptions: async () => {
+              const ret = await contactService.gets();
+              return ret.data ?? [];
+            },
+            getOptionLabel: (option?: Contact) => option?.company_name ?? "",
+            getOptionValue: (option?: Contact) => option?.id ?? "",
           },
           // General Ledger Account
           {
