@@ -21,6 +21,8 @@ export const API_URLS = {
   DOCUMENT_GET: "/document/get",
   DOCUMENT_UPDATE: "/document/update",
   DOCUMENT_DELETE: "/document/delete",
+  DOCUMENT_RESTORE: "/document/restore",
+  DOCUMENT_DELETE_FOREVER: "/document/delete-forever",
 
   // contacts
   CONTACT_CREATE: "/contact/create",

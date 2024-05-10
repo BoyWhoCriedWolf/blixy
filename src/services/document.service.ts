@@ -114,13 +114,29 @@ class DocumentService extends APIService<Document> {
     }
   }
 
-  async delete({
+  async restore({ id }: { id?: string }): Promise<APIResponseType<Document>> {
+    try {
+      const ret = await apiClient.put(`${API_URLS.DOCUMENT_RESTORE}/${id}`);
+      return ret as APIResponseType<Document>;
+    } catch (error) {
+      const axiosError = error as AxiosError<APIResponseType>;
+      return {
+        success: false,
+        code: axiosError.response?.status,
+        msg: axiosError.response?.data?.msg ?? "Network Connection Problem",
+      } as APIResponseType;
+    }
+  }
+
+  async deleteForever({
     id = "",
   }: {
     id?: string;
   }): Promise<APIResponseType<boolean>> {
     try {
-      const ret = await apiClient.delete(`${API_URLS.DOCUMENT_DELETE}/${id}`);
+      const ret = await apiClient.delete(
+        `${API_URLS.DOCUMENT_DELETE_FOREVER}/${id}`
+      );
       return ret as APIResponseType<boolean>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;

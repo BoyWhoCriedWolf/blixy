@@ -7,7 +7,7 @@ import LoaderContainer from "components/loading/loader-container";
 import PrimaryTable from "components/table/PrimaryTable";
 import PageHeading from "components/typography/page-heading";
 import { useSnackbar } from "notistack";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import apiService, { APIService } from "services/api.service";
 import { StaticField } from "types/ui-types";
 
@@ -42,6 +42,8 @@ function TableManagement<T = GridValidRowModel>({
 
   // @ts-ignore
   extractId = (v: T) => v?.id ?? "",
+
+  actionsF,
 }: {
   pageTitle?: string;
   title?: string;
@@ -73,6 +75,8 @@ function TableManagement<T = GridValidRowModel>({
   enableMockup?: boolean;
 
   extractId?: (value: T) => string;
+
+  actionsF?: (value: T, valueIndex?: number) => ReactNode;
 }) {
   const snb = useSnackbar();
 
@@ -232,6 +236,7 @@ function TableManagement<T = GridValidRowModel>({
         onView={hasView ? handleView : undefined}
         onDelete={hasDelete ? handleDelete : undefined}
         hideFooterPagination={hideFooterPagination}
+        actionsF={actionsF}
       />
 
       {/* Edit form */}

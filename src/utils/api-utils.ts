@@ -84,7 +84,7 @@ class APIClient {
     return axios.patch(url, data);
   };
 
-  put = (url: any, data: any) => {
+  put = (url: any, data?: any) => {
     return axios.put(url, data);
   };
   /**

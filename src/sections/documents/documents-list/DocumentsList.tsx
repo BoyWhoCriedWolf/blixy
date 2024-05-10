@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Grid, IconButton } from "@mui/material";
 import ModalContainer from "components/containers/modal-container";
 import TableManagement from "components/table-management";
 import { FC, PropsWithChildren, useState } from "react";
@@ -7,6 +7,8 @@ import { Document } from "services/types/document.types";
 import DocumentDetail from "../document-detail";
 import PageLoading from "components/loading/page-loading";
 import { useSnackbar } from "notistack";
+import { Delete, Restore } from "@mui/icons-material";
+import ConfirmButtonContainer from "components/containers/confirm-button-container";
 
 const DocumentsList: FC<
   PropsWithChildren<{ onClick?: (v: Document) => void; deleted?: boolean }>
@@ -45,6 +47,28 @@ const DocumentsList: FC<
     }
   };
 
+  const handleRestore = async (value: Document) => {
+    setIsLoading(true);
+    const ret = await documentService.restore({ id: value?.id });
+    setIsLoading(false);
+    if (ret.success) {
+      setReload((s) => s + 1);
+    } else {
+      snb.enqueueSnackbar(ret.msg ?? "Unknown Error", { variant: "warning" });
+    }
+  };
+
+  const handleDeleteForever = async (value: Document) => {
+    setIsLoading(true);
+    const ret = await documentService.deleteForever({ id: value?.id });
+    setIsLoading(false);
+    if (ret.success) {
+      setReload((s) => s + 1);
+    } else {
+      snb.enqueueSnackbar(ret.msg ?? "Unknown Error", { variant: "warning" });
+    }
+  };
+
   return (
     <Box sx={{ minHeight: "100%" }}>
       <PageLoading open={isLoading} />
@@ -65,10 +89,36 @@ const DocumentsList: FC<
           { headerName: "Rcg", field: "rcg", flex: 1 },
           { headerName: "Information", field: "information", flex: 1 },
         ]}
-        availableActions={["Edit", "Delete"]}
+        availableActions={deleted ? [] : ["Edit", "Delete"]}
         onEdit={handleEdit}
         onView={handleView}
         hideFooterPagination
+        actionsF={
+          deleted
+            ? (row: Document) => (
+                <Grid container alignItems={"center"}>
+                  <Grid item>
+                    <IconButton
+                      onClick={() => handleRestore(row)}
+                      size="small"
+                      color="primary"
+                    >
+                      <Restore />
+                    </IconButton>
+                  </Grid>
+                  <Grid item>
+                    <ConfirmButtonContainer
+                      onClick={() => handleDeleteForever(row)}
+                    >
+                      <IconButton size="small" color="error">
+                        <Delete />
+                      </IconButton>
+                    </ConfirmButtonContainer>
+                  </Grid>
+                </Grid>
+              )
+            : undefined
+        }
       />
 
       <ModalContainer

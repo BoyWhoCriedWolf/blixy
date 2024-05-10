@@ -8,7 +8,7 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import ConfirmButtonContainer from "components/containers/confirm-button-container";
-import { useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 
 function PrimaryTable<T = GridValidRowModel>({
   columns = [] as Array<GridColDef>,
@@ -24,6 +24,8 @@ function PrimaryTable<T = GridValidRowModel>({
   onView,
 
   hideFooterPagination = false,
+
+  actionsF,
 }: {
   columns?: Array<GridColDef>;
   data?: Array<T>;
@@ -38,6 +40,8 @@ function PrimaryTable<T = GridValidRowModel>({
   onView?: (row: T, rowIndex?: number, self?: Array<T>) => void;
 
   hideFooterPagination?: boolean;
+
+  actionsF?: (value: T, valueIndex?: number) => ReactNode;
 }) {
   const formattedData = useMemo(
     () =>
@@ -54,7 +58,9 @@ function PrimaryTable<T = GridValidRowModel>({
   const hasOnEdit = typeof onEdit === "function";
   const hasOnDelete = typeof onDelete === "function";
   const hasOnView = typeof onView === "function";
-  const hasActions = hasOnEdit || hasOnDelete || hasOnView;
+  const hasAdditionalActions = typeof actionsF === "function";
+  const hasActions =
+    hasOnEdit || hasOnDelete || hasOnView || hasAdditionalActions;
 
   const handleRowClick: GridEventListener<"rowClick"> = (
     params,
@@ -93,6 +99,9 @@ function PrimaryTable<T = GridValidRowModel>({
                 renderCell: (params: GridRenderCellParams) => {
                   return (
                     <Grid container flexWrap={"nowrap"}>
+                      {hasAdditionalActions ? (
+                        <Grid item>{actionsF(params.row)}</Grid>
+                      ) : null}
                       {hasOnView ? (
                         <Grid item>
                           <IconButton
