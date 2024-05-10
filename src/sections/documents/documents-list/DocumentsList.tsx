@@ -1,4 +1,4 @@
-import { Box, Grid, IconButton } from "@mui/material";
+import { Box, Grid, IconButton, Tooltip } from "@mui/material";
 import ModalContainer from "components/containers/modal-container";
 import TableManagement from "components/table-management";
 import { FC, PropsWithChildren, useState } from "react";
@@ -98,21 +98,25 @@ const DocumentsList: FC<
             ? (row: Document) => (
                 <Grid container alignItems={"center"}>
                   <Grid item>
-                    <IconButton
-                      onClick={() => handleRestore(row)}
-                      size="small"
-                      color="primary"
-                    >
-                      <Restore />
-                    </IconButton>
+                    <Tooltip title="Restore">
+                      <IconButton
+                        onClick={() => handleRestore(row)}
+                        size="small"
+                        color="primary"
+                      >
+                        <Restore />
+                      </IconButton>
+                    </Tooltip>
                   </Grid>
                   <Grid item>
                     <ConfirmButtonContainer
                       onClick={() => handleDeleteForever(row)}
                     >
-                      <IconButton size="small" color="error">
-                        <Delete />
-                      </IconButton>
+                      <Tooltip title="Delete permentely">
+                        <IconButton size="small" color="error">
+                          <Delete />
+                        </IconButton>
+                      </Tooltip>
                     </ConfirmButtonContainer>
                   </Grid>
                 </Grid>
