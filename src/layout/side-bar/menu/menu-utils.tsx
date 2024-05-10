@@ -317,7 +317,7 @@ export const MENU_DATA = [
       },
       {
         icon: <LocalAtm />,
-        path: "#",
+        path: "/accounting/taxes",
         label: "Taxes",
       },
     ],
