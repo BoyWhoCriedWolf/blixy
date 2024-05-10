@@ -60,7 +60,16 @@ const SidebarMenuItem: FC<
           {/* <MenuItem onClick={handleClick} sx={{ py: 1.5 }} divider>
             {data?.icon ?? null}
           </MenuItem> */}
-          <MenuItem onClick={handleClick} sx={{ py: 1.5 }} divider>
+          <MenuItem
+            onClick={handleClick}
+            sx={{
+              py: 1.5,
+              background: isActive
+                ? (th) => `${th.palette.primary}22`
+                : "inherit",
+            }}
+            divider
+          >
             {data?.icon ? (
               <ListItemIcon color="inherit">{data?.icon}</ListItemIcon>
             ) : null}
@@ -73,7 +82,14 @@ const SidebarMenuItem: FC<
           </MenuItem>
         </Tooltip>
       ) : (
-        <MenuItem onClick={handleClick}>
+        <MenuItem
+          onClick={handleClick}
+          sx={{
+            background: isActive
+              ? (th) => `${th.palette.primary}22`
+              : "inherit",
+          }}
+        >
           {data?.icon ? <ListItemIcon>{data?.icon}</ListItemIcon> : null}
           <ListItemText>{data?.label ?? ""}</ListItemText>
           {hasChildren ? (
