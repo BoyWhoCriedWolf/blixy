@@ -44,6 +44,8 @@ function TableManagement<T = GridValidRowModel>({
   extractId = (v: T) => v?.id ?? "",
 
   actionsF,
+
+  clickRowToEdit = false,
 }: {
   pageTitle?: string;
   title?: string;
@@ -77,6 +79,8 @@ function TableManagement<T = GridValidRowModel>({
   extractId?: (value: T) => string;
 
   actionsF?: (value: T, valueIndex?: number) => ReactNode;
+
+  clickRowToEdit?: boolean;
 }) {
   const snb = useSnackbar();
 
@@ -198,6 +202,12 @@ function TableManagement<T = GridValidRowModel>({
     }
   };
 
+  const handleClickRow = (value: T) => {
+    if (clickRowToEdit) {
+      handleEdit(value);
+    }
+  };
+
   useEffect(() => {
     if (reload) {
       loadData();
@@ -237,6 +247,7 @@ function TableManagement<T = GridValidRowModel>({
         onDelete={hasDelete ? handleDelete : undefined}
         hideFooterPagination={hideFooterPagination}
         actionsF={actionsF}
+        onClickRow={handleClickRow}
       />
 
       {/* Edit form */}

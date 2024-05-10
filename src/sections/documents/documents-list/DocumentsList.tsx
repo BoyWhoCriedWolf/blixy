@@ -123,6 +123,7 @@ const DocumentsList: FC<
               )
             : undefined
         }
+        clickRowToEdit
       />
 
       <ModalContainer
