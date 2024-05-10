@@ -49,11 +49,13 @@ const BackofficeWorkflowCount = () => {
               </Link>
             </Grid>
             <Grid item lg={2} md={2} sm={3} xs={3}>
-              <StateNumberCard
-                label={"Bank"}
-                // caption={"2 days"}
-                value={data?.[DocumentType.BankStatement] ?? 0}
-              />
+              <Link to="/archive/documents-list">
+                <StateNumberCard
+                  label={"Bank"}
+                  // caption={"2 days"}
+                  value={data?.[DocumentType.BankStatement] ?? 0}
+                />
+              </Link>
             </Grid>
           </Grid>
         </Box>
