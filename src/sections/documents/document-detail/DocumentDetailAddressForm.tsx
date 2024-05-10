@@ -1,4 +1,8 @@
 import EditForm from "components/edit-form";
+import {
+  COUNTRY_NAME_CODES,
+  CountryNameCode,
+} from "components/edit-form/edit-form-utils";
 import { FC, PropsWithChildren } from "react";
 import { Document } from "services/types/document.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
@@ -62,7 +66,10 @@ const DocumentDetailAddressForm: FC<
         {
           displayName: "Country",
           name: "country",
-          type: FieldType.Text,
+          type: FieldType.Choice,
+          options: COUNTRY_NAME_CODES,
+          getOptionLabel: (option?: CountryNameCode) => option?.name ?? "",
+          getOptionValue: (option?: CountryNameCode) => option?.name ?? "",
         },
       ]}
     />

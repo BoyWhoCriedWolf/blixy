@@ -1,4 +1,8 @@
 import { Box, Typography } from "@mui/material";
+import {
+  COUNTRY_NAME_CODES,
+  CountryNameCode,
+} from "components/edit-form/edit-form-utils";
 import PrimaryTable from "components/table";
 import TableManagement from "components/table-management";
 import StandardValuesList from "sections/standard-values/list";
@@ -85,7 +89,10 @@ const ContactsList = () => {
         {
           displayName: "Country",
           name: "country",
-          type: FieldType.Text,
+          type: FieldType.Choice,
+          options: COUNTRY_NAME_CODES,
+          getOptionLabel: (option?: CountryNameCode) => option?.name ?? "",
+          getOptionValue: (option?: CountryNameCode) => option?.name ?? "",
         },
 
         // Post Address
