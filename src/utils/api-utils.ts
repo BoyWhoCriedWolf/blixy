@@ -24,6 +24,7 @@ axios.interceptors.response.use(
       // case 500:
       //   break;
       case 401:
+        console.log(error.status);
         setAuthIsExpired(true);
         break;
       // case 404:
