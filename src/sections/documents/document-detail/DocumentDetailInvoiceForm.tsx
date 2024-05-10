@@ -1,6 +1,8 @@
 import EditForm from "components/edit-form";
 import { FC, PropsWithChildren } from "react";
+import generalLedgerAccountService from "services/general.ledger.account.service";
 import { Document } from "services/types/document.types";
+import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
 
 const DocumentDetailInvoiceForm: FC<
@@ -38,13 +40,13 @@ const DocumentDetailInvoiceForm: FC<
           displayName: "General ledger account",
           name: "general_ledger_account",
           type: FieldType.Choice,
-          options: [
-            "Account 1",
-            "Account 2",
-            "Account 3",
-            "Account 4",
-            "Account 5",
-          ],
+          getOptions: async () => {
+            const ret = await generalLedgerAccountService.gets();
+            return ret.data ?? [];
+          },
+          getOptionLabel: (option?: GeneralLedgerAccount) =>
+            option?.description ?? "",
+          getOptionValue: (option?: GeneralLedgerAccount) => option?.id ?? "",
         },
         // Subject
         {

@@ -1,6 +1,8 @@
 import { AutoAwesome } from "@mui/icons-material";
 import { Alert, Box } from "@mui/material";
 import EditForm from "components/edit-form";
+import generalLedgerAccountService from "services/general.ledger.account.service";
+import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { FieldType } from "types/ui-types";
 
 const DocumentDetailExtractedItemsForm = () => {
@@ -37,13 +39,13 @@ const DocumentDetailExtractedItemsForm = () => {
             name: "account",
             type: FieldType.Choice,
             isLabel: true,
-            options: [
-              "Account 1",
-              "Account 2",
-              "Account 3",
-              "Account 4",
-              "Account 5",
-            ],
+            getOptions: async () => {
+              const ret = await generalLedgerAccountService.gets();
+              return ret.data ?? [];
+            },
+            getOptionLabel: (option?: GeneralLedgerAccount) =>
+              option?.description ?? "",
+            getOptionValue: (option?: GeneralLedgerAccount) => option?.id ?? "",
           },
           // Total
           {
