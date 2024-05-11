@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import TableManagement from "components/table-management";
 import { FC, PropsWithChildren } from "react";
 import { DOCUMENT_TYPES } from "services/types/document.types";
+import { PAYMENT_METHODS } from "services/types/payment.method.types";
 import { StandardValue } from "services/types/standard.value.types";
 import { CURRENCIES, FieldType, GeneralOption } from "types/ui-types";
 
@@ -102,7 +103,9 @@ const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
           displayName: "Payment Method",
           name: "payment_method",
           type: FieldType.Choice,
-          options: ["Geen"],
+          options: PAYMENT_METHODS,
+          getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
+          getOptionValue: (option?: GeneralOption) => option?.value ?? "",
         },
         {
           displayName: "Payment Period",

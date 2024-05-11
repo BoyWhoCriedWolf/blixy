@@ -1,7 +1,8 @@
 import EditForm from "components/edit-form";
 import { FC, PropsWithChildren } from "react";
 import { Document } from "services/types/document.types";
-import { DispatchFunction, FieldType } from "types/ui-types";
+import { PAYMENT_METHODS } from "services/types/payment.method.types";
+import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
 
 const DocumentDetailPaymentForm: FC<
   PropsWithChildren<{ data?: Document; onChange?: DispatchFunction<Document> }>
@@ -20,7 +21,9 @@ const DocumentDetailPaymentForm: FC<
           displayName: "Payment method",
           name: "transaction_id",
           type: FieldType.Choice,
-          options: ["Transfer"],
+          options: PAYMENT_METHODS,
+          getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
+          getOptionValue: (option?: GeneralOption) => option?.value ?? "",
         },
         // Bank account
         {
