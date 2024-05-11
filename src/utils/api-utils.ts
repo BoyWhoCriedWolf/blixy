@@ -21,7 +21,7 @@ axios.interceptors.response.use(
   function (error: any) {
     console.log(error);
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-    switch (error.status) {
+    switch (error?.response?.status) {
       // case 500:
       //   break;
       case 401:
