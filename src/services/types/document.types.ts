@@ -1,4 +1,5 @@
 import { GeneralOption } from "types/ui-types";
+import { Contact } from "./contact.types";
 
 export interface Document {
   id: string;
@@ -17,6 +18,10 @@ export interface Document {
   idr_status?: string;
   rcg?: string;
   information?: string;
+
+  // address
+  contact: Contact;
+
   created_at: string;
   updated_at: string;
 }

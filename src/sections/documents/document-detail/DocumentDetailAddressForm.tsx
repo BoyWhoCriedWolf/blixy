@@ -3,7 +3,7 @@ import {
   COUNTRY_NAME_CODES,
   CountryNameCode,
 } from "components/edit-form/edit-form-utils";
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useState } from "react";
 import contactService from "services/contact.service";
 import { Contact } from "services/types/contact.types";
 import { Document } from "services/types/document.types";
@@ -12,22 +12,38 @@ import { DispatchFunction, FieldType } from "types/ui-types";
 const DocumentDetailAddressForm: FC<
   PropsWithChildren<{ data?: Document; onChange?: DispatchFunction<Document> }>
 > = ({ data = {} as Document, onChange = () => null }) => {
+  const [contacts, setContacts] = useState<Array<Contact>>([]);
+
+  const handleChange: DispatchFunction<Contact> = (v, name) => {
+    const matchContact = contacts.find((item) => item.id === v.id);
+
+    onChange({
+      ...(data ?? {}),
+      contact:
+        name === "id" ? matchContact : { ...(v ?? {}), id: v.company_name },
+    } as Document);
+  };
+
   return (
-    <EditForm
+    <EditForm<Contact>
       lg={6}
       md={6}
       sm={12}
       xs={12}
-      data={data}
-      onChange={onChange}
+      data={data.contact ?? {}}
+      onChange={handleChange}
       fields={[
         // Company Name
         {
           displayName: "Company Name",
-          name: "contact_id",
+          name: "id",
           type: FieldType.Choice,
           getOptions: async () => {
+            if (contacts.length) {
+              return contacts;
+            }
             const ret = await contactService.gets();
+            setContacts(ret.data ?? []);
             return ret.data ?? [];
           },
           getOptionLabel: (option?: Contact) => option?.company_name ?? "",
