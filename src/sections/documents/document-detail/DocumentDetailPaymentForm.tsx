@@ -1,14 +1,17 @@
 import EditForm from "components/edit-form";
 import { FC, PropsWithChildren } from "react";
 import { Document } from "services/types/document.types";
-import { PAYMENT_METHODS } from "services/types/payment.method.types";
+import {
+  PAYMENT_METHODS,
+  PaymentMethod,
+} from "services/types/payment.method.types";
 import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
 
 const DocumentDetailPaymentForm: FC<
   PropsWithChildren<{ data?: Document; onChange?: DispatchFunction<Document> }>
 > = ({ data = {} as Document, onChange = () => null }) => {
   return (
-    <EditForm
+    <EditForm<Document>
       lg={6}
       md={6}
       sm={12}
@@ -25,25 +28,61 @@ const DocumentDetailPaymentForm: FC<
           getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
           getOptionValue: (option?: GeneralOption) => option?.value ?? "",
         },
+
+        // bank transfer
         // Bank account
         {
           displayName: "Bank account",
-          name: "account",
+          name: "payment_account",
           type: FieldType.Choice,
-          options: ["Account 1", "Account 2", "Account 3", "Account 4"],
+          options: [],
+          isHide: (fd: Document) =>
+            !(fd.payment_method === PaymentMethod.BankTransfer),
         },
-        // Pay For
+        // Bic code
         {
-          displayName: "Pay For",
-          name: "pay_for",
+          displayName: "Bic code",
+          name: "payment_bic_code",
           type: FieldType.Text,
+          isHide: (fd: Document) =>
+            !(fd.payment_method === PaymentMethod.BankTransfer),
         },
         // Payment reference
         {
           displayName: "Payment reference",
           name: "payment_reference",
           type: FieldType.Text,
+          isHide: (fd: Document) =>
+            !(fd.payment_method === PaymentMethod.BankTransfer),
         },
+        // Payment term time
+        {
+          displayName: "Payment term time",
+          name: "payment_term_time",
+          placeholder: "14 days",
+          type: FieldType.Text,
+          isHide: (fd: Document) =>
+            !(fd.payment_method === PaymentMethod.BankTransfer),
+        },
+
+        // Collection
+        // Payment reference
+        {
+          displayName: "Payment reference",
+          name: "payment_reference",
+          type: FieldType.Text,
+          isHide: (fd: Document) =>
+            !(fd.payment_method === PaymentMethod.Collection),
+        },
+
+        // Pin
+        // Payment reference
+        // {
+        //   displayName: "Payment reference",
+        //   name: "payment_reference",
+        //   type: FieldType.Text,
+        //   isHide: (fd: Document) => !(fd.payment_method === PaymentMethod.Pin),
+        // },
       ]}
     />
   );
