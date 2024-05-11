@@ -1,14 +1,20 @@
+import { Delete, Restore } from "@mui/icons-material";
 import { Box, Grid, IconButton, Tooltip } from "@mui/material";
+import { GridRenderCellParams } from "@mui/x-data-grid";
+import ConfirmButtonContainer from "components/containers/confirm-button-container";
 import ModalContainer from "components/containers/modal-container";
+import IconBankStatement from "components/custom-icons/IconBankStatement";
+import IconGeneralDocument from "components/custom-icons/IconGeneralDocument";
+import IconPurchaseInvoice from "components/custom-icons/IconPurchaseInvoice";
+import IconSalesInvoice from "components/custom-icons/IconSalesInvoice";
+import PageLoading from "components/loading/page-loading";
 import TableManagement from "components/table-management";
+import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useState } from "react";
 import documentService from "services/document.service";
-import { Document } from "services/types/document.types";
+import { Document, DocumentType } from "services/types/document.types";
+import { ymd2dmy } from "utils/datetime-utils";
 import DocumentDetail from "../document-detail";
-import PageLoading from "components/loading/page-loading";
-import { useSnackbar } from "notistack";
-import { Delete, Restore } from "@mui/icons-material";
-import ConfirmButtonContainer from "components/containers/confirm-button-container";
 
 const DocumentsList: FC<
   PropsWithChildren<{ onClick?: (v: Document) => void; deleted?: boolean }>
@@ -78,16 +84,34 @@ const DocumentsList: FC<
         apiService={documentService}
         filter={{ ...(deleted ? { deleted } : {}) }}
         columns={[
-          { headerName: "Delivered", field: "delivered", flex: 1 },
-          { headerName: "Type", field: "doc_type", flex: 1 },
-          { headerName: "Description", field: "description", flex: 1 },
-          { headerName: "File Name", field: "file_name", flex: 1 },
-          { headerName: "KB", field: "kb", flex: 1 },
-          { headerName: "Vendor", field: "vendor", flex: 1 },
-          { headerName: "Status", field: "status", flex: 1 },
-          { headerName: "IDR status", field: "idr_status", flex: 1 },
-          { headerName: "Rcg", field: "rcg", flex: 1 },
-          { headerName: "Information", field: "information", flex: 1 },
+          {
+            headerName: "Delivered",
+            field: "created_at",
+            renderCell: (p: GridRenderCellParams<Document>) =>
+              ymd2dmy(p.row.created_at),
+          },
+          {
+            headerName: "Type",
+            field: "doc_type",
+            renderCell: (p: GridRenderCellParams<Document>) =>
+              p.row.doc_type === DocumentType.BankStatement ? (
+                <IconBankStatement />
+              ) : p.row.doc_type === DocumentType.Standard ? (
+                <IconGeneralDocument />
+              ) : p.row.doc_type === DocumentType.PurchaseInvoice ? (
+                <IconPurchaseInvoice />
+              ) : p.row.doc_type === DocumentType.SalesInvoice ? (
+                <IconSalesInvoice />
+              ) : null,
+          },
+          { headerName: "Description", field: "description" },
+          { headerName: "File Name", field: "file_name" },
+          { headerName: "KB", field: "kb" },
+          { headerName: "Vendor", field: "vendor" },
+          { headerName: "Status", field: "status" },
+          { headerName: "IDR status", field: "idr_status" },
+          { headerName: "Rcg", field: "rcg" },
+          { headerName: "Information", field: "information" },
         ]}
         availableActions={deleted ? [] : ["Edit", "Delete"]}
         onEdit={handleEdit}
