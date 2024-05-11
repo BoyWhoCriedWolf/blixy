@@ -17,6 +17,8 @@ const DocumentDetailAddressForm: FC<
   const handleChange: DispatchFunction<Contact> = (v, name) => {
     const matchContact = contacts.find((item) => item.id === v.id);
 
+    console.log(v);
+
     onChange({
       ...(data ?? {}),
       contact:
