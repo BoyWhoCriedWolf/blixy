@@ -185,8 +185,8 @@ const DocumentDetail: FC<
             actions={
               <Grid container spacing={1}>
                 <Grid item>
-                  <ConfirmButtonContainer>
-                    <Button onClick={handleDelete} color="error">
+                  <ConfirmButtonContainer onClick={handleDelete}>
+                    <Button color="error">
                       Delete
                     </Button>
                   </ConfirmButtonContainer>
