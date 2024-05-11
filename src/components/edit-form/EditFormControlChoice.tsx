@@ -133,6 +133,7 @@ const EditFormControlChoice: FC<
     HTMLInputElement | HTMLTextAreaElement
   > = (e) => {
     setInputValue(e.target.value);
+    onChange(e.target.value);
   };
 
   const handleChange: (
@@ -142,7 +143,7 @@ const EditFormControlChoice: FC<
     details?: AutocompleteChangeDetails<any> | undefined
   ) => void = (e, v) => {
     onChange(getOptionValue(v));
-    setInputValue("");
+    setInputValue(getOptionLabel(v));
   };
 
   const handleBlur: FocusEventHandler<
