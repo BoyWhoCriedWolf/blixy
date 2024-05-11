@@ -2,7 +2,6 @@ import { Delete, Restore } from "@mui/icons-material";
 import { Box, Grid, IconButton, Tooltip } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import ConfirmButtonContainer from "components/containers/confirm-button-container";
-import ModalContainer from "components/containers/modal-container";
 import IconBankStatement from "components/custom-icons/IconBankStatement";
 import IconGeneralDocument from "components/custom-icons/IconGeneralDocument";
 import IconPurchaseInvoice from "components/custom-icons/IconPurchaseInvoice";
@@ -11,11 +10,10 @@ import PageLoading from "components/loading/page-loading";
 import TableManagement from "components/table-management";
 import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import documentService from "services/document.service";
 import { Document, DocumentType } from "services/types/document.types";
 import { ymd2dmy } from "utils/datetime-utils";
-import DocumentDetail from "../document-detail";
-import { useNavigate } from "react-router-dom";
 
 const DocumentsList: FC<
   PropsWithChildren<{ onClick?: (v: Document) => void; deleted?: boolean }>
@@ -23,9 +21,6 @@ const DocumentsList: FC<
   const navigate = useNavigate();
   const snb = useSnackbar();
 
-  const [formData, setFormData] = useState<Document>({} as Document);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isView, setIsView] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [reload, setReload] = useState(1);
 
@@ -34,12 +29,6 @@ const DocumentsList: FC<
       navigate(`/archive/document/${value?.id}`);
     } else {
     }
-  };
-
-  const handleView = (value: Document) => {
-    setFormData(value);
-    setIsOpen(true);
-    setIsView(true);
   };
 
   const handleRestore = async (value: Document) => {

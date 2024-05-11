@@ -1,6 +1,7 @@
 import { Alert, Box, Button, Collapse, Grid, Paper } from "@mui/material";
 import ConfirmButtonContainer from "components/containers/confirm-button-container";
 import EditForm from "components/edit-form";
+import LoaderContainer from "components/loading/loader-container";
 import PageLoading from "components/loading/page-loading";
 import PdfViewer from "components/pdf-viewer";
 import PageHeading from "components/typography/page-heading";
@@ -17,7 +18,8 @@ import DocumentDetailBankStatement from "./DocumentDetailBankStatement";
 import DocumentDetailPurchaseInvoice from "./DocumentDetailPurchaseInvoice";
 import DocumentDetailSalesInvoice from "./DocumentDetailSaleInvoice";
 import DocumentDetailStandard from "./DocumentDetailStandard";
-import LoaderContainer from "components/loading/loader-container";
+import { useNavigate } from "react-router-dom";
+import { downloadPdfFromUrl } from "utils/fetch-utils";
 
 const DocumentDetail: FC<
   PropsWithChildren<{
@@ -34,6 +36,7 @@ const DocumentDetail: FC<
   readOnly = false,
   paperContainer = true,
 }) => {
+  const navigate = useNavigate();
   const snb = useSnackbar();
 
   const [list, setList] = useState<Array<Document>>([]);
@@ -46,6 +49,7 @@ const DocumentDetail: FC<
     [data?.id, list]
   );
   const documentType = data?.doc_type;
+  const isLastDocument = documentIndex === list.length - 1;
 
   const loadList = async () => {
     setIsLoadingList(true);
@@ -91,35 +95,30 @@ const DocumentDetail: FC<
   };
 
   const handleDelete = async () => {
-    setIsLoading(true);
-    const ret = await documentService.save({ data: data });
-    setIsLoading(false);
-    if (ret.success) {
-      snb.enqueueSnackbar("Successfully saved!", { variant: "success" });
-    } else {
-      snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
+    if (data?.id) {
+      setIsLoading(true);
+      const ret = await documentService.delete({ id: data?.id });
+      setIsLoading(false);
+      if (ret.success) {
+        snb.enqueueSnackbar("Successfully deleted!", { variant: "success" });
+        navigate(-1);
+      } else {
+        snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
+      }
     }
   };
 
   const handleNext = async () => {
-    setIsLoading(true);
-    const ret = await documentService.save({ data: data });
-    setIsLoading(false);
-    if (ret.success) {
-      snb.enqueueSnackbar("Successfully saved!", { variant: "success" });
-    } else {
-      snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
+    const nextId = list[documentIndex + 1]?.id;
+    if (nextId) {
+      navigate(`/archive/document/${nextId}`);
     }
   };
 
   const handleBefore = async () => {
-    setIsLoading(true);
-    const ret = await documentService.save({ data: data });
-    setIsLoading(false);
-    if (ret.success) {
-      snb.enqueueSnackbar("Successfully saved!", { variant: "success" });
-    } else {
-      snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
+    const beforeId = list[documentIndex - 1]?.id;
+    if (beforeId) {
+      navigate(`/archive/document/${beforeId}`);
     }
   };
 
@@ -136,12 +135,12 @@ const DocumentDetail: FC<
 
   const handleDownload = async () => {
     setIsLoading(true);
-    const ret = await documentService.save({ data: data });
+    const ret = await downloadPdfFromUrl(data?.file_path, data?.filename);
     setIsLoading(false);
-    if (ret.success) {
-      snb.enqueueSnackbar("Successfully saved!", { variant: "success" });
+    if (ret) {
+      snb.enqueueSnackbar("Successfully downloaded!", { variant: "success" });
     } else {
-      snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
+      snb.enqueueSnackbar("Failed to download", { variant: "warning" });
     }
   };
 
@@ -204,15 +203,23 @@ const DocumentDetail: FC<
                 </Grid>
                 <Grid item>
                   <LoaderContainer open={isLoadingList}>
-                    <Button onClick={handleNext} color="inherit">
-                      Next
+                    <Button
+                      onClick={handleBefore}
+                      color="inherit"
+                      disabled={!documentIndex}
+                    >
+                      Before
                     </Button>
                   </LoaderContainer>
                 </Grid>
                 <Grid item>
                   <LoaderContainer open={isLoadingList}>
-                    <Button onClick={handleBefore} color="inherit">
-                      Before
+                    <Button
+                      onClick={handleNext}
+                      color="inherit"
+                      disabled={isLastDocument}
+                    >
+                      Next
                     </Button>
                   </LoaderContainer>
                 </Grid>
