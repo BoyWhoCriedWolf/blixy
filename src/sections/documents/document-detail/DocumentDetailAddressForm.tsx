@@ -34,6 +34,7 @@ const DocumentDetailAddressForm: FC<
       md={6}
       sm={12}
       xs={12}
+      alignItems={"flex-end"}
       data={data.contact ?? {}}
       onChange={handleChange}
       fields={[
