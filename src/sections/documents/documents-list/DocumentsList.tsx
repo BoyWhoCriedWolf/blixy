@@ -15,10 +15,12 @@ import documentService from "services/document.service";
 import { Document, DocumentType } from "services/types/document.types";
 import { ymd2dmy } from "utils/datetime-utils";
 import DocumentDetail from "../document-detail";
+import { useNavigate } from "react-router-dom";
 
 const DocumentsList: FC<
   PropsWithChildren<{ onClick?: (v: Document) => void; deleted?: boolean }>
 > = ({ onClick = () => null, deleted = false }) => {
+  const navigate = useNavigate();
   const snb = useSnackbar();
 
   const [formData, setFormData] = useState<Document>({} as Document);
@@ -28,9 +30,10 @@ const DocumentsList: FC<
   const [reload, setReload] = useState(1);
 
   const handleEdit = (value: Document) => {
-    setFormData(value);
-    setIsOpen(true);
-    setIsView(false);
+    if (value?.id) {
+      navigate(`/archive/document/${value?.id}`);
+    } else {
+    }
   };
 
   const handleView = (value: Document) => {
@@ -39,19 +42,6 @@ const DocumentsList: FC<
     setIsView(true);
   };
 
-  const handleSave = async () => {
-    setIsOpen(false);
-    setIsLoading(true);
-    const ret = await documentService.save({ data: formData });
-    setIsLoading(false);
-    if (ret.success) {
-      snb.enqueueSnackbar("Successfully saved!", { variant: "success" });
-      setReload((s) => s + 1);
-    } else {
-      snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
-      setIsOpen(true);
-    }
-  };
 
   const handleRestore = async (value: Document) => {
     setIsLoading(true);
@@ -132,7 +122,6 @@ const DocumentsList: FC<
         ]}
         availableActions={deleted ? [] : ["Edit", "Delete"]}
         onEdit={handleEdit}
-        onView={handleView}
         hideFooterPagination
         actionsF={
           deleted
@@ -167,7 +156,7 @@ const DocumentsList: FC<
         clickRowToEdit
       />
 
-      <ModalContainer
+      {/* <ModalContainer
         title="Document"
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -182,7 +171,7 @@ const DocumentsList: FC<
             readOnly={isView}
           />
         </Box>
-      </ModalContainer>
+      </ModalContainer> */}
     </Box>
   );
 };
