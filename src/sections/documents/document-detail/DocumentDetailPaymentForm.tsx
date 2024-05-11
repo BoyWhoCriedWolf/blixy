@@ -36,8 +36,10 @@ const DocumentDetailPaymentForm: FC<
           name: "payment_account",
           type: FieldType.Choice,
           options: [],
-          isHide: (fd: Document) =>
-            !(fd.payment_method === PaymentMethod.BankTransfer),
+          isHide: (fd: Document) => {
+            console.log(fd);
+            return !(fd.payment_method === PaymentMethod.BankTransfer);
+          },
         },
         // Bic code
         {
