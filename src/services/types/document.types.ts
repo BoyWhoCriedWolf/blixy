@@ -5,6 +5,7 @@ export interface Document {
   user_id: string;
   filename: string;
   file_path: string;
+  file_size?: number;
   text_content?: string;
   description?: string;
   delivered?: boolean;

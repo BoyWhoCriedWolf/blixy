@@ -198,6 +198,11 @@ const DocumentDetail: FC<
                   </Button>
                 </Grid>
                 <Grid item>
+                  <Button onClick={handleApprove} color="warning">
+                    Approve
+                  </Button>
+                </Grid>
+                <Grid item>
                   <LoaderContainer open={isLoadingList}>
                     <Button onClick={handleNext} color="inherit">
                       Next
@@ -210,11 +215,6 @@ const DocumentDetail: FC<
                       Before
                     </Button>
                   </LoaderContainer>
-                </Grid>
-                <Grid item>
-                  <Button onClick={handleApprove} color="warning">
-                    Approve
-                  </Button>
                 </Grid>
                 <Grid item>
                   <Button onClick={handleDownload} color="primary">

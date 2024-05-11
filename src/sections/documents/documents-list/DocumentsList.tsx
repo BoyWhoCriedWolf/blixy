@@ -42,7 +42,6 @@ const DocumentsList: FC<
     setIsView(true);
   };
 
-
   const handleRestore = async (value: Document) => {
     setIsLoading(true);
     const ret = await documentService.restore({ id: value?.id });
@@ -112,8 +111,15 @@ const DocumentsList: FC<
               ) : null,
           },
           { headerName: "Description", field: "description" },
-          { headerName: "File Name", field: "file_name" },
-          { headerName: "KB", field: "kb" },
+          { headerName: "File Name", field: "filename" },
+          {
+            headerName: "KB",
+            field: "file_size",
+            renderCell: (p: GridRenderCellParams<Document>) =>
+              p.row.file_size
+                ? `${Math.floor((p.row.file_size ?? 0) / 1000)}KB`
+                : null,
+          },
           { headerName: "Vendor", field: "vendor" },
           { headerName: "Status", field: "status" },
           { headerName: "IDR status", field: "idr_status" },
