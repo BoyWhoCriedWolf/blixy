@@ -72,11 +72,12 @@ const SignInPanel: FC<
 
       if (ret.success) {
         dispatch(setAuthUser(ret.data));
-        console.log("data", ret.data);
 
         if (ret?.data?.access_token) {
           setAuthorization(ret?.data);
         }
+
+        navigate("/");
       } else {
         setError({ code: ret.code ?? "", message: ret.msg ?? "Unknown" });
       }
