@@ -10,8 +10,6 @@ import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
 const DocumentDetailPaymentForm: FC<
   PropsWithChildren<{ data?: Document; onChange?: DispatchFunction<Document> }>
 > = ({ data = {} as Document, onChange = () => null }) => {
-  console.log(data);
-
   return (
     <EditForm<Document>
       lg={6}
@@ -24,7 +22,7 @@ const DocumentDetailPaymentForm: FC<
         // Payment method
         {
           displayName: "Payment method",
-          name: "transaction_id",
+          name: "payment_method",
           type: FieldType.Choice,
           options: PAYMENT_METHODS,
           getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
