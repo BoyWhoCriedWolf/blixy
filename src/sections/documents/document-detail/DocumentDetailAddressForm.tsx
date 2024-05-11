@@ -51,6 +51,7 @@ const DocumentDetailAddressForm: FC<
           },
           getOptionLabel: (option?: Contact) => option?.company_name ?? "",
           getOptionValue: (option?: Contact) => option?.id ?? "",
+          defaultOptionLabel: data?.contact?.company_name ?? "",
         },
         // Address
         {

@@ -123,6 +123,7 @@ export interface StaticField {
 
   // for choice
   optionLabelField?: string;
+  defaultOptionLabel?: string;
 
   // show label
   isLabel?: boolean;

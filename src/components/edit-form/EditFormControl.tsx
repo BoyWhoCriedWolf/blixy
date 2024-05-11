@@ -131,7 +131,9 @@ const EditFormControl: FC<
       onBlur={onBlur}
       isLabel={isLabel}
       isValid={isValid}
-      defaultOptionLabel={data?.[field?.optionLabelField ?? ""] ?? ""}
+      defaultOptionLabel={
+        data?.[field?.optionLabelField ?? ""] ?? field?.defaultOptionLabel ?? ""
+      }
     />
   ) : field.type === FieldType.MultiSelectChoice ? (
     <EditFormControlMultiChoice
