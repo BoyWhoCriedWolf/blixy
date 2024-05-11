@@ -33,6 +33,7 @@ const UploadFileWidget: FC<
       const submitData = new FormData();
       submitData.append("file", file);
       submitData.append("doc_type", formData.doc_type as string);
+      submitData.append("file_size", file.size.toString());
 
       setProgress(0);
 

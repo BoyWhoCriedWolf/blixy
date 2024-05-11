@@ -7,14 +7,21 @@ const PageHeading: FC<
     title?: string;
     actions?: ReactNode;
     color?: ColorVariant;
+    mb?: number;
   }>
-> = ({ children = null, title = "", actions = null, color = "primary" }) => {
+> = ({
+  children = null,
+  title = "",
+  actions = null,
+  color = "primary",
+  mb = 2,
+}) => {
   return (
     <Grid
       container
       justifyContent={"space-between"}
       justifyItems={"center"}
-      sx={{ mb: 2 }}
+      sx={{ mb: mb }}
     >
       <Grid item>
         <Typography variant="h3" color={color} fontSize={24} fontWeight={600}>

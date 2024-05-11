@@ -156,7 +156,7 @@ const DocumentDetail: FC<
 
   useEffect(() => {
     loadList();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const selectTypeContent = (
@@ -182,6 +182,7 @@ const DocumentDetail: FC<
         <PageLoading open={isLoading} />
         <Paper sx={{ p: 2 }}>
           <PageHeading
+            mb={0}
             actions={
               <Grid container spacing={1}>
                 <Grid item>
@@ -211,12 +212,12 @@ const DocumentDetail: FC<
                   </LoaderContainer>
                 </Grid>
                 <Grid item>
-                  <Button onClick={handleApprove} color="inherit">
+                  <Button onClick={handleApprove} color="warning">
                     Approve
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button onClick={handleDownload} color="inherit">
+                  <Button onClick={handleDownload} color="primary">
                     Download
                   </Button>
                 </Grid>
