@@ -56,8 +56,24 @@ const DocumentDetailAddressForm: FC<
         // Address
         {
           displayName: "Address",
-          name: "address",
+          name: "address_street",
+          placeholder: "Street",
           type: FieldType.Text,
+          lg: 3,
+          md: 3,
+          sm: 3,
+          xs: 6,
+        },
+        // address number
+        {
+          displayName: " ",
+          name: "address_number",
+          placeholder: "Number",
+          type: FieldType.Text,
+          lg: 3,
+          md: 3,
+          sm: 3,
+          xs: 6,
         },
         // Chamber of Commerce-number
         {
@@ -68,7 +84,7 @@ const DocumentDetailAddressForm: FC<
         // Zip code city
         {
           displayName: "Zip code city",
-          name: "city_zip_code",
+          name: "post_zip_code",
           type: FieldType.Text,
         },
         // VAT-number
