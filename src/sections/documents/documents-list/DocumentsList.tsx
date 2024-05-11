@@ -93,15 +93,32 @@ const DocumentsList: FC<
           {
             headerName: "Type",
             field: "doc_type",
+            align: "center",
             renderCell: (p: GridRenderCellParams<Document>) =>
               p.row.doc_type === DocumentType.BankStatement ? (
-                <IconBankStatement />
+                <Tooltip title="Bank Statement">
+                  <div>
+                    <IconBankStatement />
+                  </div>
+                </Tooltip>
               ) : p.row.doc_type === DocumentType.Standard ? (
-                <IconGeneralDocument />
+                <Tooltip title="Standard">
+                  <div>
+                    <IconGeneralDocument />
+                  </div>
+                </Tooltip>
               ) : p.row.doc_type === DocumentType.PurchaseInvoice ? (
-                <IconPurchaseInvoice />
+                <Tooltip title="Purchase Invoice">
+                  <div>
+                    <IconPurchaseInvoice />
+                  </div>
+                </Tooltip>
               ) : p.row.doc_type === DocumentType.SalesInvoice ? (
-                <IconSalesInvoice />
+                <Tooltip title="Sales Invoice">
+                  <div>
+                    <IconSalesInvoice />
+                  </div>
+                </Tooltip>
               ) : null,
           },
           { headerName: "Description", field: "description" },
