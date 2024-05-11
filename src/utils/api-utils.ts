@@ -19,12 +19,13 @@ axios.interceptors.response.use(
     return response.data ? response.data : response;
   },
   function (error: any) {
-    console.log(error);
+    console.log(error, error?.response?.status);
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     switch (error?.response?.status) {
       // case 500:
       //   break;
       case 401:
+        console.log("Expired");
         setAuthIsExpired(true);
         break;
       // case 404:

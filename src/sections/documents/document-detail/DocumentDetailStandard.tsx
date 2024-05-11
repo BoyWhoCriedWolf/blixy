@@ -27,7 +27,7 @@ const DocumentDetailStandard: FC<
         <Typography fontWeight={600} mb={1}>
           ADDRESS
         </Typography>
-        <DocumentDetailAddressForm />
+        <DocumentDetailAddressForm data={data} onChange={onChange} />
       </FormContainer>
       <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>

@@ -21,10 +21,10 @@ const DocumentDetailAddressForm: FC<
       data={data}
       onChange={onChange}
       fields={[
-        // Contact
+        // Company Name
         {
-          displayName: "Contact",
-          name: "contact",
+          displayName: "Company Name",
+          name: "contact_id",
           type: FieldType.Choice,
           getOptions: async () => {
             const ret = await contactService.gets();

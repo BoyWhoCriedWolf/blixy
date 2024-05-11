@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { isEmpty } from "lodash";
 import React, {
+  ChangeEventHandler,
   FC,
   FocusEventHandler,
   PropsWithChildren,
@@ -73,6 +74,7 @@ const EditFormControlChoice: FC<
   const [options, setOptions] = useState<Array<any>>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(true);
+  const [inputValue, setInputValue] = useState("");
 
   const label = useMemo(() => field?.displayName ?? "", [field.displayName]);
   const insideValue = useMemo(() => {
@@ -120,11 +122,18 @@ const EditFormControlChoice: FC<
 
   const renderValue = useMemo(
     () =>
+      inputValue ||
       getOptionLabel(value) ||
       getOptionLabel(propsValue) ||
       defaultDisplayValue,
-    [getOptionLabel, value, propsValue, defaultDisplayValue]
+    [inputValue, getOptionLabel, value, propsValue, defaultDisplayValue]
   );
+
+  const handleInputChange: ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  > = (e) => {
+    setInputValue(e.target.value);
+  };
 
   const handleChange: (
     event: SyntheticEvent<Element, Event>,
@@ -133,6 +142,7 @@ const EditFormControlChoice: FC<
     details?: AutocompleteChangeDetails<any> | undefined
   ) => void = (e, v) => {
     onChange(getOptionValue(v));
+    setInputValue("");
   };
 
   const handleBlur: FocusEventHandler<
@@ -205,6 +215,7 @@ const EditFormControlChoice: FC<
               }
               InputProps={{
                 ...params.InputProps,
+                onChange: handleInputChange,
                 endAdornment: (
                   <React.Fragment>
                     {isLoading ? (
