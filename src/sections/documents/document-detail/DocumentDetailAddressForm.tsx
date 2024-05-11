@@ -84,7 +84,23 @@ const DocumentDetailAddressForm: FC<
         {
           displayName: "Zip code city",
           name: "post_zip_code",
+          placeholder: "Zip code",
           type: FieldType.Text,
+          lg: 3,
+          md: 3,
+          sm: 3,
+          xs: 6,
+        },
+        // city
+        {
+          displayName: " ",
+          name: "post_city",
+          placeholder: "City",
+          type: FieldType.Text,
+          lg: 3,
+          md: 3,
+          sm: 3,
+          xs: 6,
         },
         // VAT-number
         {
