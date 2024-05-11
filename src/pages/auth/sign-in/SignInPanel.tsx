@@ -67,7 +67,6 @@ const SignInPanel: FC<
       const ret = (await authService.login(
         formData
       )) as APIResponseType<AuthUser>;
-      console.log(ret);
       setIsLoading(false);
 
       if (ret.success) {
@@ -76,8 +75,6 @@ const SignInPanel: FC<
         if (ret?.data?.access_token) {
           setAuthorization(ret?.data);
         }
-
-        navigate("/");
       } else {
         setError({ code: ret.code ?? "", message: ret.msg ?? "Unknown" });
       }

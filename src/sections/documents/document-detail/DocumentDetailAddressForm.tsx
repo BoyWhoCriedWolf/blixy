@@ -22,7 +22,9 @@ const DocumentDetailAddressForm: FC<
     onChange({
       ...(data ?? {}),
       contact:
-        name === "id" ? matchContact : { ...(v ?? {}), id: v.company_name },
+        name === "id"
+          ? matchContact
+          : { ...(data.contact ?? {}), ...(v ?? {}), id: v.company_name },
     } as Document);
   };
 
