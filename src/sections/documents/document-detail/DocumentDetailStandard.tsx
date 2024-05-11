@@ -46,7 +46,7 @@ const DocumentDetailStandard: FC<
             {
               displayName: "Date",
               name: "date",
-              type: FieldType.DateTime,
+              type: FieldType.DateOnly,
             },
             // Subject
             {

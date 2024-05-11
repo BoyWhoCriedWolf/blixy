@@ -34,7 +34,7 @@ const DocumentDetailInvoiceForm: FC<
         {
           displayName: "Document date",
           name: "document_date",
-          type: FieldType.DateTime,
+          type: FieldType.DateOnly,
         },
         // General ledger account
         {
