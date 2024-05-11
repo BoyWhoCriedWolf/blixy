@@ -89,7 +89,7 @@ const DocumentDetailSalesInvoice: FC<
             {
               displayName: "Invoice date",
               name: "invoice_date",
-              type: FieldType.DateTime,
+              type: FieldType.DateOnly,
             },
             // VAT value
             {
