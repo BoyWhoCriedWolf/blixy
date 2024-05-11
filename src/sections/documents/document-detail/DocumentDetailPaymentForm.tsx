@@ -12,10 +12,6 @@ const DocumentDetailPaymentForm: FC<
 > = ({ data = {} as Document, onChange = () => null }) => {
   return (
     <EditForm<Document>
-      lg={6}
-      md={6}
-      sm={12}
-      xs={12}
       data={data}
       onChange={onChange}
       fields={[
