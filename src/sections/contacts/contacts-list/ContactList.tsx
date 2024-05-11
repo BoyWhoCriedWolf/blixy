@@ -20,7 +20,7 @@ const ContactsList = () => {
         { headerName: "Company Name", field: "company_name" },
         { headerName: "Type", field: "type" },
         { headerName: "Country", field: "country" },
-        { headerName: "City", field: "city" },
+        { headerName: "City", field: "post_city" },
       ]}
       fields={[
         // Name
