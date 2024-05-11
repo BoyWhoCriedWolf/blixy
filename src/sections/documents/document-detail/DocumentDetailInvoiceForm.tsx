@@ -4,6 +4,7 @@ import generalLedgerAccountService from "services/general.ledger.account.service
 import { Document } from "services/types/document.types";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
+import { joinStrings } from "utils/string-utils";
 
 const DocumentDetailInvoiceForm: FC<
   PropsWithChildren<{ data?: Document; onChange?: DispatchFunction<Document> }>
@@ -45,7 +46,7 @@ const DocumentDetailInvoiceForm: FC<
             return ret.data ?? [];
           },
           getOptionLabel: (option?: GeneralLedgerAccount) =>
-            option?.description ?? "",
+            joinStrings(" ", option?.code, option?.description),
           getOptionValue: (option?: GeneralLedgerAccount) => option?.id ?? "",
         },
         // Subject

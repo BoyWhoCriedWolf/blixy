@@ -6,6 +6,7 @@ import generalLedgerAccountService from "services/general.ledger.account.service
 import { Contact } from "services/types/contact.types";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { FieldType } from "types/ui-types";
+import { joinStrings } from "utils/string-utils";
 
 const DocumentDetailExtractedItemsForm = () => {
   return (
@@ -45,7 +46,7 @@ const DocumentDetailExtractedItemsForm = () => {
               return ret.data ?? [];
             },
             getOptionLabel: (option?: GeneralLedgerAccount) =>
-              option?.description ?? "",
+              joinStrings(" ", option?.code, option?.description),
             getOptionValue: (option?: GeneralLedgerAccount) => option?.id ?? "",
           },
           // Total

@@ -25,3 +25,8 @@ export function copyToClipboard(text: string): void {
   document.execCommand("copy");
   document.body.removeChild(textarea);
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const joinStrings = (separator = "", ...args: Array<string | any>) => {
+	return args.filter((i) => i?.length > 0).join(separator);
+};
