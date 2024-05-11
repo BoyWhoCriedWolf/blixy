@@ -43,7 +43,7 @@ const DocumentDetailPurchaseInvoice: FC<
           important that the VAT, Chamber of Commerce number and website, if
           stated on the invoice, are included below.
         </Alert>
-        <DocumentDetailAddressForm />
+        <DocumentDetailAddressForm data={data} onChange={onChange} />
       </FormContainer>
       <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
