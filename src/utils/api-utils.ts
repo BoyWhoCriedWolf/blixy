@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { AuthUser } from "services/types/user.types";
 import { setAuthIsExpired } from "store/slices/auth-slice";
 import { API_BASE_URL } from "../services/api-urls";
+import store from "store";
 // import { api } from "../config";
 
 axios.defaults.baseURL = API_BASE_URL;
@@ -19,14 +20,13 @@ axios.interceptors.response.use(
     return response.data ? response.data : response;
   },
   function (error: any) {
-    console.log(error, error?.response?.status);
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     switch (error?.response?.status) {
       // case 500:
       //   break;
       case 401:
         console.log("Expired");
-        setAuthIsExpired(true);
+        store.dispatch(setAuthIsExpired(true));
         break;
       // case 404:
       //   break;
