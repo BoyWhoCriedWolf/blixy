@@ -96,25 +96,25 @@ const DocumentsList: FC<
             align: "center",
             renderCell: (p: GridRenderCellParams<Document>) =>
               p.row.doc_type === DocumentType.BankStatement ? (
-                <Tooltip title="Bank Statement">
+                <Tooltip placement="right" title="Bank Statement">
                   <div>
                     <IconBankStatement />
                   </div>
                 </Tooltip>
               ) : p.row.doc_type === DocumentType.Standard ? (
-                <Tooltip title="Standard">
+                <Tooltip placement="right" title="Standard">
                   <div>
                     <IconGeneralDocument />
                   </div>
                 </Tooltip>
               ) : p.row.doc_type === DocumentType.PurchaseInvoice ? (
-                <Tooltip title="Purchase Invoice">
+                <Tooltip placement="right" title="Purchase Invoice">
                   <div>
                     <IconPurchaseInvoice />
                   </div>
                 </Tooltip>
               ) : p.row.doc_type === DocumentType.SalesInvoice ? (
-                <Tooltip title="Sales Invoice">
+                <Tooltip placement="right" title="Sales Invoice">
                   <div>
                     <IconSalesInvoice />
                   </div>
