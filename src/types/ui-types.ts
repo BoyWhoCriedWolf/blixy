@@ -37,10 +37,11 @@ export enum FieldType {
   Decimal = "Decimal",
   Integer = "Integer",
   Money = "Money",
+  Percent = "Percent",
   MultiLineText = "MultiLine Text",
   Password = "Password",
 
-  // Datetime
+  // Date time
   DateTime = "Date Time",
   DateOnly = "Date Only",
   TimeOnly = "Time Only",

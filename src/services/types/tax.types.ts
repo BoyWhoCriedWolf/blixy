@@ -3,8 +3,7 @@ export interface Tax {
   type?: string;
   description?: string;
   btw_type_description?: string;
-  btw_type?: number;
+  btw_type?: string;
   btw_target?: number;
-  active?: string;
-  valid_from?: string;
+  active?: boolean;
 }

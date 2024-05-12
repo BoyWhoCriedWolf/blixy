@@ -10,6 +10,7 @@ import EditFormControlDropdownYesNo from "./EditFormControlDropdownYesNo";
 import EditFormControlMoney from "./EditFormControlMoney";
 import EditFormControlMultiChoice from "./EditFormControlMultiChoice";
 import EditFormControlPassword from "./EditFormControlPassword";
+import EditFormControlPercent from "./EditFormControlPercent";
 import EditFormControlPhone from "./EditFormControlPhone";
 import EditFormControlRadio from "./EditFormControlRadio";
 import EditFormControlSwitch from "./EditFormControlSwitch";
@@ -79,6 +80,17 @@ const EditFormControl: FC<
     />
   ) : field.type === FieldType.Money ? (
     <EditFormControlMoney
+      field={field}
+      readOnly={readOnly || field.readOnly}
+      value={value}
+      onChange={onChange}
+      onClick={onClick}
+      onBlur={onBlur}
+      isLabel={isLabel}
+      isValid={isValid}
+    />
+  ) : field.type === FieldType.Percent ? (
+    <EditFormControlPercent
       field={field}
       readOnly={readOnly || field.readOnly}
       value={value}
