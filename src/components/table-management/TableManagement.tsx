@@ -47,7 +47,7 @@ function TableManagement<T = GridValidRowModel>({
 
   clickRowToEdit = false,
 
-  formatData = (v: Array<T>) => v,
+  formatData = (v: Array<T>) => v as Array<T & { disableAction?: boolean }>,
 }: {
   pageTitle?: string;
   title?: string;
@@ -84,7 +84,7 @@ function TableManagement<T = GridValidRowModel>({
 
   clickRowToEdit?: boolean;
 
-  formatData?: (v: Array<T>) => Array<T>;
+  formatData?: (v: Array<T>) => Array<T & { disableAction?: boolean }>;
 }) {
   const snb = useSnackbar();
 
