@@ -1,6 +1,7 @@
 import { Chip } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import TableManagement from "components/table-management";
+import taxService from "services/tax.service";
 import { BTW_TYPES } from "services/types/btw.type.types";
 import { Tax } from "services/types/tax.types";
 import { FieldType, GeneralOption } from "types/ui-types";
@@ -9,7 +10,7 @@ import { percentFormatter } from "utils/number-utils";
 const TaxesList = () => {
   return (
     <TableManagement<Tax>
-      //   apiService={taxService}
+      apiService={taxService}
       pageTitle="Taxes"
       title="Tax"
       columns={[
@@ -64,7 +65,6 @@ const TaxesList = () => {
         },
       ]}
       hideFooterPagination
-      enableMockup
     />
   );
 };
