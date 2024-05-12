@@ -121,7 +121,12 @@ const EditFormControlMoney: FC<
   ) : (
     <div className="w-full" onClick={() => onClick(field)}>
       {isLabel ? <InputLabel>{field?.displayName ?? ""}</InputLabel> : null}
-      <Grid container alignItems={"center"} flexWrap={"nowrap"}>
+      <Grid
+        container
+        alignItems={"center"}
+        flexWrap={"nowrap"}
+        className="w-full"
+      >
         {field.secondaryName ? (
           <Grid item>
             <EditForm
@@ -141,7 +146,7 @@ const EditFormControlMoney: FC<
             />
           </Grid>
         ) : null}
-        <Grid item>
+        <Grid item flexGrow={1}>
           <TextField
             inputRef={ref}
             name={field?.name}
