@@ -22,9 +22,12 @@ import {
   FieldType,
   StaticField,
 } from "types/ui-types";
-import CurrencyFormatInput from "./CurrencyFormatInput";
+import CurrencyUSDFormatInput from "./CurrencyUSDFormatInput";
 import { checkValidField } from "./edit-form-utils";
 import EditForm from "./EditForm";
+import { CurrencyType } from "services/types/currency.types";
+import CurrencyGBPFormatInput from "./CurrencyGBPFormatInput";
+import CurrencyEURFormatInput from "./CurrencyEURFormatInput";
 
 const EditFormControlMoney: FC<
   PropsWithChildren<{
@@ -71,6 +74,9 @@ const EditFormControlMoney: FC<
   }, [propsValue, field]);
 
   const renderValue = useMemo(() => value || "", [value]);
+
+  const currencyValue = data[field.secondaryName ?? ""] as CurrencyType;
+
   const [isValid, setIsValid] = useState(true);
 
   const handleChange: ChangeEventHandler<
@@ -146,7 +152,14 @@ const EditFormControlMoney: FC<
             onBlur={handleBlur}
             error={!isValid}
             helperText={isValid ? "" : errorMessage}
-            InputProps={{ inputComponent: CurrencyFormatInput }}
+            InputProps={{
+              inputComponent:
+                currencyValue === CurrencyType.GBP
+                  ? CurrencyGBPFormatInput
+                  : currencyValue === CurrencyType.EUR
+                  ? CurrencyEURFormatInput
+                  : CurrencyUSDFormatInput,
+            }}
           />
         </Grid>
       </Grid>

@@ -2,7 +2,7 @@ import { InputBaseComponentProps } from "@mui/material";
 import React from "react";
 import { NumericFormat, NumericFormatProps } from "react-number-format";
 
-const CurrencyFormatInput = React.forwardRef<NumericFormatProps, InputBaseComponentProps>(function CurrencyFormatInput(props, ref) {
+const CurrencyGBPFormatInput = React.forwardRef<NumericFormatProps, InputBaseComponentProps>(function CurrencyFormatInput(props, ref) {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { onChange = () => null, defaultValue, ...other } = props;
 
@@ -20,9 +20,9 @@ const CurrencyFormatInput = React.forwardRef<NumericFormatProps, InputBaseCompon
 			}}
 			thousandSeparator
 			valueIsNumericString
-			prefix="$"
+			prefix="£"
 		/>
 	);
 }) as React.ElementType<InputBaseComponentProps>;
 
-export default CurrencyFormatInput;
+export default CurrencyGBPFormatInput;
