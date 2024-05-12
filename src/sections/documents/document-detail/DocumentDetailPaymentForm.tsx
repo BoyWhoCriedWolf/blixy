@@ -34,8 +34,7 @@ const DocumentDetailPaymentForm: FC<
         {
           displayName: "Bank account",
           name: "payment_account",
-          type: FieldType.Choice,
-          options: [],
+          type: FieldType.Text,
           isHide: (fd: Document) => {
             return !(fd.payment_method === PaymentMethod.BankTransfer);
           },
