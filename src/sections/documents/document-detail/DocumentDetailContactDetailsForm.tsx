@@ -42,6 +42,7 @@ const DocumentDetailContactDetailsForm = () => {
             {
               displayName: "VAT Amount",
               name: "vat_amount",
+              secondaryName: "vat_amount_currency",
               type: FieldType.Money,
             },
             // State Code
@@ -122,6 +123,7 @@ const DocumentDetailContactDetailsForm = () => {
             {
               displayName: "Shipping VAT Amount",
               name: "shipping_vat_amount",
+              secondaryName: "shipping_vat_amount_currency",
               type: FieldType.Money,
             },
             // Shipping State Code

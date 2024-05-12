@@ -59,6 +59,7 @@ const DocumentDetailExtractedItemsForm = () => {
           {
             displayName: "VAT Amount",
             name: "vat_amount",
+            secondaryName: "vat_amount_currency",
             type: FieldType.Money,
           },
           // TDS

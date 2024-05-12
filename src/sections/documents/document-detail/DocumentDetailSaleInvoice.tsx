@@ -77,10 +77,11 @@ const DocumentDetailSalesInvoice: FC<
               name: "invoice_date",
               type: FieldType.DateOnly,
             },
-            // VAT value
+            // VAT amount
             {
-              displayName: "VAT value",
-              name: "vat_value",
+              displayName: "VAT amount",
+              name: "vat_amount",
+              secondaryName: "vat_amount_currency",
               type: FieldType.Money,
             },
             // General ledger account

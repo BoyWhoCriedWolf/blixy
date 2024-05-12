@@ -122,21 +122,25 @@ const EditFormControlMoney: FC<
     <div className="w-full" onClick={() => onClick(field)}>
       {isLabel ? <InputLabel>{field?.displayName ?? ""}</InputLabel> : null}
       <Grid container alignItems={"center"} flexWrap={"nowrap"}>
-        <Grid item>
-          <EditForm
-            data={data}
-            onChange={onChangeData}
-            fields={[
-              {
-                name: field.secondaryName,
-                type: FieldType.Choice,
-                options: CURRENCY_TYPES,
-                getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
-                getOptionValue: (option?: GeneralOption) => option?.value ?? "",
-              },
-            ]}
-          />
-        </Grid>
+        {field.secondaryName ? (
+          <Grid item>
+            <EditForm
+              data={data}
+              onChange={onChangeData}
+              fields={[
+                {
+                  name: field.secondaryName,
+                  type: FieldType.Choice,
+                  options: CURRENCY_TYPES,
+                  getOptionLabel: (option?: GeneralOption) =>
+                    option?.name ?? "",
+                  getOptionValue: (option?: GeneralOption) =>
+                    option?.value ?? "",
+                },
+              ]}
+            />
+          </Grid>
+        ) : null}
         <Grid item>
           <TextField
             inputRef={ref}
