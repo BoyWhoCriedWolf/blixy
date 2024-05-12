@@ -1,6 +1,7 @@
 import {
   Box,
   FormHelperText,
+  Grid,
   InputLabel,
   TextField,
   Typography,
@@ -18,10 +19,12 @@ import {
 import {
   DispatchFunction,
   FieldRequiredType,
+  FieldType,
   StaticField,
 } from "types/ui-types";
 import CurrencyFormatInput from "./CurrencyFormatInput";
 import { checkValidField } from "./edit-form-utils";
+import EditForm from "./EditForm";
 
 const EditFormControlMoney: FC<
   PropsWithChildren<{
@@ -30,6 +33,8 @@ const EditFormControlMoney: FC<
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value?: string | number | any;
     onChange?: DispatchFunction<string | number>;
+    data?: any;
+    onChangeData?: DispatchFunction<string | number>;
     onClick?: (value?: Partial<StaticField>) => void;
     onBlur?: () => void;
     isLabel?: boolean;
@@ -42,6 +47,8 @@ const EditFormControlMoney: FC<
   readOnly = false,
   value: propsValue = "",
   onChange = () => null,
+  data = {},
+  onChangeData = () => null,
   onClick = () => null,
   onBlur = () => null,
   isLabel = true,
@@ -107,25 +114,42 @@ const EditFormControlMoney: FC<
   ) : (
     <div className="w-full" onClick={() => onClick(field)}>
       {isLabel ? <InputLabel>{field?.displayName ?? ""}</InputLabel> : null}
-      <TextField
-        inputRef={ref}
-        name={field?.name}
-        value={value ?? ""}
-        onChange={handleChange}
-        fullWidth
-        size="small"
-        placeholder={
-          field.placeholder === true
-            ? `Enter ${(field.displayName ?? "").toLowerCase()}`
-            : field.placeholder
-            ? field.placeholder
-            : ""
-        }
-        onBlur={handleBlur}
-        error={!isValid}
-        helperText={isValid ? "" : errorMessage}
-        InputProps={{ inputComponent: CurrencyFormatInput }}
-      />
+      <Grid container alignItems={"center"}>
+        <Grid item>
+          <EditForm
+            data={data}
+            onChange={onChangeData}
+            fields={[
+              {
+                name: field.secondaryName,
+                type: FieldType.Choice,
+                options: [],
+              },
+            ]}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            inputRef={ref}
+            name={field?.name}
+            value={value ?? ""}
+            onChange={handleChange}
+            fullWidth
+            size="small"
+            placeholder={
+              field.placeholder === true
+                ? `Enter ${(field.displayName ?? "").toLowerCase()}`
+                : field.placeholder
+                ? field.placeholder
+                : ""
+            }
+            onBlur={handleBlur}
+            error={!isValid}
+            helperText={isValid ? "" : errorMessage}
+            InputProps={{ inputComponent: CurrencyFormatInput }}
+          />
+        </Grid>
+      </Grid>
     </div>
   );
 };

@@ -82,6 +82,7 @@ export const FIELDS_REQUIRED_TYPES: Array<GeneralOption> = [
 
 export interface StaticField {
   name: string;
+  secondaryName: string;
   displayName: string;
 
   type?: FieldType;
@@ -130,12 +131,5 @@ export interface StaticField {
   // show label
   isLabel?: boolean;
 }
-
-export enum Currency {
-  EUR = "EUR",
-  USD = "USD",
-  GBP = "GBP",
-}
-export const CURRENCIES = ["EUR", "USD", "GBP"];
 
 export type Counts = { [key: string]: number };

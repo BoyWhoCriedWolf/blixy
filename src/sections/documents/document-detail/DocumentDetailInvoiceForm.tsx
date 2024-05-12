@@ -1,9 +1,10 @@
 import EditForm from "components/edit-form";
 import { FC, PropsWithChildren } from "react";
 import generalLedgerAccountService from "services/general.ledger.account.service";
+import { BTW_TYPES } from "services/types/btw.type.types";
 import { Document } from "services/types/document.types";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
-import { DispatchFunction, FieldType } from "types/ui-types";
+import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
 import { joinStrings } from "utils/string-utils";
 
 const DocumentDetailInvoiceForm: FC<
@@ -39,7 +40,7 @@ const DocumentDetailInvoiceForm: FC<
         // General ledger account
         {
           displayName: "General ledger account",
-          name: "general_ledger_account",
+          name: "general_ledger_account_id",
           type: FieldType.Choice,
           getOptions: async () => {
             const ret = await generalLedgerAccountService.gets();
@@ -48,6 +49,16 @@ const DocumentDetailInvoiceForm: FC<
           getOptionLabel: (option?: GeneralLedgerAccount) =>
             joinStrings(" ", option?.code, option?.description),
           getOptionValue: (option?: GeneralLedgerAccount) => option?.id ?? "",
+          joinedFieldName: "general_ledger_account",
+        },
+        // BTW Type
+        {
+          displayName: "BTW Type",
+          name: "btw_type",
+          type: FieldType.Choice,
+          options: BTW_TYPES,
+          getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
+          getOptionValue: (option?: GeneralOption) => option?.value ?? "",
         },
         // Subject
         {

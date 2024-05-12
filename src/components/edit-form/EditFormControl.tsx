@@ -82,6 +82,8 @@ const EditFormControl: FC<
     <EditFormControlMoney
       field={field}
       readOnly={readOnly || field.readOnly}
+      data={data}
+      onChangeData={onChangeData}
       value={value}
       onChange={onChange}
       onClick={onClick}

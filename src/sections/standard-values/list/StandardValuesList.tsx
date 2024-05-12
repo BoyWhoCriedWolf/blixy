@@ -1,10 +1,11 @@
 import { Typography } from "@mui/material";
 import TableManagement from "components/table-management";
 import { FC, PropsWithChildren } from "react";
+import { CURRENCY_TYPES } from "services/types/currency.types";
 import { DOCUMENT_TYPES } from "services/types/document.types";
 import { PAYMENT_METHODS } from "services/types/payment.method.types";
 import { StandardValue } from "services/types/standard.value.types";
-import { CURRENCIES, FieldType, GeneralOption } from "types/ui-types";
+import { FieldType, GeneralOption } from "types/ui-types";
 
 const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
   noHeading = false,
@@ -79,7 +80,9 @@ const StandardValuesList: FC<PropsWithChildren<{ noHeading?: boolean }>> = ({
           displayName: "Valuta",
           name: "valuta",
           type: FieldType.Choice,
-          options: CURRENCIES,
+          options: CURRENCY_TYPES,
+          getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
+          getOptionValue: (option?: GeneralOption) => option?.value ?? "",
         },
         { displayName: "OCR", name: "OCR", type: FieldType.Text },
 
