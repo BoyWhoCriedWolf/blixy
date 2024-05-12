@@ -20,12 +20,13 @@ import {
   DispatchFunction,
   FieldRequiredType,
   FieldType,
+  GeneralOption,
   StaticField,
 } from "types/ui-types";
 import CurrencyUSDFormatInput from "./CurrencyUSDFormatInput";
 import { checkValidField } from "./edit-form-utils";
 import EditForm from "./EditForm";
-import { CurrencyType } from "services/types/currency.types";
+import { CURRENCY_TYPES, CurrencyType } from "services/types/currency.types";
 import CurrencyGBPFormatInput from "./CurrencyGBPFormatInput";
 import CurrencyEURFormatInput from "./CurrencyEURFormatInput";
 
@@ -120,7 +121,7 @@ const EditFormControlMoney: FC<
   ) : (
     <div className="w-full" onClick={() => onClick(field)}>
       {isLabel ? <InputLabel>{field?.displayName ?? ""}</InputLabel> : null}
-      <Grid container alignItems={"center"}>
+      <Grid container alignItems={"center"} flexWrap={"nowrap"}>
         <Grid item>
           <EditForm
             data={data}
@@ -129,7 +130,9 @@ const EditFormControlMoney: FC<
               {
                 name: field.secondaryName,
                 type: FieldType.Choice,
-                options: [],
+                options: CURRENCY_TYPES,
+                getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
+                getOptionValue: (option?: GeneralOption) => option?.value ?? "",
               },
             ]}
           />
