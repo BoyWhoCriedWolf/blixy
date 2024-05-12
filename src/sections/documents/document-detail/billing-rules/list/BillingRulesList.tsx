@@ -54,6 +54,7 @@ const BillingRulesList: FC<PropsWithChildren<{ document?: Document }>> = ({
         {
           displayName: "Amount excl. VAT",
           name: "amount_excl_vat",
+          secondaryName: "amount_excl_vat_currency",
           type: FieldType.Money,
         },
       ]}
