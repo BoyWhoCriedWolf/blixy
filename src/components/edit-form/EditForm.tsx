@@ -120,7 +120,15 @@ const EditForm = function <T = { [key: string]: any }>(
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const value = data?.[field?.name];
-        return (
+
+        const isHide =
+          typeof field?.isHide === "boolean"
+            ? field?.isHide
+            : typeof field?.isHide === "function"
+            ? field?.isHide(data)
+            : false;
+
+        return isHide ? null : (
           <Grid
             key={fieldIndex.toString() + field.name}
             item
@@ -130,15 +138,7 @@ const EditForm = function <T = { [key: string]: any }>(
             xs={field?.xs ?? xs}
             flexGrow={field?.flexGrow}
           >
-            <Collapse
-              in={
-                typeof field?.isHide === "boolean"
-                  ? !field?.isHide
-                  : typeof field?.isHide === "function"
-                  ? !field?.isHide(data)
-                  : true
-              }
-            >
+            <Collapse in={isHide}>
               <Box>
                 <EditFormControl
                   data={data}
