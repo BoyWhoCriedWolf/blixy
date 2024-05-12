@@ -96,38 +96,39 @@ function PrimaryTable<T = GridValidRowModel>({
           ? [
               {
                 headerName: "Actions",
-                renderCell: (params: GridRenderCellParams) => {
+                renderCell: (p: GridRenderCellParams) => {
+                  const isId = !!p.row.id;
                   return (
                     <Grid container flexWrap={"nowrap"}>
                       {hasAdditionalActions ? (
-                        <Grid item>{actionsF(params.row)}</Grid>
+                        <Grid item>{actionsF(p.row)}</Grid>
                       ) : null}
-                      {hasOnView ? (
+                      {hasOnView && isId ? (
                         <Grid item>
                           <IconButton
                             size="small"
                             color="primary"
-                            onClick={() => handleView(params.row)}
+                            onClick={() => handleView(p.row)}
                           >
                             <Visibility />
                           </IconButton>
                         </Grid>
                       ) : null}
-                      {hasOnEdit ? (
+                      {hasOnEdit && isId ? (
                         <Grid item>
                           <IconButton
                             size="small"
                             color="primary"
-                            onClick={() => handleEdit(params.row)}
+                            onClick={() => handleEdit(p.row)}
                           >
                             <Edit />
                           </IconButton>
                         </Grid>
                       ) : null}
-                      {hasOnDelete ? (
+                      {hasOnDelete && isId ? (
                         <Grid item>
                           <ConfirmButtonContainer
-                            onClick={() => handleDelete(params.row)}
+                            onClick={() => handleDelete(p.row)}
                           >
                             <IconButton size="small" color="error">
                               <Delete />

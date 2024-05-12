@@ -7,7 +7,7 @@ import LoaderContainer from "components/loading/loader-container";
 import PrimaryTable from "components/table/PrimaryTable";
 import PageHeading from "components/typography/page-heading";
 import { useSnackbar } from "notistack";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import apiService, { APIService } from "services/api.service";
 import { StaticField } from "types/ui-types";
 
@@ -46,6 +46,8 @@ function TableManagement<T = GridValidRowModel>({
   actionsF,
 
   clickRowToEdit = false,
+
+  formatData = () => [],
 }: {
   pageTitle?: string;
   title?: string;
@@ -81,6 +83,8 @@ function TableManagement<T = GridValidRowModel>({
   actionsF?: (value: T, valueIndex?: number) => ReactNode;
 
   clickRowToEdit?: boolean;
+
+  formatData?: (v: Array<T>) => Array<T>;
 }) {
   const snb = useSnackbar();
 
@@ -89,6 +93,8 @@ function TableManagement<T = GridValidRowModel>({
   const [formData, setFormData] = useState<T>({} as T);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenView, setIsOpenView] = useState(false);
+
+  const formattedData = useMemo(() => formatData(data), [data, formatData]);
 
   const hasAdd = availableActions.findIndex((item) => item === "Add") >= 0;
   const hasEdit = availableActions.findIndex((item) => item === "Edit") >= 0;
@@ -240,7 +246,7 @@ function TableManagement<T = GridValidRowModel>({
         </Grid>
       </Grid>
       <PrimaryTable<T>
-        data={data}
+        data={formattedData}
         columns={columns}
         onEdit={hasEdit ? handleEdit : undefined}
         onView={hasView ? handleView : undefined}

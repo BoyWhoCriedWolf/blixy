@@ -1,28 +1,14 @@
-import { Add, CloseOutlined, Functions } from "@mui/icons-material";
-import {
-  Box,
-  Button,
-  Checkbox,
-  Fab,
-  FormControl,
-  MenuItem,
-  Paper,
-  PaperTypeMap,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Paper, PaperTypeMap, Typography } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import EditForm from "components/edit-form";
-import SearchBar from "components/search-bar";
-import PrimaryTable from "components/table";
 import { FC, PropsWithChildren } from "react";
+import generalLedgerAccountService from "services/general.ledger.account.service";
 import { Document } from "services/types/document.types";
+import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
 import DocumentDetailAddressForm from "./DocumentDetailAddressForm";
 import DocumentDetailPaymentForm from "./DocumentDetailPaymentForm";
-import generalLedgerAccountService from "services/general.ledger.account.service";
-import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
+import BillingRulesList from "./billing-rules/list";
 
 const DocumentDetailSalesInvoice: FC<
   PropsWithChildren<{
@@ -108,7 +94,8 @@ const DocumentDetailSalesInvoice: FC<
               },
               getOptionLabel: (option?: GeneralLedgerAccount) =>
                 option?.description ?? "",
-              getOptionValue: (option?: GeneralLedgerAccount) => option?.id ?? "",
+              getOptionValue: (option?: GeneralLedgerAccount) =>
+                option?.id ?? "",
             },
             // Subject
             {
@@ -125,60 +112,7 @@ const DocumentDetailSalesInvoice: FC<
         <Typography fontWeight={600} mb={1}>
           BILLING RULES
         </Typography>
-
-        <Button startIcon={<Add />} color="success">
-          Add new invoice line
-        </Button>
-        <PrimaryTable
-          columns={[
-            { headerName: "Description", field: "Description", flex: 1 },
-            { headerName: "General ledger account", field: "account", flex: 1 },
-            { headerName: "Tax code", field: "code", flex: 1 },
-            { headerName: "Amount", field: "amount", flex: 1 },
-            { headerName: "Inc. VAT", field: "Inc", flex: 1 },
-          ]}
-          data={[
-            {
-              Description: (
-                <TextField variant="outlined" size="small" fullWidth />
-              ),
-              account: <SearchBar iconPosition="right" />,
-              code: (
-                <FormControl sx={{ width: "100%" }}>
-                  <Select
-                    displayEmpty
-                    value=""
-                    inputProps={{ "aria-label": "Without label" }}
-                    size="small"
-                  >
-                    <MenuItem disabled value="">
-                      not liable to VAT
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              ),
-              amount: (
-                <TextField
-                  InputProps={{
-                    endAdornment: <Functions fontSize="small" />,
-                  }}
-                  size="small"
-                  fullWidth
-                />
-              ),
-              Inc: (
-                <Box>
-                  <Checkbox size="small" />
-                  <Fab color="primary" size="small">
-                    <CloseOutlined sx={{ fontSize: 10 }} />
-                  </Fab>
-                </Box>
-              ),
-            },
-            { code: "Total incl. VAT:", amount: "0,000" },
-            { code: "Invoice amount:", amount: "0,000" },
-          ]}
-        />
+        <BillingRulesList document={data} />
       </FormContainer>
 
       {/* Payment */}
