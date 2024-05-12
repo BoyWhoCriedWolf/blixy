@@ -98,6 +98,7 @@ function PrimaryTable<T = GridValidRowModel>({
                 headerName: "Actions",
                 renderCell: (p: GridRenderCellParams) => {
                   const isId = !!p.row.id;
+                  console.log(p.row, isId);
                   return (
                     <Grid container flexWrap={"nowrap"}>
                       {hasAdditionalActions ? (

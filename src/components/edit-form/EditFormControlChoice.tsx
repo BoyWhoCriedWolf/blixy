@@ -34,6 +34,8 @@ const EditFormControlChoice: FC<
     field?: Partial<StaticField>;
     readOnly?: boolean;
     value?: string | any;
+    data?: any;
+    onChangeData?: DispatchFunction<any>;
     onChange?: DispatchFunction<any>;
     onClick?: (value?: Partial<StaticField>) => void;
     onBlur?: () => void;
@@ -47,6 +49,8 @@ const EditFormControlChoice: FC<
   field = {} as StaticField,
   readOnly = false,
   value: propsValue,
+  data = {},
+  onChangeData = () => null,
   onChange = () => null,
   onClick = () => null,
   onBlur = () => null,
@@ -142,7 +146,15 @@ const EditFormControlChoice: FC<
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<any> | undefined
   ) => void = (e, v) => {
-    onChange(getOptionValue(v));
+    if (field.joinedFieldName) {
+      onChangeData({
+        ...(data ?? {}),
+        [field.name ?? ""]: getOptionValue(v),
+        [field.joinedFieldName ?? ""]: v,
+      });
+    } else {
+      onChange(getOptionValue(v));
+    }
     setInputValue(getOptionLabel(v));
   };
 

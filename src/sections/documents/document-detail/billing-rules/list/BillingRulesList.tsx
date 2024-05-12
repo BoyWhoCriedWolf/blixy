@@ -49,6 +49,7 @@ const BillingRulesList: FC<PropsWithChildren<{ document?: Document }>> = ({
           getOptionLabel: (option?: GeneralLedgerAccount) =>
             joinStrings(" ", option?.code, option?.description),
           getOptionValue: (option?: GeneralLedgerAccount) => option?.id ?? "",
+          joinedFieldName: "general_ledger_account",
         },
         {
           displayName: "Amount excl. VAT",

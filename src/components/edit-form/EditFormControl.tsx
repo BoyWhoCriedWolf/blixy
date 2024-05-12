@@ -126,6 +126,8 @@ const EditFormControl: FC<
       field={field}
       readOnly={readOnly || field.readOnly}
       value={value}
+      data={data}
+      onChangeData={onChangeData}
       onChange={onChange}
       onClick={onClick}
       onBlur={onBlur}

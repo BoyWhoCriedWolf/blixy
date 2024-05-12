@@ -124,6 +124,7 @@ export interface StaticField {
   // for choice
   optionLabelField?: string;
   defaultOptionLabel?: string;
+  joinedFieldName?: string;
 
   // show label
   isLabel?: boolean;
