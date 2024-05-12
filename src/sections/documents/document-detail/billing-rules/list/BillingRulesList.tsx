@@ -65,6 +65,7 @@ const BillingRulesList: FC<PropsWithChildren<{ document?: Document }>> = ({
             (ret, cur) => ret + (cur.amount_excl_vat ?? 0),
             0
           ),
+          disableAction: true,
         },
         {
           general_ledger_account: { description: "Invoice amount" },
@@ -72,6 +73,7 @@ const BillingRulesList: FC<PropsWithChildren<{ document?: Document }>> = ({
             (ret, cur) => ret + (cur.amount_excl_vat ?? 0),
             0
           ),
+          disableAction: true,
         },
       ]}
       hideFooterPagination

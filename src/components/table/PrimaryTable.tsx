@@ -97,14 +97,13 @@ function PrimaryTable<T = GridValidRowModel>({
               {
                 headerName: "Actions",
                 renderCell: (p: GridRenderCellParams) => {
-                  const isId = !!p.row.id;
-                  console.log(p.row, isId);
+                  const disableAction = !!p.row.disableAction; 
                   return (
                     <Grid container flexWrap={"nowrap"}>
                       {hasAdditionalActions ? (
                         <Grid item>{actionsF(p.row)}</Grid>
                       ) : null}
-                      {hasOnView && isId ? (
+                      {hasOnView && !disableAction ? (
                         <Grid item>
                           <IconButton
                             size="small"
@@ -115,7 +114,7 @@ function PrimaryTable<T = GridValidRowModel>({
                           </IconButton>
                         </Grid>
                       ) : null}
-                      {hasOnEdit && isId ? (
+                      {hasOnEdit && !disableAction ? (
                         <Grid item>
                           <IconButton
                             size="small"
@@ -126,7 +125,7 @@ function PrimaryTable<T = GridValidRowModel>({
                           </IconButton>
                         </Grid>
                       ) : null}
-                      {hasOnDelete && isId ? (
+                      {hasOnDelete && !disableAction ? (
                         <Grid item>
                           <ConfirmButtonContainer
                             onClick={() => handleDelete(p.row)}
