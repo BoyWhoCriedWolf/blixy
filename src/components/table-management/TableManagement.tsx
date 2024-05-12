@@ -47,7 +47,7 @@ function TableManagement<T = GridValidRowModel>({
 
   clickRowToEdit = false,
 
-  formatData = () => [],
+  formatData = (v: Array<T>) => v,
 }: {
   pageTitle?: string;
   title?: string;
