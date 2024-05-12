@@ -21,6 +21,10 @@ export interface Document {
   information?: string;
 
   payment_method?: PaymentMethod;
+  payment_account?: string;
+  payment_bic_code?: string;
+  payment_reference?: string;
+  payment_term_time?: string;
 
   // address
   contact: Contact;
