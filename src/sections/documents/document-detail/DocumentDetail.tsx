@@ -43,6 +43,10 @@ const DocumentDetail: FC<
     onChange?: DispatchFunction<Document>;
     readOnly?: boolean;
     paperContainer?: boolean;
+    deleted?: boolean;
+    approved?: boolean;
+    doc_type?: DocumentType;
+    general_ledger_account_id?: string;
   }>
 > = ({
   id = "",
@@ -50,6 +54,10 @@ const DocumentDetail: FC<
   onChange,
   readOnly = false,
   paperContainer = true,
+  deleted,
+  approved,
+  doc_type,
+  general_ledger_account_id,
 }) => {
   const navigate = useNavigate();
   const snb = useSnackbar();
@@ -68,7 +76,12 @@ const DocumentDetail: FC<
 
   const loadList = async () => {
     setIsLoadingList(true);
-    const ret = await documentService.gets();
+    const ret = await documentService.gets({
+      deleted,
+      approved,
+      doc_type,
+      general_ledger_account_id,
+    });
     setIsLoadingList(false);
 
     if (ret.success) {
