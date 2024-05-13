@@ -82,12 +82,10 @@ const BackofficeAccountsPayablePage = () => {
           {
             date: "16-02-2024",
             description: "test accounts payable 1",
-            open: "-17.616,06",
           },
           {
             description: "Balance",
-            open: "-17.616,06",
-            expiration: "15-01-2024",
+            date: "16-02-2024",
           },
         ]}
         checkboxSelection={true}
