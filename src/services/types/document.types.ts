@@ -42,6 +42,9 @@ export interface Document {
   general_ledger_account?: GeneralLedgerAccount;
   subject?: string;
 
+  // Approve
+  approved?: boolean;
+
   // address
   contact?: Contact;
 

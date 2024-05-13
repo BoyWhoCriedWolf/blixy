@@ -138,11 +138,16 @@ const DocumentDetail: FC<
   };
 
   const handleApprove = async () => {
+    const submitData = {
+      ...(data ?? {}),
+      approved: true,
+    } as Document;
     setIsLoading(true);
-    const ret = await documentService.save({ data: data });
+    const ret = await documentService.save({ data: submitData });
     setIsLoading(false);
     if (ret.success) {
       snb.enqueueSnackbar("Successfully saved!", { variant: "success" });
+      setData(submitData);
     } else {
       snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
     }
@@ -220,8 +225,9 @@ const DocumentDetail: FC<
                     onClick={handleApprove}
                     color="warning"
                     startIcon={<AssignmentTurnedIn />}
+                    disabled={data?.approved}
                   >
-                    Approve
+                    {data?.approved ? "Approved" : "Approve"}
                   </Button>
                 </Grid>
                 <Grid item>
