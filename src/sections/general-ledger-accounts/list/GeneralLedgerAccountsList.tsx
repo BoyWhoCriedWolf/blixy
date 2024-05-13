@@ -1,7 +1,9 @@
+import { GridRenderCellParams } from "@mui/x-data-grid";
 import TableManagement from "components/table-management";
 import generalLedgerAccountService from "services/general.ledger.account.service";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { FieldType } from "types/ui-types";
+import { percentFormatter } from "utils/number-utils";
 
 const GeneralLedgerAccountsList = () => {
   return (
@@ -13,6 +15,12 @@ const GeneralLedgerAccountsList = () => {
         { headerName: "Code", field: "code" },
         { headerName: "Description", field: "description" },
         { headerName: "Type", field: "type" },
+        {
+          headerName: "Deductible",
+          field: "deductible",
+          renderCell: (p: GridRenderCellParams<GeneralLedgerAccount>) =>
+            percentFormatter(p?.row?.deductible),
+        },
       ]}
       fields={[
         // Code
@@ -36,6 +44,12 @@ const GeneralLedgerAccountsList = () => {
         //   getOptionLabel: (option: GeneralOption) => option?.name ?? "",
         //   getOptionValue: (option: GeneralOption) => option?.value ?? "",
         // },
+        // Deductible
+        {
+          displayName: "Deductible",
+          name: "deductible",
+          type: FieldType.Percent,
+        },
       ]}
       hideFooterPagination
     />

@@ -6,6 +6,7 @@ export interface GeneralLedgerAccount {
   code?: string;
   description?: string;
   type?: GeneralLedgerAccountType;
+  deductible?: number;
 }
 
 export enum GeneralLedgerAccountType {
