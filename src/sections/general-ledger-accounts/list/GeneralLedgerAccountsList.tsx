@@ -16,14 +16,27 @@ const GeneralLedgerAccountsList = () => {
       pageTitle="General Ledger Accounts"
       title="General Ledger Account"
       columns={[
-        { headerName: "Code", field: "code" },
+        {
+          headerName: "Code",
+          field: "code",
+          renderCell: (p: GridRenderCellParams) =>
+            p?.row?.disableAction ? (
+              <b>{p?.row?.code ?? ""}</b>
+            ) : (
+              p?.row?.code ?? null
+            ),
+        },
         { headerName: "Description", field: "description" },
         { headerName: "Type", field: "type" },
         {
           headerName: "Deductible",
           field: "deductible",
-          renderCell: (p: GridRenderCellParams<GeneralLedgerAccount>) =>
-            percentFormatter(p?.row?.deductible),
+          renderCell: (p: GridRenderCellParams) =>
+            p?.row?.disableAction ? (
+              <b>{p?.row?.code ?? ""}</b>
+            ) : (
+              percentFormatter(p?.row?.deductible)
+            ),
         },
       ]}
       fields={[
