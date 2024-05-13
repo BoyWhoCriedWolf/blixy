@@ -35,6 +35,7 @@ const DocumentDetailInvoiceForm: FC<
           },
           getOptionLabel: (option: Tax) => option?.description ?? "",
           getOptionValue: (option: Tax) => option?.id ?? "",
+          joinedFieldName: "tax",
         },
         // Document date
         {
