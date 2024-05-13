@@ -1,4 +1,19 @@
-import { Alert, Box, Button, Collapse, Grid, Paper } from "@mui/material";
+import {
+  AssignmentTurnedIn,
+  Delete,
+  NavigateBefore,
+  NavigateNext,
+  Save,
+} from "@mui/icons-material";
+import {
+  Alert,
+  Box,
+  Button,
+  Collapse,
+  Grid,
+  IconButton,
+  Paper,
+} from "@mui/material";
 import ConfirmButtonContainer from "components/containers/confirm-button-container";
 import EditForm from "components/edit-form";
 import LoaderContainer from "components/loading/loader-container";
@@ -7,6 +22,7 @@ import PdfViewer from "components/pdf-viewer";
 import PageHeading from "components/typography/page-heading";
 import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import documentService from "services/document.service";
 import {
   DOCUMENT_TYPES,
@@ -14,12 +30,11 @@ import {
   DocumentType,
 } from "services/types/document.types";
 import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
+import { downloadPdfFromUrl } from "utils/fetch-utils";
 import DocumentDetailBankStatement from "./DocumentDetailBankStatement";
 import DocumentDetailPurchaseInvoice from "./DocumentDetailPurchaseInvoice";
 import DocumentDetailSalesInvoice from "./DocumentDetailSaleInvoice";
 import DocumentDetailStandard from "./DocumentDetailStandard";
-import { useNavigate } from "react-router-dom";
-import { downloadPdfFromUrl } from "utils/fetch-utils";
 
 const DocumentDetail: FC<
   PropsWithChildren<{
@@ -186,41 +201,49 @@ const DocumentDetail: FC<
               <Grid container spacing={1}>
                 <Grid item>
                   <ConfirmButtonContainer onClick={handleDelete}>
-                    <Button color="error">
+                    <Button color="error" startIcon={<Delete />}>
                       Delete
                     </Button>
                   </ConfirmButtonContainer>
                 </Grid>
                 <Grid item>
-                  <Button onClick={handleSave} color="success">
+                  <Button
+                    onClick={handleSave}
+                    color="success"
+                    startIcon={<Save />}
+                  >
                     Save
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button onClick={handleApprove} color="warning">
+                  <Button
+                    onClick={handleApprove}
+                    color="warning"
+                    startIcon={<AssignmentTurnedIn />}
+                  >
                     Approve
                   </Button>
                 </Grid>
                 <Grid item>
                   <LoaderContainer open={isLoadingList}>
-                    <Button
+                    <IconButton
                       onClick={handleBefore}
                       color="inherit"
                       disabled={!documentIndex}
                     >
-                      Before
-                    </Button>
+                      <NavigateBefore />
+                    </IconButton>
                   </LoaderContainer>
                 </Grid>
                 <Grid item>
                   <LoaderContainer open={isLoadingList}>
-                    <Button
+                    <IconButton
                       onClick={handleNext}
                       color="inherit"
                       disabled={isLastDocument}
                     >
-                      Next
-                    </Button>
+                      <NavigateNext />
+                    </IconButton>
                   </LoaderContainer>
                 </Grid>
                 <Grid item>
