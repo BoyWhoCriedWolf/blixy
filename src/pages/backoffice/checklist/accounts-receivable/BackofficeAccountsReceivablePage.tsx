@@ -75,6 +75,9 @@ const BackofficeAccountsReceivablePage = () => {
           {
             date: "01-01-2024",
             description: "JV Services & Consulting B.V.",
+            number: "",
+            open: "",
+            expiration: "",
           },
           {
             date: "01-01-2024",
