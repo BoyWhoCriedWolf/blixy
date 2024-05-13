@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import documentService from "services/document.service";
 import { Document, DocumentType } from "services/types/document.types";
 import { ymd2dmy } from "utils/datetime-utils";
+import { currencyFormatter } from "utils/number-utils";
 
 const ApprovedDocumentsList: FC<
   PropsWithChildren<{ general_ledger_account_id?: string }>
@@ -31,7 +32,7 @@ const ApprovedDocumentsList: FC<
       }}
       columns={[
         {
-          headerName: "DeliDatevered",
+          headerName: "Date",
           field: "document_date",
           renderCell: (p: GridRenderCellParams<Document>) =>
             ymd2dmy(p.row.document_date),
@@ -72,6 +73,8 @@ const ApprovedDocumentsList: FC<
         {
           headerName: "Amount",
           field: "amount",
+          renderCell: (p: GridRenderCellParams<Document>) =>
+            currencyFormatter(p?.row?.amount),
         },
         {
           headerName: "Contact",
