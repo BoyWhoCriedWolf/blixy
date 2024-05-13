@@ -36,6 +36,7 @@ const DocumentDetailInvoiceForm: FC<
           getOptionLabel: (option: Tax) => option?.description ?? "",
           getOptionValue: (option: Tax) => option?.id ?? "",
           joinedFieldName: "tax",
+          defaultOptionLabel: data?.tax?.description ?? "",
         },
         // Document date
         {
@@ -78,6 +79,11 @@ const DocumentDetailInvoiceForm: FC<
             joinStrings(" ", option?.code, option?.description),
           getOptionValue: (option?: GeneralLedgerAccount) => option?.id ?? "",
           joinedFieldName: "general_ledger_account",
+          defaultOptionLabel: joinStrings(
+            " ",
+            data?.general_ledger_account?.code,
+            data?.general_ledger_account?.description
+          ),
         },
         // Subject
         {
