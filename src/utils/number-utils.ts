@@ -4,5 +4,5 @@ export const percentFormatter = (p?: number | string) => {
     minimumFractionDigits: 2,
   });
 
-  return formatter.format(Number(p ?? 0));
+  return formatter.format(Number(p ?? 0) / 100);
 };
