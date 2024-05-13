@@ -79,18 +79,24 @@ const GeneralLedgerAccountsList = () => {
                 b.type ?? GeneralLedgerAccountType.Revenue
               ]
           )
-          .reduce((ret, cur, curIndex, self) => {
-            if (curIndex) {
-              const prior = self[curIndex - 1];
+          .reduce(
+            (ret, cur, curIndex, self) => {
+              if (curIndex) {
+                const prior = self[curIndex - 1];
 
-              if (prior.type !== cur.type) {
-                // @ts-ignore
-                ret.push({ code: cur.type, disableAction: true });
+                if (prior.type !== cur.type) {
+                  // @ts-ignore
+                  ret.push({ code: cur.type, disableAction: true });
+                }
               }
-            }
-            ret.push(cur);
-            return ret;
-          }, [] as Array<GeneralLedgerAccount>)
+              ret.push(cur);
+              return ret;
+            },
+            [
+              // @ts-ignore
+              { code: value[0]?.type, disableAction: true },
+            ] as Array<GeneralLedgerAccount>
+          )
       }
       hideFooterPagination
     />
