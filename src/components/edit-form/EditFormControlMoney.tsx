@@ -168,9 +168,9 @@ const EditFormControlMoney: FC<
               inputComponent:
                 currencyValue === CurrencyType.GBP
                   ? CurrencyGBPFormatInput
-                  : currencyValue === CurrencyType.EUR
-                  ? CurrencyEURFormatInput
-                  : CurrencyUSDFormatInput,
+                  : currencyValue === CurrencyType.USD
+                  ? CurrencyUSDFormatInput
+                  : CurrencyEURFormatInput,
             }}
           />
         </Grid>
