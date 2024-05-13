@@ -9,12 +9,16 @@ import { FC, PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 import documentService from "services/document.service";
 import { Document, DocumentType } from "services/types/document.types";
+import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { ymd2dmy } from "utils/datetime-utils";
 import { currencyFormatter } from "utils/number-utils";
 
 const ApprovedDocumentsList: FC<
-  PropsWithChildren<{ general_ledger_account_id?: string }>
-> = ({ general_ledger_account_id = "" }) => {
+  PropsWithChildren<{
+    generalLedgerAccount?: GeneralLedgerAccount;
+    general_ledger_account_id?: string;
+  }>
+> = ({ generalLedgerAccount, general_ledger_account_id = "" }) => {
   const navigate = useNavigate();
 
   const handleView = (value: Document) => {
@@ -85,6 +89,19 @@ const ApprovedDocumentsList: FC<
       ]}
       availableActions={["View"]}
       onView={handleView}
+      formatData={(v: Array<Document>) => [
+        ...(v ?? []),
+        {
+          description: "Period Balance",
+          amount: v.reduce((ret, cur) => ret + (cur.amount ?? 0), 0),
+          disableAction: true,
+        },
+        {
+          description: "Total " + generalLedgerAccount?.description ?? "",
+          amount: v.reduce((ret, cur) => ret + (cur.amount ?? 0), 0),
+          disableAction: true,
+        },
+      ]}
       hideFooterPagination
     />
   );

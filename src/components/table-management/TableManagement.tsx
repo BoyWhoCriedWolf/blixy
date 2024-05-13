@@ -90,7 +90,7 @@ function TableManagement<T = GridValidRowModel>({
 
   clickRowToEdit?: boolean;
 
-  formatData?: (v: Array<T>) => Array<T & { disableAction?: boolean }>;
+  formatData?: (v: Array<T>) => Array<Partial<T> & { disableAction?: boolean }>;
 }) {
   const snb = useSnackbar();
 

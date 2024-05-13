@@ -28,7 +28,7 @@ function PrimaryTable<T = GridValidRowModel>({
   actionsF,
 }: {
   columns?: Array<GridColDef>;
-  data?: Array<T>;
+  data?: Array<Partial<T>>;
   isAction?: Boolean;
 
   onClickRow?: (row: T, rowIndex?: number, self?: Array<T>) => void;
@@ -97,7 +97,7 @@ function PrimaryTable<T = GridValidRowModel>({
               {
                 headerName: "Actions",
                 renderCell: (p: GridRenderCellParams) => {
-                  const disableAction = !!p.row.disableAction; 
+                  const disableAction = !!p.row.disableAction;
                   return (
                     <Grid container flexWrap={"nowrap"}>
                       {hasAdditionalActions ? (
