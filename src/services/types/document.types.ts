@@ -1,6 +1,9 @@
 import { GeneralOption } from "types/ui-types";
 import { Contact } from "./contact.types";
 import { PaymentMethod } from "./payment.method.types";
+import { Tax } from "./tax.types";
+import { BTWType } from "./btw.type.types";
+import { GeneralLedgerAccount } from "./general.ledger.account.types";
 
 export interface Document {
   id: string;
@@ -20,14 +23,27 @@ export interface Document {
   rcg?: string;
   information?: string;
 
+  // payment method
   payment_method?: PaymentMethod;
   payment_account?: string;
   payment_bic_code?: string;
   payment_reference?: string;
   payment_term_time?: string;
 
+  // invoice details
+  tax_id?: string;
+  tax?: Tax;
+  document_date?: string;
+  amount?: number;
+  vat_amount?: number;
+  vat_amount_currency?: string;
+  btw_type?: BTWType;
+  general_ledger_account_id?: string;
+  general_ledger_account?: GeneralLedgerAccount;
+  subject?: string;
+
   // address
-  contact: Contact;
+  contact?: Contact;
 
   created_at: string;
   updated_at: string;

@@ -19,7 +19,7 @@ const TaxesList = () => {
         { headerName: "Btw-Type Description", field: "btw_type_description" },
         { headerName: "Btw-Type", field: "btw_type" },
         {
-          headerName: "Btw-Target",
+          headerName: "BTW-Tariff",
           field: "btw_target",
           renderCell: (p: GridRenderCellParams<Tax>) =>
             percentFormatter(p?.row?.btw_target),
@@ -54,7 +54,7 @@ const TaxesList = () => {
           getOptionValue: (option?: GeneralOption) => option?.value ?? "",
         },
         {
-          displayName: "Btw-Target",
+          displayName: "BTW-Tariff",
           name: "btw_target",
           type: FieldType.Percent,
         },
