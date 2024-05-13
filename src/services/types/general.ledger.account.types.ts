@@ -14,6 +14,10 @@ export enum GeneralLedgerAccountType {
   Costs = "Costs",
   Taxes = "Taxes",
   FinancialIncomeExpenses = "Financial income and expenses",
+
+  // assets
+  Assets = "Assets",
+  Liabilities = "Liabilities",
 }
 
 export const GENERAL_LEDGER_ACCOUNT_TYPES: Array<GeneralOption> = [
@@ -24,4 +28,8 @@ export const GENERAL_LEDGER_ACCOUNT_TYPES: Array<GeneralOption> = [
     value: GeneralLedgerAccountType.FinancialIncomeExpenses,
   },
   { name: "Taxes", value: GeneralLedgerAccountType.Taxes },
+
+  // assets
+  { name: "Assets", value: GeneralLedgerAccountType.Assets },
+  { name: "Liabilities", value: GeneralLedgerAccountType.Liabilities },
 ];
