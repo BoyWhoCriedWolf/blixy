@@ -32,11 +32,7 @@ const GeneralLedgerAccountsList = () => {
           headerName: "Deductible",
           field: "deductible",
           renderCell: (p: GridRenderCellParams) =>
-            p?.row?.disableAction ? (
-              <b>{p?.row?.code ?? ""}</b>
-            ) : (
-              percentFormatter(p?.row?.deductible)
-            ),
+            p?.row?.disableAction ? null : percentFormatter(p?.row?.deductible),
         },
       ]}
       fields={[
