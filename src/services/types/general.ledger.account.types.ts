@@ -20,6 +20,15 @@ export enum GeneralLedgerAccountType {
   Liabilities = "Liabilities",
 }
 
+export const GENERAL_LEDGER_ACCOUNT_TYPE_ORDER = {
+  [GeneralLedgerAccountType.Revenue]: 1,
+  [GeneralLedgerAccountType.Costs]: 2,
+  [GeneralLedgerAccountType.Taxes]: 3,
+  [GeneralLedgerAccountType.FinancialIncomeExpenses]: 4,
+  [GeneralLedgerAccountType.Assets]: 5,
+  [GeneralLedgerAccountType.Liabilities]: 6,
+};
+
 export const GENERAL_LEDGER_ACCOUNT_TYPES: Array<GeneralOption> = [
   { name: "Revenue", value: GeneralLedgerAccountType.Revenue },
   { name: "Costs", value: GeneralLedgerAccountType.Costs },

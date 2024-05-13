@@ -1,7 +1,11 @@
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import TableManagement from "components/table-management";
 import generalLedgerAccountService from "services/general.ledger.account.service";
-import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
+import {
+  GENERAL_LEDGER_ACCOUNT_TYPE_ORDER,
+  GeneralLedgerAccount,
+  GeneralLedgerAccountType,
+} from "services/types/general.ledger.account.types";
 import { FieldType } from "types/ui-types";
 import { percentFormatter } from "utils/number-utils";
 
@@ -51,6 +55,30 @@ const GeneralLedgerAccountsList = () => {
           type: FieldType.Percent,
         },
       ]}
+      formatData={(value: Array<GeneralLedgerAccount>) =>
+        value
+          .sort(
+            (a, b) =>
+              GENERAL_LEDGER_ACCOUNT_TYPE_ORDER[
+                a.type ?? GeneralLedgerAccountType.Revenue
+              ] -
+              GENERAL_LEDGER_ACCOUNT_TYPE_ORDER[
+                b.type ?? GeneralLedgerAccountType.Revenue
+              ]
+          )
+          .reduce((ret, cur, curIndex, self) => {
+            if (curIndex) {
+              const prior = self[curIndex - 1];
+
+              if (prior.type !== cur.type) {
+                // @ts-ignore
+                ret.push({ code: cur.type, disableAction: true });
+              }
+            }
+            ret.push(cur);
+            return ret;
+          }, [] as Array<GeneralLedgerAccount>)
+      }
       hideFooterPagination
     />
   );
