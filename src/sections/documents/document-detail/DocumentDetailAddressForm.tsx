@@ -10,8 +10,12 @@ import { Document } from "services/types/document.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
 
 const DocumentDetailAddressForm: FC<
-  PropsWithChildren<{ data?: Document; onChange?: DispatchFunction<Document> }>
-> = ({ data = {} as Document, onChange = () => null }) => {
+  PropsWithChildren<{
+    data?: Document;
+    onChange?: DispatchFunction<Document>;
+    readOnly?: boolean;
+  }>
+> = ({ data = {} as Document, onChange = () => null, readOnly = false }) => {
   const [contacts, setContacts] = useState<Array<Contact>>([]);
 
   const handleChange: DispatchFunction<Contact> = (v, name) => {
@@ -28,6 +32,7 @@ const DocumentDetailAddressForm: FC<
 
   return (
     <EditForm<Contact>
+      readOnly={readOnly}
       lg={6}
       md={6}
       sm={12}

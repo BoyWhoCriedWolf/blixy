@@ -1,5 +1,6 @@
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import TableManagement from "components/table-management";
+import { useNavigate } from "react-router-dom";
 import generalLedgerAccountService from "services/general.ledger.account.service";
 import {
   GENERAL_LEDGER_ACCOUNT_TYPE_ORDER,
@@ -10,11 +11,20 @@ import { FieldType } from "types/ui-types";
 import { percentFormatter } from "utils/number-utils";
 
 const GeneralLedgerAccountsList = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (value: GeneralLedgerAccount) => {
+    if (value.id) {
+      navigate(value.id);
+    }
+  };
+
   return (
     <TableManagement<GeneralLedgerAccount>
       apiService={generalLedgerAccountService}
       pageTitle="General Ledger Accounts"
       title="General Ledger Account"
+      onClickRow={handleClick}
       columns={[
         {
           headerName: "Code",

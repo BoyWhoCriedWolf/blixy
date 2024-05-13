@@ -13,11 +13,13 @@ const DocumentDetailPurchaseInvoice: FC<
     data?: Document;
     onChange?: DispatchFunction<Document>;
     paperContainer?: boolean;
+    readOnly?: boolean;
   }>
 > = ({
   data = {} as Document,
   onChange = () => null,
   paperContainer = true,
+  readOnly = false,
 }) => {
   const FormContainer: OverridableComponent<PaperTypeMap<{}, "div">> =
     paperContainer ? Paper : Box;
@@ -33,20 +35,28 @@ const DocumentDetailPurchaseInvoice: FC<
           important that the VAT, Chamber of Commerce number and website, if
           stated on the invoice, are included below.
         </Alert>
-        <DocumentDetailAddressForm data={data} onChange={onChange} />
+        <DocumentDetailAddressForm
+          data={data}
+          onChange={onChange}
+          readOnly={readOnly}
+        />
       </FormContainer>
       <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           INVOICE
         </Typography>
 
-        <DocumentDetailInvoiceForm data={data} onChange={onChange} />
+        <DocumentDetailInvoiceForm
+          data={data}
+          onChange={onChange}
+          readOnly={readOnly}
+        />
       </FormContainer>
       <FormContainer sx={{ p: 2, mb: 1 }}>
         <Typography fontWeight={600} mb={1}>
           BILLING RULES
         </Typography>
-        <BillingRulesList document={data} />
+        <BillingRulesList document={data} readOnly={readOnly} />
       </FormContainer>
 
       {/* Payment */}
@@ -54,7 +64,11 @@ const DocumentDetailPurchaseInvoice: FC<
         <Typography fontWeight={600} mb={1}>
           PAYMENT
         </Typography>
-        <DocumentDetailPaymentForm data={data} onChange={onChange} />
+        <DocumentDetailPaymentForm
+          data={data}
+          onChange={onChange}
+          readOnly={readOnly}
+        />
       </FormContainer>
     </Box>
   );

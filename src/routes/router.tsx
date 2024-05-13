@@ -24,8 +24,8 @@ import BackofficeBankPage from "pages/backoffice/checklist/bank";
 import BackofficeExportPage from "pages/backoffice/checklist/export";
 import BackofficeOcrRecogRulesPage from "pages/backoffice/checklist/ocr-recog-rules";
 import BackofficeScanFormsPage from "pages/backoffice/checklist/scan-forms";
-import BackofficeSuspenseAccountsPage from "pages/backoffice/checklist/suspense-accounts";
 import BackofficeStandardValuesPage from "pages/backoffice/checklist/standard-values";
+import BackofficeSuspenseAccountsPage from "pages/backoffice/checklist/suspense-accounts";
 import BackofficeLayout from "pages/backoffice/layout";
 import BackofficeProcessedWorkflowPage from "pages/backoffice/overview/processed-workflow";
 import BackofficeQualityMonitorPage from "pages/backoffice/overview/quality-monitor";
@@ -35,6 +35,9 @@ import BankLayout from "pages/bank/layout";
 import BankProcessedTransactionsPage from "pages/bank/processed-transactions";
 
 import AccountingChartPage from "pages/accounting/chart-of-accounts";
+import AccountingTaxesPage from "pages/accounting/taxes";
+import BackofficeAccountDetailPage from "pages/backoffice/actions/account-detail";
+import BackofficeAccountDetailDocumentPage from "pages/backoffice/actions/account-detail/BackofficeAccountDetailDocumentPage";
 import BankExportTransactionsPage from "pages/bank/export-transactions";
 import ContactsPage from "pages/contacts";
 import Dashboard from "pages/dashboard";
@@ -43,7 +46,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import AccountingTaxesPage from "pages/accounting/taxes";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -80,6 +82,14 @@ export const router = createBrowserRouter(
           <Route
             path="accounts-chart"
             element={<BackofficeAccountsChartPage />}
+          />
+          <Route
+            path="accounts-chart/:accountId"
+            element={<BackofficeAccountDetailPage />}
+          />
+          <Route
+            path="accounts-chart/:accountId/:documentId"
+            element={<BackofficeAccountDetailDocumentPage />}
           />
           <Route path="bank" element={<BackofficeBankPage />} />
           <Route

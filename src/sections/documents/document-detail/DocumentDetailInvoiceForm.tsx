@@ -10,10 +10,15 @@ import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
 import { joinStrings } from "utils/string-utils";
 
 const DocumentDetailInvoiceForm: FC<
-  PropsWithChildren<{ data?: Document; onChange?: DispatchFunction<Document> }>
-> = ({ data = {} as Document, onChange = () => null }) => {
+  PropsWithChildren<{
+    data?: Document;
+    onChange?: DispatchFunction<Document>;
+    readOnly?: boolean;
+  }>
+> = ({ data = {} as Document, onChange = () => null, readOnly = false }) => {
   return (
     <EditForm
+      readOnly={readOnly}
       lg={6}
       md={6}
       sm={12}

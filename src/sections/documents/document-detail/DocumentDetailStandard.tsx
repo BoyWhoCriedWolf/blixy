@@ -12,11 +12,13 @@ const DocumentDetailStandard: FC<
     data?: Document;
     onChange?: DispatchFunction<Document>;
     paperContainer?: boolean;
+    readOnly?: boolean;
   }>
 > = ({
   data = {} as Document,
   onChange = () => null,
   paperContainer = true,
+  readOnly = false,
 }) => {
   const FormContainer: OverridableComponent<PaperTypeMap<{}, "div">> =
     paperContainer ? Paper : Box;
@@ -35,6 +37,7 @@ const DocumentDetailStandard: FC<
         </Typography>
 
         <EditForm
+          readOnly={readOnly}
           lg={12}
           md={12}
           sm={12}
@@ -62,6 +65,7 @@ const DocumentDetailStandard: FC<
           OTHER
         </Typography>
         <EditForm
+          readOnly={readOnly}
           lg={12}
           md={12}
           sm={12}

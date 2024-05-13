@@ -15,6 +15,8 @@ function TableManagement<T = GridValidRowModel>({
   pageTitle = "",
   title = "",
 
+  readOnly = false,
+
   reload = 1,
 
   columns = [] as Array<GridColDef>,
@@ -31,6 +33,7 @@ function TableManagement<T = GridValidRowModel>({
   onEdit,
   onView,
   onDelete,
+  onClickRow,
 
   hideFooterPagination = false,
 
@@ -52,6 +55,8 @@ function TableManagement<T = GridValidRowModel>({
   pageTitle?: string;
   title?: string;
 
+  readOnly?: boolean;
+
   reload?: number;
 
   columns?: Array<GridColDef>;
@@ -69,6 +74,7 @@ function TableManagement<T = GridValidRowModel>({
   onEdit?: (v: T) => void;
   onView?: (v: T) => void;
   onDelete?: (v: T) => void;
+  onClickRow?: (v: T) => void;
 
   hideFooterPagination?: boolean;
 
@@ -96,11 +102,13 @@ function TableManagement<T = GridValidRowModel>({
 
   const formattedData = useMemo(() => formatData(data), [data, formatData]);
 
-  const hasAdd = availableActions.findIndex((item) => item === "Add") >= 0;
-  const hasEdit = availableActions.findIndex((item) => item === "Edit") >= 0;
+  const hasAdd =
+    !readOnly && availableActions.findIndex((item) => item === "Add") >= 0;
+  const hasEdit =
+    !readOnly && availableActions.findIndex((item) => item === "Edit") >= 0;
   const hasView = availableActions.findIndex((item) => item === "View") >= 0;
   const hasDelete =
-    availableActions.findIndex((item) => item === "Delete") >= 0;
+    !readOnly && availableActions.findIndex((item) => item === "Delete") >= 0;
 
   const handleClose = () => setIsOpen(false);
   const handleCloseView = () => setIsOpenView(false);
@@ -129,6 +137,15 @@ function TableManagement<T = GridValidRowModel>({
     } else {
       setFormData(value);
       setIsOpenView(true);
+    }
+  };
+
+  const handleClickRow = (value: T) => {
+    if (onClickRow) {
+      onClickRow(value);
+    }
+    if (clickRowToEdit) {
+      handleEdit(value);
     }
   };
 
@@ -205,12 +222,6 @@ function TableManagement<T = GridValidRowModel>({
       snb.enqueueSnackbar(ret.msg ?? "Failed to save (Unknown Error)", {
         variant: "warning",
       });
-    }
-  };
-
-  const handleClickRow = (value: T) => {
-    if (clickRowToEdit) {
-      handleEdit(value);
     }
   };
 

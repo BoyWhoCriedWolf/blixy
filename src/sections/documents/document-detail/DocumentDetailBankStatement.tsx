@@ -12,11 +12,13 @@ const DocumentDetailBankStatement: FC<
     data?: Document;
     onChange?: DispatchFunction<Document>;
     paperContainer?: boolean;
+    readOnly?: boolean;
   }>
 > = ({
   data = {} as Document,
   onChange = () => null,
   paperContainer = true,
+  readOnly = false,
 }) => {
   const FormContainer: OverridableComponent<PaperTypeMap<{}, "div">> =
     paperContainer ? Paper : Box;
@@ -188,6 +190,7 @@ const DocumentDetailBankStatement: FC<
         />
 
         <EditForm<Document>
+          readOnly={readOnly}
           data={data}
           onChange={onChange}
           fields={[

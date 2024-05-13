@@ -8,11 +8,12 @@ import { GeneralLedgerAccount } from "services/types/general.ledger.account.type
 import { FieldType } from "types/ui-types";
 import { joinStrings } from "utils/string-utils";
 
-const BillingRulesList: FC<PropsWithChildren<{ document?: Document }>> = ({
-  document,
-}) => {
+const BillingRulesList: FC<
+  PropsWithChildren<{ document?: Document; readOnly?: boolean }>
+> = ({ document, readOnly = false }) => {
   return (
     <TableManagement<BillingRule>
+      readOnly={readOnly}
       pageTitle=""
       title="Billing Rule"
       columns={[

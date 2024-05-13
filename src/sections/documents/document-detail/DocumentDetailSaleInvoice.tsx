@@ -15,11 +15,13 @@ const DocumentDetailSalesInvoice: FC<
     data?: Document;
     onChange?: DispatchFunction<Document>;
     paperContainer?: boolean;
+    readOnly?: boolean;
   }>
 > = ({
   data = {} as Document,
   onChange = () => null,
   paperContainer = true,
+  readOnly = false,
 }) => {
   const FormContainer: OverridableComponent<PaperTypeMap<{}, "div">> =
     paperContainer ? Paper : Box;
@@ -42,7 +44,11 @@ const DocumentDetailSalesInvoice: FC<
         <Typography fontWeight={600} mb={1}>
           ADDRESS
         </Typography>
-        <DocumentDetailAddressForm data={data} onChange={onChange} />
+        <DocumentDetailAddressForm
+          data={data}
+          onChange={onChange}
+          readOnly={readOnly}
+        />
       </FormContainer>
 
       {/* Invoice */}
@@ -52,6 +58,7 @@ const DocumentDetailSalesInvoice: FC<
         </Typography>
 
         <EditForm
+          readOnly={readOnly}
           lg={6}
           md={6}
           sm={12}
@@ -113,7 +120,7 @@ const DocumentDetailSalesInvoice: FC<
         <Typography fontWeight={600} mb={1}>
           BILLING RULES
         </Typography>
-        <BillingRulesList document={data} />
+        <BillingRulesList document={data} readOnly={readOnly} />
       </FormContainer>
 
       {/* Payment */}
@@ -121,7 +128,11 @@ const DocumentDetailSalesInvoice: FC<
         <Typography fontWeight={600} mb={1}>
           PAYMENT
         </Typography>
-        <DocumentDetailPaymentForm data={data} onChange={onChange} />
+        <DocumentDetailPaymentForm
+          data={data}
+          onChange={onChange}
+          readOnly={readOnly}
+        />
       </FormContainer>
     </Box>
   );

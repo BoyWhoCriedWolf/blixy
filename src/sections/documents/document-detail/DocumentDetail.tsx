@@ -192,6 +192,7 @@ const DocumentDetail: FC<
           getOptionValue: (option?: GeneralOption) => option?.value ?? "",
         },
       ]}
+      readOnly={readOnly}
     />
   );
 
@@ -204,28 +205,32 @@ const DocumentDetail: FC<
             mb={0}
             actions={
               <Grid container spacing={1}>
-                <Grid item>
-                  <ConfirmButtonContainer onClick={handleDelete}>
-                    <Button color="error" startIcon={<Delete />}>
-                      Delete
+                {readOnly ? null : (
+                  <Grid item>
+                    <ConfirmButtonContainer onClick={handleDelete}>
+                      <Button color="error" startIcon={<Delete />}>
+                        Delete
+                      </Button>
+                    </ConfirmButtonContainer>
+                  </Grid>
+                )}
+                {readOnly ? null : (
+                  <Grid item>
+                    <Button
+                      onClick={handleSave}
+                      color="success"
+                      startIcon={<Save />}
+                    >
+                      Save
                     </Button>
-                  </ConfirmButtonContainer>
-                </Grid>
-                <Grid item>
-                  <Button
-                    onClick={handleSave}
-                    color="success"
-                    startIcon={<Save />}
-                  >
-                    Save
-                  </Button>
-                </Grid>
+                  </Grid>
+                )}
                 <Grid item>
                   <Button
                     onClick={handleApprove}
                     color="warning"
                     startIcon={<AssignmentTurnedIn />}
-                    disabled={data?.approved}
+                    disabled={data?.approved || readOnly}
                   >
                     {data?.approved ? "Approved" : "Approve"}
                   </Button>
@@ -283,6 +288,7 @@ const DocumentDetail: FC<
                 paperContainer={paperContainer}
                 data={data}
                 onChange={handleChangeData}
+                readOnly={readOnly}
               />
             </Box>
           </Collapse>
@@ -292,6 +298,7 @@ const DocumentDetail: FC<
                 paperContainer={paperContainer}
                 data={data}
                 onChange={handleChangeData}
+                readOnly={readOnly}
               />
             </Box>
           </Collapse>
@@ -301,6 +308,7 @@ const DocumentDetail: FC<
                 paperContainer={paperContainer}
                 data={data}
                 onChange={handleChangeData}
+                readOnly={readOnly}
               />
             </Box>
           </Collapse>
@@ -310,6 +318,7 @@ const DocumentDetail: FC<
                 paperContainer={paperContainer}
                 data={data}
                 onChange={handleChangeData}
+                readOnly={readOnly}
               />
             </Box>
           </Collapse>
