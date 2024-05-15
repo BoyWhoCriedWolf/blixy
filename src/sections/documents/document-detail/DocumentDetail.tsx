@@ -47,6 +47,7 @@ const DocumentDetail: FC<
     approved?: boolean;
     doc_type?: DocumentType;
     general_ledger_account_id?: string;
+    basePath?: string;
   }>
 > = ({
   id = "",
@@ -58,6 +59,7 @@ const DocumentDetail: FC<
   approved,
   doc_type,
   general_ledger_account_id,
+  basePath = "/archive/document",
 }) => {
   const navigate = useNavigate();
   const snb = useSnackbar();
@@ -139,14 +141,14 @@ const DocumentDetail: FC<
   const handleNext = async () => {
     const destId = list[currentIndex + 1]?.id;
     if (destId) {
-      navigate(`/archive/document/${destId}`);
+      navigate(`${basePath}/${destId}`);
     }
   };
 
   const handleBefore = async () => {
     const destId = list[currentIndex - 1]?.id;
     if (destId) {
-      navigate(`/archive/document/${destId}`);
+      navigate(`${basePath}/${destId}`);
     }
   };
 

@@ -12,6 +12,7 @@ const BackofficeAccountDetailDocumentPage = () => {
         readOnly
         approved
         general_ledger_account_id={accountId}
+        basePath={`/archive/document/${accountId}`}
       />
     </Paper>
   );
