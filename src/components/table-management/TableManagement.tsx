@@ -261,12 +261,12 @@ function TableManagement<T = GridValidRowModel>({
         container
         justifyContent={"space-between"}
         alignItems={"center"}
-        sx={{ mb: 2 }}
+        sx={{ mb: 2 }} flexWrap="nowrap"
       >
         <Grid item>
           {pageTitle ? <PageHeading>{pageTitle}</PageHeading> : null}
         </Grid>
-        <Grid container alignItems="center">
+        <Grid container alignItems="center" spacing={1}>
           <Grid item>
             <EditForm
               data={filterFormData}
