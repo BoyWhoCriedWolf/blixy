@@ -141,17 +141,17 @@ const GeneralLedgerAccountDetail: FC<
         general_ledger_account_id={accountId}
         generalLedgerAccount={data}
         general_ledger_account_types={
-          (filterFormData.type as AccountTransactionType) ===
-          AccountTransactionType.AllTransactions
+          (filterFormData.type as string) ===
+          (AccountTransactionType.AllTransactions as string)
             ? undefined
-            : (filterFormData.type as AccountTransactionType) ===
-              AccountTransactionType.BalanceSheetAccounts
+            : (filterFormData.type as string) ===
+              (AccountTransactionType.BalanceSheetAccounts as string)
             ? [
                 GeneralLedgerAccountType.Assets,
                 GeneralLedgerAccountType.Liabilities,
               ]
-            : (filterFormData.type as AccountTransactionType) ===
-              AccountTransactionType.ProfitLossAccounts
+            : (filterFormData.type as string) ===
+              (AccountTransactionType.ProfitLossAccounts as string)
             ? [
                 GeneralLedgerAccountType.Revenue,
                 GeneralLedgerAccountType.Costs,
