@@ -230,7 +230,7 @@ function TableManagement<T = GridValidRowModel>({
       loadData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reload]);
+  }, [reload, filter]);
 
   return (
     <LoaderContainer open={isLoading} style={{ height: "100%" }}>
