@@ -95,13 +95,13 @@ const GeneralLedgerAccountDetail: FC<
         actions={
           <LoaderContainer open={isLoadingList}>
             <Grid container alignItems={"center"}>
-              <Grid item>
+              <Grid item sx={{ minWidth: 150 }}>
                 <EditForm
                   data={filterFormData}
                   onChange={setFilterFormData}
                   fields={[
                     {
-                      displayName: "Type",
+                      // displayName: "Type",
                       name: "type",
                       type: FieldType.Choice,
                       options: [
