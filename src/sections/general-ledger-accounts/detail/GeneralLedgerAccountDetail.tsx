@@ -9,14 +9,16 @@ import { FC, PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApprovedDocumentsList from "sections/documents/documents-list/ApprovedDocumentsList";
 import generalLedgerAccountService from "services/general.ledger.account.service";
-import { DocumentType } from "services/types/document.types";
-import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
+import {
+  GeneralLedgerAccount,
+  GeneralLedgerAccountType,
+} from "services/types/general.ledger.account.types";
 import { FieldType } from "types/ui-types";
 
 const enum AccountTransactionType {
   AllTransactions = "All Transactions",
-  BalanceSheetAccounts = "Balance sheet Accounts",
-  ProfitLossAccounts = "Profit Loss Accounts",
+  BalanceSheetAccounts = "Balance sheet Accounts", // Assets, Liability
+  ProfitLossAccounts = "Profit Loss Accounts", // transactions
 }
 
 const GeneralLedgerAccountDetail: FC<
@@ -138,14 +140,22 @@ const GeneralLedgerAccountDetail: FC<
       <ApprovedDocumentsList
         general_ledger_account_id={accountId}
         generalLedgerAccount={data}
-        doc_types={
+        general_ledger_account_types={
           filterFormData.type === AccountTransactionType.AllTransactions
             ? undefined
             : filterFormData.type ===
               AccountTransactionType.BalanceSheetAccounts
-            ? undefined
+            ? [
+                GeneralLedgerAccountType.Assets,
+                GeneralLedgerAccountType.Liabilities,
+              ]
             : filterFormData.type === AccountTransactionType.ProfitLossAccounts
-            ? undefined
+            ? [
+                GeneralLedgerAccountType.Revenue,
+                GeneralLedgerAccountType.Costs,
+                GeneralLedgerAccountType.Taxes,
+                GeneralLedgerAccountType.FinancialIncomeExpenses,
+              ]
             : undefined
         }
       />

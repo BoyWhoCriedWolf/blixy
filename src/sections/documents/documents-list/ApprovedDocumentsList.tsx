@@ -9,7 +9,10 @@ import { FC, PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 import documentService from "services/document.service";
 import { Document, DocumentType } from "services/types/document.types";
-import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
+import {
+  GeneralLedgerAccount,
+  GeneralLedgerAccountType,
+} from "services/types/general.ledger.account.types";
 import { ymd2dmy } from "utils/datetime-utils";
 import { currencyFormatter } from "utils/number-utils";
 
@@ -17,12 +20,12 @@ const ApprovedDocumentsList: FC<
   PropsWithChildren<{
     generalLedgerAccount?: GeneralLedgerAccount;
     general_ledger_account_id?: string;
-    doc_types?: Array<DocumentType>;
+    general_ledger_account_types?: Array<GeneralLedgerAccountType>;
   }>
 > = ({
   generalLedgerAccount,
   general_ledger_account_id = "",
-  doc_types,
+  general_ledger_account_types,
 }) => {
   const navigate = useNavigate();
 
@@ -38,7 +41,9 @@ const ApprovedDocumentsList: FC<
       filter={{
         approved: true,
         ...(general_ledger_account_id ? { general_ledger_account_id } : {}),
-        ...(doc_types ? { doc_types: doc_types } : {}),
+        ...(general_ledger_account_types
+          ? { general_ledger_account_types: general_ledger_account_types }
+          : {}),
       }}
       columns={[
         {
