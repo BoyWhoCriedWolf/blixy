@@ -44,7 +44,7 @@ const BackofficeWorkflowCount = () => {
                 <StateNumberCard
                   label={"Document"}
                   // caption={"4 days"}
-                  value={data?.all ?? 0}
+                  value={typeof data?.all === "number" ? data?.all : 0}
                 />
               </Link>
             </Grid>
@@ -53,7 +53,11 @@ const BackofficeWorkflowCount = () => {
                 <StateNumberCard
                   label={"Bank"}
                   // caption={"2 days"}
-                  value={data?.[DocumentType.BankStatement] ?? 0}
+                  value={
+                    typeof data?.[DocumentType.BankStatement] === "number"
+                      ? data?.[DocumentType.BankStatement]
+                      : 0
+                  }
                 />
               </Link>
             </Grid>
@@ -67,17 +71,26 @@ const BackofficeWorkflowCount = () => {
             {[
               {
                 label: "Bank",
-                value: data?.[DocumentType.BankStatement] ?? 0,
+                value:
+                  typeof data?.[DocumentType.BankStatement] === "number"
+                    ? data?.[DocumentType.BankStatement]
+                    : 0,
                 caption: "Incidents",
               },
               {
                 label: "Purchase",
-                value: data?.[DocumentType.PurchaseInvoice] ?? 0,
+                value:
+                  typeof data?.[DocumentType.PurchaseInvoice] === "number"
+                    ? data?.[DocumentType.PurchaseInvoice]
+                    : 0,
                 caption: "Missing documents",
               },
               {
                 label: "Sale",
-                value: data?.[DocumentType.SalesInvoice] ?? 0,
+                value:
+                  typeof data?.[DocumentType.SalesInvoice] === "number"
+                    ? data?.[DocumentType.SalesInvoice]
+                    : 0,
                 caption: "Missing documents",
               },
             ].map((item, itemIndex) => {
