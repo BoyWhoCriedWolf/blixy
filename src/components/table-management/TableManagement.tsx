@@ -102,6 +102,8 @@ function TableManagement<T = GridValidRowModel>({
 
   const formattedData = useMemo(() => formatData(data), [data, formatData]);
 
+  const jsonFilter = JSON.stringify(filter ?? {});
+
   const hasAdd =
     !readOnly && availableActions.findIndex((item) => item === "Add") >= 0;
   const hasEdit =
@@ -230,7 +232,7 @@ function TableManagement<T = GridValidRowModel>({
       loadData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reload, filter]);
+  }, [reload, jsonFilter]);
 
   return (
     <LoaderContainer open={isLoading} style={{ height: "100%" }}>
