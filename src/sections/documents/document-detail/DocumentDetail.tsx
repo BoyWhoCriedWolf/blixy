@@ -67,12 +67,12 @@ const DocumentDetail: FC<
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingList, setIsLoadingList] = useState(false);
 
-  const documentIndex = useMemo(
+  const currentIndex = useMemo(
     () => list.findIndex((item) => item.id === data?.id),
     [data?.id, list]
   );
   const documentType = data?.doc_type;
-  const isLastDocument = documentIndex === list.length - 1;
+  const isLastOfList = currentIndex === list.length - 1;
 
   const loadList = async () => {
     setIsLoadingList(true);
@@ -137,16 +137,16 @@ const DocumentDetail: FC<
   };
 
   const handleNext = async () => {
-    const nextId = list[documentIndex + 1]?.id;
-    if (nextId) {
-      navigate(`/archive/document/${nextId}`);
+    const destId = list[currentIndex + 1]?.id;
+    if (destId) {
+      navigate(`/archive/document/${destId}`);
     }
   };
 
   const handleBefore = async () => {
-    const beforeId = list[documentIndex - 1]?.id;
-    if (beforeId) {
-      navigate(`/archive/document/${beforeId}`);
+    const destId = list[currentIndex - 1]?.id;
+    if (destId) {
+      navigate(`/archive/document/${destId}`);
     }
   };
 
@@ -253,7 +253,7 @@ const DocumentDetail: FC<
                     <IconButton
                       onClick={handleBefore}
                       color="inherit"
-                      disabled={!documentIndex}
+                      disabled={!currentIndex}
                     >
                       <NavigateBefore />
                     </IconButton>
@@ -264,7 +264,7 @@ const DocumentDetail: FC<
                     <IconButton
                       onClick={handleNext}
                       color="inherit"
-                      disabled={isLastDocument}
+                      disabled={isLastOfList}
                     >
                       <NavigateNext />
                     </IconButton>
