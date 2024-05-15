@@ -48,6 +48,7 @@ const DocumentDetail: FC<
     doc_type?: DocumentType;
     general_ledger_account_id?: string;
     basePath?: string;
+    noNavigation?: boolean;
   }>
 > = ({
   id = "",
@@ -60,6 +61,7 @@ const DocumentDetail: FC<
   doc_type,
   general_ledger_account_id,
   basePath = "/archive/document",
+  noNavigation = false,
 }) => {
   const navigate = useNavigate();
   const snb = useSnackbar();
@@ -250,28 +252,32 @@ const DocumentDetail: FC<
                     {data?.approved ? "Approved" : "Approve"}
                   </Button>
                 </Grid>
-                <Grid item>
-                  <LoaderContainer open={isLoadingList}>
-                    <IconButton
-                      onClick={handleBefore}
-                      color="inherit"
-                      disabled={!currentIndex}
-                    >
-                      <NavigateBefore />
-                    </IconButton>
-                  </LoaderContainer>
-                </Grid>
-                <Grid item>
-                  <LoaderContainer open={isLoadingList}>
-                    <IconButton
-                      onClick={handleNext}
-                      color="inherit"
-                      disabled={isLastOfList}
-                    >
-                      <NavigateNext />
-                    </IconButton>
-                  </LoaderContainer>
-                </Grid>
+                {noNavigation ? null : (
+                  <Grid item>
+                    <LoaderContainer open={isLoadingList}>
+                      <IconButton
+                        onClick={handleBefore}
+                        color="inherit"
+                        disabled={!currentIndex}
+                      >
+                        <NavigateBefore />
+                      </IconButton>
+                    </LoaderContainer>
+                  </Grid>
+                )}
+                {noNavigation ? null : (
+                  <Grid item>
+                    <LoaderContainer open={isLoadingList}>
+                      <IconButton
+                        onClick={handleNext}
+                        color="inherit"
+                        disabled={isLastOfList}
+                      >
+                        <NavigateNext />
+                      </IconButton>
+                    </LoaderContainer>
+                  </Grid>
+                )}
                 <Grid item>
                   <Button onClick={handleDownload} color="primary">
                     Download
