@@ -12,9 +12,9 @@ const ProfitLossTotal = () => {
   const [data, setData] = useState<Total>();
 
   const loadData = async () => {
-    setIsLoading(false);
-    const ret = await generalLedgerAccountService.totalProfitLoss();
     setIsLoading(true);
+    const ret = await generalLedgerAccountService.totalProfitLoss();
+    setIsLoading(false);
 
     if (ret.success) {
       setData(ret.data);
