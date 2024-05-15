@@ -5,6 +5,7 @@ import { API_URLS } from "./api-urls";
 import { APIService } from "./api.service";
 import { Document, DocumentType } from "./types/document.types";
 import { APIResponseType } from "./types/response.types";
+import { GeneralLedgerAccountType } from "./types/general.ledger.account.types";
 
 class DocumentService extends APIService<Document> {
   async gets({
@@ -13,12 +14,14 @@ class DocumentService extends APIService<Document> {
     doc_types,
     approved,
     general_ledger_account_id,
+    general_ledger_account_types,
   }: {
     deleted?: boolean;
     doc_type?: DocumentType;
     doc_types?: Array<DocumentType>;
     approved?: boolean;
     general_ledger_account_id?: string;
+    general_ledger_account_types?: Array<GeneralLedgerAccountType>;
   } = {}): Promise<APIResponseType<Document[]>> {
     try {
       const data = await apiClient.get(API_URLS.DOCUMENT_GETS, {
@@ -27,6 +30,7 @@ class DocumentService extends APIService<Document> {
         ...(doc_types ? { doc_types } : {}),
         ...(approved ? { approved } : {}),
         ...(general_ledger_account_id ? { general_ledger_account_id } : {}),
+        ...(general_ledger_account_types ? { general_ledger_account_types } : {}),
       });
       return data as APIResponseType<Document[]>;
     } catch (error) {
