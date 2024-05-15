@@ -13,7 +13,7 @@ const ProfitLossTotal = () => {
 
   const loadData = async () => {
     setIsLoading(false);
-    const ret = await generalLedgerAccountService.total();
+    const ret = await generalLedgerAccountService.totalProfitLoss();
     setIsLoading(true);
 
     if (ret.success) {

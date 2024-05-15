@@ -42,10 +42,10 @@ class GeneralLedgerAccountService extends APIService<GeneralLedgerAccount> {
     }
   }
 
-  async total(): Promise<APIResponseType<Total>> {
+  async totalProfitLoss(): Promise<APIResponseType<Total>> {
     try {
       const data = await apiClient.get(
-        `${API_URLS.GENERAL_LEDGER_ACCOUNT_GET}`
+        `${API_URLS.GENERAL_LEDGER_ACCOUNT_TOTAL_PROFIT_LOSS}`
       );
       return data as APIResponseType<Total>;
     } catch (error) {
