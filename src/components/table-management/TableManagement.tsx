@@ -261,30 +261,33 @@ function TableManagement<T = GridValidRowModel>({
         container
         justifyContent={"space-between"}
         alignItems={"center"}
-        sx={{ mb: 2 }} flexWrap="nowrap"
+        sx={{ mb: 2 }}
+        flexWrap="nowrap"
       >
         <Grid item>
           {pageTitle ? <PageHeading>{pageTitle}</PageHeading> : null}
         </Grid>
-        <Grid container alignItems="center" spacing={1}>
-          <Grid item>
-            <EditForm
-              data={filterFormData}
-              onChange={setFilterFormData}
-              fields={formattedFilterFields}
-            />
-          </Grid>
-          <Grid item>
-            {hasAdd ? (
-              <Button
-                onClick={handleAdd}
-                variant="outlined"
-                size="small"
-                startIcon={<Add />}
-              >
-                Add
-              </Button>
-            ) : null}
+        <Grid item>
+          <Grid container alignItems="center" spacing={1}>
+            <Grid item>
+              <EditForm
+                data={filterFormData}
+                onChange={setFilterFormData}
+                fields={formattedFilterFields}
+              />
+            </Grid>
+            <Grid item>
+              {hasAdd ? (
+                <Button
+                  onClick={handleAdd}
+                  variant="outlined"
+                  size="small"
+                  startIcon={<Add />}
+                >
+                  Add
+                </Button>
+              ) : null}
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
