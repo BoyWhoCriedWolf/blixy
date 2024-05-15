@@ -65,12 +65,14 @@ export default function CollapseBox({
 
   return (
     <Accordion expanded={expanded} onChange={handleChange}>
-      <AccordionSummary expandIcon={<ExpandMore />}>
+      <AccordionSummary
+        expandIcon={<ExpandMore />}
+        sx={{ display: "flex", alignItems: "center" }}
+      >
         <Typography
           sx={{
             fontSize: theme.typography.pxToRem(15),
-            flexBasis: "33.33%",
-            flexShrink: 0,
+            flexGrow: 1,
           }}
         >
           {title}
