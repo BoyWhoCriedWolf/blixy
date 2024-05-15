@@ -39,7 +39,20 @@ const ProfitLossTotal = () => {
             const totalDocumentTypes = data[accountType];
 
             return (
-              <CollapseBox title={accountType} key={accountTypeIndex}>
+              <CollapseBox
+                title={accountType}
+                key={accountTypeIndex}
+                secondaryTitle={
+                  totalDocumentTypes
+                    ? currencyFormatter(
+                        Object.values(totalDocumentTypes).reduce(
+                          (ret, cur) => ret + (cur.total_amount ?? 0),
+                          0
+                        )
+                      )
+                    : ""
+                }
+              >
                 {totalDocumentTypes
                   ? Object.keys(totalDocumentTypes).map(
                       (documentType, documentTypeIndex) => {
