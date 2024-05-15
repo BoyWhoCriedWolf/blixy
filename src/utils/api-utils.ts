@@ -55,22 +55,26 @@ class APIClient {
   // };
   get = (url: any, params?: any) => {
     let response;
-
-    let paramKeys: any = [];
-
+  
     if (params) {
-      Object.keys(params).map((key) => {
-        paramKeys.push(key + "=" + params[key]);
-        return paramKeys;
-      });
-
-      const queryString =
-        paramKeys && paramKeys.length ? paramKeys.join("&") : "";
-      response = axios.get(`${url}?${queryString}`, params);
+      const queryParams = new URLSearchParams();
+  
+      for (const key in params) {
+        if (Array.isArray(params[key])) {
+          params[key].forEach((value: any) => {
+            queryParams.append(key + '[]', value);
+          });
+        } else {
+          queryParams.append(key, params[key]);
+        }
+      }
+  
+      const queryString = queryParams.toString();
+      response = axios.get(`${url}?${queryString}`);
     } else {
-      response = axios.get(`${url}`, params);
+      response = axios.get(`${url}`);
     }
-
+  
     return response;
   };
   /**
