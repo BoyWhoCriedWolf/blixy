@@ -1,4 +1,5 @@
 import { GeneralOption } from "types/ui-types";
+import { Document } from "./document.types";
 
 export interface GeneralLedgerAccount {
   id?: string;
@@ -42,3 +43,12 @@ export const GENERAL_LEDGER_ACCOUNT_TYPES: Array<GeneralOption> = [
   { name: "Assets", value: GeneralLedgerAccountType.Assets },
   { name: "Liabilities", value: GeneralLedgerAccountType.Liabilities },
 ];
+
+export interface GeneralLedgerAccountDocumentTotal {
+  [account_type: string]: {
+    [document_type: string]: {
+      documents?: Array<Document>;
+      total_amount?: number;
+    };
+  };
+}

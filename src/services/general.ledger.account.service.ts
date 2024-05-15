@@ -2,9 +2,11 @@ import { AxiosError } from "axios";
 import { apiClient } from "utils/api-utils";
 import { API_URLS } from "./api-urls";
 import { APIService } from "./api.service";
-import { GeneralLedgerAccount } from "./types/general.ledger.account.types";
+import {
+  GeneralLedgerAccount,
+  GeneralLedgerAccountDocumentTotal,
+} from "./types/general.ledger.account.types";
 import { APIResponseType } from "./types/response.types";
-import { Total } from "types/ui-types";
 
 class GeneralLedgerAccountService extends APIService<GeneralLedgerAccount> {
   async gets(): Promise<APIResponseType<GeneralLedgerAccount[]>> {
@@ -42,12 +44,14 @@ class GeneralLedgerAccountService extends APIService<GeneralLedgerAccount> {
     }
   }
 
-  async totalProfitLoss(): Promise<APIResponseType<Total>> {
+  async totalProfitLoss(): Promise<
+    APIResponseType<GeneralLedgerAccountDocumentTotal>
+  > {
     try {
       const data = await apiClient.get(
         `${API_URLS.GENERAL_LEDGER_ACCOUNT_TOTAL_PROFIT_LOSS}`
       );
-      return data as APIResponseType<Total>;
+      return data as APIResponseType<GeneralLedgerAccountDocumentTotal>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
       return {
