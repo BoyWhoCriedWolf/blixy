@@ -37,6 +37,7 @@ export const API_URLS = {
   GENERAL_LEDGER_ACCOUNT_DELETE: "/general-ledger-account/delete",
   GENERAL_LEDGER_ACCOUNT_GETS: "/general-ledger-account/list",
   GENERAL_LEDGER_ACCOUNT_GET: "/general-ledger-account/get",
+  GENERAL_LEDGER_ACCOUNT_TOTAL: "/general-ledger-account/total",
 
   // tax
   TAX_CREATE: "/tax/create",

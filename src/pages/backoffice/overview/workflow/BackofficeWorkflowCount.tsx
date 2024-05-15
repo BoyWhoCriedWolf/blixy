@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import documentService from "services/document.service";
 import { DocumentType } from "services/types/document.types";
-import { Counts } from "types/ui-types";
+import { Total } from "types/ui-types";
 
 const BackofficeWorkflowCount = () => {
   const snb = useSnackbar();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState<Counts>({});
+  const [data, setData] = useState<Total>({});
 
   const loadData = async () => {
     setIsLoading(true);

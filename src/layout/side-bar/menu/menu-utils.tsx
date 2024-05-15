@@ -264,7 +264,7 @@ export const MENU_DATA = [
       },
       {
         icon: <AttachMoney />,
-        path: "#",
+        path: "/profit-loss",
         label: "Profit loss account",
       },
       {

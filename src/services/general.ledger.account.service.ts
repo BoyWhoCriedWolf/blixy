@@ -4,6 +4,7 @@ import { API_URLS } from "./api-urls";
 import { APIService } from "./api.service";
 import { GeneralLedgerAccount } from "./types/general.ledger.account.types";
 import { APIResponseType } from "./types/response.types";
+import { Total } from "types/ui-types";
 
 class GeneralLedgerAccountService extends APIService<GeneralLedgerAccount> {
   async gets(): Promise<APIResponseType<GeneralLedgerAccount[]>> {
@@ -27,8 +28,26 @@ class GeneralLedgerAccountService extends APIService<GeneralLedgerAccount> {
     id: string;
   }): Promise<APIResponseType<GeneralLedgerAccount>> {
     try {
-      const data = await apiClient.get(`${API_URLS.GENERAL_LEDGER_ACCOUNT_GET}/${id}`);
+      const data = await apiClient.get(
+        `${API_URLS.GENERAL_LEDGER_ACCOUNT_GET}/${id}`
+      );
       return data as APIResponseType<GeneralLedgerAccount>;
+    } catch (error) {
+      const axiosError = error as AxiosError<APIResponseType>;
+      return {
+        success: false,
+        code: axiosError.response?.status,
+        msg: axiosError.response?.data?.msg ?? "Network Connection Problem",
+      } as APIResponseType;
+    }
+  }
+
+  async total(): Promise<APIResponseType<Total>> {
+    try {
+      const data = await apiClient.get(
+        `${API_URLS.GENERAL_LEDGER_ACCOUNT_GET}`
+      );
+      return data as APIResponseType<Total>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
       return {
@@ -48,7 +67,10 @@ class GeneralLedgerAccountService extends APIService<GeneralLedgerAccount> {
       const ret =
         data?.id === "new" || !data?.id
           ? await apiClient.post(API_URLS.GENERAL_LEDGER_ACCOUNT_CREATE, data)
-          : await apiClient.put(`${API_URLS.GENERAL_LEDGER_ACCOUNT_UPDATE}/${data?.id}`, data);
+          : await apiClient.put(
+              `${API_URLS.GENERAL_LEDGER_ACCOUNT_UPDATE}/${data?.id}`,
+              data
+            );
       return ret as APIResponseType<GeneralLedgerAccount>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
@@ -66,7 +88,9 @@ class GeneralLedgerAccountService extends APIService<GeneralLedgerAccount> {
     id?: string;
   }): Promise<APIResponseType<boolean>> {
     try {
-      const ret = await apiClient.delete(`${API_URLS.GENERAL_LEDGER_ACCOUNT_DELETE}/${id}`);
+      const ret = await apiClient.delete(
+        `${API_URLS.GENERAL_LEDGER_ACCOUNT_DELETE}/${id}`
+      );
       return ret as APIResponseType<boolean>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;

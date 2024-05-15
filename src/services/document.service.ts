@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { Counts } from "types/ui-types";
+import { Total } from "types/ui-types";
 import { apiClient } from "utils/api-utils";
 import { API_URLS } from "./api-urls";
 import { APIService } from "./api.service";
@@ -44,10 +44,10 @@ class DocumentService extends APIService<Document> {
     }
   }
 
-  async getCounts(): Promise<APIResponseType<Counts>> {
+  async getCounts(): Promise<APIResponseType<Total>> {
     try {
       const data = await apiClient.get(API_URLS.DOCUMENT_GET_COUNTS);
-      return data as APIResponseType<Counts>;
+      return data as APIResponseType<Total>;
     } catch (error) {
       const axiosError = error as AxiosError<APIResponseType>;
       return {

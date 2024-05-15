@@ -132,4 +132,4 @@ export interface StaticField {
   isLabel?: boolean;
 }
 
-export type Counts = { [key: string]: number };
+export type Total = { [key: string]: number | Total };

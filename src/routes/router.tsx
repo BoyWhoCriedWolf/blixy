@@ -35,6 +35,7 @@ import BankLayout from "pages/bank/layout";
 import BankProcessedTransactionsPage from "pages/bank/processed-transactions";
 
 import AccountingChartPage from "pages/accounting/chart-of-accounts";
+import AccountingProfitLossPage from "pages/accounting/profit-loss";
 import AccountingTaxesPage from "pages/accounting/taxes";
 import BackofficeAccountDetailPage from "pages/backoffice/actions/account-detail";
 import BackofficeAccountDetailDocumentPage from "pages/backoffice/actions/account-detail/BackofficeAccountDetailDocumentPage";
@@ -157,6 +158,7 @@ export const router = createBrowserRouter(
           <Route path="chart" element={<AccountingChartPage />} />
           {/* <Route path="chart/new" element={<AccountingChartNewPage />} /> */}
           <Route path="taxes" element={<AccountingTaxesPage />} />
+          <Route path="profit-loss" element={<AccountingProfitLossPage />} />
         </Route>
 
         {/* accounting */}
