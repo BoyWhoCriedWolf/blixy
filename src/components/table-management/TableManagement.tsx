@@ -111,7 +111,7 @@ function TableManagement<T = GridValidRowModel>({
         (item) =>
           ({
             ...(item ?? {}),
-            sx: { ...(item?.sx ?? {}), minWidth: 100 },
+            sx: { ...(item?.sx ?? {}), minWidth: 120 },
           } as StaticField)
       ),
     [filterFields]
@@ -266,24 +266,26 @@ function TableManagement<T = GridValidRowModel>({
         <Grid item>
           {pageTitle ? <PageHeading>{pageTitle}</PageHeading> : null}
         </Grid>
-        <Grid item>
-          <EditForm
-            data={filterFormData}
-            onChange={setFilterFormData}
-            fields={formattedFilterFields}
-          />
-        </Grid>
-        <Grid item>
-          {hasAdd ? (
-            <Button
-              onClick={handleAdd}
-              variant="outlined"
-              size="small"
-              startIcon={<Add />}
-            >
-              Add
-            </Button>
-          ) : null}
+        <Grid container alignItems="center">
+          <Grid item>
+            <EditForm
+              data={filterFormData}
+              onChange={setFilterFormData}
+              fields={formattedFilterFields}
+            />
+          </Grid>
+          <Grid item>
+            {hasAdd ? (
+              <Button
+                onClick={handleAdd}
+                variant="outlined"
+                size="small"
+                startIcon={<Add />}
+              >
+                Add
+              </Button>
+            ) : null}
+          </Grid>
         </Grid>
       </Grid>
       <PrimaryTable<T>
