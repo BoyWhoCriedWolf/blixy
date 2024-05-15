@@ -3,11 +3,13 @@ import TableManagement from "components/table-management";
 import { useNavigate } from "react-router-dom";
 import generalLedgerAccountService from "services/general.ledger.account.service";
 import {
+  ACCOUNT_TRANSACTION_TYPES,
+  AccountTransactionType,
   GENERAL_LEDGER_ACCOUNT_TYPE_ORDER,
   GeneralLedgerAccount,
   GeneralLedgerAccountType,
 } from "services/types/general.ledger.account.types";
-import { FieldType } from "types/ui-types";
+import { FieldType, GeneralOption } from "types/ui-types";
 import { percentFormatter } from "utils/number-utils";
 
 const GeneralLedgerAccountsList = () => {
@@ -43,6 +45,19 @@ const GeneralLedgerAccountsList = () => {
           field: "deductible",
           renderCell: (p: GridRenderCellParams) =>
             p?.row?.disableAction ? null : percentFormatter(p?.row?.deductible),
+        },
+      ]}
+      filter={{
+        account_transaction_type: AccountTransactionType.AllTransactions,
+      }}
+      filterFields={[
+        {
+          // displayName: "Type",
+          name: "account_transaction_type",
+          type: FieldType.Choice,
+          options: ACCOUNT_TRANSACTION_TYPES,
+          getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
+          getOptionValue: (option?: GeneralOption) => option?.value ?? "",
         },
       ]}
       fields={[

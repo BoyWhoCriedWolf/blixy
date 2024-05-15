@@ -1,4 +1,4 @@
-import { GridSize } from "@mui/material";
+import { GridSize, SxProps, Theme } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { ReactNode } from "react";
 
@@ -130,6 +130,9 @@ export interface StaticField {
 
   // show label
   isLabel?: boolean;
+
+  // style
+  sx?: SxProps<Theme>;
 }
 
 export type Total = { [key: string]: number | Total };

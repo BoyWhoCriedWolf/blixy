@@ -39,6 +39,7 @@ function TableManagement<T = GridValidRowModel>({
 
   apiService: service = apiService,
 
+  filterFields = [],
   filter,
 
   enableMockup = false,
@@ -62,6 +63,7 @@ function TableManagement<T = GridValidRowModel>({
   columns?: Array<GridColDef>;
 
   formWidth?: Breakpoint;
+  filterFields?: Array<Partial<StaticField>>;
   fields?: Array<Partial<StaticField>>;
   viewFields?: Array<Partial<StaticField>>;
   lg?: boolean | GridSize;
@@ -97,12 +99,26 @@ function TableManagement<T = GridValidRowModel>({
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<Array<T>>([]);
   const [formData, setFormData] = useState<T>({} as T);
+  const [filterFormData, setFilterFormData] = useState<any>({});
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenView, setIsOpenView] = useState(false);
 
   const formattedData = useMemo(() => formatData(data), [data, formatData]);
 
+  const formattedFilterFields = useMemo(
+    () =>
+      filterFields?.map(
+        (item) =>
+          ({
+            ...(item ?? {}),
+            sx: { ...(item?.sx ?? {}), minWidth: 100 },
+          } as StaticField)
+      ),
+    [filterFields]
+  );
+
   const jsonFilter = JSON.stringify(filter ?? {});
+  const jsonFilterFormData = JSON.stringify(filterFormData ?? {});
 
   const hasAdd =
     !readOnly && availableActions.findIndex((item) => item === "Add") >= 0;
@@ -182,7 +198,7 @@ function TableManagement<T = GridValidRowModel>({
 
   const loadData = async () => {
     setIsLoading(true);
-    const ret = await service.gets(filter);
+    const ret = await service.gets(filterFormData);
     console.log(ret);
     setIsLoading(false);
     if (ret.success) {
@@ -228,11 +244,16 @@ function TableManagement<T = GridValidRowModel>({
   };
 
   useEffect(() => {
+    setFilterFormData(filter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jsonFilter]);
+
+  useEffect(() => {
     if (reload) {
       loadData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reload, jsonFilter]);
+  }, [reload, jsonFilterFormData]);
 
   return (
     <LoaderContainer open={isLoading} style={{ height: "100%" }}>
@@ -244,6 +265,13 @@ function TableManagement<T = GridValidRowModel>({
       >
         <Grid item>
           {pageTitle ? <PageHeading>{pageTitle}</PageHeading> : null}
+        </Grid>
+        <Grid item>
+          <EditForm
+            data={filterFormData}
+            onChange={setFilterFormData}
+            fields={formattedFilterFields}
+          />
         </Grid>
         <Grid item>
           {hasAdd ? (

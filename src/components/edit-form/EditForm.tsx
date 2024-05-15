@@ -137,6 +137,7 @@ const EditForm = function <T = { [key: string]: any }>(
             sm={field?.sm ?? sm}
             xs={field?.xs ?? xs}
             flexGrow={field?.flexGrow}
+            sx={field?.sx}
           >
             <Collapse in={!isHide}>
               <Box>

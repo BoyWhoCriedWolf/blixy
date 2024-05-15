@@ -10,16 +10,12 @@ import { useNavigate } from "react-router-dom";
 import ApprovedDocumentsList from "sections/documents/documents-list/ApprovedDocumentsList";
 import generalLedgerAccountService from "services/general.ledger.account.service";
 import {
+  ACCOUNT_TRANSACTION_TYPES,
+  AccountTransactionType,
   GeneralLedgerAccount,
   GeneralLedgerAccountType,
 } from "services/types/general.ledger.account.types";
-import { FieldType } from "types/ui-types";
-
-const enum AccountTransactionType {
-  AllTransactions = "All Transactions",
-  BalanceSheetAccounts = "Balance sheet Accounts", // Assets, Liability
-  ProfitLossAccounts = "Profit Loss Accounts", // transactions
-}
+import { FieldType, GeneralOption } from "types/ui-types";
 
 const GeneralLedgerAccountDetail: FC<
   PropsWithChildren<{ accountId?: string }>
@@ -104,11 +100,11 @@ const GeneralLedgerAccountDetail: FC<
                       // displayName: "Type",
                       name: "type",
                       type: FieldType.Choice,
-                      options: [
-                        AccountTransactionType.AllTransactions,
-                        AccountTransactionType.BalanceSheetAccounts,
-                        AccountTransactionType.ProfitLossAccounts,
-                      ],
+                      options: ACCOUNT_TRANSACTION_TYPES,
+                      getOptionLabel: (option?: GeneralOption) =>
+                        option?.name ?? "",
+                      getOptionValue: (option?: GeneralOption) =>
+                        option?.value ?? "",
                     },
                   ]}
                 />
@@ -141,17 +137,15 @@ const GeneralLedgerAccountDetail: FC<
         general_ledger_account_id={accountId}
         generalLedgerAccount={data}
         general_ledger_account_types={
-          (filterFormData.type as string) ===
-          (AccountTransactionType.AllTransactions as string)
+          filterFormData.type === AccountTransactionType.AllTransactions
             ? undefined
-            : (filterFormData.type as string) ===
-              (AccountTransactionType.BalanceSheetAccounts as string)
+            : filterFormData.type ===
+              AccountTransactionType.BalanceSheetAccounts
             ? [
                 GeneralLedgerAccountType.Assets,
                 GeneralLedgerAccountType.Liabilities,
               ]
-            : (filterFormData.type as string) ===
-              (AccountTransactionType.ProfitLossAccounts as string)
+            : filterFormData.type === AccountTransactionType.ProfitLossAccounts
             ? [
                 GeneralLedgerAccountType.Revenue,
                 GeneralLedgerAccountType.Costs,
