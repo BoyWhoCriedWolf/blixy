@@ -10,11 +10,13 @@ class DocumentService extends APIService<Document> {
   async gets({
     deleted = false,
     doc_type,
+    doc_types,
     approved,
     general_ledger_account_id,
   }: {
     deleted?: boolean;
     doc_type?: DocumentType;
+    doc_types?: Array<DocumentType>;
     approved?: boolean;
     general_ledger_account_id?: string;
   } = {}): Promise<APIResponseType<Document[]>> {
@@ -22,6 +24,7 @@ class DocumentService extends APIService<Document> {
       const data = await apiClient.get(API_URLS.DOCUMENT_GETS, {
         ...(deleted ? { deleted } : {}),
         ...(doc_type ? { doc_type } : {}),
+        ...(doc_types ? { doc_types } : {}),
         ...(approved ? { approved } : {}),
         ...(general_ledger_account_id ? { general_ledger_account_id } : {}),
       });

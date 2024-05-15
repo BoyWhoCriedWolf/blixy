@@ -17,8 +17,13 @@ const ApprovedDocumentsList: FC<
   PropsWithChildren<{
     generalLedgerAccount?: GeneralLedgerAccount;
     general_ledger_account_id?: string;
+    doc_types?: Array<DocumentType>;
   }>
-> = ({ generalLedgerAccount, general_ledger_account_id = "" }) => {
+> = ({
+  generalLedgerAccount,
+  general_ledger_account_id = "",
+  doc_types,
+}) => {
   const navigate = useNavigate();
 
   const handleView = (value: Document) => {
@@ -33,6 +38,7 @@ const ApprovedDocumentsList: FC<
       filter={{
         approved: true,
         ...(general_ledger_account_id ? { general_ledger_account_id } : {}),
+        ...(doc_types ? { doc_types: doc_types } : {}),
       }}
       columns={[
         {

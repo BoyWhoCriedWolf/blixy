@@ -1,5 +1,6 @@
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { Grid, IconButton } from "@mui/material";
+import EditForm from "components/edit-form";
 import LoaderContainer from "components/loading/loader-container";
 import PageLoading from "components/loading/page-loading";
 import PageHeading from "components/typography/page-heading";
@@ -8,7 +9,15 @@ import { FC, PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApprovedDocumentsList from "sections/documents/documents-list/ApprovedDocumentsList";
 import generalLedgerAccountService from "services/general.ledger.account.service";
+import { DocumentType } from "services/types/document.types";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
+import { FieldType } from "types/ui-types";
+
+const enum AccountTransactionType {
+  AllTransactions = "All Transactions",
+  BalanceSheetAccounts = "Balance sheet Accounts",
+  ProfitLossAccounts = "Profit Loss Accounts",
+}
 
 const GeneralLedgerAccountDetail: FC<
   PropsWithChildren<{ accountId?: string }>
@@ -20,6 +29,9 @@ const GeneralLedgerAccountDetail: FC<
   const [data, setData] = useState<GeneralLedgerAccount>();
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [list, setList] = useState<Array<GeneralLedgerAccount>>([]);
+  const [filterFormData, setFilterFormData] = useState({
+    type: AccountTransactionType.AllTransactions,
+  });
 
   const currentIndex = useMemo(
     () => list.findIndex((item) => item.id === data?.id),
@@ -82,6 +94,24 @@ const GeneralLedgerAccountDetail: FC<
           <LoaderContainer open={isLoadingList}>
             <Grid container alignItems={"center"}>
               <Grid item>
+                <EditForm
+                  data={filterFormData}
+                  onChange={setFilterFormData}
+                  fields={[
+                    {
+                      displayName: "Type",
+                      name: "type",
+                      type: FieldType.Choice,
+                      options: [
+                        AccountTransactionType.AllTransactions,
+                        AccountTransactionType.BalanceSheetAccounts,
+                        AccountTransactionType.ProfitLossAccounts,
+                      ],
+                    },
+                  ]}
+                />
+              </Grid>
+              <Grid item>
                 <IconButton
                   onClick={handleBefore}
                   color="inherit"
@@ -103,11 +133,21 @@ const GeneralLedgerAccountDetail: FC<
           </LoaderContainer>
         }
       >
-        {data?.description ?? ""}: All transactions
+        {data?.description ?? ""}: {filterFormData.type ?? ""}
       </PageHeading>
       <ApprovedDocumentsList
         general_ledger_account_id={accountId}
         generalLedgerAccount={data}
+        doc_types={
+          filterFormData.type === AccountTransactionType.AllTransactions
+            ? undefined
+            : filterFormData.type ===
+              AccountTransactionType.BalanceSheetAccounts
+            ? undefined
+            : filterFormData.type === AccountTransactionType.ProfitLossAccounts
+            ? undefined
+            : undefined
+        }
       />
     </div>
   );
