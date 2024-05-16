@@ -57,7 +57,7 @@ const ApprovedDocumentsList: FC<
         {
           headerName: "Type",
           field: "doc_type",
-          align: "center",
+          align: "left",
           renderCell: (p: GridRenderCellParams<Document>) =>
             p.row.doc_type === DocumentType.BankStatement ? (
               <Tooltip placement="right" title="Bank Statement">

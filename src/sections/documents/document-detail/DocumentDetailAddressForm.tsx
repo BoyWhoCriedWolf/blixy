@@ -83,7 +83,7 @@ const DocumentDetailAddressForm: FC<
         // Chamber of Commerce-number
         {
           displayName: "Chamber of Commerce-number",
-          name: "chamber_commerce_number",
+          name: "kvk_number",
           type: FieldType.Text,
         },
         // Zip code city
@@ -111,7 +111,7 @@ const DocumentDetailAddressForm: FC<
         // VAT-number
         {
           displayName: "VAT-number",
-          name: "kvk_number",
+          name: "btw_number",
           type: FieldType.Text,
         },
         // Website
