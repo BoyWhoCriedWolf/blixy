@@ -35,59 +35,47 @@ const ProfitLossTotal = () => {
       <PageLoading open={isLoading} />
       {data
         ? Object.keys(data).map((accountType, accountTypeIndex) => {
-            const totalDocumentTypes = data[accountType];
+            const accountTypeContent = data[accountType];
 
             return (
               <CollapseBox
                 title={accountType}
                 key={accountTypeIndex}
-                secondaryTitle={
-                  totalDocumentTypes
-                    ? currencyFormatter(
-                        Object.values(totalDocumentTypes).reduce(
-                          (ret, cur) => ret + (cur.total_amount ?? 0),
-                          0
-                        )
-                      )
-                    : ""
-                }
+                secondaryTitle={currencyFormatter(
+                  accountTypeContent.total_amount
+                )}
               >
-                {totalDocumentTypes
-                  ? Object.keys(totalDocumentTypes).map(
-                      (documentType, documentTypeIndex) => {
-                        const documents =
-                          totalDocumentTypes?.[documentType]?.documents ?? [];
-                        const total =
-                          totalDocumentTypes?.[documentType]?.total_amount ?? 0;
+                {accountTypeContent?.accounts?.map((account, accountIndex) => {
+                  const documents = account?.documents ?? [];
+                  const total = documents.reduce(
+                    (ret, cur) => ret + (cur.amount ?? 0),
+                    0
+                  );
 
+                  return (
+                    <CollapseBox
+                      key={accountIndex}
+                      title={account.description ?? ""}
+                      secondaryTitle={currencyFormatter(total)}
+                    >
+                      {documents.map((document, documentIndex) => {
                         return (
                           <CollapseBox
-                            key={documentTypeIndex}
-                            title={documentType}
-                            secondaryTitle={currencyFormatter(total)}
+                            key={documentIndex}
+                            title={document.description ?? ""}
+                            secondaryTitle={currencyFormatter(document.amount)}
                           >
-                            {documents.map((document, documentIndex) => {
-                              return (
-                                <CollapseBox
-                                  key={documentIndex}
-                                  title={document.description ?? ""}
-                                  secondaryTitle={currencyFormatter(
-                                    document.amount
-                                  )}
-                                >
-                                  {/* <DocumentDetail
+                            {/* <DocumentDetail
                                     data={document}
                                     noNavigation
                                     readOnly
                                   /> */}
-                                </CollapseBox>
-                              );
-                            })}
                           </CollapseBox>
                         );
-                      }
-                    )
-                  : null}
+                      })}
+                    </CollapseBox>
+                  );
+                })}
               </CollapseBox>
             );
           })

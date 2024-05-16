@@ -61,21 +61,15 @@ const DocumentDetailPurchaseInvoice: FC<
         <BillingRulesList
           document={data}
           readOnly={readOnly}
-          preData={
-            data.general_ledger_account_id
-              ? [
-                  {
-                    id: uuidv4(),
-                    general_ledger_account_id: data.general_ledger_account_id,
-                    amount_excl_vat:
-                      (data.amount ?? 0) -
-                      (data.btw_type === BTWType.BTW0
-                        ? 0
-                        : data.vat_amount ?? 0),
-                  },
-                ]
-              : undefined
-          }
+          preData={[
+            {
+              id: uuidv4(),
+              general_ledger_account_id: data.general_ledger_account_id,
+              amount_excl_vat:
+                (data.amount ?? 0) -
+                (data.btw_type === BTWType.BTW0 ? 0 : data.vat_amount ?? 0),
+            },
+          ]}
         />
       </FormContainer>
 

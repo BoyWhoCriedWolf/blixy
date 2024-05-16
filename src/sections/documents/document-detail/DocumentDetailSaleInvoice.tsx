@@ -124,16 +124,12 @@ const DocumentDetailSalesInvoice: FC<
         <BillingRulesList
           document={data}
           readOnly={readOnly}
-          preData={
-            data.general_ledger_account_id
-              ? [
-                  {
-                    id: uuidv4(),
-                    general_ledger_account_id: data.general_ledger_account_id,
-                  },
-                ]
-              : undefined
-          }
+          preData={[
+            {
+              id: uuidv4(),
+              general_ledger_account_id: data.general_ledger_account_id,
+            },
+          ]}
         />
       </FormContainer>
 

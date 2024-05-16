@@ -226,7 +226,7 @@ export default function BillingRulesList({
   return (
     <Box
       sx={{
-        height: 500,
+        height: 200,
         width: "100%",
         "& .actions": {
           color: "text.secondary",

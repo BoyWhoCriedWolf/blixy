@@ -46,10 +46,8 @@ export const GENERAL_LEDGER_ACCOUNT_TYPES: Array<GeneralOption> = [
 
 export interface GeneralLedgerAccountDocumentTotal {
   [account_type: string]: {
-    [document_type: string]: {
-      documents?: Array<Document>;
-      total_amount?: number;
-    };
+    total_amount?: number;
+    accounts?: Array<GeneralLedgerAccount & { documents?: Array<Document> }>;
   };
 }
 
