@@ -8,6 +8,7 @@ import DocumentDetailAddressForm from "./DocumentDetailAddressForm";
 import DocumentDetailInvoiceForm from "./DocumentDetailInvoiceForm";
 import DocumentDetailPaymentForm from "./DocumentDetailPaymentForm";
 import BillingRulesList from "./billing-rules/list";
+import { BTWType } from "services/types/btw.type.types";
 
 const DocumentDetailPurchaseInvoice: FC<
   PropsWithChildren<{
@@ -67,7 +68,10 @@ const DocumentDetailPurchaseInvoice: FC<
                     id: uuidv4(),
                     general_ledger_account_id: data.general_ledger_account_id,
                     amount_excl_vat:
-                      (data.amount ?? 0) - (data.vat_amount ?? 0),
+                      (data.amount ?? 0) -
+                      (data.btw_type === BTWType.BTW0
+                        ? 0
+                        : data.vat_amount ?? 0),
                   },
                 ]
               : undefined
