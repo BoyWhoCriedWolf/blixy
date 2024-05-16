@@ -3,7 +3,6 @@ import CollapseBox from "components/containers/collapse-box";
 import PageLoading from "components/loading/page-loading";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
-import DocumentDetail from "sections/documents/document-detail";
 import generalLedgerAccountService from "services/general.ledger.account.service";
 import { GeneralLedgerAccountDocumentTotal } from "services/types/general.ledger.account.types";
 import { currencyFormatter } from "utils/number-utils";
@@ -76,11 +75,11 @@ const ProfitLossTotal = () => {
                                     document.amount
                                   )}
                                 >
-                                  <DocumentDetail
+                                  {/* <DocumentDetail
                                     data={document}
                                     noNavigation
                                     readOnly
-                                  />
+                                  /> */}
                                 </CollapseBox>
                               );
                             })}

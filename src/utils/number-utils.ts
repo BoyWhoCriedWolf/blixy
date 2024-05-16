@@ -24,5 +24,5 @@ export const currencyFormatter = (
     minimumFractionDigits: 2,
   });
 
-  return formatter.format(Number(p ?? 0) / 100);
+  return formatter.format(Number(p ?? 0));
 };
