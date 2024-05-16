@@ -27,8 +27,6 @@ import { GeneralLedgerAccount } from "services/types/general.ledger.account.type
 import { joinStrings } from "utils/string-utils";
 import { v4 as uuidv4 } from "uuid";
 
-const initialRows: GridRowsProp = [];
-
 interface EditToolbarProps {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
   setRowModesModel: (
@@ -60,11 +58,15 @@ function EditToolbar(props: EditToolbarProps) {
 export default function BillingRulesList({
   document,
   readOnly = false,
+  generalLedgerAccounts,
+  preData = [],
 }: React.PropsWithChildren<{
   document?: {};
   readOnly?: boolean;
+  generalLedgerAccounts?: Array<GeneralLedgerAccount>;
+  preData?: GridRowsProp;
 }> = {}) {
-  const [rows, setRows] = React.useState(initialRows);
+  const [rows, setRows] = React.useState(preData);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>(
     {}
   );
@@ -125,6 +127,15 @@ export default function BillingRulesList({
       setAccounts(retAccounts.data ?? []);
     }
   };
+
+  const jsonPreData = JSON.stringify(preData);
+
+  React.useEffect(() => {
+    if (preData) {
+      setRows(preData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jsonPreData]);
 
   React.useEffect(() => {
     loadOptions();

@@ -56,7 +56,15 @@ const DocumentDetailPurchaseInvoice: FC<
         <Typography fontWeight={600} mb={1}>
           BILLING RULES
         </Typography>
-        <BillingRulesList document={data} readOnly={readOnly} />
+        <BillingRulesList
+          document={data}
+          readOnly={readOnly}
+          preData={
+            data.general_ledger_account_id
+              ? [{ general_ledger_account_id: data.general_ledger_account_id }]
+              : undefined
+          }
+        />
       </FormContainer>
 
       {/* Payment */}
