@@ -3,6 +3,7 @@ import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { FC, PropsWithChildren } from "react";
 import { Document } from "services/types/document.types";
 import { DispatchFunction } from "types/ui-types";
+import { v4 as uuidv4 } from "uuid";
 import DocumentDetailAddressForm from "./DocumentDetailAddressForm";
 import DocumentDetailInvoiceForm from "./DocumentDetailInvoiceForm";
 import DocumentDetailPaymentForm from "./DocumentDetailPaymentForm";
@@ -61,7 +62,12 @@ const DocumentDetailPurchaseInvoice: FC<
           readOnly={readOnly}
           preData={
             data.general_ledger_account_id
-              ? [{ general_ledger_account_id: data.general_ledger_account_id }]
+              ? [
+                  {
+                    id: uuidv4(),
+                    general_ledger_account_id: data.general_ledger_account_id,
+                  },
+                ]
               : undefined
           }
         />

@@ -6,6 +6,7 @@ import generalLedgerAccountService from "services/general.ledger.account.service
 import { Document } from "services/types/document.types";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
+import { v4 as uuidv4 } from "uuid";
 import DocumentDetailAddressForm from "./DocumentDetailAddressForm";
 import DocumentDetailPaymentForm from "./DocumentDetailPaymentForm";
 import BillingRulesList from "./billing-rules/list";
@@ -125,7 +126,12 @@ const DocumentDetailSalesInvoice: FC<
           readOnly={readOnly}
           preData={
             data.general_ledger_account_id
-              ? [{ general_ledger_account_id: data.general_ledger_account_id }]
+              ? [
+                  {
+                    id: uuidv4(),
+                    general_ledger_account_id: data.general_ledger_account_id,
+                  },
+                ]
               : undefined
           }
         />
