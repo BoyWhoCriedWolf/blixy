@@ -28,7 +28,7 @@ const DocumentDetailInvoiceForm: FC<
         {
           displayName: "Reference",
           name: "reference",
-          type: FieldType.Choice,
+          type: FieldType.Text,
         },
         // {
         //   displayName: "Reference",

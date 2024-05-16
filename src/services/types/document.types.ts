@@ -1,9 +1,8 @@
 import { GeneralOption } from "types/ui-types";
-import { Contact } from "./contact.types";
-import { PaymentMethod } from "./payment.method.types";
-import { Tax } from "./tax.types";
 import { BTWType } from "./btw.type.types";
+import { Contact } from "./contact.types";
 import { GeneralLedgerAccount } from "./general.ledger.account.types";
+import { PaymentMethod } from "./payment.method.types";
 
 export interface Document {
   id: string;
