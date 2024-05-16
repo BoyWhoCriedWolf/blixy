@@ -53,7 +53,7 @@ const ApprovedDocumentsList: FC<
             ymd2dmy(p.row.document_date),
         },
         { headerName: "Description", field: "description" },
-        { headerName: "Invoice #", field: "invoice" },
+        { headerName: "Reference", field: "reference" },
         {
           headerName: "Type",
           field: "doc_type",
