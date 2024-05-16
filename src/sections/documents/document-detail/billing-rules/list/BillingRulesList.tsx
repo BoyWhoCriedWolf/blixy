@@ -236,6 +236,7 @@ export default function BillingRulesList({
         slotProps={{
           toolbar: { setRows, setRowModesModel },
         }}
+        hideFooterPagination
       />
     </Box>
   );
