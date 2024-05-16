@@ -52,6 +52,8 @@ function TableManagement<T = GridValidRowModel>({
   clickRowToEdit = false,
 
   formatData = (v: Array<T>) => v as Array<T & { disableAction?: boolean }>,
+
+  inlineEdit = false,
 }: {
   pageTitle?: string;
   title?: string;
@@ -93,6 +95,7 @@ function TableManagement<T = GridValidRowModel>({
   clickRowToEdit?: boolean;
 
   formatData?: (v: Array<T>) => Array<Partial<T> & { disableAction?: boolean }>;
+  inlineEdit?: boolean;
 }) {
   const snb = useSnackbar();
 
@@ -300,6 +303,7 @@ function TableManagement<T = GridValidRowModel>({
         hideFooterPagination={hideFooterPagination}
         actionsF={actionsF}
         onClickRow={handleClickRow}
+        inlineEdit={inlineEdit}
       />
 
       {/* Edit form */}

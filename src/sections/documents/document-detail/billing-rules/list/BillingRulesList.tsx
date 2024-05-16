@@ -80,6 +80,7 @@ const BillingRulesList: FC<
       ]}
       hideFooterPagination
       enableMockup
+      inlineEdit
     />
   );
 };

@@ -26,6 +26,7 @@ function PrimaryTable<T = GridValidRowModel>({
   hideFooterPagination = false,
 
   actionsF,
+  inlineEdit = false,
 }: {
   columns?: Array<GridColDef>;
   data?: Array<Partial<T>>;
@@ -42,6 +43,7 @@ function PrimaryTable<T = GridValidRowModel>({
   hideFooterPagination?: boolean;
 
   actionsF?: (value: T, valueIndex?: number) => ReactNode;
+  inlineEdit?: boolean;
 }) {
   const formattedData = useMemo(
     () =>
