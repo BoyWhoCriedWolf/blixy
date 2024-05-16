@@ -31,8 +31,7 @@ export interface Document {
   payment_term_time?: string;
 
   // invoice details
-  tax_id?: string;
-  tax?: Tax;
+  reference?: string;
   document_date?: string;
   amount?: number;
   vat_amount?: number;

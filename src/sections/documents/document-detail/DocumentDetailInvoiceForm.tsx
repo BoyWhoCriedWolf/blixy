@@ -1,11 +1,9 @@
 import EditForm from "components/edit-form";
 import { FC, PropsWithChildren } from "react";
 import generalLedgerAccountService from "services/general.ledger.account.service";
-import taxService from "services/tax.service";
 import { BTW_TYPES } from "services/types/btw.type.types";
 import { Document } from "services/types/document.types";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
-import { Tax } from "services/types/tax.types";
 import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
 import { joinStrings } from "utils/string-utils";
 
@@ -29,20 +27,25 @@ const DocumentDetailInvoiceForm: FC<
         // Reference
         {
           displayName: "Reference",
-          name: "tax_id",
+          name: "reference",
           type: FieldType.Choice,
-          getOptions: async () => {
-            const ret = await taxService.gets();
-            if (ret.success) {
-              return ret.data ?? [];
-            }
-            return [];
-          },
-          getOptionLabel: (option: Tax) => option?.description ?? "",
-          getOptionValue: (option: Tax) => option?.id ?? "",
-          joinedFieldName: "tax",
-          defaultOptionLabel: data?.tax?.description ?? "",
         },
+        // {
+        //   displayName: "Reference",
+        //   name: "tax_id",
+        //   type: FieldType.Choice,
+        //   getOptions: async () => {
+        //     const ret = await taxService.gets();
+        //     if (ret.success) {
+        //       return ret.data ?? [];
+        //     }
+        //     return [];
+        //   },
+        //   getOptionLabel: (option: Tax) => option?.description ?? "",
+        //   getOptionValue: (option: Tax) => option?.id ?? "",
+        //   joinedFieldName: "tax",
+        //   defaultOptionLabel: data?.tax?.description ?? "",
+        // },
         // Document date
         {
           displayName: "Document date",
