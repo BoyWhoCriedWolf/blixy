@@ -20,7 +20,7 @@ const CurrencyEURFormatInput = React.forwardRef<NumericFormatProps, InputBaseCom
 			}}
 			thousandSeparator
 			valueIsNumericString
-			prefix="€"
+			// prefix="€"
 		/>
 	);
 }) as React.ElementType<InputBaseComponentProps>;

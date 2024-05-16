@@ -44,7 +44,9 @@ const GeneralLedgerAccountsList = () => {
           headerName: "Deductible",
           field: "deductible",
           renderCell: (p: GridRenderCellParams) =>
-            p?.row?.disableAction ? null : percentFormatter(p?.row?.deductible),
+            p?.row?.disableAction
+              ? null
+              : percentFormatter(p?.row?.deductible, 0),
         },
       ]}
       filter={{
