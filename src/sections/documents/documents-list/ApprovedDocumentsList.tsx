@@ -95,7 +95,7 @@ const ApprovedDocumentsList: FC<
           headerName: "Contact",
           field: "contact_id",
           renderCell: (p: GridRenderCellParams<Document>) =>
-            p?.row?.contact?.description ?? "",
+            p?.row?.contact?.company_name ?? p?.row?.contact?.description ?? "",
         },
       ]}
       availableActions={["View"]}
