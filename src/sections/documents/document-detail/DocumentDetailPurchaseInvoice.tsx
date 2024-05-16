@@ -66,6 +66,8 @@ const DocumentDetailPurchaseInvoice: FC<
                   {
                     id: uuidv4(),
                     general_ledger_account_id: data.general_ledger_account_id,
+                    amount_excl_vat:
+                      (data.amount ?? 0) - (data.vat_amount ?? 0),
                   },
                 ]
               : undefined

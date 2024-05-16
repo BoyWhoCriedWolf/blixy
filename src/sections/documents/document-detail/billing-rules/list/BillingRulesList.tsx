@@ -39,7 +39,7 @@ function EditToolbar(props: EditToolbarProps) {
 
   const handleNew = () => {
     const id = uuidv4();
-    setRows((oldRows) => [...oldRows, { id, name: "", age: "", isNew: true }]);
+    setRows((oldRows) => [...oldRows, { id, description: "", isNew: true }]);
     setRowModesModel((oldModel) => ({
       ...oldModel,
       [id]: { mode: GridRowModes.Edit, fieldToFocus: "name" },
