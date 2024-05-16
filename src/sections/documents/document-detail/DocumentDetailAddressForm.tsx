@@ -111,7 +111,7 @@ const DocumentDetailAddressForm: FC<
         // VAT-number
         {
           displayName: "VAT-number",
-          name: "vat_number",
+          name: "kvk_number",
           type: FieldType.Text,
         },
         // Website
