@@ -10,6 +10,7 @@ import {
   GridActionsCellItem,
   GridColDef,
   GridEventListener,
+  GridRenderCellParams,
   GridRowEditStopReasons,
   GridRowId,
   GridRowModel,
@@ -24,6 +25,7 @@ import PageLoading from "components/loading/page-loading";
 import * as React from "react";
 import generalLedgerAccountService from "services/general.ledger.account.service";
 import { GeneralLedgerAccount } from "services/types/general.ledger.account.types";
+import { currencyFormatter } from "utils/number-utils";
 import { joinStrings } from "utils/string-utils";
 import { v4 as uuidv4 } from "uuid";
 
@@ -166,6 +168,8 @@ export default function BillingRulesList({
       field: "amount_excl_vat",
       headerName: "Amount excl. VAT",
       type: "number",
+      renderCell: (p: GridRenderCellParams) =>
+        currencyFormatter(p.row?.amount_excl_vat),
       flex: 1,
       align: "left",
       headerAlign: "left",
