@@ -230,7 +230,7 @@ const DocumentDetail: FC<
             onClose={() => setIsViewText(false)}
             title="Recognized text content"
           >
-            <div>{data?.text_content ?? ""}</div>
+            <Box sx={{whiteSpace: 'pre-line'}} >{data?.text_content ?? ""}</Box>
           </ModalContainer>
           <PageHeading
             mb={0}
