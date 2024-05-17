@@ -47,6 +47,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import AccountingBalanceSheetPage from "pages/accounting/balance-sheet";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -159,6 +160,7 @@ export const router = createBrowserRouter(
           {/* <Route path="chart/new" element={<AccountingChartNewPage />} /> */}
           <Route path="taxes" element={<AccountingTaxesPage />} />
           <Route path="profit-loss" element={<AccountingProfitLossPage />} />
+          <Route path="balance-sheet" element={<AccountingBalanceSheetPage />} />
         </Route>
 
         {/* accounting */}
