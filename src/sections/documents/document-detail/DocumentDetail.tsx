@@ -227,7 +227,7 @@ const DocumentDetail: FC<
         <Paper sx={{ p: 2 }}>
           <ModalContainer
             isOpen={isViewText}
-            onClose={() => setIsLoading(false)}
+            onClose={() => setIsViewText(false)}
             title="Recognized text content"
           >
             <div>{data?.text_content ?? ""}</div>
