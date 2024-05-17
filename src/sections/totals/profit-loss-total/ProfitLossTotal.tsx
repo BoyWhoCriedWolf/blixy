@@ -11,6 +11,7 @@ const ProfitLossTotal = () => {
   const snb = useSnackbar();
 
   const [isLoading, setIsLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [data, setData] = useState<GeneralLedgerAccountDocumentTotal>();
 
   const loadData = async () => {
@@ -33,53 +34,43 @@ const ProfitLossTotal = () => {
   return (
     <Box>
       <PageLoading open={isLoading} />
-      {data
-        ? Object.keys(data).map((accountType, accountTypeIndex) => {
-            const accountTypeContent = data[accountType];
 
-            return (
-              <CollapseBox
-                title={accountType}
-                key={accountTypeIndex}
-                secondaryTitle={currencyFormatter(
-                  accountTypeContent.total_amount
-                )}
-              >
-                {accountTypeContent?.accounts?.map((account, accountIndex) => {
-                  const documents = account?.documents ?? [];
-                  const total = documents.reduce(
-                    (ret, cur) => ret + (cur.amount ?? 0),
-                    0
-                  );
-
-                  return (
-                    <CollapseBox
-                      key={accountIndex}
-                      title={account.description ?? ""}
-                      secondaryTitle={currencyFormatter(total)}
-                    >
-                      {documents.map((document, documentIndex) => {
-                        return (
-                          <CollapseBox
-                            key={documentIndex}
-                            title={document.description ?? ""}
-                            secondaryTitle={currencyFormatter(document.amount)}
-                          >
-                            {/* <DocumentDetail
-                                    data={document}
-                                    noNavigation
-                                    readOnly
-                                  /> */}
-                          </CollapseBox>
-                        );
-                      })}
-                    </CollapseBox>
-                  );
-                })}
-              </CollapseBox>
-            );
-          })
-        : null}
+      <CollapseBox title="Profit" secondaryTitle={currencyFormatter("")}>
+        <CollapseBox
+          title="Gross Margin"
+          secondaryTitle={currencyFormatter("")}
+        >
+          <CollapseBox
+            title="Net Revenue"
+            secondaryTitle={currencyFormatter("")}
+          ></CollapseBox>
+          <CollapseBox
+            title="Cost of Goods Sold"
+            secondaryTitle={currencyFormatter("")}
+          ></CollapseBox>
+        </CollapseBox>
+        <CollapseBox
+          title="Operation Expenses"
+          secondaryTitle={currencyFormatter("")}
+        >
+          <CollapseBox
+            title="Personal Costs"
+            secondaryTitle={currencyFormatter("")}
+          ></CollapseBox>
+          <CollapseBox
+            title="Car Expenses"
+            secondaryTitle={currencyFormatter("")}
+          ></CollapseBox>
+          <CollapseBox
+            title="Sales Costs"
+            secondaryTitle={currencyFormatter("")}
+          ></CollapseBox>
+          <CollapseBox
+            title="Other Operating Expenses"
+            secondaryTitle={currencyFormatter("")}
+          ></CollapseBox>
+        </CollapseBox>
+      </CollapseBox>
     </Box>
   );
 };
