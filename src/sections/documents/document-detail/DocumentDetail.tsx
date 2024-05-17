@@ -4,6 +4,7 @@ import {
   NavigateBefore,
   NavigateNext,
   Save,
+  Visibility,
 } from "@mui/icons-material";
 import {
   Alert,
@@ -35,6 +36,7 @@ import DocumentDetailBankStatement from "./DocumentDetailBankStatement";
 import DocumentDetailPurchaseInvoice from "./DocumentDetailPurchaseInvoice";
 import DocumentDetailSalesInvoice from "./DocumentDetailSaleInvoice";
 import DocumentDetailStandard from "./DocumentDetailStandard";
+import ModalContainer from "components/containers/modal-container";
 
 const DocumentDetail: FC<
   PropsWithChildren<{
@@ -70,6 +72,7 @@ const DocumentDetail: FC<
   const [data, setData] = useState<Document>();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [isViewText, setIsViewText] = useState(false);
 
   const currentIndex = useMemo(
     () => list.findIndex((item) => item.id === data?.id),
@@ -181,6 +184,10 @@ const DocumentDetail: FC<
     }
   };
 
+  const handleViewText = () => {
+    setIsViewText(true);
+  };
+
   useEffect(() => {
     if (id) {
       loadData();
@@ -218,10 +225,26 @@ const DocumentDetail: FC<
       <Grid item lg={12} md={12} sm={12} xs={12}>
         <PageLoading open={isLoading} />
         <Paper sx={{ p: 2 }}>
+          <ModalContainer
+            isOpen={isViewText}
+            onClose={() => setIsLoading(false)}
+            title="Recognized text content"
+          >
+            <div>{data?.text_content ?? ""}</div>
+          </ModalContainer>
           <PageHeading
             mb={0}
             actions={
               <Grid container spacing={1}>
+                <Grid item>
+                  <Button
+                    onClick={handleViewText}
+                    color="info"
+                    startIcon={<Visibility />}
+                  >
+                    Show text content
+                  </Button>
+                </Grid>
                 {readOnly ? null : (
                   <Grid item>
                     <ConfirmButtonContainer onClick={handleDelete}>
