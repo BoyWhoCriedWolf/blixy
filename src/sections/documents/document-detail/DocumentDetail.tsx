@@ -1,6 +1,8 @@
 import {
   AssignmentTurnedIn,
   Delete,
+  Edit,
+  EditOff,
   NavigateBefore,
   NavigateNext,
   Save,
@@ -253,7 +255,7 @@ const DocumentDetail: FC<
                       <Button
                         onClick={handleToggleReadOnly}
                         color="info"
-                        startIcon={<Visibility />}
+                        startIcon={<Edit />}
                       >
                         Edit mode
                       </Button>
@@ -261,7 +263,7 @@ const DocumentDetail: FC<
                       <Button
                         onClick={handleToggleReadOnly}
                         color="info"
-                        startIcon={<Visibility />}
+                        startIcon={<EditOff />}
                       >
                         Close Edit mode
                       </Button>
