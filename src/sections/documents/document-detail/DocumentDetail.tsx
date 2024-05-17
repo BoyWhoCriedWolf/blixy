@@ -56,7 +56,7 @@ const DocumentDetail: FC<
   id = "",
   data: propsData,
   onChange,
-  readOnly = false,
+  readOnly: propsReadOnly = false,
   paperContainer = true,
   deleted,
   approved,
@@ -73,6 +73,7 @@ const DocumentDetail: FC<
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [isViewText, setIsViewText] = useState(false);
+  const [readOnly, setReadOnly] = useState(false);
 
   const currentIndex = useMemo(
     () => list.findIndex((item) => item.id === data?.id),
@@ -188,6 +189,14 @@ const DocumentDetail: FC<
     setIsViewText(true);
   };
 
+  const handleToggleReadOnly = () => {
+    setReadOnly((s = false) => !s);
+  };
+
+  useEffect(() => {
+    setReadOnly(propsReadOnly);
+  }, [propsReadOnly]);
+
   useEffect(() => {
     if (id) {
       loadData();
@@ -230,12 +239,35 @@ const DocumentDetail: FC<
             onClose={() => setIsViewText(false)}
             title="Recognized text content"
           >
-            <Box sx={{whiteSpace: 'pre-line'}} >{data?.text_content ?? ""}</Box>
+            <Box sx={{ whiteSpace: "pre-line" }}>
+              {data?.text_content ?? ""}
+            </Box>
           </ModalContainer>
           <PageHeading
             mb={0}
             actions={
               <Grid container spacing={1}>
+                {propsReadOnly ? (
+                  <Grid item>
+                    {readOnly ? (
+                      <Button
+                        onClick={handleToggleReadOnly}
+                        color="info"
+                        startIcon={<Visibility />}
+                      >
+                        Edit mode
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={handleToggleReadOnly}
+                        color="info"
+                        startIcon={<Visibility />}
+                      >
+                        Close Edit mode
+                      </Button>
+                    )}
+                  </Grid>
+                ) : null}
                 <Grid item>
                   <Button
                     onClick={handleViewText}
