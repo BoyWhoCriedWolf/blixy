@@ -268,8 +268,8 @@ export const MENU_DATA = [
         label: "Profit loss account",
       },
       {
-        icon: <Construction />,
-        path: "#",
+        icon: <Construction />, 
+        path: "/accounting/balance-sheet",
         label: "Trial balance sheet",
       },
       {
