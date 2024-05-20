@@ -247,7 +247,7 @@ const DocumentDetail: FC<
             <TabsContainer
               data={[
                 {
-                  label: "Recognizition",
+                  label: "OCR",
                   render: (
                     <Box sx={{ whiteSpace: "pre-line" }}>
                       {data?.text_content ?? ""}
@@ -255,7 +255,7 @@ const DocumentDetail: FC<
                   ),
                 },
                 {
-                  label: "OCR",
+                  label: "Recognizition",
                   render: (
                     <PrimaryTable
                       columns={[
