@@ -18,10 +18,13 @@ import {
   Paper,
 } from "@mui/material";
 import ConfirmButtonContainer from "components/containers/confirm-button-container";
+import ModalContainer from "components/containers/modal-container";
+import TabsContainer from "components/containers/tabs-container";
 import EditForm from "components/edit-form";
 import LoaderContainer from "components/loading/loader-container";
 import PageLoading from "components/loading/page-loading";
 import PdfViewer from "components/pdf-viewer";
+import PrimaryTable from "components/table";
 import PageHeading from "components/typography/page-heading";
 import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useEffect, useMemo, useState } from "react";
@@ -34,11 +37,11 @@ import {
 } from "services/types/document.types";
 import { DispatchFunction, FieldType, GeneralOption } from "types/ui-types";
 import { downloadPdfFromUrl } from "utils/fetch-utils";
+import { currencyFormatter } from "utils/number-utils";
 import DocumentDetailBankStatement from "./DocumentDetailBankStatement";
 import DocumentDetailPurchaseInvoice from "./DocumentDetailPurchaseInvoice";
 import DocumentDetailSalesInvoice from "./DocumentDetailSaleInvoice";
 import DocumentDetailStandard from "./DocumentDetailStandard";
-import ModalContainer from "components/containers/modal-container";
 
 const DocumentDetail: FC<
   PropsWithChildren<{
@@ -241,9 +244,104 @@ const DocumentDetail: FC<
             onClose={() => setIsViewText(false)}
             title="Recognized text content"
           >
-            <Box sx={{ whiteSpace: "pre-line" }}>
-              {data?.text_content ?? ""}
-            </Box>
+            <TabsContainer
+              data={[
+                {
+                  label: "Recognizition",
+                  render: (
+                    <Box sx={{ whiteSpace: "pre-line" }}>
+                      {data?.text_content ?? ""}
+                    </Box>
+                  ),
+                },
+                {
+                  label: "OCR",
+                  render: (
+                    <PrimaryTable
+                      columns={[
+                        { headerName: "Field", field: "field" },
+                        { headerName: "Value", field: "value" },
+                      ]}
+                      data={[
+                        { field: "Document Date", value: data?.document_date },
+                        { field: "OrderDate", value: "" },
+                        {
+                          field: "Payment Method",
+                          value: data?.payment_method,
+                        },
+                        { field: "Payment Due Date", value: "" },
+                        { field: "Currency", value: data?.vat_amount_currency },
+                        { field: "Document Type", value: data?.doc_type },
+                        { field: "Invoice Number", value: data?.reference },
+                        { field: "Document Number", value: "" },
+                        { field: "OrderNumber", value: "" },
+                        {
+                          field: "TotalExclVat",
+                          value: data?.vat_amount
+                            ? currencyFormatter(data?.vat_amount)
+                            : "",
+                        },
+                        {
+                          field: "Total Vat",
+                          value: data?.vat_amount
+                            ? currencyFormatter(data?.vat_amount)
+                            : "",
+                        },
+                        {
+                          field: "Total Incl Vat",
+                          value: data?.amount
+                            ? currencyFormatter(data?.amount)
+                            : "",
+                        },
+                        {
+                          field: "Supplier Name",
+                          value: data?.contact?.company_name ?? "",
+                        },
+                        {
+                          field: "Supplier Vat Number",
+                          value: data?.contact?.btw_number ?? "",
+                        },
+                        {
+                          field: "Supplier Country Code",
+                          value: data?.contact?.country ?? "",
+                        },
+                        {
+                          field: "Supplier Chamber Commerce Number",
+                          value: data?.contact?.kvk_number ?? "",
+                        },
+                        {
+                          field: "Supplier Address",
+                          value: data?.contact?.address_street ?? "",
+                        },
+                        { field: "IBAN", value: "" },
+                        {
+                          field: "Bank Account Number",
+                          value: "",
+                        },
+                        {
+                          field: "Bank Registration Number",
+                          value: "",
+                        },
+                        { field: "Receiver Name", value: "" },
+                        {
+                          field: "Receiver Address",
+                          value: "",
+                        },
+                        {
+                          field: "Receiver Vat Number",
+                          value: "",
+                        },
+                        {
+                          field: "Receiver Country Code",
+                          value: "",
+                        },
+                      ]}
+                      hideFooterPagination
+                    />
+                  ),
+                },
+              ]}
+            />
           </ModalContainer>
           <PageHeading
             mb={0}
