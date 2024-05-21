@@ -10,6 +10,17 @@ export interface GeneralLedgerAccount {
   deductible?: number;
 }
 
+export interface Balance {
+  number: number;
+  description: string;
+  ODebit: number;
+  OCredit: number;
+  debit: number;
+  credit: number;
+  DBalance: number;
+  CBalance: number;
+}
+
 export enum GeneralLedgerAccountType {
   Revenue = "Revenue",
   Costs = "Costs",
