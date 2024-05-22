@@ -269,8 +269,13 @@ export const MENU_DATA = [
       },
       {
         icon: <Construction />, 
-        path: "/accounting/balance-sheet",
+        path: "/accounting/trial-sheet",
         label: "Trial balance sheet",
+      },
+      {
+        icon: <Construction />,
+        path: "/accounting/balance-sheet",
+        label: "Balance sheet",
       },
       {
         icon: <FilePresent />,

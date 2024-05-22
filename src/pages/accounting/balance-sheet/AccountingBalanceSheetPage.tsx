@@ -2,25 +2,23 @@ import { Paper } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import TableManagement from "components/table-management";
 import PageHeading from "components/typography/page-heading";
-import documentService from "services/document.service";
-import { Balance } from "services/types/general.ledger.account.types";
+import generalLedgerAccountService from "services/general.ledger.account.service";
+import {
+  ACCOUNT_TRANSACTION_TYPES,
+  AccountTransactionType,
+  Balance,
+} from "services/types/general.ledger.account.types";
+import { FieldType, GeneralOption } from "types/ui-types";
 import { currencyFormatter } from "utils/number-utils";
 
 const AccountingBalanceSheetPage = () => {
   return (
     <Paper sx={{ p: 2, m: 2, flexGrow: 1 }}>
-      <PageHeading>Trial Balance Sheet</PageHeading>
+      <PageHeading>Balance Sheet</PageHeading>
       <TableManagement<Balance>
-        apiService={documentService}
-        // filter={{
-        //   approved: true,
-        //   ...(general_ledger_account_id ? { general_ledger_account_id } : {}),
-        //   ...(general_ledger_account_types
-        //     ? { general_ledger_account_types: general_ledger_account_types }
-        //     : {}),
-        // }}
+        apiService={generalLedgerAccountService}
         columns={[
-          { headerName: "Number", field: "number" },
+          { headerName: "Number", field: "code" },
           { headerName: "Description", field: "description" },
           {
             headerName: "Opening Debit",
@@ -59,6 +57,70 @@ const AccountingBalanceSheetPage = () => {
               currencyFormatter(p?.row?.CBalance),
           },
         ]}
+        // filter={{
+        //   account_transaction_type: AccountTransactionType.AllTransactions,
+        // }}
+        filterFields={[
+          {
+            // displayName: "Type",
+            name: "account_transaction_type",
+            type: FieldType.Choice,
+            options: ACCOUNT_TRANSACTION_TYPES,
+            getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
+            getOptionValue: (option?: GeneralOption) => option?.value ?? "",
+          },
+        ]}
+        fields={[
+          // Number
+          {
+            displayName: "Number",
+            name: "code",
+            type: FieldType.Text,
+          },
+          // Description
+          {
+            displayName: "Description",
+            name: "description",
+            type: FieldType.Text,
+          },
+          // Debit
+          {
+            displayName: "Opening Debit",
+            name: "ODebit",
+            type: FieldType.Text,
+          },
+          // Opening Credit
+          {
+            displayName: "Opening Credit",
+            name: "OCredit",
+            type: FieldType.Text,
+          },
+          // Debit
+          {
+            displayName: "Debit",
+            name: "debit",
+            type: FieldType.Text,
+          },
+          // Credit
+          {
+            displayName: "Credit",
+            name: "credit",
+            type: FieldType.Text,
+          },
+          // Debit Balance
+          {
+            displayName: "Debit Balance",
+            name: "DBalance",
+            type: FieldType.Text,
+          },
+          // Credit Balance
+          {
+            displayName: "Credit Balance",
+            name: "CBalance",
+            type: FieldType.Text,
+          },
+        ]}
+        availableActions={["View"]}
         formatData={(v: Array<Balance>) => [
           ...(v ?? []),
           {
@@ -72,7 +134,6 @@ const AccountingBalanceSheetPage = () => {
             disableAction: true,
           },
         ]}
-        actionsF={() => false}
         hideFooterPagination
       />
     </Paper>
