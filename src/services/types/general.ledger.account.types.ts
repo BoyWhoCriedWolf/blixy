@@ -13,12 +13,12 @@ export interface GeneralLedgerAccount {
 export interface Balance {
   number: number;
   description: string;
-  ODebit: number;
-  OCredit: number;
+  open_debit: number;
+  open_credit: number;
   debit: number;
   credit: number;
-  DBalance: number;
-  CBalance: number;
+  debit_balance: number;
+  credit_balance: number;
 }
 
 export enum GeneralLedgerAccountType {

@@ -1,36 +1,37 @@
 import { Paper } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import TableManagement from "components/table-management";
-import PageHeading from "components/typography/page-heading";
 import generalLedgerAccountService from "services/general.ledger.account.service";
 import {
-  ACCOUNT_TRANSACTION_TYPES,
-  AccountTransactionType,
   Balance,
+  GENERAL_LEDGER_ACCOUNT_TYPE_ORDER,
+  GeneralLedgerAccount,
+  GeneralLedgerAccountType,
 } from "services/types/general.ledger.account.types";
-import { FieldType, GeneralOption } from "types/ui-types";
+import { FieldType } from "types/ui-types";
 import { currencyFormatter } from "utils/number-utils";
 
 const AccountingBalanceSheetPage = () => {
   return (
     <Paper sx={{ p: 2, m: 2, flexGrow: 1 }}>
-      <PageHeading>Balance Sheet</PageHeading>
       <TableManagement<Balance>
         apiService={generalLedgerAccountService}
+        pageTitle="Balance Sheet"
         columns={[
           { headerName: "Number", field: "code" },
           { headerName: "Description", field: "description" },
+          // { headerName: "Type", field: "type" },
           {
             headerName: "Opening Debit",
-            field: "ODebit",
+            field: "open_debit",
             renderCell: (p: GridRenderCellParams<Balance>) =>
-              currencyFormatter(p?.row?.ODebit),
+              currencyFormatter(p?.row?.open_debit),
           },
           {
             headerName: "Opening Credit",
-            field: "OCredit",
+            field: "open_credit",
             renderCell: (p: GridRenderCellParams<Balance>) =>
-              currencyFormatter(p?.row?.OCredit),
+              currencyFormatter(p?.row?.open_credit),
           },
           {
             headerName: "Debit",
@@ -46,30 +47,18 @@ const AccountingBalanceSheetPage = () => {
           },
           {
             headerName: "Debit Balance",
-            field: "DBalance",
+            field: "debit_balance",
             renderCell: (p: GridRenderCellParams<Balance>) =>
-              currencyFormatter(p?.row?.DBalance),
+              currencyFormatter(p?.row?.debit_balance),
           },
           {
             headerName: "Credit Balance",
-            field: "CBalance",
+            field: "credit_balance",
             renderCell: (p: GridRenderCellParams<Balance>) =>
-              currencyFormatter(p?.row?.CBalance),
+              currencyFormatter(p?.row?.credit_balance),
           },
         ]}
-        // filter={{
-        //   account_transaction_type: AccountTransactionType.AllTransactions,
-        // }}
-        filterFields={[
-          {
-            // displayName: "Type",
-            name: "account_transaction_type",
-            type: FieldType.Choice,
-            options: ACCOUNT_TRANSACTION_TYPES,
-            getOptionLabel: (option?: GeneralOption) => option?.name ?? "",
-            getOptionValue: (option?: GeneralOption) => option?.value ?? "",
-          },
-        ]}
+
         fields={[
           // Number
           {
@@ -86,13 +75,13 @@ const AccountingBalanceSheetPage = () => {
           // Debit
           {
             displayName: "Opening Debit",
-            name: "ODebit",
+            name: "open_debit",
             type: FieldType.Text,
           },
           // Opening Credit
           {
             displayName: "Opening Credit",
-            name: "OCredit",
+            name: "open_credit",
             type: FieldType.Text,
           },
           // Debit
@@ -110,30 +99,118 @@ const AccountingBalanceSheetPage = () => {
           // Debit Balance
           {
             displayName: "Debit Balance",
-            name: "DBalance",
+            name: "debit_balance",
             type: FieldType.Text,
           },
           // Credit Balance
           {
             displayName: "Credit Balance",
-            name: "CBalance",
+            name: "credit_balance",
             type: FieldType.Text,
           },
         ]}
-        availableActions={["View"]}
-        formatData={(v: Array<Balance>) => [
-          ...(v ?? []),
-          {
-            description: "Total balance sheet",
-            amount: v.reduce((ret, cur) => ret + (cur.ODebit ?? 0), 0),
-            disableAction: true,
-          },
-          {
-            description: "Balance ",
-            amount: v.reduce((ret, cur) => ret + (cur.ODebit ?? 0), 0),
-            disableAction: true,
-          },
-        ]}
+        availableActions={[]}
+        // formatData={(v: Array<Balance>) => [
+        //   ...(v ?? []),
+        //   {
+        //     description: "Total balance sheet",
+        //     ODebit: v.reduce((ret, cur) => ret + (cur.open_debit ?? 0), 0),
+        //     disableAction: true,
+        //   },
+        //   {
+        //     description: "Balance",
+        //     ODebit: v.reduce((ret, cur) => ret + (cur.open_debit ?? 0), 0),
+        //     disableAction: true,
+        //   },
+        // ]}
+        // formatData={(value: Array<GeneralLedgerAccount>) =>
+        // value
+        //   .sort(
+        //     (a, b) =>
+        //       GENERAL_LEDGER_ACCOUNT_TYPE_ORDER[
+        //         a.type ?? GeneralLedgerAccountType.Revenue
+        //       ] -
+        //       GENERAL_LEDGER_ACCOUNT_TYPE_ORDER[
+        //         b.type ?? GeneralLedgerAccountType.Revenue
+        //       ]
+        //   )
+        //   .reduce(
+        //     (ret, cur, curIndex, self) => {
+        //       if (curIndex) {
+        //         const prior = self[curIndex - 1];
+
+        //         if (prior.type !== cur.type) {
+        //           // @ts-ignore
+        //           ret.push({ code: cur.type, disableAction: true });
+        //         }
+        //       }
+        //       ret.push(cur);
+        //       return ret;
+        //     },
+        //     [
+        //       // @ts-ignore
+        //       { code: value[0]?.type, disableAction: true },
+        //     ] as Array<GeneralLedgerAccount>
+        //   )
+        // }
+        formatData = {(data: Array<Balance | GeneralLedgerAccount>) => {
+            
+          const sortedData = data
+            .sort(
+              (a, b) =>
+                GENERAL_LEDGER_ACCOUNT_TYPE_ORDER[
+                  'type' in a ? a.type ?? GeneralLedgerAccountType.Revenue : GeneralLedgerAccountType.Revenue
+                ] -
+                GENERAL_LEDGER_ACCOUNT_TYPE_ORDER[
+                  'type' in b ? b.type ?? GeneralLedgerAccountType.Revenue : GeneralLedgerAccountType.Revenue
+                ]
+            )
+            .reduce(
+              (ret, cur, curIndex, self) => {
+                if (curIndex) {
+                  const prior = self[curIndex - 1];
+        
+                  if ('type' in prior && 'type' in cur && prior.type !== cur.type) {
+                    // @ts-ignore
+                    ret.push({ code: cur.type, disableAction: true });
+                  }
+                }
+                ret.push(cur);
+                return ret;
+              },
+              [
+                // @ts-ignore
+                { code: data[0]?.type, disableAction: true },
+              ] as Array<Balance | GeneralLedgerAccount>
+            );
+
+            const balanceData = [
+              ...(sortedData ?? []),
+              {
+                description: "Total balance sheet",
+                open_debit: sortedData.reduce((ret, cur) => {
+                  if ('open_debit' in cur) {
+                    return ret + (cur.open_debit ?? 0);
+                  }
+                  return ret;
+                }, 0),
+                disableAction: true,
+              },
+              {
+                description: "Balance",
+                open_debit: sortedData.reduce((ret, cur) => {
+                  if ('open_debit' in cur) {
+                    return ret + (cur.open_debit ?? 0);
+                  }
+                  return ret;
+                }, 0),
+                disableAction: true,
+              },
+            ];
+        
+          return balanceData;
+        }}
+        
         hideFooterPagination
       />
     </Paper>
