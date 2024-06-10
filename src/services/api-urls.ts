@@ -45,4 +45,11 @@ export const API_URLS = {
   TAX_DELETE: "/tax/delete",
   TAX_GETS: "/tax/list",
   TAX_GET: "/tax/get",
+
+  // Administration
+  ADMINISTRATION_CREATE: "/administration/create",
+  ADMINISTRATION_UPDATE: "/administration/update",
+  ADMINISTRATION_DELETE: "/administration/delete",
+  ADMINISTRATION_GETS: "/administration/list",
+  ADMINISTRATION_GET: "/administration/get",
 };

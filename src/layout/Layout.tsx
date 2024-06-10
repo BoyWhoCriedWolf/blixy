@@ -2,7 +2,7 @@ import { Alert, Box } from "@mui/material";
 import ModalContainer from "components/containers/modal-container";
 import PageHeading from "components/typography/page-heading";
 import SignInPanel from "pages/auth/sign-in/SignInPanel";
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import { AuthUser } from "services/types/user.types";
@@ -11,7 +11,10 @@ import Footer from "./footer";
 import Header from "./header";
 import SideBar from "./side-bar";
 
-const Layout: FC = () => {
+const Layout: FC<PropsWithChildren<{ showSidebar?: boolean }>> = ({
+  showSidebar = true,
+  children,
+}) => {
   const authUser = useSelector<RootState, AuthUser>(
     (state) => (state?.auth?.user ?? {}) as AuthUser
   );
@@ -35,7 +38,7 @@ const Layout: FC = () => {
         </Alert>
         <SignInPanel isReLogin email={authUser.email ?? ""} />
       </ModalContainer>
-      <SideBar />
+      {showSidebar ? <SideBar /> : null}
       <Box
         flexGrow={1}
         sx={{
@@ -54,7 +57,7 @@ const Layout: FC = () => {
             justifyContent: "center",
           }}
         >
-          <Outlet />
+          {children ?? <Outlet />}
         </Box>
         <Footer />
       </Box>

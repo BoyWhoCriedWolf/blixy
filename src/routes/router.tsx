@@ -34,9 +34,11 @@ import BankAccountsPage from "pages/bank/accounts";
 import BankLayout from "pages/bank/layout";
 import BankProcessedTransactionsPage from "pages/bank/processed-transactions";
 
+import AccountingBalanceSheetPage from "pages/accounting/balance-sheet";
 import AccountingChartPage from "pages/accounting/chart-of-accounts";
 import AccountingProfitLossPage from "pages/accounting/profit-loss";
 import AccountingTaxesPage from "pages/accounting/taxes";
+import AdministrationsPage from "pages/administrations";
 import BackofficeAccountDetailPage from "pages/backoffice/actions/account-detail";
 import BackofficeAccountDetailDocumentPage from "pages/backoffice/actions/account-detail/BackofficeAccountDetailDocumentPage";
 import BankExportTransactionsPage from "pages/bank/export-transactions";
@@ -47,7 +49,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import AccountingBalanceSheetPage from "pages/accounting/balance-sheet";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,6 +61,14 @@ export const router = createBrowserRouter(
       </Route>
 
       {/* Private Routes */}
+      <Route
+        path="/administrations"
+        element={
+          <Layout showSidebar={false}>
+            <AdministrationsPage />
+          </Layout>
+        }
+      />
       <Route path="/" element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -160,7 +169,10 @@ export const router = createBrowserRouter(
           {/* <Route path="chart/new" element={<AccountingChartNewPage />} /> */}
           <Route path="taxes" element={<AccountingTaxesPage />} />
           <Route path="profit-loss" element={<AccountingProfitLossPage />} />
-          <Route path="balance-sheet" element={<AccountingBalanceSheetPage />} />
+          <Route
+            path="balance-sheet"
+            element={<AccountingBalanceSheetPage />}
+          />
         </Route>
 
         {/* accounting */}
