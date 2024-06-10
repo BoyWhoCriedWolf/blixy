@@ -39,6 +39,7 @@ Overview
 -- Financial key indicators
 -- Profit loss account
 -- Trial balance sheet
+-- Balance sheet
 -- Assets
 -- Debitors
 -- Creditors 
