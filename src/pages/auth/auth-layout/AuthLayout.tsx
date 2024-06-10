@@ -12,7 +12,7 @@ const AuthLayout = () => {
   );
 
   return authUser.access_token ? (
-    <Navigate to={{ pathname: "/home" }} />
+    <Navigate to={{ pathname: "/administration" }} />
   ) : (
     <ThemeProvider theme={THEMES.DARK}>
       <AuthBackContainer>
