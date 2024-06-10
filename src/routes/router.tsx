@@ -62,7 +62,7 @@ export const router = createBrowserRouter(
 
       {/* Private Routes */}
       <Route
-        path="/administrations"
+        path="/"
         element={
           <Layout showSidebar={false}>
             <AdministrationsPage />
@@ -70,7 +70,6 @@ export const router = createBrowserRouter(
         }
       />
       <Route path="/" element={<Layout />}>
-        <Route index element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/home" element={<Dashboard />} />
 
