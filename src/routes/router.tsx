@@ -39,9 +39,11 @@ import AccountingChartPage from "pages/accounting/chart-of-accounts";
 import AccountingProfitLossPage from "pages/accounting/profit-loss";
 import AccountingTaxesPage from "pages/accounting/taxes";
 import AdministrationsPage from "pages/administrations";
+import AuthSwitch from "pages/auth/auth-layout/AuthSwitch";
 import BackofficeAccountDetailPage from "pages/backoffice/actions/account-detail";
 import BackofficeAccountDetailDocumentPage from "pages/backoffice/actions/account-detail/BackofficeAccountDetailDocumentPage";
 import BankExportTransactionsPage from "pages/bank/export-transactions";
+import BusinessRegFlowPage from "pages/business-reg-flow";
 import ContactsPage from "pages/contacts";
 import Dashboard from "pages/dashboard";
 import {
@@ -54,10 +56,22 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       {/* Auth Routes */}
-      <Route path="/" element={<AuthLayout />}>
+      <Route
+        path="/"
+        element={
+          <AuthSwitch>
+            <AuthLayout />
+          </AuthSwitch>
+        }
+      >
         <Route index element={<SignIn />} />
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+      </Route>
+
+      <Route path="/business-reg-flow" element={<AuthLayout />}>
+        <Route index element={<BusinessRegFlowPage />} />
+        <Route path=":step_index?" element={<BusinessRegFlowPage />} />
       </Route>
 
       {/* Private Routes */}

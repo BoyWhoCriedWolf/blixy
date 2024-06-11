@@ -1,23 +1,13 @@
 import { ThemeProvider } from "@mui/material";
 import AuthBackContainer from "components/containers/auth-back-container";
-import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
-import { AuthUser } from "services/types/user.types";
-import { RootState } from "store/store";
+import { FC, PropsWithChildren } from "react";
+import { Outlet } from "react-router-dom";
 import { THEMES } from "themes";
 
-const AuthLayout = () => {
-  const authUser = useSelector<RootState, AuthUser>(
-    (state) => (state?.auth?.user ?? {}) as AuthUser
-  );
-
-  return authUser.access_token ? (
-    <Navigate to={{ pathname: "/administrations" }} />
-  ) : (
+const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
+  return (
     <ThemeProvider theme={THEMES.DARK}>
-      <AuthBackContainer>
-        <Outlet />
-      </AuthBackContainer>
+      <AuthBackContainer>{children ?? <Outlet />}</AuthBackContainer>
     </ThemeProvider>
   );
 };
