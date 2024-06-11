@@ -35,7 +35,7 @@ const AuthBackContainer: FC<PropsWithChildren<{ title?: string }>> = ({
           }}
         >
           {title ? <Typography>{title}</Typography> : null}
-          <Box sx={{ maxHeight: "70vh", overflow: "auto" }}>{children}</Box>
+          <Box sx={{ maxHeight: "75vh", overflow: "auto" }}>{children}</Box>
         </Box>
       </Container>
 
