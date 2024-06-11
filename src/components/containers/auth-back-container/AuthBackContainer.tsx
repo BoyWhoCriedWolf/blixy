@@ -1,7 +1,7 @@
-import { Box, Container, Typography } from "@mui/material";
-import React, { FC, PropsWithChildren } from "react";
+import { Box, Container } from "@mui/material";
 import imgAuthBack from "assets/img/backgrounds/auth-back.png";
 import Logo from "components/logo";
+import { FC, PropsWithChildren } from "react";
 
 const AuthBackContainer: FC<PropsWithChildren<{ title?: string }>> = ({
   title = "",
@@ -34,8 +34,7 @@ const AuthBackContainer: FC<PropsWithChildren<{ title?: string }>> = ({
             background: (th) => th.palette.background.default,
           }}
         >
-          {title ? <Typography>{title}</Typography> : null}
-          <Box sx={{ maxHeight: "75vh", overflow: "auto" }}>{children}</Box>
+          {children}
         </Box>
       </Container>
 
