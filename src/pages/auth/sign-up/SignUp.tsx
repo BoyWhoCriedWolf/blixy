@@ -126,6 +126,10 @@ const SignUp = () => {
     navigate("/");
   };
 
+  const handleRegDetails = () => {
+    navigate("/business-reg-flow");
+  };
+
   return (
     <Box>
       <Typography fontSize={36} fontWeight={500} align="center" mb={5}>
@@ -213,6 +217,15 @@ const SignUp = () => {
         sx={{ mb: 2 }}
       >
         Register
+      </Button>
+
+      <Button
+        onClick={handleRegDetails}
+        color="primary"
+        fullWidth
+        sx={{ mb: 2 }}
+      >
+        Business Registration
       </Button>
 
       <Button onClick={handleLogin} color="primary" fullWidth>
