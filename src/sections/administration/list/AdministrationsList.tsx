@@ -18,7 +18,7 @@ const AdministrationsList: FC<PropsWithChildren<{ user_id?: string }>> = () => {
 
   const handleClickRow = (v: Administration) => {
     if (v.id) {
-      navigate(`/${v.id}/home`);
+      navigate(`/home`);
     } else {
       snb.enqueueSnackbar("Please select the valid administration.", {
         variant: "warning",

@@ -10,7 +10,7 @@ import PageLoading from "components/loading/page-loading";
 import TableManagement from "components/table-management";
 import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import documentService from "services/document.service";
 import { Document, DocumentType } from "services/types/document.types";
 import { ymd2dmy } from "utils/datetime-utils";
@@ -18,7 +18,6 @@ import { ymd2dmy } from "utils/datetime-utils";
 const DocumentsList: FC<
   PropsWithChildren<{ onClick?: (v: Document) => void; deleted?: boolean }>
 > = ({ onClick = () => null, deleted = false }) => {
-  const { administration_id = "" } = useParams();
   const navigate = useNavigate();
   const snb = useSnackbar();
 
@@ -27,7 +26,7 @@ const DocumentsList: FC<
 
   const handleEdit = (value: Document) => {
     if (value?.id) {
-      navigate("/" + administration_id + `/archive/document/${value?.id}`);
+      navigate(`/archive/document/${value?.id}`);
     } else {
     }
   };

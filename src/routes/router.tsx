@@ -69,7 +69,7 @@ export const router = createBrowserRouter(
           </Layout>
         }
       />
-      <Route path=":administration_id" element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/home" element={<Dashboard />} />
