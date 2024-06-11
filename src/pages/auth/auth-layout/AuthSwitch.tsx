@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { AuthUser } from "services/types/user.types";
 import { RootState } from "store/store";
 
@@ -12,7 +12,7 @@ const AuthSwitch: FC<PropsWithChildren> = ({ children }) => {
   return authUser.access_token ? (
     <Navigate to={{ pathname: "/administrations" }} />
   ) : (
-    children ?? <Outlet />
+    children
   );
 };
 
