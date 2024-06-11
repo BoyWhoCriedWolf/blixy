@@ -12,7 +12,7 @@ const AuthSwitch: FC<PropsWithChildren> = ({ children }) => {
   return authUser.access_token ? (
     <Navigate to={{ pathname: "/administrations" }} />
   ) : (
-    children
+    <>{children}</>
   );
 };
 
