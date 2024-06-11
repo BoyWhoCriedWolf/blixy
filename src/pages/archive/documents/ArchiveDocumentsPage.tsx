@@ -1,12 +1,13 @@
 import { Box, Container } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DocumentsGrid from "sections/documents/documents-grid";
 
 const ArchiveDocumentsPage = () => {
+  const { administration_id = "" } = useParams();
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/archive/documents-list`);
+    navigate("/" + administration_id + `/archive/documents-list`);
   };
 
   return (

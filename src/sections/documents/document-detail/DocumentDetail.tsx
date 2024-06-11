@@ -28,7 +28,7 @@ import PrimaryTable from "components/table";
 import PageHeading from "components/typography/page-heading";
 import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import documentService from "services/document.service";
 import {
   DOCUMENT_TYPES,
@@ -70,6 +70,7 @@ const DocumentDetail: FC<
   basePath = "/archive/document",
   noNavigation = false,
 }) => {
+  const { administration_id = "" } = useParams();
   const navigate = useNavigate();
   const snb = useSnackbar();
 
@@ -152,14 +153,14 @@ const DocumentDetail: FC<
   const handleNext = async () => {
     const destId = list[currentIndex + 1]?.id;
     if (destId) {
-      navigate(`${basePath}/${destId}`);
+      navigate("/" + administration_id + `${basePath}/${destId}`);
     }
   };
 
   const handleBefore = async () => {
     const destId = list[currentIndex - 1]?.id;
     if (destId) {
-      navigate(`${basePath}/${destId}`);
+      navigate("/" + administration_id + `${basePath}/${destId}`);
     }
   };
 

@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { FC, PropsWithChildren, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SidebarMenu from "./SidebarMenu";
 import { MenuDataType } from "./menu-utils";
 
@@ -26,6 +26,7 @@ const SidebarMenuItem: FC<
   isRoot = false,
   onClick = () => null,
 }) => {
+  const { administration_id = "" } = useParams();
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ const SidebarMenuItem: FC<
 
   const handleClick: React.MouseEventHandler<HTMLLIElement> = (e) => {
     if (data?.path) {
-      navigate(data?.path);
+      navigate("/" + administration_id + data?.path);
       onClick();
     } else {
       setIsOpen((s) => !s);

@@ -1,7 +1,9 @@
 import { Close, Done } from "@mui/icons-material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import TableManagement from "components/table-management";
+import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren } from "react";
+import { useNavigate } from "react-router-dom";
 import administrationService from "services/administration.service";
 import {
   Administration,
@@ -11,6 +13,19 @@ import { FieldType, GeneralOption } from "types/ui-types";
 import { ymd2dmy } from "utils/datetime-utils";
 
 const AdministrationsList: FC<PropsWithChildren<{ user_id?: string }>> = () => {
+  const navigate = useNavigate();
+  const snb = useSnackbar();
+
+  const handleClickRow = (v: Administration) => {
+    if (v.id) {
+      navigate(`/${v.id}/home`);
+    } else {
+      snb.enqueueSnackbar("Please select the valid administration.", {
+        variant: "warning",
+      });
+    }
+  };
+
   return (
     <TableManagement<Administration>
       apiService={administrationService}
@@ -57,6 +72,7 @@ const AdministrationsList: FC<PropsWithChildren<{ user_id?: string }>> = () => {
           type: FieldType.Checkbox,
         },
       ]}
+      onClickRow={handleClickRow}
       hideFooterPagination
     />
   );

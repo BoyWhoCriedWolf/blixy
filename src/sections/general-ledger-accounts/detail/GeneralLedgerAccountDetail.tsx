@@ -6,7 +6,7 @@ import PageLoading from "components/loading/page-loading";
 import PageHeading from "components/typography/page-heading";
 import { useSnackbar } from "notistack";
 import { FC, PropsWithChildren, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ApprovedDocumentsList from "sections/documents/documents-list/ApprovedDocumentsList";
 import generalLedgerAccountService from "services/general.ledger.account.service";
 import {
@@ -20,6 +20,7 @@ import { FieldType, GeneralOption } from "types/ui-types";
 const GeneralLedgerAccountDetail: FC<
   PropsWithChildren<{ accountId?: string }>
 > = ({ accountId = "" }) => {
+  const { administration_id = "" } = useParams();
   const navigate = useNavigate();
   const snb = useSnackbar();
 
@@ -63,14 +64,18 @@ const GeneralLedgerAccountDetail: FC<
   const handleNext = async () => {
     const destId = list[currentIndex + 1]?.id;
     if (destId) {
-      navigate(`/backoffice/accounts-chart/${destId}`);
+      navigate(
+        "/" + administration_id + `/backoffice/accounts-chart/${destId}`
+      );
     }
   };
 
   const handleBefore = async () => {
     const destId = list[currentIndex - 1]?.id;
     if (destId) {
-      navigate(`/backoffice/accounts-chart/${destId}`);
+      navigate(
+        "/" + administration_id + `/backoffice/accounts-chart/${destId}`
+      );
     }
   };
 
