@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { FC, PropsWithChildren } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BusinessRegFlowFormLayout: FC<
   PropsWithChildren<{
@@ -17,6 +18,12 @@ const BusinessRegFlowFormLayout: FC<
   isLast = false,
   title = "",
 }) => {
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate("/");
+  };
+
   return (
     <Box>
       {title ? (
@@ -40,6 +47,10 @@ const BusinessRegFlowFormLayout: FC<
 
       <Button onClick={onBefore} color="primary" disabled={isFirst} fullWidth>
         Before
+      </Button>
+
+      <Button onClick={handleCancel} color="error" fullWidth>
+        Cancel
       </Button>
     </Box>
   );
