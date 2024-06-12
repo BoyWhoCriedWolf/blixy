@@ -1,7 +1,50 @@
-import React from "react";
+import { Grid } from "@mui/material";
+import AnimCompliance from "components/animations/AnimCompliance";
+import EditForm from "components/edit-form";
+import { FC, PropsWithChildren } from "react";
+import { Administration } from "services/types/administration.types";
+import { DispatchFunction } from "types/ui-types";
 
-const BusinessRegFlowCompliance = () => {
-  return <div>BusinessRegFlowCompliance</div>;
+const BusinessRegFlowCompliance: FC<
+  PropsWithChildren<{
+    data?: Administration;
+    onChange?: DispatchFunction<Administration>;
+  }>
+> = ({ data, onChange }) => {
+  return (
+    <Grid container alignItems={"center"}>
+      <Grid item lg={6} md={6} sm={6} xs={12}>
+        <AnimCompliance />
+      </Grid>
+      <Grid
+        item
+        lg={6}
+        md={6}
+        sm={6}
+        xs={12}
+        sx={{ maxHeight: "50vh", overflow: "auto" }}
+      >
+        <EditForm
+          data={data}
+          onChange={onChange}
+          fields={[
+            {
+              displayName: "Licenses and Permits",
+              name: "compliance_licenses",
+            },
+            {
+              displayName: "Insurance Information",
+              name: "compliance_insurance",
+            },
+            {
+              displayName: "Compliance Certifications",
+              name: "compliance_certifications",
+            },
+          ]}
+        />
+      </Grid>
+    </Grid>
+  );
 };
 
 export default BusinessRegFlowCompliance;

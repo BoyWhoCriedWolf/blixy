@@ -42,15 +42,15 @@ const BusinessRegFlow = () => {
     },
     {
       title: "Business Operations",
-      content: <BusinessRegFlowBusinessOperations />,
+      content: <BusinessRegFlowBusinessOperations data={data} onChange={setData} />,
     },
     {
       title: "Financial Information",
-      content: <BusinessRegFlowFinancialInfo />,
+      content: <BusinessRegFlowFinancialInfo data={data} onChange={setData} />,
     },
     {
       title: "Compliance and Legal",
-      content: <BusinessRegFlowCompliance />,
+      content: <BusinessRegFlowCompliance data={data} onChange={setData} />,
     },
     {
       title: "User Agreement",
