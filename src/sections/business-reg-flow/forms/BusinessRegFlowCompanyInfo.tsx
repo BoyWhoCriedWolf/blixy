@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
 import AminBuildings from "components/animations/AminBuildings";
 import EditForm from "components/edit-form";
 import { FC, PropsWithChildren } from "react";
@@ -12,8 +12,18 @@ const BusinessRegFlowCompanyInfo: FC<
   }>
 > = ({ data, onChange }) => {
   return (
-    <Box sx={{ position: "relative" }}>
-      <Box sx={{ position: "relative" }}>
+    <Grid container>
+      <Grid item lg={6} md={6} sm={6} xs={12}>
+        <AminBuildings />
+      </Grid>
+      <Grid
+        item
+        lg={6}
+        md={6}
+        sm={6}
+        xs={12}
+        sx={{ maxHeight: "50vh", overflow: "auto" }}
+      >
         <EditForm
           data={data}
           onChange={onChange}
@@ -53,21 +63,8 @@ const BusinessRegFlowCompanyInfo: FC<
             { displayName: "VAT Number", name: "company_vat" },
           ]}
         />
-      </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "end",
-          opacity: 0.6,
-        }}
-      >
-        <AminBuildings />
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   );
 };
 

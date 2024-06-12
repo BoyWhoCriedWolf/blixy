@@ -69,7 +69,7 @@ export const router = createBrowserRouter(
         <Route path="/sign-up" element={<SignUp />} />
       </Route>
 
-      <Route path="/business-reg-flow" element={<AuthLayout />}>
+      <Route path="/business-reg-flow" element={<AuthLayout maxWidth="md" />}>
         <Route index element={<BusinessRegFlowPage />} />
         <Route path=":step_index?" element={<BusinessRegFlowPage />} />
       </Route>

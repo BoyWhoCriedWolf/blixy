@@ -1,10 +1,13 @@
+import { Grid } from "@mui/material";
 import AnimWelcome from "components/animations/AminWelcome";
 
 const BusinessRegFlowWelcome = () => {
   return (
-    <div>
-      <AnimWelcome />
-    </div>
+    <Grid container justifyContent={"center"}>
+      <Grid item>
+        <AnimWelcome />
+      </Grid>
+    </Grid>
   );
 };
 

@@ -1,11 +1,11 @@
-import { Box, Container } from "@mui/material";
+import { Box, Breakpoint, Container } from "@mui/material";
 import imgAuthBack from "assets/img/backgrounds/auth-back.png";
 import Logo from "components/logo";
 import { FC, PropsWithChildren } from "react";
 
-const AuthBackContainer: FC<PropsWithChildren<{ title?: string }>> = ({
-  title = "",
+const AuthBackContainer: FC<PropsWithChildren<{ maxWidth?: Breakpoint }>> = ({
   children,
+  maxWidth = "sm",
 }) => {
   return (
     <Box
@@ -24,7 +24,7 @@ const AuthBackContainer: FC<PropsWithChildren<{ title?: string }>> = ({
         position: "relative",
       }}
     >
-      <Container maxWidth="sm">
+      <Container maxWidth={maxWidth}>
         <Box
           sx={{
             p: 6,

@@ -12,12 +12,13 @@ import BusinessRegFlowCompliance from "./forms/BusinessRegFlowCompliance";
 import BusinessRegFlowUserAgreement from "./forms/BusinessRegFlowUserAgreement";
 import BusinessRegFlowReview from "./forms/BusinessRegFlowReview";
 import BusinessRegFlowConfirm from "./forms/BusinessRegFlowConfirm";
+import { Administration } from "services/types/administration.types";
 
 const BusinessRegFlow = () => {
   const { step_index = "0" } = useParams();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [data, setData] = useState({});
+  const [data, setData] = useState<Administration>({} as Administration);
 
   const handleBefore = () => setCurrentIndex((s = 0) => Math.max(0, s - 1));
   const handleNext = () => setCurrentIndex((s = 0) => s + 1);

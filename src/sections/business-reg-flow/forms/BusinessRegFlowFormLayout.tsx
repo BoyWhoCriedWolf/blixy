@@ -32,7 +32,7 @@ const BusinessRegFlowFormLayout: FC<
         </Typography>
       ) : null}
 
-      <Box sx={{ maxHeight: "50vh", overflow: "auto", mb: 2 }}>{children}</Box>
+      <Box sx={{ mb: 2 }}>{children}</Box>
 
       <Button
         onClick={onNext}
