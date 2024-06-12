@@ -12,7 +12,7 @@ const BusinessRegFlowCompanyInfo: FC<
   }>
 > = ({ data, onChange }) => {
   return (
-    <Grid container>
+    <Grid container alignItems={"center"}>
       <Grid item lg={6} md={6} sm={6} xs={12}>
         <AminBuildings />
       </Grid>
