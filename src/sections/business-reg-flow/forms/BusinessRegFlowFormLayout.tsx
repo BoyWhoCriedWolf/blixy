@@ -34,12 +34,18 @@ const BusinessRegFlowFormLayout: FC<
 
       <Box sx={{ maxHeight: "50vh", overflow: "auto", mb: 2 }}>{children}</Box>
 
-      <Grid
-        container
-        justifyContent={"space-between"}
-        alignItems={"center"}
-        spacing={2}
+      <Button
+        onClick={onNext}
+        color="warning"
+        variant="contained"
+        disabled={isLast}
+        fullWidth
+        sx={{ mb: 1 }}
       >
+        Next
+      </Button>
+
+      <Grid container justifyContent={"space-between"} alignItems={"center"}>
         <Grid item>
           <Button onClick={onBefore} color="primary" disabled={isFirst}>
             Before
@@ -48,16 +54,6 @@ const BusinessRegFlowFormLayout: FC<
         <Grid item>
           <Button onClick={handleCancel} color="error">
             Cancel
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button
-            onClick={onNext}
-            color="warning"
-            variant="contained"
-            disabled={isLast}
-          >
-            Next
           </Button>
         </Grid>
       </Grid>
