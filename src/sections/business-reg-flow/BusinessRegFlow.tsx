@@ -60,7 +60,7 @@ const BusinessRegFlow = () => {
     },
     {
       title: "Review and Submit",
-      content: <BusinessRegFlowReview />,
+      content: <BusinessRegFlowReview data={data} onChange={setData} />,
     },
     {
       title: "Confirmation and Next steps",
