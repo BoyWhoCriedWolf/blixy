@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { FC, PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -34,24 +34,33 @@ const BusinessRegFlowFormLayout: FC<
 
       <Box sx={{ maxHeight: "50vh", overflow: "auto", mb: 2 }}>{children}</Box>
 
-      <Button
-        onClick={onNext}
-        color="warning"
-        variant="contained"
-        fullWidth
-        sx={{ mb: 2 }}
-        disabled={isLast}
+      <Grid
+        container
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        spacing={2}
       >
-        Next
-      </Button>
-
-      <Button onClick={onBefore} color="primary" disabled={isFirst} fullWidth>
-        Before
-      </Button>
-
-      <Button onClick={handleCancel} color="error" fullWidth>
-        Cancel
-      </Button>
+        <Grid item>
+          <Button onClick={onBefore} color="primary" disabled={isFirst}>
+            Before
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button onClick={handleCancel} color="error">
+            Cancel
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            onClick={onNext}
+            color="warning"
+            variant="contained"
+            disabled={isLast}
+          >
+            Next
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
