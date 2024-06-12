@@ -38,7 +38,7 @@ const BusinessRegFlow = () => {
     },
     {
       title: "Owner/Stakeholder Information",
-      content: <BusinessRegFlowOwnerInfo />,
+      content: <BusinessRegFlowOwnerInfo data={data} onChange={setData} />,
     },
     {
       title: "Business Operations",
