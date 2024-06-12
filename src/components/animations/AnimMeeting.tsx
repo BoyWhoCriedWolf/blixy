@@ -1,8 +1,8 @@
-import animationData from "assets/animations/anim-client.json";
+import animationData from "assets/animations/anim-meeting.json";
 import Lottie from "lottie-react";
 import { FC, PropsWithChildren } from "react";
 
-const AminClient: FC<PropsWithChildren<{ loop?: boolean }>> = ({
+const AnimMeeting: FC<PropsWithChildren<{ loop?: boolean }>> = ({
   loop = true,
 }) => {
   return (
@@ -12,4 +12,4 @@ const AminClient: FC<PropsWithChildren<{ loop?: boolean }>> = ({
   );
 };
 
-export default AminClient;
+export default AnimMeeting;

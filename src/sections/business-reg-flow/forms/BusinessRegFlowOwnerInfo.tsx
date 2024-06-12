@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import AminClient from "components/animations/AminClient";
+import AnimClient from "components/animations/AnimClient";
 import EditForm from "components/edit-form";
 import { FC, PropsWithChildren } from "react";
 import { Administration } from "services/types/administration.types";
@@ -14,7 +14,7 @@ const BusinessRegFlowOwnerInfo: FC<
   return (
     <Grid container alignItems={"center"}>
       <Grid item lg={6} md={6} sm={6} xs={12}>
-        <AminClient />
+        <AnimClient />
       </Grid>
       <Grid
         item

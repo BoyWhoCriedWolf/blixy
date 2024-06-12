@@ -1,5 +1,5 @@
 import { Container, Grid } from "@mui/material";
-import AnimWelcome from "components/animations/AminWelcome";
+import AnimWelcome from "components/animations/AnimWelcome";
 
 const BusinessRegFlowWelcome = () => {
   return (

@@ -1,8 +1,8 @@
-import animationData from "assets/animations/anim-welcome.json";
+import animationData from "assets/animations/anim-buildings.json";
 import Lottie from "lottie-react";
 import { FC, PropsWithChildren } from "react";
 
-const AminWelcome: FC<PropsWithChildren<{ loop?: boolean }>> = ({
+const AnimBuildings: FC<PropsWithChildren<{ loop?: boolean }>> = ({
   loop = true,
 }) => {
   return (
@@ -12,4 +12,4 @@ const AminWelcome: FC<PropsWithChildren<{ loop?: boolean }>> = ({
   );
 };
 
-export default AminWelcome;
+export default AnimBuildings;
