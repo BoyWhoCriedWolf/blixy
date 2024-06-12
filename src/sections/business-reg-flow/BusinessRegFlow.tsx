@@ -13,28 +13,11 @@ import BusinessRegFlowUserAgreement from "./forms/BusinessRegFlowUserAgreement";
 import BusinessRegFlowReview from "./forms/BusinessRegFlowReview";
 import BusinessRegFlowConfirm from "./forms/BusinessRegFlowConfirm";
 
-const FORMS = [
-  { title: "Welcome", content: <BusinessRegFlowWelcome /> },
-  { title: "Company Information", content: <BusinessRegFlowCompanyInfo /> },
-  {
-    title: "Owner/Stakeholder Information",
-    content: <BusinessRegFlowOwnerInfo />,
-  },
-  {
-    title: "Business Operations",
-    content: <BusinessRegFlowBusinessOperations />,
-  },
-  { title: "Financial Information", content: <BusinessRegFlowFinancialInfo /> },
-  { title: "Compliance and Legal", content: <BusinessRegFlowCompliance /> },
-  { title: "User Agreement", content: <BusinessRegFlowUserAgreement /> },
-  { title: "Review and Submit", content: <BusinessRegFlowReview /> },
-  { title: "Confirmation and Next steps", content: <BusinessRegFlowConfirm /> },
-];
-
 const BusinessRegFlow = () => {
   const { step_index = "0" } = useParams();
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [data, setData] = useState({});
 
   const handleBefore = () => setCurrentIndex((s = 0) => Math.max(0, s - 1));
   const handleNext = () => setCurrentIndex((s = 0) => s + 1);
@@ -42,6 +25,45 @@ const BusinessRegFlow = () => {
   useEffect(() => {
     setCurrentIndex(parseInt(step_index));
   }, [step_index]);
+
+  const FORMS = [
+    {
+      title: "Welcome",
+      content: <BusinessRegFlowWelcome />,
+    },
+    {
+      title: "Company Information",
+      content: <BusinessRegFlowCompanyInfo data={data} onChange={setData} />,
+    },
+    {
+      title: "Owner/Stakeholder Information",
+      content: <BusinessRegFlowOwnerInfo />,
+    },
+    {
+      title: "Business Operations",
+      content: <BusinessRegFlowBusinessOperations />,
+    },
+    {
+      title: "Financial Information",
+      content: <BusinessRegFlowFinancialInfo />,
+    },
+    {
+      title: "Compliance and Legal",
+      content: <BusinessRegFlowCompliance />,
+    },
+    {
+      title: "User Agreement",
+      content: <BusinessRegFlowUserAgreement />,
+    },
+    {
+      title: "Review and Submit",
+      content: <BusinessRegFlowReview />,
+    },
+    {
+      title: "Confirmation and Next steps",
+      content: <BusinessRegFlowConfirm />,
+    },
+  ];
 
   return (
     <Box>

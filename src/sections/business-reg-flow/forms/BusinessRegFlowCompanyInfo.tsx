@@ -1,44 +1,73 @@
+import { Box } from "@mui/material";
+import AminBuildings from "components/animations/AminBuildings";
 import EditForm from "components/edit-form";
-import { FieldType } from "types/ui-types";
+import { FC, PropsWithChildren } from "react";
+import { Administration } from "services/types/administration.types";
+import { DispatchFunction, FieldType } from "types/ui-types";
 
-const BusinessRegFlowCompanyInfo = () => {
+const BusinessRegFlowCompanyInfo: FC<
+  PropsWithChildren<{
+    data?: Administration;
+    onChange?: DispatchFunction<Administration>;
+  }>
+> = ({ data, onChange }) => {
   return (
-    <div>
-      <EditForm
-        fields={[
-          { displayName: "Company Name", name: "company_name" },
-          { displayName: "Trade Name", name: "company_trade_name" },
-          {
-            displayName: "Business Type",
-            name: "company_business_type",
-            type: FieldType.Choice,
-            options: [
-              "Sole propietorship",
-              "Partnership",
-              "Corporation",
-              "LLC",
-            ],
-          },
-          { displayName: "Industry", name: "company_industry" },
-          {
-            displayName: "Business Description",
-            name: "company_business_description",
-          },
+    <Box sx={{ position: "relative" }}>
+      <Box sx={{ position: "relative" }}>
+        <EditForm
+          data={data}
+          onChange={onChange}
+          fields={[
+            { displayName: "Company Name", name: "company_name" },
+            { displayName: "Trade Name", name: "company_trade_name" },
+            {
+              displayName: "Business Type",
+              name: "company_business_type",
+              type: FieldType.Choice,
+              options: [
+                "Sole propietorship",
+                "Partnership",
+                "Corporation",
+                "LLC",
+              ],
+            },
+            { displayName: "Industry", name: "company_industry" },
+            {
+              displayName: "Business Description",
+              name: "company_business_description",
+            },
 
-          { displayName: "Business Address", name: "company_business_address" },
-          { displayName: "Mailing Address", name: "company_mailing_address" },
-          { displayName: "Phone Number", name: "company_phone_number" },
-          { displayName: "Email Address", name: "company_email" },
+            {
+              displayName: "Business Address",
+              name: "company_business_address",
+            },
+            { displayName: "Mailing Address", name: "company_mailing_address" },
+            { displayName: "Phone Number", name: "company_phone_number" },
+            { displayName: "Email Address", name: "company_email" },
 
-          {
-            displayName: "Registration Number",
-            name: "company_registration_number",
-          },
-          { displayName: "Tax Identification Number", name: "company_tin" },
-          { displayName: "VAT Number", name: "company_vat" },
-        ]}
-      />
-    </div>
+            {
+              displayName: "Registration Number",
+              name: "company_registration_number",
+            },
+            { displayName: "Tax Identification Number", name: "company_tin" },
+            { displayName: "VAT Number", name: "company_vat" },
+          ]}
+        />
+      </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "end",
+          opacity: 0.6,
+        }}
+      >
+        <AminBuildings />
+      </Box>
+    </Box>
   );
 };
 
