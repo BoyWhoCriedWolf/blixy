@@ -36,7 +36,7 @@ const BusinessRegFlowBusinessOperations: FC<
             {
               displayName: "Fiscal Year End",
               name: "operation_fiscal_end_year",
-              type: FieldType.Integer,
+              type: FieldType.DateOnly,
             },
 
             {
