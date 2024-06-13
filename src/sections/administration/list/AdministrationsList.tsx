@@ -19,6 +19,7 @@ const AdministrationsList: FC<PropsWithChildren<{ user_id?: string }>> = () => {
   const snb = useSnackbar();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [reload, setReload] = useState(1);
 
   const handleClickRow = (v: Administration) => {
     if (v.id) {
@@ -38,6 +39,10 @@ const AdministrationsList: FC<PropsWithChildren<{ user_id?: string }>> = () => {
     setIsOpen(false);
   };
 
+  const handleSubmitted = () => {
+    setReload((s = 0) => s + 1);
+  };
+
   return (
     <div>
       <ModalContainer
@@ -46,10 +51,11 @@ const AdministrationsList: FC<PropsWithChildren<{ user_id?: string }>> = () => {
         isOpen={isOpen}
         onClose={handleClose}
       >
-        <BusinessRegFlow onClose={handleClose} />
+        <BusinessRegFlow onClose={handleClose} onSubmitted={handleSubmitted} />
       </ModalContainer>
 
       <TableManagement<Administration>
+        reload={reload}
         apiService={administrationService}
         pageTitle="Administrations"
         title="Administration"

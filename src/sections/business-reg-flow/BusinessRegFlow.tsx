@@ -17,9 +17,9 @@ import BusinessRegFlowWelcome from "./forms/BusinessRegFlowWelcome";
 import PageLoading from "components/loading/page-loading";
 import administrationService from "services/administration.service";
 
-const BusinessRegFlow: FC<PropsWithChildren<{ onClose?: () => void }>> = ({
-  onClose,
-}) => {
+const BusinessRegFlow: FC<
+  PropsWithChildren<{ onClose?: () => void; onSubmitted?: () => void }>
+> = ({ onClose, onSubmitted = () => null }) => {
   const { step_index = "0" } = useParams();
 
   const snb = useSnackbar();
@@ -120,6 +120,7 @@ const BusinessRegFlow: FC<PropsWithChildren<{ onClose?: () => void }>> = ({
     setIsLoading(false);
 
     if (ret.success) {
+      onSubmitted();
       handleNext();
     } else {
       snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
