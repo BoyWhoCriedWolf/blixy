@@ -2,17 +2,16 @@ import { Box } from "@mui/material";
 import CollapseArray from "components/containers/collapse-array";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BusinessRegFlowFormLayout from "./forms/BusinessRegFlowFormLayout";
-import BusinessRegFlowWelcome from "./forms/BusinessRegFlowWelcome";
-import BusinessRegFlowCompanyInfo from "./forms/BusinessRegFlowCompanyInfo";
-import BusinessRegFlowOwnerInfo from "./forms/BusinessRegFlowOwnerInfo";
-import BusinessRegFlowBusinessOperations from "./forms/BusinessRegFlowBusinessOperations";
-import BusinessRegFlowFinancialInfo from "./forms/BusinessRegFlowFinancialInfo";
-import BusinessRegFlowCompliance from "./forms/BusinessRegFlowCompliance";
-import BusinessRegFlowUserAgreement from "./forms/BusinessRegFlowUserAgreement";
-import BusinessRegFlowReview from "./forms/BusinessRegFlowReview";
-import BusinessRegFlowConfirm from "./forms/BusinessRegFlowConfirm";
 import { Administration } from "services/types/administration.types";
+import BusinessRegFlowBusinessOperations from "./forms/BusinessRegFlowBusinessOperations";
+import BusinessRegFlowCompanyInfo from "./forms/BusinessRegFlowCompanyInfo";
+import BusinessRegFlowConfirm from "./forms/BusinessRegFlowConfirm";
+import BusinessRegFlowFinancialInfo from "./forms/BusinessRegFlowFinancialInfo";
+import BusinessRegFlowFormLayout from "./forms/BusinessRegFlowFormLayout";
+import BusinessRegFlowOwnerInfo from "./forms/BusinessRegFlowOwnerInfo";
+import BusinessRegFlowReview from "./forms/BusinessRegFlowReview";
+import BusinessRegFlowUserAgreement from "./forms/BusinessRegFlowUserAgreement";
+import BusinessRegFlowWelcome from "./forms/BusinessRegFlowWelcome";
 
 const BusinessRegFlow = () => {
   const { step_index = "0" } = useParams();
@@ -50,10 +49,10 @@ const BusinessRegFlow = () => {
       title: "Financial Information",
       content: <BusinessRegFlowFinancialInfo data={data} onChange={setData} />,
     },
-    {
-      title: "Compliance and Legal",
-      content: <BusinessRegFlowCompliance data={data} onChange={setData} />,
-    },
+    // {
+    //   title: "Compliance and Legal",
+    //   content: <BusinessRegFlowCompliance data={data} onChange={setData} />,
+    // },
     {
       title: "User Agreement",
       content: <BusinessRegFlowUserAgreement data={data} onChange={setData} />,
