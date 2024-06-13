@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import AnimBuildings from "components/animations/AnimBuildings";
 import EditForm from "components/edit-form";
+import { EditFormRefType } from "components/edit-form/EditForm";
 import { forwardRef } from "react";
 import { Administration } from "services/types/administration.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
@@ -11,7 +12,7 @@ type BusinessRegFlowCompanyInfoProps = {
 };
 
 const BusinessRegFlowCompanyInfo = forwardRef<
-  { prepare: () => boolean | Administration },
+  EditFormRefType<Administration>,
   BusinessRegFlowCompanyInfoProps
 >(({ data, onChange }, ref) => {
   return (

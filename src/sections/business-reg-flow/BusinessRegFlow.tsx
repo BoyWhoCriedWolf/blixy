@@ -1,5 +1,7 @@
 import { Box } from "@mui/material";
 import CollapseArray from "components/containers/collapse-array";
+import { EditFormRefType } from "components/edit-form/EditForm";
+import { useSnackbar } from "notistack";
 import { createRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Administration } from "services/types/administration.types";
@@ -12,7 +14,6 @@ import BusinessRegFlowOwnerInfo from "./forms/BusinessRegFlowOwnerInfo";
 import BusinessRegFlowReview from "./forms/BusinessRegFlowReview";
 import BusinessRegFlowUserAgreement from "./forms/BusinessRegFlowUserAgreement";
 import BusinessRegFlowWelcome from "./forms/BusinessRegFlowWelcome";
-import { useSnackbar } from "notistack";
 
 const BusinessRegFlow = () => {
   const { step_index = "0" } = useParams();
@@ -22,9 +23,8 @@ const BusinessRegFlow = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState<Administration>({} as Administration);
 
-  const refCompanyInfo = createRef<{
-    prepare: () => boolean | Administration;
-  }>();
+  const refCompanyInfo = createRef<EditFormRefType<Administration>>();
+  const refBusinessOperations = createRef<EditFormRefType<Administration>>();
 
   const FORMS = [
     {
@@ -49,8 +49,13 @@ const BusinessRegFlow = () => {
     {
       title: "Business Operations",
       content: (
-        <BusinessRegFlowBusinessOperations data={data} onChange={setData} />
+        <BusinessRegFlowBusinessOperations
+          ref={refBusinessOperations}
+          data={data}
+          onChange={setData}
+        />
       ),
+      ref: refBusinessOperations,
     },
     {
       title: "Financial Information",
@@ -78,7 +83,9 @@ const BusinessRegFlow = () => {
   const handleNext = () => {
     if (FORMS?.[currentIndex]?.ref?.current) {
       if (!FORMS?.[currentIndex]?.ref?.current?.prepare()) {
-        snb.enqueueSnackbar("");
+        snb.enqueueSnackbar("Please input all fields correctly", {
+          variant: "warning",
+        });
         return;
       }
     }

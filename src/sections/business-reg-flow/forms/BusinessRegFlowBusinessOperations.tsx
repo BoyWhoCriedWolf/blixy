@@ -1,16 +1,18 @@
 import { Grid } from "@mui/material";
 import AnimBusiness from "components/animations/AnimBusiness";
 import EditForm from "components/edit-form";
-import { FC, PropsWithChildren } from "react";
+import { EditFormRefType } from "components/edit-form/EditForm";
+import { forwardRef } from "react";
 import { Administration } from "services/types/administration.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
 
-const BusinessRegFlowBusinessOperations: FC<
-  PropsWithChildren<{
+const BusinessRegFlowBusinessOperations = forwardRef<
+  EditFormRefType<Administration>,
+  {
     data?: Administration;
     onChange?: DispatchFunction<Administration>;
-  }>
-> = ({ data, onChange }) => {
+  }
+>(({ data, onChange }) => {
   return (
     <Grid container alignItems={"center"}>
       <Grid item lg={6} md={6} sm={6} xs={12}>
@@ -55,6 +57,6 @@ const BusinessRegFlowBusinessOperations: FC<
       </Grid>
     </Grid>
   );
-};
+});
 
 export default BusinessRegFlowBusinessOperations;

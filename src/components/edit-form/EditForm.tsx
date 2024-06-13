@@ -54,6 +54,8 @@ type EditFormProps<T> = PropsWithChildren<{
   flexWrap?: ResponsiveStyleValue<GridWrap>;
 }>;
 
+export type EditFormRefType<T> = { prepare: () => boolean | T };
+
 const EditForm = function <T = { [key: string]: any }>(
   {
     data,
@@ -71,7 +73,7 @@ const EditForm = function <T = { [key: string]: any }>(
     readOnly = false,
     flexWrap = "wrap",
   }: EditFormProps<T>,
-  ref?: ForwardedRef<{ prepare: () => boolean | T }>
+  ref?: ForwardedRef<EditFormRefType<T>>
 ) {
   const [isValidFields, setIsValidFields] = useState<{
     [key: string]: boolean;
@@ -167,6 +169,6 @@ const EditForm = function <T = { [key: string]: any }>(
 
 export default forwardRef(EditForm) as <T>(
   props: EditFormProps<T> & {
-    ref?: ForwardedRef<{ prepare: () => boolean | T }>;
+    ref?: ForwardedRef<EditFormRefType<T>>;
   }
 ) => JSX.Element;
