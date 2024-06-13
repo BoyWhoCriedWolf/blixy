@@ -1,10 +1,10 @@
 import { Grid } from "@mui/material";
 import AnimFinancial from "components/animations/AnimFinancial";
-import EditForm from "components/edit-form";
 import { EditFormRefType } from "components/edit-form/EditForm";
 import { forwardRef } from "react";
 import { Administration } from "services/types/administration.types";
-import { DispatchFunction, FieldType } from "types/ui-types";
+import { DispatchFunction } from "types/ui-types";
+import BusinessRegFlowFinancialInfoForm from "./BusinessRegFlowFinancialInfoForm";
 
 const BusinessRegFlowFinancialInfo = forwardRef<
   EditFormRefType<Administration>,
@@ -26,21 +26,10 @@ const BusinessRegFlowFinancialInfo = forwardRef<
         xs={12}
         sx={{ maxHeight: "50vh", overflow: "auto" }}
       >
-        <EditForm
+        <BusinessRegFlowFinancialInfoForm
           ref={ref}
           data={data}
           onChange={onChange}
-          fields={[
-            { displayName: "Bank Account Name", name: "bank_account_name" },
-            { displayName: "Bank Account Number", name: "bank_account_number" },
-            { displayName: "Bank Address", name: "bank_address" },
-            {
-              displayName: "Initial Capital",
-              name: "bank_initial_capital",
-              type: FieldType.Money,
-            },
-            { displayName: "Funding Sources", name: "bank_funding_sources" },
-          ]}
         />
       </Grid>
     </Grid>

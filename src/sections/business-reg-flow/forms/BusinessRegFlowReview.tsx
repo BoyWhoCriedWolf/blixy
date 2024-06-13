@@ -3,6 +3,11 @@ import AnimReview from "components/animations/AnimReview";
 import { FC, PropsWithChildren } from "react";
 import { Administration } from "services/types/administration.types";
 import { DispatchFunction } from "types/ui-types";
+import BusinessRegFlowBusinessOperationsForm from "./BusinessRegFlowBusinessOperationsForm";
+import BusinessRegFlowCompanyInfoForm from "./BusinessRegFlowCompanyInfoForm";
+import BusinessRegFlowFinancialInfoForm from "./BusinessRegFlowFinancialInfoForm";
+import BusinessRegFlowOwnerInfoForm from "./BusinessRegFlowOwnerInfoForm";
+import BusinessRegFlowUserAgreementForm from "./BusinessRegFlowUserAgreementForm";
 
 const BusinessRegFlowReview: FC<
   PropsWithChildren<{
@@ -23,20 +28,31 @@ const BusinessRegFlowReview: FC<
         xs={12}
         sx={{ maxHeight: "50vh", overflow: "auto" }}
       >
-        {/* <EditForm
+        <BusinessRegFlowCompanyInfoForm
           data={data}
           onChange={onChange}
-          fields={[
-            { displayName: "Terms and Conditions", name: "terms_conditions" },
-            { displayName: "Privacy Policy", name: "privacy_policy" },
-
-            {
-              displayName: "Consent for Data Usage",
-              name: "consent_data_usage",
-              type: FieldType.Checkbox,
-            },
-          ]}
-        /> */}
+          readOnly={true}
+        />
+        <BusinessRegFlowOwnerInfoForm
+          data={data}
+          onChange={onChange}
+          readOnly={true}
+        />
+        <BusinessRegFlowBusinessOperationsForm
+          data={data}
+          onChange={onChange}
+          readOnly={true}
+        />
+        <BusinessRegFlowFinancialInfoForm
+          data={data}
+          onChange={onChange}
+          readOnly={true}
+        />
+        <BusinessRegFlowUserAgreementForm
+          data={data}
+          onChange={onChange}
+          readOnly={true}
+        />
       </Grid>
     </Grid>
   );
