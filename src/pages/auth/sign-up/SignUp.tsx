@@ -126,9 +126,9 @@ const SignUp = () => {
     navigate("/");
   };
 
-  const handleRegDetails = () => {
-    navigate("/business-reg-flow");
-  };
+  // const handleRegDetails = () => {
+  //   navigate("/business-reg-flow");
+  // };
 
   return (
     <Box>
@@ -219,14 +219,14 @@ const SignUp = () => {
         Register
       </Button>
 
-      <Button
+      {/* <Button
         onClick={handleRegDetails}
         color="primary"
         fullWidth
         sx={{ mb: 2 }}
       >
         Business Registration
-      </Button>
+      </Button> */}
 
       <Button onClick={handleLogin} color="primary" fullWidth>
         already have an account
