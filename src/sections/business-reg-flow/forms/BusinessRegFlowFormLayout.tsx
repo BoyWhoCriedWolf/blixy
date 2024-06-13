@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Slider, Typography } from "@mui/material";
 import React, { FC, PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,8 @@ const BusinessRegFlowFormLayout: FC<
     isFirst?: boolean;
     isLast?: boolean;
     title?: string;
+    count?: number;
+    index?: number;
   }>
 > = ({
   onNext = () => null,
@@ -17,6 +19,8 @@ const BusinessRegFlowFormLayout: FC<
   isFirst = false,
   isLast = false,
   title = "",
+  count = 1,
+  index = 1,
 }) => {
   const navigate = useNavigate();
 
@@ -31,6 +35,14 @@ const BusinessRegFlowFormLayout: FC<
           {title}
         </Typography>
       ) : null}
+
+      <Slider
+        value={index}
+        max={count}
+        step={1}
+        marks
+        getAriaLabel={(value) => `Step ${value}`}
+      />
 
       <Box sx={{ mb: 2 }}>{children}</Box>
 
