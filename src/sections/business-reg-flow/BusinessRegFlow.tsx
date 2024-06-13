@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import CollapseArray from "components/containers/collapse-array";
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Administration } from "services/types/administration.types";
 import BusinessRegFlowBusinessOperations from "./forms/BusinessRegFlowBusinessOperations";
@@ -12,19 +12,19 @@ import BusinessRegFlowOwnerInfo from "./forms/BusinessRegFlowOwnerInfo";
 import BusinessRegFlowReview from "./forms/BusinessRegFlowReview";
 import BusinessRegFlowUserAgreement from "./forms/BusinessRegFlowUserAgreement";
 import BusinessRegFlowWelcome from "./forms/BusinessRegFlowWelcome";
+import { useSnackbar } from "notistack";
 
 const BusinessRegFlow = () => {
   const { step_index = "0" } = useParams();
 
+  const snb = useSnackbar();
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState<Administration>({} as Administration);
 
-  const handleBefore = () => setCurrentIndex((s = 0) => Math.max(0, s - 1));
-  const handleNext = () => setCurrentIndex((s = 0) => s + 1);
-
-  useEffect(() => {
-    setCurrentIndex(parseInt(step_index));
-  }, [step_index]);
+  const refCompanyInfo = createRef<{
+    prepare: () => boolean | Administration;
+  }>();
 
   const FORMS = [
     {
@@ -33,7 +33,14 @@ const BusinessRegFlow = () => {
     },
     {
       title: "Company Information",
-      content: <BusinessRegFlowCompanyInfo data={data} onChange={setData} />,
+      content: (
+        <BusinessRegFlowCompanyInfo
+          ref={refCompanyInfo}
+          data={data}
+          onChange={setData}
+        />
+      ),
+      ref: refCompanyInfo,
     },
     {
       title: "Owner/Stakeholder Information",
@@ -66,6 +73,22 @@ const BusinessRegFlow = () => {
       content: <BusinessRegFlowConfirm />,
     },
   ];
+
+  const handleBefore = () => setCurrentIndex((s = 0) => Math.max(0, s - 1));
+  const handleNext = () => {
+    if (FORMS?.[currentIndex]?.ref?.current) {
+      if (!FORMS?.[currentIndex]?.ref?.current?.prepare()) {
+        snb.enqueueSnackbar("");
+        return;
+      }
+    }
+
+    setCurrentIndex((s = 0) => s + 1);
+  };
+
+  useEffect(() => {
+    setCurrentIndex(parseInt(step_index));
+  }, [step_index]);
 
   return (
     <Box>

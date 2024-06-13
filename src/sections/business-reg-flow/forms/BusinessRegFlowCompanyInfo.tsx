@@ -1,16 +1,19 @@
 import { Grid } from "@mui/material";
 import AnimBuildings from "components/animations/AnimBuildings";
 import EditForm from "components/edit-form";
-import { FC, PropsWithChildren } from "react";
+import { forwardRef } from "react";
 import { Administration } from "services/types/administration.types";
 import { DispatchFunction, FieldType } from "types/ui-types";
 
-const BusinessRegFlowCompanyInfo: FC<
-  PropsWithChildren<{
-    data?: Administration;
-    onChange?: DispatchFunction<Administration>;
-  }>
-> = ({ data, onChange }) => {
+type BusinessRegFlowCompanyInfoProps = {
+  data?: Administration;
+  onChange?: DispatchFunction<Administration>;
+};
+
+const BusinessRegFlowCompanyInfo = forwardRef<
+  { prepare: () => boolean | Administration },
+  BusinessRegFlowCompanyInfoProps
+>(({ data, onChange }, ref) => {
   return (
     <Grid container alignItems={"center"}>
       <Grid item lg={6} md={6} sm={6} xs={12}>
@@ -25,6 +28,7 @@ const BusinessRegFlowCompanyInfo: FC<
         sx={{ maxHeight: "50vh", overflow: "auto" }}
       >
         <EditForm
+          ref={ref}
           data={data}
           onChange={onChange}
           fields={[
@@ -51,7 +55,10 @@ const BusinessRegFlowCompanyInfo: FC<
               displayName: "Business Address",
               name: "company_business_address",
             },
-            { displayName: "Mailing Address", name: "company_mailing_address" },
+            {
+              displayName: "Mailing Address",
+              name: "company_mailing_address",
+            },
             { displayName: "Phone Number", name: "company_phone_number" },
             { displayName: "Email Address", name: "company_email" },
 
@@ -59,13 +66,16 @@ const BusinessRegFlowCompanyInfo: FC<
               displayName: "Registration Number",
               name: "company_registration_number",
             },
-            { displayName: "Tax Identification Number", name: "company_tin" },
+            {
+              displayName: "Tax Identification Number",
+              name: "company_tin",
+            },
             { displayName: "VAT Number", name: "company_vat" },
           ]}
         />
       </Grid>
     </Grid>
   );
-};
+});
 
 export default BusinessRegFlowCompanyInfo;
