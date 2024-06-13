@@ -49,7 +49,7 @@ const BusinessRegFlowFormLayout: FC<
       ) : null}
 
       <Slider
-        value={index}
+        value={index + 1}
         max={count}
         step={1}
         marks
