@@ -13,6 +13,7 @@ const BusinessRegFlowFormLayout: FC<
     index?: number;
     submitIndex?: number;
     onSubmit?: () => void;
+    onClose?: () => void;
   }>
 > = ({
   onNext = () => null,
@@ -25,13 +26,18 @@ const BusinessRegFlowFormLayout: FC<
   index = 1,
   submitIndex,
   onSubmit = () => null,
+  onClose,
 }) => {
   const navigate = useNavigate();
 
   const isSubmit = index === submitIndex;
 
   const handleCancel = () => {
-    navigate("/");
+    if (onClose) {
+      onClose();
+    } else {
+      navigate("/");
+    }
   };
 
   return (

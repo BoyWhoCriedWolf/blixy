@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import CollapseArray from "components/containers/collapse-array";
 import { EditFormRefType } from "components/edit-form/EditForm";
 import { useSnackbar } from "notistack";
-import { createRef, useEffect, useState } from "react";
+import { FC, PropsWithChildren, createRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Administration } from "services/types/administration.types";
 import BusinessRegFlowBusinessOperations from "./forms/BusinessRegFlowBusinessOperations";
@@ -17,7 +17,9 @@ import BusinessRegFlowWelcome from "./forms/BusinessRegFlowWelcome";
 import PageLoading from "components/loading/page-loading";
 import administrationService from "services/administration.service";
 
-const BusinessRegFlow = () => {
+const BusinessRegFlow: FC<PropsWithChildren<{ onClose?: () => void }>> = ({
+  onClose,
+}) => {
   const { step_index = "0" } = useParams();
 
   const snb = useSnackbar();
@@ -139,6 +141,7 @@ const BusinessRegFlow = () => {
             isLast={currentIndex === FORMS.length - 1}
             onNext={handleNext}
             onBefore={handleBefore}
+            onClose={onClose}
             title={item.title}
             count={FORMS.length}
             index={itemIndex}
