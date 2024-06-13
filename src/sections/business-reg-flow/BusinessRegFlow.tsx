@@ -24,6 +24,8 @@ const BusinessRegFlow = () => {
   const [data, setData] = useState<Administration>({} as Administration);
 
   const refCompanyInfo = createRef<EditFormRefType<Administration>>();
+  const refOwnerInfo = createRef<EditFormRefType<Administration>>();
+  const refFinancialInfo = createRef<EditFormRefType<Administration>>();
   const refBusinessOperations = createRef<EditFormRefType<Administration>>();
 
   const FORMS = [
@@ -44,7 +46,14 @@ const BusinessRegFlow = () => {
     },
     {
       title: "Owner/Stakeholder Information",
-      content: <BusinessRegFlowOwnerInfo data={data} onChange={setData} />,
+      content: (
+        <BusinessRegFlowOwnerInfo
+          ref={refOwnerInfo}
+          data={data}
+          onChange={setData}
+        />
+      ),
+      ref: refOwnerInfo,
     },
     {
       title: "Business Operations",
@@ -59,7 +68,14 @@ const BusinessRegFlow = () => {
     },
     {
       title: "Financial Information",
-      content: <BusinessRegFlowFinancialInfo data={data} onChange={setData} />,
+      content: (
+        <BusinessRegFlowFinancialInfo
+          ref={refFinancialInfo}
+          data={data}
+          onChange={setData}
+        />
+      ),
+      ref: refFinancialInfo,
     },
     // {
     //   title: "Compliance and Legal",

@@ -12,7 +12,7 @@ const BusinessRegFlowBusinessOperations = forwardRef<
     data?: Administration;
     onChange?: DispatchFunction<Administration>;
   }
->(({ data, onChange }) => {
+>(({ data, onChange }, ref) => {
   return (
     <Grid container alignItems={"center"}>
       <Grid item lg={6} md={6} sm={6} xs={12}>
@@ -27,6 +27,7 @@ const BusinessRegFlowBusinessOperations = forwardRef<
         sx={{ maxHeight: "50vh", overflow: "auto" }}
       >
         <EditForm
+          ref={ref}
           data={data}
           onChange={onChange}
           fields={[
