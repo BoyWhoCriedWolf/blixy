@@ -14,6 +14,8 @@ import BusinessRegFlowOwnerInfo from "./forms/BusinessRegFlowOwnerInfo";
 import BusinessRegFlowReview from "./forms/BusinessRegFlowReview";
 import BusinessRegFlowUserAgreement from "./forms/BusinessRegFlowUserAgreement";
 import BusinessRegFlowWelcome from "./forms/BusinessRegFlowWelcome";
+import PageLoading from "components/loading/page-loading";
+import administrationService from "services/administration.service";
 
 const BusinessRegFlow = () => {
   const { step_index = "0" } = useParams();
@@ -22,6 +24,7 @@ const BusinessRegFlow = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState<Administration>({} as Administration);
+  const [isLoading, setIsLoading] = useState(false);
 
   const refCompanyInfo = createRef<EditFormRefType<Administration>>();
   const refOwnerInfo = createRef<EditFormRefType<Administration>>();
@@ -109,21 +112,38 @@ const BusinessRegFlow = () => {
     setCurrentIndex((s = 0) => s + 1);
   };
 
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    const ret = await administrationService.save({ data });
+    setIsLoading(false);
+
+    if (ret.success) {
+      handleNext();
+    } else {
+      snb.enqueueSnackbar(ret.msg ?? "Unknown error", { variant: "warning" });
+    }
+  };
+
   useEffect(() => {
     setCurrentIndex(parseInt(step_index));
   }, [step_index]);
 
   return (
     <Box>
+      <PageLoading open={isLoading} />
       <CollapseArray
         index={currentIndex}
-        data={FORMS.map((item) => (
+        data={FORMS.map((item, itemIndex) => (
           <BusinessRegFlowFormLayout
             isFirst={currentIndex === 0}
             isLast={currentIndex === FORMS.length - 1}
             onNext={handleNext}
             onBefore={handleBefore}
             title={item.title}
+            count={FORMS.length}
+            index={itemIndex}
+            submitIndex={FORMS.length - 2}
+            onSubmit={handleSubmit}
           >
             {item.content}
           </BusinessRegFlowFormLayout>

@@ -11,6 +11,8 @@ const BusinessRegFlowFormLayout: FC<
     title?: string;
     count?: number;
     index?: number;
+    submitIndex?: number;
+    onSubmit?: () => void;
   }>
 > = ({
   onNext = () => null,
@@ -21,8 +23,12 @@ const BusinessRegFlowFormLayout: FC<
   title = "",
   count = 1,
   index = 1,
+  submitIndex,
+  onSubmit = () => null,
 }) => {
   const navigate = useNavigate();
+
+  const isSubmit = index === submitIndex;
 
   const handleCancel = () => {
     navigate("/");
@@ -47,14 +53,14 @@ const BusinessRegFlowFormLayout: FC<
       <Box sx={{ mb: 2 }}>{children}</Box>
 
       <Button
-        onClick={onNext}
+        onClick={isSubmit ? onSubmit : onNext}
         color="warning"
         variant="contained"
         disabled={isLast}
         fullWidth
         sx={{ mb: 1 }}
       >
-        Next
+        {isSubmit ? "Submit" : "Next"}
       </Button>
 
       <Grid container justifyContent={"space-between"} alignItems={"center"}>
