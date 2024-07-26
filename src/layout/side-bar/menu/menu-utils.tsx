@@ -5,24 +5,26 @@ import {
   ArrowDownward,
   AttachMoney,
   BarChart,
+  Build,
   Business,
   Construction,
   ContactEmergency,
+  CurrencyExchange,
   DocumentScanner,
   FilePresent,
-  Flip,
   FolderDelete,
   HighQuality,
   Home,
   Inventory,
   IosShare,
+  Language,
   LocalAtm,
   Memory,
-  NoAccounts,
+  Money,
   Payment,
   PermContactCalendar,
+  Person,
   PointOfSale,
-  PriceChange,
   QrCodeScanner,
   ReceiptLong,
   Schema,
@@ -95,18 +97,18 @@ export const MENU_DATA = [
         path: "/backoffice/memorial",
         label: "Memorial",
       },
-      // Exporting
-      {
-        icon: <IosShare />,
-        path: "/backoffice/exporting",
-        label: "Exporting",
-      },
-      // Importing
-      {
-        icon: <ArrowDownward />,
-        path: "/backoffice/importing",
-        label: "Importing",
-      },
+      // // Exporting
+      // {
+      //   icon: <IosShare />,
+      //   path: "/backoffice/exporting",
+      //   label: "Exporting",
+      // },
+      // // Importing
+      // {
+      //   icon: <ArrowDownward />,
+      //   path: "/backoffice/importing",
+      //   label: "Importing",
+      // },
       // Chart of accounts
       {
         icon: <BarChart />,
@@ -119,18 +121,18 @@ export const MENU_DATA = [
         label: "Checklist",
         isLabel: true,
       },
-      // Bank
-      {
-        icon: <AccountBalance />,
-        path: "/backoffice/bank",
-        label: "Bank",
-      },
-      // Suspense accounts
-      {
-        icon: <NoAccounts />,
-        path: "/backoffice/suspense-accounts",
-        label: "Suspense accounts",
-      },
+      // // Bank
+      // {
+      //   icon: <AccountBalance />,
+      //   path: "/backoffice/bank",
+      //   label: "Bank",
+      // },
+      // // Suspense accounts
+      // {
+      //   icon: <NoAccounts />,
+      //   path: "/backoffice/suspense-accounts",
+      //   label: "Suspense accounts",
+      // },
       // Accounts receivable
       {
         icon: <AccountBox />,
@@ -167,12 +169,12 @@ export const MENU_DATA = [
         path: "/backoffice/standard-values",
         label: "Standard Values",
       },
-      // Scan forms
-      {
-        icon: <Flip />,
-        path: "/backoffice/scan-forms",
-        label: "Scan forms",
-      },
+      // // Scan forms
+      // {
+      //   icon: <Flip />,
+      //   path: "/backoffice/scan-forms",
+      //   label: "Scan forms",
+      // },
     ],
   },
 
@@ -218,31 +220,35 @@ export const MENU_DATA = [
         path: "/bank/accounts",
         label: "Bank accounts",
       },
-      // Processed transactions
-      {
-        icon: <ReceiptLong />,
-        path: "/bank/processed-transactions",
-        label: "Processed transactions",
-      },
-      {
-        icon: <LocalAtm />,
-        path: "#",
-        label: "Cash",
-      },
-      {
-        icon: <PriceChange />,
-        path: "#",
-        label: "Payment list",
-      },
+      // // Processed transactions
+      // {
+      //   icon: <ReceiptLong />,
+      //   path: "/bank/processed-transactions",
+      //   label: "Processed transactions",
+      // },
+      // // Cash
+      // {
+      //   icon: <LocalAtm />,
+      //   path: "#",
+      //   label: "Cash",
+      // },
+      // // Payment list
+      // {
+      //   icon: <PriceChange />,
+      //   path: "#",
+      //   label: "Payment list",
+      // },
+      // Export transactions
       {
         icon: <IosShare />,
         path: "/bank/export-transactions",
         label: "Export transactions",
       },
+      // Bank Automatic Rules
       {
         icon: <QrCodeScanner />,
         path: "#",
-        label: "Recognition rules",
+        label: "Bank Automatic Rules",
       },
     ],
   },
@@ -268,7 +274,7 @@ export const MENU_DATA = [
         label: "Profit loss account",
       },
       {
-        icon: <Construction />, 
+        icon: <Construction />,
         path: "/accounting/trial-sheet",
         label: "Trial balance sheet",
       },
@@ -347,5 +353,48 @@ export const MENU_DATA = [
     icon: <PermContactCalendar />,
     label: "Contacts",
     path: "/contacts",
+  },
+
+  // Settings
+  {
+    icon: <SupervisorAccount />,
+    label: "Settings",
+    children: [
+      // // Overview
+      // {
+      //   label: "Overview",
+      //   isLabel: true,
+      // },
+      // User/Roles Registration
+      {
+        icon: <Person />,
+        path: "#",
+        label: "User/Roles Registration",
+      },
+      // Taxes
+      {
+        icon: <Money />,
+        path: "#",
+        label: "Taxes",
+      },
+      // Ponto bank integration
+      {
+        icon: <Build />,
+        path: "#",
+        label: "Ponto bank integration",
+      },
+      // Currencies
+      {
+        icon: <CurrencyExchange />,
+        path: "#",
+        label: "Currencies",
+      },
+      // Country's
+      {
+        icon: <Language />,
+        path: "#",
+        label: "Country's",
+      },
+    ],
   },
 ] as Array<MenuDataType>;
