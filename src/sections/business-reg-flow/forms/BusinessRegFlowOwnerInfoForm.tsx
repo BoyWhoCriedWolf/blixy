@@ -25,7 +25,7 @@ const BusinessRegFlowOwnerInfoForm = forwardRef<
           displayName: "Owner Address",
           name: "owner_business_address",
         },
-        { displayName: "Mailing Address", name: "owner_mailing_address" },
+        // { displayName: "Mailing Address", name: "owner_mailing_address" },
         { displayName: "Phone Number", name: "owner_phone_number" },
         { displayName: "Email Address", name: "owner_email" },
 
@@ -33,8 +33,8 @@ const BusinessRegFlowOwnerInfoForm = forwardRef<
           displayName: "Registration Number",
           name: "owner_registration_number",
         },
-        { displayName: "Tax Identification Number", name: "owner_tin" },
-        { displayName: "VAT Number", name: "owner_vat" },
+        // { displayName: "Tax Identification Number", name: "owner_tin" },
+        // { displayName: "VAT Number", name: "owner_vat" },
       ]}
       readOnly={readOnly}
     />
